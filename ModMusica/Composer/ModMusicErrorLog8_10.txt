@@ -1,0 +1,20 @@
+2013-08-10 14:39:09.094 ModMusic[4507:907] 14:39:09.094 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:39:09.100 ModMusic[4507:3e07] 14:39:09.100 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006
+2013-08-10 14:39:09.106 ModMusic[4507:907] 14:39:09.106 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:39:09.107 ModMusic[4507:907] *** ERROR *** -[PdAudioUnit setActive:][77] status code =  unknown error code -12983
+2013-08-10 14:39:10.665 ModMusic[4507:3e0b] 14:39:10.666 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006
+2013-08-10 14:39:11.269 ModMusic[4507:907] 14:39:11.270 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:39:11.285 ModMusic[4507:3e0f] 14:39:11.285 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006
+2013-08-10 14:39:11.290 ModMusic[4507:907] 14:39:11.290 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:39:11.302 ModMusic[4507:907] *** ERROR *** -[PdAudioUnit setActive:][77] status code =  unknown error code -12983
+2013-08-10 14:41:08.367 ModMusic[4507:4207] 14:41:08.367 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006
+2013-08-10 14:41:08.368 ModMusic[4507:907] 14:41:08.368 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:41:08.369 ModMusic[4507:351b] 14:41:08.369 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006
+2013-08-10 14:41:08.369 ModMusic[4507:907] 14:41:08.370 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:41:08.370 ModMusic[4507:907] *** ERROR *** -[PdAudioUnit setActive:][77] status code =  unknown error code -12983
+2013-08-10 14:41:08.375 ModMusic[4507:420b] 14:41:08.375 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006
+2013-08-10 14:41:08.375 ModMusic[4507:907] 14:41:08.376 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:41:08.377 ModMusic[4507:907] 14:41:08.377 <com.apple.main-thread> AUIOClient_StartIO failed (-12983)
+2013-08-10 14:41:08.376 ModMusic[4507:3fdb] 14:41:08.377 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006
+2013-08-10 14:41:08.379 ModMusic[4507:907] *** ERROR *** -[PdAudioUnit setActive:][77] status code =  unknown error code -12983
+2013-08-10 14:41:20.217 ModMusic[4507:420f] 14:41:20.217 <AURemoteIO::IOThread> AURemoteIO@0x2028f020: IOThread exiting with error 0x10004006

@@ -1,0 +1,7 @@
+#N canvas 81 158 796 463 10;
+#X obj 374 13 inlet;
+#X obj 321 16 inlet~;
+#X obj 315 317 outlet~;
+#X obj 373 42 route target base window;
+#X obj 388 208 autoPitch1.0;
+#X connect 0 0 3 0;

@@ -1,0 +1,222 @@
+#N canvas -15 22 1440 802 10;
+#X obj 588 34 inlet~;
+#N canvas 0 110 565 454 hann-window 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-hann 1 float 0;
+#X coords 0 1 1 0 300 100 1;
+#X restore 82 311 graph;
+#X obj 378 165 osc~;
+#X obj 378 190 *~ -0.5;
+#X obj 378 214 +~ 0.5;
+#X obj 331 247 tabwrite~ \$0-hann;
+#X obj 38 173 /;
+#X obj 127 142 samplerate~;
+#X obj 177 204 swap;
+#X obj 177 228 /;
+#X obj 49 201 * 1000;
+#X obj 38 115 t f b f;
+#X msg 173 92 resize \$1;
+#X obj 173 116 s \$0-hann;
+#X msg 382 130 0;
+#X obj 330 131 t f b;
+#X text 15 8 calculate Hann window table (variable window size) and
+constants window-hz (fundamental frequency of analysis) \, window-sec
+and window-msec (analysis window size in seconds and msec).;
+#X obj 37 88 r \$0-window-size;
+#X obj 49 228 s \$0-window-msec;
+#X obj 38 251 s \$0-window-sec;
+#X obj 177 252 s \$0-window-hz;
+#X obj 330 105 r \$0-window-hz;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 5 0 9 0;
+#X connect 5 0 18 0;
+#X connect 6 0 5 1;
+#X connect 6 0 7 1;
+#X connect 7 0 8 0;
+#X connect 7 1 8 1;
+#X connect 8 0 19 0;
+#X connect 9 0 17 0;
+#X connect 10 0 5 0;
+#X connect 10 0 7 0;
+#X connect 10 1 6 0;
+#X connect 10 2 11 0;
+#X connect 11 0 12 0;
+#X connect 13 0 1 1;
+#X connect 14 0 1 0;
+#X connect 14 1 4 0;
+#X connect 14 1 13 0;
+#X connect 16 0 10 0;
+#X connect 20 0 14 0;
+#X restore 1175 55 pd hann-window;
+#X obj 123 122 block~ \$1 4;
+#X msg 123 100 set \$1 4;
+#X obj 124 61 \$1;
+#X obj 228 148 s \$0-window-size;
+#X obj 121 11 loadbang;
+#X obj 137 33 r \$0-window;
+#X obj 590 105 *~;
+#X obj 645 78 tabreceive~ \$0-hann;
+#X obj 590 141 rfft~;
+#X obj 1235 457 *~;
+#X obj 1191 458 *~;
+#X obj 863 30 inlet;
+#X obj 863 59 route threshold ratio window switch;
+#X obj 862 86 s \$0-threshold;
+#X obj 910 111 s \$0-ratio;
+#X obj 959 135 s \$0-window;
+#X obj 1003 162 s \$0-switch;
+#X msg 919 26 threshold 0.5;
+#X msg 1023 24 ratio 5;
+#X obj 538 557 *~;
+#X obj 556 532 tabreceive~ \$0-hann;
+#X obj 534 600 outlet~;
+#X obj 959 2 loadbang;
+#X obj 762 190 r \$0-threshold;
+#X obj 843 244 r \$0-ratio;
+#X obj 844 266 sig~;
+#X obj 761 212 sig~;
+#X obj 1176 88 table \$0-thresholdTab;
+#X obj 1181 159 s \$0-thresholdTab;
+#X msg 1181 130 const 0.5;
+#X obj 238 55 * 3;
+#X obj 238 76 / 2;
+#X obj 236 119 s \$0-normalize;
+#X floatatom 259 100 5 0 0 0 - - -;
+#X obj 42 104 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-magnitude 512 float 3;
+#A 0 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10 1e-10
+1e-10 1e-10 1e-10 1e-10 1e-10 23.1199 22.6367 22.1732 21.7117 21.2486
+20.7578 20.2264 19.6692 19.1282 18.6333 18.1234 17.5867 17.034 16.4008
+15.7534 15.1835 14.5715 13.8963 13.2632 12.6363 11.9607 11.2953 10.6488
+9.94445 9.24489 8.55968 7.83564 7.14342 6.4207 5.65725 4.93198 4.2044
+3.458 2.65867 1.79829 1.0203 0.512226 0.845432 1.57364 2.39409 3.20949
+4.03176 4.94533 5.86627 6.78395 7.72054 8.63182 9.52479 10.4059 11.3116
+12.2814 13.2366 14.1707 15.1802 16.1958 17.1918 18.2486 19.2876 20.2726
+21.2993 22.3571 23.3877 24.399 25.4462 26.5288 27.6429 28.7795 29.8887
+31.0365 32.2237 33.4034 34.5828 35.6853 36.7994 37.9924 39.13 40.2604
+41.4577 42.6339 43.8319 45.0966 46.361 47.6181 48.8605 50.0869 51.3731
+52.7208 54.0471 55.3498 56.6472 57.9471 59.2946 60.6302 61.9424 63.2554
+64.5676 65.9108 67.2887 68.6806 70.0487 71.3931 72.7391 74.0944 75.5017
+76.9759 78.4613 79.9179 81.3393 82.7031 84.0908 85.5595 87.0403 88.5457
+90.0774 91.5686 93.0652 94.5336 95.9237 97.3401 98.7998 100.291 101.861
+103.409 104.908 106.413 107.896 109.416 110.998 112.468 113.902 115.451
+117.031 118.588 120.042 121.527 123.168 124.773 126.371 127.913 129.361
+130.912 132.494 134.031 135.528 136.993 138.611 140.323 141.969 143.612
+145.207 146.736 148.297 149.865 151.474 153.097 154.702 156.316 157.932
+159.521 161.06 162.607 164.123 165.625 167.199 168.816 170.434 171.956
+173.453 174.989 176.54 178.095 179.613 181.172 182.706 184.15 185.617
+187.115 188.659 190.188 191.688 193.279 194.845 196.293 197.792 199.313
+200.765 202.245 203.739 205.134 206.519 207.965 209.363 210.725 212.136
+213.561 214.954 216.338 217.746 219.066 220.337 221.747 223.202 224.591
+225.952 227.302 228.67 230.005 231.288 232.55 233.809 235.101 236.412
+237.777 239.108 240.346 241.68 243.016 244.171 245.3 246.459 247.611
+248.865 250.09 251.194 252.277 253.302 254.343 255.409 256.444 257.523
+258.554 259.466 260.41 261.437 262.447 263.418 264.404 265.434 266.362
+267.223 268.129 268.962 269.831 270.677 271.383 272.114 272.872 273.521
+274.125 274.927 275.743 276.414 277.13 277.842 278.42 278.996;
+#X coords 0 1 511 -1 200 140 1 0 0;
+#X restore 1169 254 graph;
+#X obj 1208 481 +~;
+#X obj 1204 580 tabwrite~ \$0-magnitude;
+#X obj 617 163 s~ \$0-imaginary;
+#X obj 591 188 s~ \$0-real;
+#X obj 1241 431 r~ \$0-imaginary;
+#X obj 1196 408 r~ \$0-real;
+#X obj 689 241 tabreceive~ \$0-magnitude;
+#X obj 1302 530 bang~;
+#X obj 662 28 osc~;
+#X msg 660 4 220;
+#X obj 1206 513 +~ 1e-20;
+#X obj 1202 541 sqrt~;
+#X obj 625 289 expr~ if($v2<$v3 \, $v1 \, $v1*(1/$v4+1));
+#X obj 588 381 rifft~;
+#X obj 470 199 r \$0-threshold;
+#X obj 551 253 r \$0-ratio;
+#X obj 552 275 sig~;
+#X obj 469 221 sig~;
+#X obj 397 250 tabreceive~ \$0-magnitude;
+#X obj 333 298 expr~ if($v2<$v3 \, $v1 \, $v1*(1/$v4+1));
+#X msg 1165 -81 \; \$2-magnitude resize \$1;
+#X obj 1162 -147 \$1;
+#X obj 1163 -128 pack f \$0;
+#X obj 1158 -177 loadbang;
+#X connect 0 0 8 0;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 4 0 5 0;
+#X connect 4 0 32 0;
+#X connect 6 0 4 0;
+#X connect 7 0 4 0;
+#X connect 8 0 10 0;
+#X connect 9 0 8 1;
+#X connect 10 0 41 0;
+#X connect 10 0 57 0;
+#X connect 10 1 40 0;
+#X connect 10 1 50 0;
+#X connect 11 0 38 1;
+#X connect 12 0 38 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 14 1 16 0;
+#X connect 14 2 17 0;
+#X connect 14 3 18 0;
+#X connect 19 0 14 0;
+#X connect 20 0 14 0;
+#X connect 21 0 23 0;
+#X connect 22 0 21 1;
+#X connect 24 0 19 0;
+#X connect 24 0 20 0;
+#X connect 25 0 28 0;
+#X connect 26 0 27 0;
+#X connect 27 0 50 3;
+#X connect 28 0 50 2;
+#X connect 31 0 30 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 33 0 35 0;
+#X connect 36 0 4 0;
+#X connect 38 0 48 0;
+#X connect 42 0 11 1;
+#X connect 42 0 11 0;
+#X connect 43 0 12 1;
+#X connect 43 0 12 0;
+#X connect 44 0 50 1;
+#X connect 45 0 39 0;
+#X connect 46 0 8 0;
+#X connect 47 0 46 0;
+#X connect 48 0 49 0;
+#X connect 49 0 39 0;
+#X connect 50 0 51 1;
+#X connect 52 0 55 0;
+#X connect 53 0 54 0;
+#X connect 54 0 57 3;
+#X connect 55 0 57 2;
+#X connect 56 0 57 1;
+#X connect 57 0 51 0;
+#X connect 59 0 60 0;
+#X connect 60 0 58 0;
+#X connect 61 0 59 0;

@@ -1,0 +1,9 @@
+#N canvas 0 22 450 300 10;
+#X obj 160 24 inlet;
+#X obj 162 69 swap 60000;
+#X obj 164 110 /;
+#X obj 164 171 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 2 1;
+#X connect 2 0 3 0;

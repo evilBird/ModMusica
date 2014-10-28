@@ -1,0 +1,51 @@
+#N canvas 0 22 1440 613 10;
+#X floatatom 835 13 5 0 0 0 - - -;
+#X obj 837 75 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 896 75 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 962 11 5 0 0 0 - - -;
+#X obj 963 43 wrandom;
+#X obj 1023 75 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 966 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 922 168 outlet;
+#X obj 1018 -129 loadbang;
+#X obj 833 -73 inlet;
+#X msg 836 103 0;
+#X msg 898 103 1;
+#X msg 964 104 2;
+#X msg 1022 103 3;
+#X obj 836 45 wrandom;
+#X obj 896 44 wrandom;
+#X obj 1023 42 wrandom;
+#X msg 989 -76 probs 50 5 5 5;
+#X msg 993 -45 probs 5 50 5 5;
+#X msg 1054 -18 probs 5 5 50 5;
+#X msg 1004 7 probs 5 5 5 50;
+#X connect 1 0 10 0;
+#X connect 2 0 11 0;
+#X connect 4 0 6 0;
+#X connect 5 0 13 0;
+#X connect 6 0 12 0;
+#X connect 8 0 17 0;
+#X connect 8 0 19 0;
+#X connect 8 0 20 0;
+#X connect 8 0 18 0;
+#X connect 9 0 0 0;
+#X connect 9 0 4 0;
+#X connect 9 0 14 0;
+#X connect 9 0 15 0;
+#X connect 9 0 16 0;
+#X connect 10 0 7 0;
+#X connect 11 0 7 0;
+#X connect 12 0 7 0;
+#X connect 13 0 7 0;
+#X connect 14 0 1 0;
+#X connect 15 0 2 0;
+#X connect 16 0 5 0;
+#X connect 17 0 15 1;
+#X connect 18 0 14 1;
+#X connect 19 0 16 1;
+#X connect 20 0 4 1;
