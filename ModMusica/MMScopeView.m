@@ -7,6 +7,7 @@
 //
 
 #import "MMScopeView.h"
+#import "UIColor+HBVHarmonies.h"
 typedef void (^Render)(void);
 
 @interface MMScopeView ()
@@ -26,10 +27,13 @@ typedef void (^Render)(void);
     return self;
 }
 
--(void)displayData:(NSArray *)data{
-    
-    UIBezierPath *path = [self pathFromArray:data];
-    [self animateBezierPath:path duration:self.animateDuration color:[UIColor redColor] lineWidth:2 index:0];
+- (void)animateLineDrawingWithPoints:(NSArray *)points width:(CGFloat)lineWidth color:(UIColor *)lineColor duration:(NSTimeInterval)duration index:(NSInteger)index
+{
+    [self animateBezierPath:[self pathFromArray:points]
+                   duration:duration
+                      color:lineColor
+                  lineWidth:lineWidth
+                      index:index];
 }
 
 - (UIBezierPath *)pathFromArray:(NSArray *)array
@@ -43,10 +47,32 @@ typedef void (^Render)(void);
             [result addLineToPoint:[value CGPointValue]];
         }
     }
-    
+
     return result;
 }
 
+- (UIBezierPath *)closedPathFromArray:(NSArray *)array
+{
+    UIBezierPath *result = nil;
+    for (NSValue *value in array) {
+        if (!result) {
+            result = [UIBezierPath bezierPath];
+            CGPoint pt;
+            pt.x = CGRectGetMaxX(self.bounds);
+            pt.y = CGRectGetMaxY(self.bounds);
+            [result moveToPoint:pt];
+            pt.x -= CGRectGetWidth(self.bounds);
+            [result addLineToPoint:pt];
+            [result addLineToPoint:[value CGPointValue]];
+        }else{
+            [result addLineToPoint:[value CGPointValue]];
+        }
+    }
+    
+    [result closePath];
+    
+    return result;
+}
 
 - (void)animateBezierPath:(UIBezierPath *)bezierPath duration:(CGFloat)duration color:(UIColor *)color lineWidth:(CGFloat)width index:(NSInteger)index;
 {
@@ -54,7 +80,7 @@ typedef void (^Render)(void);
     
     bezier.path          = bezierPath.CGPath;
     bezier.strokeColor   = color.CGColor;
-    bezier.fillColor     = [UIColor clearColor].CGColor;
+    bezier.fillColor     = color.CGColor;
     bezier.lineWidth     = width;
     bezier.strokeStart   = 0.0;
     bezier.strokeEnd     = 1.0;

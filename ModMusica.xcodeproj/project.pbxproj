@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		521F96ADB97CBCE51F347099 /* libPods-ModMusica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C766045950CFEDBA070D14FE /* libPods-ModMusica.a */; };
+		F24A3E9E1A0058300074471B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24A3E9D1A0058300074471B /* AudioToolbox.framework */; };
+		F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */ = {isa = PBXBuildFile; fileRef = F24A86BA1A0074D000875B66 /* UIColor+HBVHarmonies.m */; };
+		F251C3371A005D7F00C8EE78 /* mm_test_sig.pd in Resources */ = {isa = PBXBuildFile; fileRef = F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */; };
 		F2B2AB5119FF1739003042D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5019FF1739003042D6 /* main.m */; };
 		F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5319FF1739003042D6 /* AppDelegate.m */; };
 		F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5619FF1739003042D6 /* ViewController.m */; };
@@ -804,6 +807,8 @@
 		F2B2B1AA19FF2ADC003042D6 /* er_contAvg.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1A919FF2ADC003042D6 /* er_contAvg.pd */; };
 		F2B2B1AC19FF2AF6003042D6 /* birdCountIn.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1AB19FF2AF6003042D6 /* birdCountIn.pd */; };
 		F2B2B1AE19FF2B0D003042D6 /* list-dripslow.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */; };
+		F2B2B1BE19FF4D87003042D6 /* modmusica.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BC19FF4D87003042D6 /* modmusica.pd */; };
+		F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BD19FF4D87003042D6 /* scope.pd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -820,6 +825,11 @@
 		0957516C57A6187C5D65C574 /* Pods-ModMusica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModMusica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModMusica/Pods-ModMusica.debug.xcconfig"; sourceTree = "<group>"; };
 		C410D157FC1476ED7242B80B /* Pods-ModMusica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModMusica.release.xcconfig"; path = "Pods/Target Support Files/Pods-ModMusica/Pods-ModMusica.release.xcconfig"; sourceTree = "<group>"; };
 		C766045950CFEDBA070D14FE /* libPods-ModMusica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModMusica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F24A3E9C1A0058300074471B /* ModMusica.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ModMusica.entitlements; sourceTree = "<group>"; };
+		F24A3E9D1A0058300074471B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F24A86B91A0074D000875B66 /* UIColor+HBVHarmonies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HBVHarmonies.h"; sourceTree = "<group>"; };
+		F24A86BA1A0074D000875B66 /* UIColor+HBVHarmonies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HBVHarmonies.m"; sourceTree = "<group>"; };
+		F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_test_sig.pd; sourceTree = "<group>"; };
 		F2B2AB4B19FF1739003042D6 /* ModMusica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModMusica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B2AB4F19FF1739003042D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2B2AB5019FF1739003042D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1457,11 +1467,11 @@
 		F2B2AFD319FF281E003042D6 /* big-burundi-19.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "big-burundi-19.wav"; sourceTree = "<group>"; };
 		F2B2AFD419FF281E003042D6 /* big-burundi-24.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "big-burundi-24.wav"; sourceTree = "<group>"; };
 		F2B2AFD519FF281E003042D6 /* biglaser.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = biglaser.aif; sourceTree = "<group>"; };
-		F2B2AFD619FF281E003042D6 /* birdClock.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdClock.pd; sourceTree = "<group>"; };
-		F2B2AFD719FF281E003042D6 /* birdCompress.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdCompress.pd; sourceTree = "<group>"; };
-		F2B2AFD819FF281E003042D6 /* birdPan~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "birdPan~.pd"; sourceTree = "<group>"; };
-		F2B2AFD919FF281E003042D6 /* birdSqueeze~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "birdSqueeze~.pd"; sourceTree = "<group>"; };
-		F2B2AFDA19FF281E003042D6 /* birdString.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdString.pd; sourceTree = "<group>"; };
+		F2B2AFD619FF281E003042D6 /* birdClock.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = birdClock.pd; path = ../birdClock.pd; sourceTree = "<group>"; };
+		F2B2AFD719FF281E003042D6 /* birdCompress.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = birdCompress.pd; path = ../birdCompress.pd; sourceTree = "<group>"; };
+		F2B2AFD819FF281E003042D6 /* birdPan~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "birdPan~.pd"; path = "../birdPan~.pd"; sourceTree = "<group>"; };
+		F2B2AFD919FF281E003042D6 /* birdSqueeze~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "birdSqueeze~.pd"; path = "../birdSqueeze~.pd"; sourceTree = "<group>"; };
+		F2B2AFDA19FF281E003042D6 /* birdString.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = birdString.pd; path = ../birdString.pd; sourceTree = "<group>"; };
 		F2B2AFDB19FF281E003042D6 /* blobble.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = blobble.aif; sourceTree = "<group>"; };
 		F2B2AFDD19FF281E003042D6 /* bonk~-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bonk~-help.pd"; sourceTree = "<group>"; };
 		F2B2AFDE19FF281E003042D6 /* bonk~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "bonk~.c"; sourceTree = "<group>"; };
@@ -1473,29 +1483,29 @@
 		F2B2AFE419FF281E003042D6 /* Clap-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Clap-4.wav"; sourceTree = "<group>"; };
 		F2B2AFE519FF281E003042D6 /* Clap-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Clap-5.wav"; sourceTree = "<group>"; };
 		F2B2AFE619FF281E003042D6 /* Clap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Clap.wav; sourceTree = "<group>"; };
-		F2B2AFE819FF281E003042D6 /* 0-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFE919FF281E003042D6 /* 0-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFEA19FF281E003042D6 /* 0-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFEB19FF281E003042D6 /* 0-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFEC19FF281E003042D6 /* 0-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-test5.txt"; sourceTree = "<group>"; };
-		F2B2AFED19FF281E003042D6 /* 1-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFEE19FF281E003042D6 /* 1-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFEF19FF281E003042D6 /* 1-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFF019FF281E003042D6 /* 1-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFF119FF281E003042D6 /* 1-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-test5.txt"; sourceTree = "<group>"; };
-		F2B2AFF219FF281E003042D6 /* 2-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFF319FF281E003042D6 /* 2-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFF419FF281E003042D6 /* 2-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFF519FF281E003042D6 /* 2-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFF619FF281E003042D6 /* 2-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-test5.txt"; sourceTree = "<group>"; };
-		F2B2AFF719FF281E003042D6 /* 3-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFF819FF281E003042D6 /* 3-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFF919FF281E003042D6 /* 3-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFFA19FF281E003042D6 /* 3-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFFB19FF281E003042D6 /* 3-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-test5.txt"; sourceTree = "<group>"; };
+		F2B2AFE819FF281E003042D6 /* 0-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test1.txt"; path = "Composer/0-test1.txt"; sourceTree = "<group>"; };
+		F2B2AFE919FF281E003042D6 /* 0-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test2.txt"; path = "Composer/0-test2.txt"; sourceTree = "<group>"; };
+		F2B2AFEA19FF281E003042D6 /* 0-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test3.txt"; path = "Composer/0-test3.txt"; sourceTree = "<group>"; };
+		F2B2AFEB19FF281E003042D6 /* 0-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test4.txt"; path = "Composer/0-test4.txt"; sourceTree = "<group>"; };
+		F2B2AFEC19FF281E003042D6 /* 0-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test5.txt"; path = "Composer/0-test5.txt"; sourceTree = "<group>"; };
+		F2B2AFED19FF281E003042D6 /* 1-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test1.txt"; path = "Composer/1-test1.txt"; sourceTree = "<group>"; };
+		F2B2AFEE19FF281E003042D6 /* 1-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test2.txt"; path = "Composer/1-test2.txt"; sourceTree = "<group>"; };
+		F2B2AFEF19FF281E003042D6 /* 1-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test3.txt"; path = "Composer/1-test3.txt"; sourceTree = "<group>"; };
+		F2B2AFF019FF281E003042D6 /* 1-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test4.txt"; path = "Composer/1-test4.txt"; sourceTree = "<group>"; };
+		F2B2AFF119FF281E003042D6 /* 1-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test5.txt"; path = "Composer/1-test5.txt"; sourceTree = "<group>"; };
+		F2B2AFF219FF281E003042D6 /* 2-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test1.txt"; path = "Composer/2-test1.txt"; sourceTree = "<group>"; };
+		F2B2AFF319FF281E003042D6 /* 2-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test2.txt"; path = "Composer/2-test2.txt"; sourceTree = "<group>"; };
+		F2B2AFF419FF281E003042D6 /* 2-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test3.txt"; path = "Composer/2-test3.txt"; sourceTree = "<group>"; };
+		F2B2AFF519FF281E003042D6 /* 2-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test4.txt"; path = "Composer/2-test4.txt"; sourceTree = "<group>"; };
+		F2B2AFF619FF281E003042D6 /* 2-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test5.txt"; path = "Composer/2-test5.txt"; sourceTree = "<group>"; };
+		F2B2AFF719FF281E003042D6 /* 3-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test1.txt"; path = "Composer/3-test1.txt"; sourceTree = "<group>"; };
+		F2B2AFF819FF281E003042D6 /* 3-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test2.txt"; path = "Composer/3-test2.txt"; sourceTree = "<group>"; };
+		F2B2AFF919FF281E003042D6 /* 3-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test3.txt"; path = "Composer/3-test3.txt"; sourceTree = "<group>"; };
+		F2B2AFFA19FF281E003042D6 /* 3-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test4.txt"; path = "Composer/3-test4.txt"; sourceTree = "<group>"; };
+		F2B2AFFB19FF281E003042D6 /* 3-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test5.txt"; path = "Composer/3-test5.txt"; sourceTree = "<group>"; };
 		F2B2AFFC19FF281E003042D6 /* 4Track.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 4Track.pd; sourceTree = "<group>"; };
-		F2B2AFFD19FF281E003042D6 /* ah_60_2_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ah_60_2_60.wav; sourceTree = "<group>"; };
-		F2B2AFFE19FF281E003042D6 /* ah_60_4_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ah_60_4_60.wav; sourceTree = "<group>"; };
+		F2B2AFFD19FF281E003042D6 /* ah_60_2_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ah_60_2_60.wav; path = Composer/ah_60_2_60.wav; sourceTree = "<group>"; };
+		F2B2AFFE19FF281E003042D6 /* ah_60_4_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ah_60_4_60.wav; path = Composer/ah_60_4_60.wav; sourceTree = "<group>"; };
 		F2B2AFFF19FF281E003042D6 /* autoPitch1.1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = autoPitch1.1.pd; sourceTree = "<group>"; };
 		F2B2B00019FF281E003042D6 /* birdClock.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdClock.pd; sourceTree = "<group>"; };
 		F2B2B00119FF281E003042D6 /* birdCountIn.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdCountIn.pd; sourceTree = "<group>"; };
@@ -1542,9 +1552,9 @@
 		F2B2B02A19FF281E003042D6 /* ModMusicErrorLog8_10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModMusicErrorLog8_10.txt; sourceTree = "<group>"; };
 		F2B2B02B19FF281E003042D6 /* ms2samp.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ms2samp.pd; sourceTree = "<group>"; };
 		F2B2B02C19FF281E003042D6 /* noteOff.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = noteOff.pd; sourceTree = "<group>"; };
-		F2B2B02D19FF281E003042D6 /* ooh_60_1_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ooh_60_1_60.wav; sourceTree = "<group>"; };
-		F2B2B02E19FF281E003042D6 /* ooh_60_2_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ooh_60_2_60.wav; sourceTree = "<group>"; };
-		F2B2B02F19FF281E003042D6 /* ooh_60_4_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ooh_60_4_60.wav; sourceTree = "<group>"; };
+		F2B2B02D19FF281E003042D6 /* ooh_60_1_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ooh_60_1_60.wav; path = Composer/ooh_60_1_60.wav; sourceTree = "<group>"; };
+		F2B2B02E19FF281E003042D6 /* ooh_60_2_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ooh_60_2_60.wav; path = Composer/ooh_60_2_60.wav; sourceTree = "<group>"; };
+		F2B2B02F19FF281E003042D6 /* ooh_60_4_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ooh_60_4_60.wav; path = Composer/ooh_60_4_60.wav; sourceTree = "<group>"; };
 		F2B2B03019FF281E003042D6 /* pattern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pattern.pd; sourceTree = "<group>"; };
 		F2B2B03119FF281E003042D6 /* pitcher2~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pitcher2~.pd"; sourceTree = "<group>"; };
 		F2B2B03219FF281E003042D6 /* pitcher~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pitcher~.pd"; sourceTree = "<group>"; };
@@ -1626,8 +1636,10 @@
 		F2B2B19719FF2ABD003042D6 /* 3-Mario4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mario4.txt"; sourceTree = "<group>"; };
 		F2B2B19819FF2ABD003042D6 /* 3-Mario5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mario5.txt"; sourceTree = "<group>"; };
 		F2B2B1A919FF2ADC003042D6 /* er_contAvg.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = er_contAvg.pd; sourceTree = "<group>"; };
-		F2B2B1AB19FF2AF6003042D6 /* birdCountIn.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdCountIn.pd; sourceTree = "<group>"; };
+		F2B2B1AB19FF2AF6003042D6 /* birdCountIn.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = birdCountIn.pd; path = ../birdCountIn.pd; sourceTree = "<group>"; };
 		F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-dripslow.pd"; sourceTree = "<group>"; };
+		F2B2B1BC19FF4D87003042D6 /* modmusica.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica.pd; sourceTree = "<group>"; };
+		F2B2B1BD19FF4D87003042D6 /* scope.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scope.pd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1636,6 +1648,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				521F96ADB97CBCE51F347099 /* libPods-ModMusica.a in Frameworks */,
+				F24A3E9E1A0058300074471B /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1661,6 +1674,7 @@
 		A8D00E89E66249B2177C0FBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F24A3E9D1A0058300074471B /* AudioToolbox.framework */,
 				C766045950CFEDBA070D14FE /* libPods-ModMusica.a */,
 			);
 			name = Frameworks;
@@ -1689,6 +1703,9 @@
 		F2B2AB4D19FF1739003042D6 /* ModMusica */ = {
 			isa = PBXGroup;
 			children = (
+				F24A86B91A0074D000875B66 /* UIColor+HBVHarmonies.h */,
+				F24A86BA1A0074D000875B66 /* UIColor+HBVHarmonies.m */,
+				F24A3E9C1A0058300074471B /* ModMusica.entitlements */,
 				F2B2AB7D19FF273F003042D6 /* Pd */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
@@ -1735,338 +1752,17 @@
 		F2B2AB7D19FF273F003042D6 /* Pd */ = {
 			isa = PBXGroup;
 			children = (
+				F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */,
 				F2B2AB8419FF27BD003042D6 /* rj */,
-				F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */,
-				F2B2B1AB19FF2AF6003042D6 /* birdCountIn.pd */,
-				F2B2B1A919FF2ADC003042D6 /* er_contAvg.pd */,
-				F2B2AB7E19FF27BD003042D6 /* modMusicPatch_Test_3.pd */,
-				F2B2AB7F19FF27BD003042D6 /* mm_osc3~.pd */,
-				F2B2AB8019FF27BD003042D6 /* mm_xylo~.pd */,
-				F2B2AB8119FF27BD003042D6 /* modMusicPatch_Test_2.pd */,
-				F2B2AB8219FF27BD003042D6 /* mm_bassosc3~.pd */,
-				F2B2AB8319FF27BD003042D6 /* modMusicPatch_Test.pd */,
-				F2B2ACF319FF27BE003042D6 /* wrandom.pd */,
-				F2B2ACF419FF27BE003042D6 /* list-pad.pd */,
-				F2B2ACF519FF27BE003042D6 /* list-rev.pd */,
-				F2B2ACF619FF27BE003042D6 /* list-rot.pd */,
-				F2B2ACF719FF27BE003042D6 /* list-splat.pd */,
-				F2B2ACF819FF27BE003042D6 /* list-tabdump.pd */,
-				F2B2ACF919FF27BE003042D6 /* metroClick~.pd */,
-				F2B2ACFA19FF27BE003042D6 /* mm_4Track.pd */,
-				F2B2ACFB19FF27BE003042D6 /* mm_bassosc2~.pd */,
-				F2B2ACFC19FF27BE003042D6 /* mm_bassstring~.pd */,
-				F2B2ACFD19FF27BE003042D6 /* mm_ceiling2~.pd */,
-				F2B2ACFE19FF27BE003042D6 /* mm_compressor.pd */,
-				F2B2ACFF19FF27BE003042D6 /* mm_edge~.pd */,
-				F2B2AD0019FF27BE003042D6 /* mm_edge2~.pd */,
-				F2B2AD0119FF27BE003042D6 /* mm_edge3~.pd */,
-				F2B2AD0219FF27BE003042D6 /* mm_env~.pd */,
-				F2B2AD0319FF27BE003042D6 /* mm_floor2~.pd */,
-				F2B2AD0419FF27BE003042D6 /* mm_gate2~.pd */,
-				F2B2AD0519FF27BE003042D6 /* mm_gate3~.pd */,
-				F2B2AD0619FF27BE003042D6 /* mm_logistic.pd */,
-				F2B2AD0719FF27BE003042D6 /* mm_monoSyncDelay.pd */,
-				F2B2AD0819FF27BE003042D6 /* mm_noiseCancel~.pd */,
-				F2B2AD0919FF27BE003042D6 /* mm_noiseCancel2~.pd */,
-				F2B2AD0A19FF27BE003042D6 /* mm_noiseCancel3~.pd */,
-				F2B2AD0B19FF27BE003042D6 /* mm_osc~.pd */,
-				F2B2AD0C19FF27BE003042D6 /* mm_osc2~.pd */,
-				F2B2AD0D19FF27BE003042D6 /* mm_patternPlayer.pd */,
-				F2B2AD0E19FF27BE003042D6 /* mm_poisson.pd */,
-				F2B2AD0F19FF27BE003042D6 /* mm_randFilter~.pd */,
-				F2B2AD1019FF27BE003042D6 /* mm_randFilter2~.pd */,
-				F2B2AD1119FF27BE003042D6 /* mm_rgate.pd */,
-				F2B2AD1219FF27BE003042D6 /* mm_rlist.pd */,
-				F2B2AD1319FF27BE003042D6 /* mm_rplayer.pd */,
-				F2B2AD1419FF27BE003042D6 /* mm_rpoisson.pd */,
-				F2B2AD1519FF27BE003042D6 /* mm_sample_slicer~.pd */,
-				F2B2AD1619FF27BE003042D6 /* mm_sample_slicer1~.pd */,
-				F2B2AD1719FF27BE003042D6 /* mm_sampler~.pd */,
-				F2B2AD1819FF27BE003042D6 /* mm_sampler2~.pd */,
-				F2B2AD1919FF27BE003042D6 /* mm_sampler3~.pd */,
-				F2B2AD1A19FF27BE003042D6 /* mm_sampler4~.pd */,
-				F2B2AD1B19FF27BE003042D6 /* mm_sampler5~.pd */,
-				F2B2AD1C19FF27BE003042D6 /* mm_sampler6~.pd */,
-				F2B2AD1D19FF27BE003042D6 /* mm_sampler7~.pd */,
-				F2B2AD1E19FF27BE003042D6 /* mm_sampler8~.pd */,
-				F2B2AD1F19FF27BE003042D6 /* mm_stereoChorus.pd */,
-				F2B2AD2019FF27BE003042D6 /* mm_stirling.pd */,
-				F2B2AD2119FF27BE003042D6 /* mm_string~.pd */,
-				F2B2AD2219FF27BE003042D6 /* mm_synth~.pd */,
-				F2B2AD2319FF27BE003042D6 /* mm_vocoder~.pd */,
-				F2B2AD2419FF27BE003042D6 /* mm_xfade.pd */,
-				F2B2AD2519FF27BE003042D6 /* modMusicPatch_Test_1.0.pd */,
-				F2B2AD2619FF27BE003042D6 /* modMusicPatch.pd */,
-				F2B2AD2719FF27BE003042D6 /* modMusicPatchOld.pd */,
-				F2B2AD2819FF27BE003042D6 /* other1.aif */,
-				F2B2AD2919FF27BE003042D6 /* Perc.wav */,
-				F2B2AD2A19FF27BE003042D6 /* pitch2sig.pd */,
-				F2B2AD2B19FF27BE003042D6 /* pitchDetector1.0.pd */,
-				F2B2AD2C19FF27BE003042D6 /* rap1.wav */,
-				F2B2AD2D19FF27BE003042D6 /* rap2.wav */,
-				F2B2AD2E19FF27BE003042D6 /* rasta1.wav */,
-				F2B2AD2F19FF27BE003042D6 /* rasta2.aif */,
-				F2B2AD3019FF27BE003042D6 /* rasta3.aif */,
-				F2B2AD3119FF27BE003042D6 /* rasta4.aif */,
-				F2B2AD3219FF27BE003042D6 /* rasta5.aif */,
-				F2B2AD3319FF27BE003042D6 /* rasta6.wav */,
-				F2B2AD3419FF27BE003042D6 /* rasta7.aif */,
-				F2B2AD3519FF27BE003042D6 /* rasta8.wav */,
-				F2B2AD3619FF27BE003042D6 /* rasta9.aif */,
-				F2B2AD3719FF27BE003042D6 /* rasta10.wav */,
-				F2B2AD3819FF27BE003042D6 /* rasta11.aif */,
-				F2B2AD3919FF27BE003042D6 /* rasta12.aif */,
-				F2B2AD3A19FF27BE003042D6 /* rasta13.aif */,
-				F2B2AD3B19FF27BE003042D6 /* rasta14.aif */,
-				F2B2AD3C19FF27BE003042D6 /* rasta15.aif */,
-				F2B2AD3D19FF27BE003042D6 /* rasta16.wav */,
-				F2B2AD3E19FF27BE003042D6 /* rasta17.aif */,
-				F2B2AD3F19FF27BE003042D6 /* rasta18.aif */,
-				F2B2AD4019FF27BE003042D6 /* rasta19.aif */,
-				F2B2AD4119FF27BE003042D6 /* rasta20.aif */,
-				F2B2AD4219FF27BE003042D6 /* rasta21.aif */,
-				F2B2AD4319FF27BE003042D6 /* sample_slicer2~.pd */,
-				F2B2AD4419FF27BE003042D6 /* samplerChain~.pd */,
-				F2B2AD4519FF27BE003042D6 /* slicer.pd */,
-				F2B2AD4619FF27BE003042D6 /* Snare-2.wav */,
-				F2B2AD4719FF27BE003042D6 /* Snare-3.wav */,
-				F2B2AD4819FF27BE003042D6 /* Snare-4.wav */,
-				F2B2AD4919FF27BE003042D6 /* Snare-5.wav */,
-				F2B2AD4A19FF27BE003042D6 /* Snare.wav */,
-				F2B2AD4B19FF27BE003042D6 /* Synths */,
-				F2B2AD5419FF27BE003042D6 /* Tamb.wav */,
-				F2B2AD5519FF27BE003042D6 /* timbreStamp.pd */,
-				F2B2AD5619FF27BE003042D6 /* timbreStamp2~.pd */,
-				F2B2AD5719FF27BE003042D6 /* timbreStamp3.pd */,
-				F2B2AD5819FF27BE003042D6 /* vexp_fun.c */,
-				F2B2AD5919FF27BE003042D6 /* vexp_if.c */,
-				F2B2AD5A19FF27BE003042D6 /* vexp.c */,
-				F2B2AD5B19FF27BE003042D6 /* vexp.h */,
-				F2B2AD5C19FF27BE003042D6 /* vocalAppPatch.pd */,
-				F2B2B18119FF2A8C003042D6 /* 0-Mario1.txt */,
-				F2B2B18219FF2A8C003042D6 /* 1-Mario1.txt */,
-				F2B2B18319FF2A8C003042D6 /* 2-Mario1.txt */,
-				F2B2B18419FF2A8C003042D6 /* 3-Mario1.txt */,
-				F2B2B18919FF2ABD003042D6 /* 0-Mario2.txt */,
-				F2B2B18A19FF2ABD003042D6 /* 0-Mario3.txt */,
-				F2B2B18B19FF2ABD003042D6 /* 0-Mario4.txt */,
-				F2B2B18C19FF2ABD003042D6 /* 0-Mario5.txt */,
-				F2B2B18D19FF2ABD003042D6 /* 1-Mario2.txt */,
-				F2B2B18E19FF2ABD003042D6 /* 1-Mario3.txt */,
-				F2B2B18F19FF2ABD003042D6 /* 1-Mario4.txt */,
-				F2B2B19019FF2ABD003042D6 /* 1-Mario5.txt */,
-				F2B2B19119FF2ABD003042D6 /* 2-Mario2.txt */,
-				F2B2B19219FF2ABD003042D6 /* 2-Mario3.txt */,
-				F2B2B19319FF2ABD003042D6 /* 2-Mario4.txt */,
-				F2B2B19419FF2ABD003042D6 /* 2-Mario5.txt */,
-				F2B2B19519FF2ABD003042D6 /* 3-Mario2.txt */,
-				F2B2B19619FF2ABD003042D6 /* 3-Mario3.txt */,
-				F2B2B19719FF2ABD003042D6 /* 3-Mario4.txt */,
-				F2B2B19819FF2ABD003042D6 /* 3-Mario5.txt */,
-				F2B2AD5D19FF27BE003042D6 /* 0-Funk1.txt */,
-				F2B2AD5E19FF27BE003042D6 /* 0-Funk2.txt */,
-				F2B2AD5F19FF27BE003042D6 /* 0-Funk3.txt */,
-				F2B2AD6019FF27BE003042D6 /* 0-Funk4.txt */,
-				F2B2AD6119FF27BE003042D6 /* 0-Happy.txt */,
-				F2B2AD6219FF27BE003042D6 /* 0-Happy2.txt */,
-				F2B2AD6319FF27BE003042D6 /* 0-Happy3.txt */,
-				F2B2AD6419FF27BE003042D6 /* 0-Happy4.txt */,
-				F2B2AD6519FF27BE003042D6 /* 0-Happy5.txt */,
-				F2B2AD6619FF27BE003042D6 /* 0-majesty1.txt */,
-				F2B2AD6719FF27BE003042D6 /* 0-majesty2.txt */,
-				F2B2AD6819FF27BE003042D6 /* 0-majesty3.txt */,
-				F2B2AD6919FF27BE003042D6 /* 0-majesty4.txt */,
-				F2B2AD6A19FF27BE003042D6 /* 0-Mega1.txt */,
-				F2B2AD6B19FF27BE003042D6 /* 0-Mega2.txt */,
-				F2B2AF5619FF281D003042D6 /* 0-Mega3.txt */,
-				F2B2AF5719FF281D003042D6 /* 0-Mega4.txt */,
-				F2B2AF5819FF281D003042D6 /* 0-Mega5.txt */,
-				F2B2AF5919FF281D003042D6 /* 0-Mega6.txt */,
-				F2B2AF5A19FF281D003042D6 /* 0-Mega7.txt */,
-				F2B2AF5B19FF281D003042D6 /* 0-Menace1.txt */,
-				F2B2AF5C19FF281D003042D6 /* 0-Menace2.txt */,
-				F2B2AF5D19FF281D003042D6 /* 0-Menace4.txt */,
-				F2B2AF5E19FF281D003042D6 /* 0-Sad1.txt */,
-				F2B2AF5F19FF281D003042D6 /* 0-Sad2.txt */,
-				F2B2AF6019FF281D003042D6 /* 0-Sad3.txt */,
-				F2B2AF6119FF281D003042D6 /* 0-Sad4.txt */,
-				F2B2AF6219FF281D003042D6 /* 0-Sad5.txt */,
-				F2B2AF6319FF281D003042D6 /* 1-Funk1.txt */,
-				F2B2AF6419FF281D003042D6 /* 1-Funk2.txt */,
-				F2B2AF6519FF281D003042D6 /* 1-Funk3.txt */,
-				F2B2AF6619FF281D003042D6 /* 1-Funk4.txt */,
-				F2B2AF6719FF281D003042D6 /* 1-Happy.txt */,
-				F2B2AF6819FF281D003042D6 /* 1-Happy2.txt */,
-				F2B2AF6919FF281D003042D6 /* 1-Happy3.txt */,
-				F2B2AF6A19FF281D003042D6 /* 1-Happy4.txt */,
-				F2B2AF6B19FF281D003042D6 /* 1-Happy5.txt */,
-				F2B2AF6C19FF281D003042D6 /* 1-majesty1.txt */,
-				F2B2AF6D19FF281D003042D6 /* 1-majesty2.txt */,
-				F2B2AF6E19FF281D003042D6 /* 1-majesty3.txt */,
-				F2B2AF6F19FF281D003042D6 /* 1-majesty4.txt */,
-				F2B2AF7019FF281D003042D6 /* 1-Mega1.txt */,
-				F2B2AF7119FF281D003042D6 /* 1-Mega2.txt */,
-				F2B2AF7219FF281D003042D6 /* 1-Mega3.txt */,
-				F2B2AF7319FF281D003042D6 /* 1-Mega4.txt */,
-				F2B2AF7419FF281D003042D6 /* 1-Mega5.txt */,
-				F2B2AF7519FF281D003042D6 /* 1-Mega6.txt */,
-				F2B2AF7619FF281D003042D6 /* 1-Mega7.txt */,
-				F2B2AF7719FF281D003042D6 /* 1-Menace1.txt */,
-				F2B2AF7819FF281D003042D6 /* 1-Menace2.txt */,
-				F2B2AF7919FF281D003042D6 /* 1-Menace4.txt */,
-				F2B2AF7A19FF281D003042D6 /* 1-Sad1.txt */,
-				F2B2AF7B19FF281D003042D6 /* 1-Sad2.txt */,
-				F2B2AF7C19FF281D003042D6 /* 1-Sad3.txt */,
-				F2B2AF7D19FF281D003042D6 /* 1-Sad4.txt */,
-				F2B2AF7E19FF281D003042D6 /* 1-Sad5.txt */,
-				F2B2AF7F19FF281D003042D6 /* 2-Funk1.txt */,
-				F2B2AF8019FF281D003042D6 /* 2-Funk2.txt */,
-				F2B2AF8119FF281D003042D6 /* 2-Funk3.txt */,
-				F2B2AF8219FF281D003042D6 /* 2-Funk4.txt */,
-				F2B2AF8319FF281D003042D6 /* 2-Happy.txt */,
-				F2B2AF8419FF281D003042D6 /* 2-Happy2.txt */,
-				F2B2AF8519FF281D003042D6 /* 2-Happy3.txt */,
-				F2B2AF8619FF281D003042D6 /* 2-Happy4.txt */,
-				F2B2AF8719FF281D003042D6 /* 2-Happy5.txt */,
-				F2B2AF8819FF281D003042D6 /* 2-majesty1.txt */,
-				F2B2AF8919FF281D003042D6 /* 2-majesty2.txt */,
-				F2B2AF8A19FF281D003042D6 /* 2-majesty3.txt */,
-				F2B2AF8B19FF281D003042D6 /* 2-majesty4.txt */,
-				F2B2AF8C19FF281D003042D6 /* 2-Mega1.txt */,
-				F2B2AF8D19FF281D003042D6 /* 2-Mega2.txt */,
-				F2B2AF8E19FF281D003042D6 /* 2-Mega3.txt */,
-				F2B2AF8F19FF281D003042D6 /* 2-Mega4.txt */,
-				F2B2AF9019FF281D003042D6 /* 2-Mega5.txt */,
-				F2B2AF9119FF281D003042D6 /* 2-Mega6.txt */,
-				F2B2AF9219FF281D003042D6 /* 2-Mega7.txt */,
-				F2B2AF9319FF281D003042D6 /* 2-Menace1.txt */,
-				F2B2AF9419FF281D003042D6 /* 2-Menace2.txt */,
-				F2B2AF9519FF281E003042D6 /* 2-Menace4.txt */,
-				F2B2AF9619FF281E003042D6 /* 2-Sad1.txt */,
-				F2B2AF9719FF281E003042D6 /* 2-Sad2.txt */,
-				F2B2AF9819FF281E003042D6 /* 2-Sad3.txt */,
-				F2B2AF9919FF281E003042D6 /* 2-Sad4.txt */,
-				F2B2AF9A19FF281E003042D6 /* 2-Sad5.txt */,
-				F2B2AF9B19FF281E003042D6 /* 3-Funk1.txt */,
-				F2B2AF9C19FF281E003042D6 /* 3-Funk2.txt */,
-				F2B2AF9D19FF281E003042D6 /* 3-Funk3.txt */,
-				F2B2AF9E19FF281E003042D6 /* 3-Funk4.txt */,
-				F2B2AF9F19FF281E003042D6 /* 3-Happy.txt */,
-				F2B2AFA019FF281E003042D6 /* 3-Happy2.txt */,
-				F2B2AFA119FF281E003042D6 /* 3-Happy3.txt */,
-				F2B2AFA219FF281E003042D6 /* 3-Happy4.txt */,
-				F2B2AFA319FF281E003042D6 /* 3-Happy5.txt */,
-				F2B2AFA419FF281E003042D6 /* 3-majesty1.txt */,
-				F2B2AFA519FF281E003042D6 /* 3-majesty2.txt */,
-				F2B2AFA619FF281E003042D6 /* 3-majesty3.txt */,
-				F2B2AFA719FF281E003042D6 /* 3-majesty4.txt */,
-				F2B2AFA819FF281E003042D6 /* 3-Mega1.txt */,
-				F2B2AFA919FF281E003042D6 /* 3-Mega2.txt */,
-				F2B2AFAA19FF281E003042D6 /* 3-Mega3.txt */,
-				F2B2AFAB19FF281E003042D6 /* 3-Mega4.txt */,
-				F2B2AFAC19FF281E003042D6 /* 3-Mega5.txt */,
-				F2B2AFAD19FF281E003042D6 /* 3-Mega6.txt */,
-				F2B2AFAE19FF281E003042D6 /* 3-Mega7.txt */,
-				F2B2AFAF19FF281E003042D6 /* 3-Menace1.txt */,
-				F2B2AFB019FF281E003042D6 /* 3-Menace2.txt */,
-				F2B2AFB119FF281E003042D6 /* 3-Menace4.txt */,
-				F2B2AFB219FF281E003042D6 /* 3-Sad1.txt */,
-				F2B2AFB319FF281E003042D6 /* 3-Sad2.txt */,
-				F2B2AFB419FF281E003042D6 /* 3-Sad3.txt */,
-				F2B2AFB519FF281E003042D6 /* 3-Sad4.txt */,
-				F2B2AFB619FF281E003042D6 /* 3-Sad5.txt */,
-				F2B2AFB719FF281E003042D6 /* 808_FX4.aif */,
-				F2B2AFB819FF281E003042D6 /* 808_P2.aif */,
-				F2B2AFB919FF281E003042D6 /* 808_P4.aif */,
-				F2B2AFBA19FF281E003042D6 /* 909clap1.aif */,
-				F2B2AFBB19FF281E003042D6 /* african-pe-hi.wav */,
-				F2B2AFBC19FF281E003042D6 /* african-pe-lo.wav */,
-				F2B2AFBD19FF281E003042D6 /* african1.wav */,
-				F2B2AFBE19FF281E003042D6 /* african2.wav */,
-				F2B2AFBF19FF281E003042D6 /* african3.wav */,
-				F2B2AFC019FF281E003042D6 /* african4.wav */,
-				F2B2AFC119FF281E003042D6 /* african5.wav */,
-				F2B2AFC219FF281E003042D6 /* african6.aif */,
-				F2B2AFC319FF281E003042D6 /* african7.aif */,
-				F2B2AFC419FF281E003042D6 /* alien-telephone.aif */,
-				F2B2AFC519FF281E003042D6 /* analog_spindown.aif */,
-				F2B2AFC619FF281E003042D6 /* autoPitch1.0.pd */,
-				F2B2AFC719FF281E003042D6 /* autoPitch1.1.pd */,
-				F2B2AFC819FF281E003042D6 /* bassdrum4.wav */,
-				F2B2AFC919FF281E003042D6 /* bassdrum53.wav */,
-				F2B2AFCA19FF281E003042D6 /* bassdrum100.wav */,
-				F2B2AFCB19FF281E003042D6 /* bassdrum157.wav */,
-				F2B2AFCC19FF281E003042D6 /* bendy.aif */,
-				F2B2AFCD19FF281E003042D6 /* big-burundi-03.wav */,
-				F2B2AFCE19FF281E003042D6 /* big-burundi-04.wav */,
-				F2B2AFCF19FF281E003042D6 /* big-burundi-05.wav */,
-				F2B2AFD019FF281E003042D6 /* big-burundi-06.wav */,
-				F2B2AFD119FF281E003042D6 /* big-burundi-07.wav */,
-				F2B2AFD219FF281E003042D6 /* big-burundi-14.wav */,
-				F2B2AFD319FF281E003042D6 /* big-burundi-19.wav */,
-				F2B2AFD419FF281E003042D6 /* big-burundi-24.wav */,
-				F2B2AFD519FF281E003042D6 /* biglaser.aif */,
-				F2B2AFD619FF281E003042D6 /* birdClock.pd */,
-				F2B2AFD719FF281E003042D6 /* birdCompress.pd */,
-				F2B2AFD819FF281E003042D6 /* birdPan~.pd */,
-				F2B2AFD919FF281E003042D6 /* birdSqueeze~.pd */,
-				F2B2AFDA19FF281E003042D6 /* birdString.pd */,
-				F2B2AFDB19FF281E003042D6 /* blobble.aif */,
-				F2B2AFDC19FF281E003042D6 /* bonk~ */,
-				F2B2AFE219FF281E003042D6 /* Clap-2.wav */,
-				F2B2AFE319FF281E003042D6 /* Clap-3.wav */,
-				F2B2AFE419FF281E003042D6 /* Clap-4.wav */,
-				F2B2AFE519FF281E003042D6 /* Clap-5.wav */,
-				F2B2AFE619FF281E003042D6 /* Clap.wav */,
-				F2B2AFE719FF281E003042D6 /* Composer */,
-				F2B2B03C19FF281E003042D6 /* CONGA1 1.aif */,
-				F2B2B03D19FF281E003042D6 /* conga1.aif */,
-				F2B2B03E19FF281E003042D6 /* conga1.wav */,
-				F2B2B03F19FF281E003042D6 /* CONGA2.aif */,
-				F2B2B04019FF281E003042D6 /* conga2.wav */,
-				F2B2B04119FF281E003042D6 /* conga3.wav */,
-				F2B2B04219FF281E003042D6 /* conga4.wav */,
-				F2B2B04319FF281E003042D6 /* conga5.wav */,
-				F2B2B04419FF281E003042D6 /* conga6.wav */,
-				F2B2B04519FF281E003042D6 /* conga7.wav */,
-				F2B2B04619FF281E003042D6 /* conga8.wav */,
-				F2B2B04719FF281E003042D6 /* conga9.wav */,
-				F2B2B04819FF281E003042D6 /* conga10.wav */,
-				F2B2B04919FF281E003042D6 /* cowbell.aif */,
-				F2B2B04A19FF281E003042D6 /* cowbell1.wav */,
-				F2B2B04B19FF281E003042D6 /* cowbell2.wav */,
-				F2B2B04C19FF281E003042D6 /* ctr.pd */,
-				F2B2B04D19FF281E003042D6 /* distortedkick94.wav */,
-				F2B2B04E19FF281E003042D6 /* distortedsnare10.wav */,
-				F2B2B04F19FF281E003042D6 /* distortedsnare26.wav */,
-				F2B2B05019FF281E003042D6 /* distortedsnare27.wav */,
-				F2B2B05119FF281E003042D6 /* eastern1.wav */,
-				F2B2B05219FF281E003042D6 /* fiddle~.c */,
-				F2B2B05319FF281E003042D6 /* findGreatest.pd */,
-				F2B2B05419FF281E003042D6 /* fts_to_pd.h */,
-				F2B2B05519FF281E003042D6 /* gospel1.aif */,
-				F2B2B05619FF281E003042D6 /* Hat-2.wav */,
-				F2B2B05719FF281E003042D6 /* Hat-3.wav */,
-				F2B2B05819FF281E003042D6 /* Hat-4.wav */,
-				F2B2B05919FF281E003042D6 /* Hat-5.wav */,
-				F2B2B05A19FF281E003042D6 /* Hat-6.aif */,
-				F2B2B05B19FF281E003042D6 /* Hat-7.aif */,
-				F2B2B05C19FF281F003042D6 /* Hat.wav */,
-				F2B2B05D19FF281F003042D6 /* Helmholtz.cpp */,
-				F2B2B05E19FF281F003042D6 /* Helmholtz.h */,
-				F2B2B05F19FF281F003042D6 /* helmholtz~.cpp */,
-				F2B2B06019FF281F003042D6 /* Kick-2.wav */,
-				F2B2B06119FF281F003042D6 /* Kick-3.wav */,
-				F2B2B06219FF281F003042D6 /* Kick-4.wav */,
-				F2B2B06319FF281F003042D6 /* Kick-5.wav */,
-				F2B2B06419FF281F003042D6 /* list-accum.pd */,
-				F2B2B06519FF281F003042D6 /* list-drip.pd */,
-				F2B2B06619FF281F003042D6 /* list-enumerate.pd */,
-				F2B2B06719FF281F003042D6 /* list-group.pd */,
-				F2B2B06819FF281F003042D6 /* list-idx.pd */,
-				F2B2B06919FF281F003042D6 /* list-len.pd */,
-				F2B2B06A19FF281F003042D6 /* list-map.pd */,
-				F2B2B06B19FF281F003042D6 /* list-math.pd */,
+				F2B2B1B219FF4393003042D6 /* samples */,
+				F2B2B1B019FF42FD003042D6 /* mm */,
+				F2B2AFE719FF281E003042D6 /* utils */,
+				F2B2B1B119FF4338003042D6 /* list-abs */,
+				F2B2B1B619FF46A4003042D6 /* patches */,
+				F2B2B1B319FF4410003042D6 /* patterns */,
+				F2B2AD4B19FF27BE003042D6 /* synths */,
+				F2B2B1B719FF4735003042D6 /* other */,
+				F2B2B1B519FF450C003042D6 /* externals */,
 			);
 			name = Pd;
 			sourceTree = "<group>";
@@ -2444,7 +2140,7 @@
 			path = rj;
 			sourceTree = "<group>";
 		};
-		F2B2AD4B19FF27BE003042D6 /* Synths */ = {
+		F2B2AD4B19FF27BE003042D6 /* synths */ = {
 			isa = PBXGroup;
 			children = (
 				F2B2AD4C19FF27BE003042D6 /* mm_am~.pd */,
@@ -2456,6 +2152,7 @@
 				F2B2AD5219FF27BE003042D6 /* mm_fm~.pd */,
 				F2B2AD5319FF27BE003042D6 /* mm_pulse~.pd */,
 			);
+			name = synths;
 			path = Synths;
 			sourceTree = "<group>";
 		};
@@ -2471,9 +2168,319 @@
 			path = "bonk~";
 			sourceTree = "<group>";
 		};
-		F2B2AFE719FF281E003042D6 /* Composer */ = {
+		F2B2AFE719FF281E003042D6 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				F2B2B01C19FF281E003042D6 /* bsm_compressor~.pd */,
+				F2B2B01D19FF281E003042D6 /* bsm_switch~.pd */,
+				F2B2B01E19FF281E003042D6 /* btoms.pd */,
+				F2B2B01F19FF281E003042D6 /* click~.pd */,
+				F2B2B02019FF281E003042D6 /* db1.pd */,
+				F2B2B02119FF281E003042D6 /* db2.pd */,
+				F2B2B02219FF281E003042D6 /* interact2~.pd */,
+				F2B2B02319FF281E003042D6 /* interact3~.pd */,
+				F2B2B02419FF281E003042D6 /* interact4~.pd */,
+				F2B2B02519FF281E003042D6 /* interact~.pd */,
+				F2B2B02619FF281E003042D6 /* metroClick~.pd */,
+				F2B2B02719FF281E003042D6 /* mm_env~.pd */,
+				F2B2B02819FF281E003042D6 /* mm_osc~.pd */,
+				F2B2B02919FF281E003042D6 /* ModMusic.pd */,
+				F2B2B02A19FF281E003042D6 /* ModMusicErrorLog8_10.txt */,
+				F2B2B02B19FF281E003042D6 /* ms2samp.pd */,
+				F2B2B02C19FF281E003042D6 /* noteOff.pd */,
+				F2B2B03019FF281E003042D6 /* pattern.pd */,
+				F2B2B03119FF281E003042D6 /* pitcher2~.pd */,
+				F2B2B03219FF281E003042D6 /* pitcher~.pd */,
+				F2B2B03319FF281E003042D6 /* randomPlayer.pd */,
+				F2B2B03419FF281E003042D6 /* randomSequencer.pd */,
+				F2B2B03519FF281E003042D6 /* runningAvg.pd */,
+				F2B2B03619FF281E003042D6 /* sampleInstrument~.pd */,
+				F2B2B03719FF281E003042D6 /* samplerChain~.pd */,
+				F2B2B03819FF281E003042D6 /* sampleRecorder~.pd */,
+				F2B2B03919FF281E003042D6 /* stretcher~.pd */,
+				F2B2B03A19FF281E003042D6 /* voxPitcher~.pd */,
+				F2B2B03B19FF281E003042D6 /* wrandom.pd */,
+			);
+			name = utils;
+			path = Composer;
+			sourceTree = "<group>";
+		};
+		F2B2B1B019FF42FD003042D6 /* mm */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2B1B819FF4757003042D6 /* mm */,
+				F2B2B1B419FF44B0003042D6 /* bird */,
+			);
+			name = mm;
+			sourceTree = "<group>";
+		};
+		F2B2B1B119FF4338003042D6 /* list-abs */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */,
+				F2B2ACF419FF27BE003042D6 /* list-pad.pd */,
+				F2B2ACF519FF27BE003042D6 /* list-rev.pd */,
+				F2B2ACF619FF27BE003042D6 /* list-rot.pd */,
+				F2B2ACF719FF27BE003042D6 /* list-splat.pd */,
+				F2B2ACF819FF27BE003042D6 /* list-tabdump.pd */,
+				F2B2B06419FF281F003042D6 /* list-accum.pd */,
+				F2B2B06519FF281F003042D6 /* list-drip.pd */,
+				F2B2B06619FF281F003042D6 /* list-enumerate.pd */,
+				F2B2B06719FF281F003042D6 /* list-group.pd */,
+				F2B2B06819FF281F003042D6 /* list-idx.pd */,
+				F2B2B06919FF281F003042D6 /* list-len.pd */,
+				F2B2B06A19FF281F003042D6 /* list-map.pd */,
+				F2B2B06B19FF281F003042D6 /* list-math.pd */,
+			);
+			name = "list-abs";
+			sourceTree = "<group>";
+		};
+		F2B2B1B219FF4393003042D6 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2AFFD19FF281E003042D6 /* ah_60_2_60.wav */,
+				F2B2AFFE19FF281E003042D6 /* ah_60_4_60.wav */,
+				F2B2B02D19FF281E003042D6 /* ooh_60_1_60.wav */,
+				F2B2B02E19FF281E003042D6 /* ooh_60_2_60.wav */,
+				F2B2B02F19FF281E003042D6 /* ooh_60_4_60.wav */,
+				F2B2AFDB19FF281E003042D6 /* blobble.aif */,
+				F2B2AD2819FF27BE003042D6 /* other1.aif */,
+				F2B2AD2919FF27BE003042D6 /* Perc.wav */,
+				F2B2AD2C19FF27BE003042D6 /* rap1.wav */,
+				F2B2AD2D19FF27BE003042D6 /* rap2.wav */,
+				F2B2AD2E19FF27BE003042D6 /* rasta1.wav */,
+				F2B2AD2F19FF27BE003042D6 /* rasta2.aif */,
+				F2B2AD3019FF27BE003042D6 /* rasta3.aif */,
+				F2B2AD3119FF27BE003042D6 /* rasta4.aif */,
+				F2B2AD3219FF27BE003042D6 /* rasta5.aif */,
+				F2B2AD3319FF27BE003042D6 /* rasta6.wav */,
+				F2B2AD3419FF27BE003042D6 /* rasta7.aif */,
+				F2B2AD3519FF27BE003042D6 /* rasta8.wav */,
+				F2B2AD3619FF27BE003042D6 /* rasta9.aif */,
+				F2B2AD3719FF27BE003042D6 /* rasta10.wav */,
+				F2B2AD3819FF27BE003042D6 /* rasta11.aif */,
+				F2B2AD3919FF27BE003042D6 /* rasta12.aif */,
+				F2B2AD3A19FF27BE003042D6 /* rasta13.aif */,
+				F2B2AD3B19FF27BE003042D6 /* rasta14.aif */,
+				F2B2AD3C19FF27BE003042D6 /* rasta15.aif */,
+				F2B2AD3D19FF27BE003042D6 /* rasta16.wav */,
+				F2B2AD3E19FF27BE003042D6 /* rasta17.aif */,
+				F2B2AD3F19FF27BE003042D6 /* rasta18.aif */,
+				F2B2AD4019FF27BE003042D6 /* rasta19.aif */,
+				F2B2AD4119FF27BE003042D6 /* rasta20.aif */,
+				F2B2AD4219FF27BE003042D6 /* rasta21.aif */,
+				F2B2AD4619FF27BE003042D6 /* Snare-2.wav */,
+				F2B2AD4719FF27BE003042D6 /* Snare-3.wav */,
+				F2B2AD4819FF27BE003042D6 /* Snare-4.wav */,
+				F2B2AD4919FF27BE003042D6 /* Snare-5.wav */,
+				F2B2AD4A19FF27BE003042D6 /* Snare.wav */,
+				F2B2AD5419FF27BE003042D6 /* Tamb.wav */,
+				F2B2AFB719FF281E003042D6 /* 808_FX4.aif */,
+				F2B2AFB819FF281E003042D6 /* 808_P2.aif */,
+				F2B2AFB919FF281E003042D6 /* 808_P4.aif */,
+				F2B2AFBA19FF281E003042D6 /* 909clap1.aif */,
+				F2B2AFBB19FF281E003042D6 /* african-pe-hi.wav */,
+				F2B2AFBC19FF281E003042D6 /* african-pe-lo.wav */,
+				F2B2AFBD19FF281E003042D6 /* african1.wav */,
+				F2B2AFBE19FF281E003042D6 /* african2.wav */,
+				F2B2AFBF19FF281E003042D6 /* african3.wav */,
+				F2B2AFC019FF281E003042D6 /* african4.wav */,
+				F2B2AFC119FF281E003042D6 /* african5.wav */,
+				F2B2AFC219FF281E003042D6 /* african6.aif */,
+				F2B2AFC319FF281E003042D6 /* african7.aif */,
+				F2B2AFC419FF281E003042D6 /* alien-telephone.aif */,
+				F2B2AFC519FF281E003042D6 /* analog_spindown.aif */,
+				F2B2AFC819FF281E003042D6 /* bassdrum4.wav */,
+				F2B2AFC919FF281E003042D6 /* bassdrum53.wav */,
+				F2B2AFCA19FF281E003042D6 /* bassdrum100.wav */,
+				F2B2AFCB19FF281E003042D6 /* bassdrum157.wav */,
+				F2B2AFCC19FF281E003042D6 /* bendy.aif */,
+				F2B2AFCD19FF281E003042D6 /* big-burundi-03.wav */,
+				F2B2AFCE19FF281E003042D6 /* big-burundi-04.wav */,
+				F2B2AFCF19FF281E003042D6 /* big-burundi-05.wav */,
+				F2B2AFD019FF281E003042D6 /* big-burundi-06.wav */,
+				F2B2AFD119FF281E003042D6 /* big-burundi-07.wav */,
+				F2B2AFD219FF281E003042D6 /* big-burundi-14.wav */,
+				F2B2AFD319FF281E003042D6 /* big-burundi-19.wav */,
+				F2B2AFD419FF281E003042D6 /* big-burundi-24.wav */,
+				F2B2AFD519FF281E003042D6 /* biglaser.aif */,
+				F2B2AFE219FF281E003042D6 /* Clap-2.wav */,
+				F2B2AFE319FF281E003042D6 /* Clap-3.wav */,
+				F2B2AFE419FF281E003042D6 /* Clap-4.wav */,
+				F2B2AFE519FF281E003042D6 /* Clap-5.wav */,
+				F2B2AFE619FF281E003042D6 /* Clap.wav */,
+				F2B2B03C19FF281E003042D6 /* CONGA1 1.aif */,
+				F2B2B03D19FF281E003042D6 /* conga1.aif */,
+				F2B2B03E19FF281E003042D6 /* conga1.wav */,
+				F2B2B03F19FF281E003042D6 /* CONGA2.aif */,
+				F2B2B04019FF281E003042D6 /* conga2.wav */,
+				F2B2B04119FF281E003042D6 /* conga3.wav */,
+				F2B2B04219FF281E003042D6 /* conga4.wav */,
+				F2B2B04319FF281E003042D6 /* conga5.wav */,
+				F2B2B04419FF281E003042D6 /* conga6.wav */,
+				F2B2B04519FF281E003042D6 /* conga7.wav */,
+				F2B2B04619FF281E003042D6 /* conga8.wav */,
+				F2B2B04719FF281E003042D6 /* conga9.wav */,
+				F2B2B04819FF281E003042D6 /* conga10.wav */,
+				F2B2B04919FF281E003042D6 /* cowbell.aif */,
+				F2B2B04A19FF281E003042D6 /* cowbell1.wav */,
+				F2B2B04B19FF281E003042D6 /* cowbell2.wav */,
+				F2B2B04D19FF281E003042D6 /* distortedkick94.wav */,
+				F2B2B04E19FF281E003042D6 /* distortedsnare10.wav */,
+				F2B2B04F19FF281E003042D6 /* distortedsnare26.wav */,
+				F2B2B05019FF281E003042D6 /* distortedsnare27.wav */,
+				F2B2B05119FF281E003042D6 /* eastern1.wav */,
+				F2B2B05519FF281E003042D6 /* gospel1.aif */,
+				F2B2B05619FF281E003042D6 /* Hat-2.wav */,
+				F2B2B05719FF281E003042D6 /* Hat-3.wav */,
+				F2B2B05819FF281E003042D6 /* Hat-4.wav */,
+				F2B2B05919FF281E003042D6 /* Hat-5.wav */,
+				F2B2B05A19FF281E003042D6 /* Hat-6.aif */,
+				F2B2B05B19FF281E003042D6 /* Hat-7.aif */,
+				F2B2B05C19FF281F003042D6 /* Hat.wav */,
+				F2B2B06019FF281F003042D6 /* Kick-2.wav */,
+				F2B2B06119FF281F003042D6 /* Kick-3.wav */,
+				F2B2B06219FF281F003042D6 /* Kick-4.wav */,
+				F2B2B06319FF281F003042D6 /* Kick-5.wav */,
+			);
+			name = samples;
+			sourceTree = "<group>";
+		};
+		F2B2B1B319FF4410003042D6 /* patterns */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2B18119FF2A8C003042D6 /* 0-Mario1.txt */,
+				F2B2B18219FF2A8C003042D6 /* 1-Mario1.txt */,
+				F2B2B18319FF2A8C003042D6 /* 2-Mario1.txt */,
+				F2B2B18419FF2A8C003042D6 /* 3-Mario1.txt */,
+				F2B2B18919FF2ABD003042D6 /* 0-Mario2.txt */,
+				F2B2B18A19FF2ABD003042D6 /* 0-Mario3.txt */,
+				F2B2B18B19FF2ABD003042D6 /* 0-Mario4.txt */,
+				F2B2B18C19FF2ABD003042D6 /* 0-Mario5.txt */,
+				F2B2B18D19FF2ABD003042D6 /* 1-Mario2.txt */,
+				F2B2B18E19FF2ABD003042D6 /* 1-Mario3.txt */,
+				F2B2B18F19FF2ABD003042D6 /* 1-Mario4.txt */,
+				F2B2B19019FF2ABD003042D6 /* 1-Mario5.txt */,
+				F2B2B19119FF2ABD003042D6 /* 2-Mario2.txt */,
+				F2B2B19219FF2ABD003042D6 /* 2-Mario3.txt */,
+				F2B2B19319FF2ABD003042D6 /* 2-Mario4.txt */,
+				F2B2B19419FF2ABD003042D6 /* 2-Mario5.txt */,
+				F2B2B19519FF2ABD003042D6 /* 3-Mario2.txt */,
+				F2B2B19619FF2ABD003042D6 /* 3-Mario3.txt */,
+				F2B2B19719FF2ABD003042D6 /* 3-Mario4.txt */,
+				F2B2B19819FF2ABD003042D6 /* 3-Mario5.txt */,
+				F2B2AD5D19FF27BE003042D6 /* 0-Funk1.txt */,
+				F2B2AD5E19FF27BE003042D6 /* 0-Funk2.txt */,
+				F2B2AD5F19FF27BE003042D6 /* 0-Funk3.txt */,
+				F2B2AD6019FF27BE003042D6 /* 0-Funk4.txt */,
+				F2B2AD6119FF27BE003042D6 /* 0-Happy.txt */,
+				F2B2AD6219FF27BE003042D6 /* 0-Happy2.txt */,
+				F2B2AD6319FF27BE003042D6 /* 0-Happy3.txt */,
+				F2B2AD6419FF27BE003042D6 /* 0-Happy4.txt */,
+				F2B2AD6519FF27BE003042D6 /* 0-Happy5.txt */,
+				F2B2AD6619FF27BE003042D6 /* 0-majesty1.txt */,
+				F2B2AD6719FF27BE003042D6 /* 0-majesty2.txt */,
+				F2B2AD6819FF27BE003042D6 /* 0-majesty3.txt */,
+				F2B2AD6919FF27BE003042D6 /* 0-majesty4.txt */,
+				F2B2AD6A19FF27BE003042D6 /* 0-Mega1.txt */,
+				F2B2AD6B19FF27BE003042D6 /* 0-Mega2.txt */,
+				F2B2AF5619FF281D003042D6 /* 0-Mega3.txt */,
+				F2B2AF5719FF281D003042D6 /* 0-Mega4.txt */,
+				F2B2AF5819FF281D003042D6 /* 0-Mega5.txt */,
+				F2B2AF5919FF281D003042D6 /* 0-Mega6.txt */,
+				F2B2AF5A19FF281D003042D6 /* 0-Mega7.txt */,
+				F2B2AF5B19FF281D003042D6 /* 0-Menace1.txt */,
+				F2B2AF5C19FF281D003042D6 /* 0-Menace2.txt */,
+				F2B2AF5D19FF281D003042D6 /* 0-Menace4.txt */,
+				F2B2AF5E19FF281D003042D6 /* 0-Sad1.txt */,
+				F2B2AF5F19FF281D003042D6 /* 0-Sad2.txt */,
+				F2B2AF6019FF281D003042D6 /* 0-Sad3.txt */,
+				F2B2AF6119FF281D003042D6 /* 0-Sad4.txt */,
+				F2B2AF6219FF281D003042D6 /* 0-Sad5.txt */,
+				F2B2AF6319FF281D003042D6 /* 1-Funk1.txt */,
+				F2B2AF6419FF281D003042D6 /* 1-Funk2.txt */,
+				F2B2AF6519FF281D003042D6 /* 1-Funk3.txt */,
+				F2B2AF6619FF281D003042D6 /* 1-Funk4.txt */,
+				F2B2AF6719FF281D003042D6 /* 1-Happy.txt */,
+				F2B2AF6819FF281D003042D6 /* 1-Happy2.txt */,
+				F2B2AF6919FF281D003042D6 /* 1-Happy3.txt */,
+				F2B2AF6A19FF281D003042D6 /* 1-Happy4.txt */,
+				F2B2AF6B19FF281D003042D6 /* 1-Happy5.txt */,
+				F2B2AF6C19FF281D003042D6 /* 1-majesty1.txt */,
+				F2B2AF6D19FF281D003042D6 /* 1-majesty2.txt */,
+				F2B2AF6E19FF281D003042D6 /* 1-majesty3.txt */,
+				F2B2AF6F19FF281D003042D6 /* 1-majesty4.txt */,
+				F2B2AF7019FF281D003042D6 /* 1-Mega1.txt */,
+				F2B2AF7119FF281D003042D6 /* 1-Mega2.txt */,
+				F2B2AF7219FF281D003042D6 /* 1-Mega3.txt */,
+				F2B2AF7319FF281D003042D6 /* 1-Mega4.txt */,
+				F2B2AF7419FF281D003042D6 /* 1-Mega5.txt */,
+				F2B2AF7519FF281D003042D6 /* 1-Mega6.txt */,
+				F2B2AF7619FF281D003042D6 /* 1-Mega7.txt */,
+				F2B2AF7719FF281D003042D6 /* 1-Menace1.txt */,
+				F2B2AF7819FF281D003042D6 /* 1-Menace2.txt */,
+				F2B2AF7919FF281D003042D6 /* 1-Menace4.txt */,
+				F2B2AF7A19FF281D003042D6 /* 1-Sad1.txt */,
+				F2B2AF7B19FF281D003042D6 /* 1-Sad2.txt */,
+				F2B2AF7C19FF281D003042D6 /* 1-Sad3.txt */,
+				F2B2AF7D19FF281D003042D6 /* 1-Sad4.txt */,
+				F2B2AF7E19FF281D003042D6 /* 1-Sad5.txt */,
+				F2B2AF7F19FF281D003042D6 /* 2-Funk1.txt */,
+				F2B2AF8019FF281D003042D6 /* 2-Funk2.txt */,
+				F2B2AF8119FF281D003042D6 /* 2-Funk3.txt */,
+				F2B2AF8219FF281D003042D6 /* 2-Funk4.txt */,
+				F2B2AF8319FF281D003042D6 /* 2-Happy.txt */,
+				F2B2AF8419FF281D003042D6 /* 2-Happy2.txt */,
+				F2B2AF8519FF281D003042D6 /* 2-Happy3.txt */,
+				F2B2AF8619FF281D003042D6 /* 2-Happy4.txt */,
+				F2B2AF8719FF281D003042D6 /* 2-Happy5.txt */,
+				F2B2AF8819FF281D003042D6 /* 2-majesty1.txt */,
+				F2B2AF8919FF281D003042D6 /* 2-majesty2.txt */,
+				F2B2AF8A19FF281D003042D6 /* 2-majesty3.txt */,
+				F2B2AF8B19FF281D003042D6 /* 2-majesty4.txt */,
+				F2B2AF8C19FF281D003042D6 /* 2-Mega1.txt */,
+				F2B2AF8D19FF281D003042D6 /* 2-Mega2.txt */,
+				F2B2AF8E19FF281D003042D6 /* 2-Mega3.txt */,
+				F2B2AF8F19FF281D003042D6 /* 2-Mega4.txt */,
+				F2B2AF9019FF281D003042D6 /* 2-Mega5.txt */,
+				F2B2AF9119FF281D003042D6 /* 2-Mega6.txt */,
+				F2B2AF9219FF281D003042D6 /* 2-Mega7.txt */,
+				F2B2AF9319FF281D003042D6 /* 2-Menace1.txt */,
+				F2B2AF9419FF281D003042D6 /* 2-Menace2.txt */,
+				F2B2AF9519FF281E003042D6 /* 2-Menace4.txt */,
+				F2B2AF9619FF281E003042D6 /* 2-Sad1.txt */,
+				F2B2AF9719FF281E003042D6 /* 2-Sad2.txt */,
+				F2B2AF9819FF281E003042D6 /* 2-Sad3.txt */,
+				F2B2AF9919FF281E003042D6 /* 2-Sad4.txt */,
+				F2B2AF9A19FF281E003042D6 /* 2-Sad5.txt */,
+				F2B2AF9B19FF281E003042D6 /* 3-Funk1.txt */,
+				F2B2AF9C19FF281E003042D6 /* 3-Funk2.txt */,
+				F2B2AF9D19FF281E003042D6 /* 3-Funk3.txt */,
+				F2B2AF9E19FF281E003042D6 /* 3-Funk4.txt */,
+				F2B2AF9F19FF281E003042D6 /* 3-Happy.txt */,
+				F2B2AFA019FF281E003042D6 /* 3-Happy2.txt */,
+				F2B2AFA119FF281E003042D6 /* 3-Happy3.txt */,
+				F2B2AFA219FF281E003042D6 /* 3-Happy4.txt */,
+				F2B2AFA319FF281E003042D6 /* 3-Happy5.txt */,
+				F2B2AFA419FF281E003042D6 /* 3-majesty1.txt */,
+				F2B2AFA519FF281E003042D6 /* 3-majesty2.txt */,
+				F2B2AFA619FF281E003042D6 /* 3-majesty3.txt */,
+				F2B2AFA719FF281E003042D6 /* 3-majesty4.txt */,
+				F2B2AFA819FF281E003042D6 /* 3-Mega1.txt */,
+				F2B2AFA919FF281E003042D6 /* 3-Mega2.txt */,
+				F2B2AFAA19FF281E003042D6 /* 3-Mega3.txt */,
+				F2B2AFAB19FF281E003042D6 /* 3-Mega4.txt */,
+				F2B2AFAC19FF281E003042D6 /* 3-Mega5.txt */,
+				F2B2AFAD19FF281E003042D6 /* 3-Mega6.txt */,
+				F2B2AFAE19FF281E003042D6 /* 3-Mega7.txt */,
+				F2B2AFAF19FF281E003042D6 /* 3-Menace1.txt */,
+				F2B2AFB019FF281E003042D6 /* 3-Menace2.txt */,
+				F2B2AFB119FF281E003042D6 /* 3-Menace4.txt */,
+				F2B2AFB219FF281E003042D6 /* 3-Sad1.txt */,
+				F2B2AFB319FF281E003042D6 /* 3-Sad2.txt */,
+				F2B2AFB419FF281E003042D6 /* 3-Sad3.txt */,
+				F2B2AFB519FF281E003042D6 /* 3-Sad4.txt */,
+				F2B2AFB619FF281E003042D6 /* 3-Sad5.txt */,
 				F2B2AFE819FF281E003042D6 /* 0-test1.txt */,
 				F2B2AFE919FF281E003042D6 /* 0-test2.txt */,
 				F2B2AFEA19FF281E003042D6 /* 0-test3.txt */,
@@ -2494,10 +2501,21 @@
 				F2B2AFF919FF281E003042D6 /* 3-test3.txt */,
 				F2B2AFFA19FF281E003042D6 /* 3-test4.txt */,
 				F2B2AFFB19FF281E003042D6 /* 3-test5.txt */,
+			);
+			name = patterns;
+			sourceTree = "<group>";
+		};
+		F2B2B1B419FF44B0003042D6 /* bird */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2B1AB19FF2AF6003042D6 /* birdCountIn.pd */,
 				F2B2AFFC19FF281E003042D6 /* 4Track.pd */,
-				F2B2AFFD19FF281E003042D6 /* ah_60_2_60.wav */,
-				F2B2AFFE19FF281E003042D6 /* ah_60_4_60.wav */,
 				F2B2AFFF19FF281E003042D6 /* autoPitch1.1.pd */,
+				F2B2AFD619FF281E003042D6 /* birdClock.pd */,
+				F2B2AFD719FF281E003042D6 /* birdCompress.pd */,
+				F2B2AFD819FF281E003042D6 /* birdPan~.pd */,
+				F2B2AFD919FF281E003042D6 /* birdSqueeze~.pd */,
+				F2B2AFDA19FF281E003042D6 /* birdString.pd */,
 				F2B2B00019FF281E003042D6 /* birdClock.pd */,
 				F2B2B00119FF281E003042D6 /* birdCountIn.pd */,
 				F2B2B00219FF281E003042D6 /* birdDB.pd */,
@@ -2526,40 +2544,117 @@
 				F2B2B01919FF281E003042D6 /* birdString.pd */,
 				F2B2B01A19FF281E003042D6 /* birdString~.pd */,
 				F2B2B01B19FF281E003042D6 /* birdSynth~.pd */,
-				F2B2B01C19FF281E003042D6 /* bsm_compressor~.pd */,
-				F2B2B01D19FF281E003042D6 /* bsm_switch~.pd */,
-				F2B2B01E19FF281E003042D6 /* btoms.pd */,
-				F2B2B01F19FF281E003042D6 /* click~.pd */,
-				F2B2B02019FF281E003042D6 /* db1.pd */,
-				F2B2B02119FF281E003042D6 /* db2.pd */,
-				F2B2B02219FF281E003042D6 /* interact2~.pd */,
-				F2B2B02319FF281E003042D6 /* interact3~.pd */,
-				F2B2B02419FF281E003042D6 /* interact4~.pd */,
-				F2B2B02519FF281E003042D6 /* interact~.pd */,
-				F2B2B02619FF281E003042D6 /* metroClick~.pd */,
-				F2B2B02719FF281E003042D6 /* mm_env~.pd */,
-				F2B2B02819FF281E003042D6 /* mm_osc~.pd */,
-				F2B2B02919FF281E003042D6 /* ModMusic.pd */,
-				F2B2B02A19FF281E003042D6 /* ModMusicErrorLog8_10.txt */,
-				F2B2B02B19FF281E003042D6 /* ms2samp.pd */,
-				F2B2B02C19FF281E003042D6 /* noteOff.pd */,
-				F2B2B02D19FF281E003042D6 /* ooh_60_1_60.wav */,
-				F2B2B02E19FF281E003042D6 /* ooh_60_2_60.wav */,
-				F2B2B02F19FF281E003042D6 /* ooh_60_4_60.wav */,
-				F2B2B03019FF281E003042D6 /* pattern.pd */,
-				F2B2B03119FF281E003042D6 /* pitcher2~.pd */,
-				F2B2B03219FF281E003042D6 /* pitcher~.pd */,
-				F2B2B03319FF281E003042D6 /* randomPlayer.pd */,
-				F2B2B03419FF281E003042D6 /* randomSequencer.pd */,
-				F2B2B03519FF281E003042D6 /* runningAvg.pd */,
-				F2B2B03619FF281E003042D6 /* sampleInstrument~.pd */,
-				F2B2B03719FF281E003042D6 /* samplerChain~.pd */,
-				F2B2B03819FF281E003042D6 /* sampleRecorder~.pd */,
-				F2B2B03919FF281E003042D6 /* stretcher~.pd */,
-				F2B2B03A19FF281E003042D6 /* voxPitcher~.pd */,
-				F2B2B03B19FF281E003042D6 /* wrandom.pd */,
 			);
+			name = bird;
 			path = Composer;
+			sourceTree = "<group>";
+		};
+		F2B2B1B519FF450C003042D6 /* externals */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2B05219FF281E003042D6 /* fiddle~.c */,
+				F2B2AD5819FF27BE003042D6 /* vexp_fun.c */,
+				F2B2AD5919FF27BE003042D6 /* vexp_if.c */,
+				F2B2AD5A19FF27BE003042D6 /* vexp.c */,
+				F2B2AD5B19FF27BE003042D6 /* vexp.h */,
+				F2B2B05419FF281E003042D6 /* fts_to_pd.h */,
+				F2B2B05D19FF281F003042D6 /* Helmholtz.cpp */,
+				F2B2B05E19FF281F003042D6 /* Helmholtz.h */,
+				F2B2B05F19FF281F003042D6 /* helmholtz~.cpp */,
+				F2B2AFDC19FF281E003042D6 /* bonk~ */,
+			);
+			name = externals;
+			sourceTree = "<group>";
+		};
+		F2B2B1B619FF46A4003042D6 /* patches */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2AB7E19FF27BD003042D6 /* modMusicPatch_Test_3.pd */,
+				F2B2B1BC19FF4D87003042D6 /* modmusica.pd */,
+				F2B2B1BD19FF4D87003042D6 /* scope.pd */,
+				F2B2AB8119FF27BD003042D6 /* modMusicPatch_Test_2.pd */,
+				F2B2AB8319FF27BD003042D6 /* modMusicPatch_Test.pd */,
+				F2B2AD2519FF27BE003042D6 /* modMusicPatch_Test_1.0.pd */,
+				F2B2AD2619FF27BE003042D6 /* modMusicPatch.pd */,
+				F2B2AD2719FF27BE003042D6 /* modMusicPatchOld.pd */,
+			);
+			name = patches;
+			sourceTree = "<group>";
+		};
+		F2B2B1B719FF4735003042D6 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2B1A919FF2ADC003042D6 /* er_contAvg.pd */,
+				F2B2ACF319FF27BE003042D6 /* wrandom.pd */,
+				F2B2ACF919FF27BE003042D6 /* metroClick~.pd */,
+				F2B2AD2A19FF27BE003042D6 /* pitch2sig.pd */,
+				F2B2AD2B19FF27BE003042D6 /* pitchDetector1.0.pd */,
+				F2B2AD4319FF27BE003042D6 /* sample_slicer2~.pd */,
+				F2B2AD4419FF27BE003042D6 /* samplerChain~.pd */,
+				F2B2AD4519FF27BE003042D6 /* slicer.pd */,
+				F2B2AD5519FF27BE003042D6 /* timbreStamp.pd */,
+				F2B2AD5619FF27BE003042D6 /* timbreStamp2~.pd */,
+				F2B2AD5719FF27BE003042D6 /* timbreStamp3.pd */,
+				F2B2AD5C19FF27BE003042D6 /* vocalAppPatch.pd */,
+				F2B2AFC619FF281E003042D6 /* autoPitch1.0.pd */,
+				F2B2AFC719FF281E003042D6 /* autoPitch1.1.pd */,
+				F2B2B04C19FF281E003042D6 /* ctr.pd */,
+				F2B2B05319FF281E003042D6 /* findGreatest.pd */,
+			);
+			name = other;
+			sourceTree = "<group>";
+		};
+		F2B2B1B819FF4757003042D6 /* mm */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2AB7F19FF27BD003042D6 /* mm_osc3~.pd */,
+				F2B2AB8019FF27BD003042D6 /* mm_xylo~.pd */,
+				F2B2AB8219FF27BD003042D6 /* mm_bassosc3~.pd */,
+				F2B2ACFA19FF27BE003042D6 /* mm_4Track.pd */,
+				F2B2ACFB19FF27BE003042D6 /* mm_bassosc2~.pd */,
+				F2B2ACFC19FF27BE003042D6 /* mm_bassstring~.pd */,
+				F2B2ACFD19FF27BE003042D6 /* mm_ceiling2~.pd */,
+				F2B2ACFE19FF27BE003042D6 /* mm_compressor.pd */,
+				F2B2ACFF19FF27BE003042D6 /* mm_edge~.pd */,
+				F2B2AD0019FF27BE003042D6 /* mm_edge2~.pd */,
+				F2B2AD0119FF27BE003042D6 /* mm_edge3~.pd */,
+				F2B2AD0219FF27BE003042D6 /* mm_env~.pd */,
+				F2B2AD0319FF27BE003042D6 /* mm_floor2~.pd */,
+				F2B2AD0419FF27BE003042D6 /* mm_gate2~.pd */,
+				F2B2AD0519FF27BE003042D6 /* mm_gate3~.pd */,
+				F2B2AD0619FF27BE003042D6 /* mm_logistic.pd */,
+				F2B2AD0719FF27BE003042D6 /* mm_monoSyncDelay.pd */,
+				F2B2AD0819FF27BE003042D6 /* mm_noiseCancel~.pd */,
+				F2B2AD0919FF27BE003042D6 /* mm_noiseCancel2~.pd */,
+				F2B2AD0A19FF27BE003042D6 /* mm_noiseCancel3~.pd */,
+				F2B2AD0B19FF27BE003042D6 /* mm_osc~.pd */,
+				F2B2AD0C19FF27BE003042D6 /* mm_osc2~.pd */,
+				F2B2AD0D19FF27BE003042D6 /* mm_patternPlayer.pd */,
+				F2B2AD0E19FF27BE003042D6 /* mm_poisson.pd */,
+				F2B2AD0F19FF27BE003042D6 /* mm_randFilter~.pd */,
+				F2B2AD1019FF27BE003042D6 /* mm_randFilter2~.pd */,
+				F2B2AD1119FF27BE003042D6 /* mm_rgate.pd */,
+				F2B2AD1219FF27BE003042D6 /* mm_rlist.pd */,
+				F2B2AD1319FF27BE003042D6 /* mm_rplayer.pd */,
+				F2B2AD1419FF27BE003042D6 /* mm_rpoisson.pd */,
+				F2B2AD1519FF27BE003042D6 /* mm_sample_slicer~.pd */,
+				F2B2AD1619FF27BE003042D6 /* mm_sample_slicer1~.pd */,
+				F2B2AD1719FF27BE003042D6 /* mm_sampler~.pd */,
+				F2B2AD1819FF27BE003042D6 /* mm_sampler2~.pd */,
+				F2B2AD1919FF27BE003042D6 /* mm_sampler3~.pd */,
+				F2B2AD1A19FF27BE003042D6 /* mm_sampler4~.pd */,
+				F2B2AD1B19FF27BE003042D6 /* mm_sampler5~.pd */,
+				F2B2AD1C19FF27BE003042D6 /* mm_sampler6~.pd */,
+				F2B2AD1D19FF27BE003042D6 /* mm_sampler7~.pd */,
+				F2B2AD1E19FF27BE003042D6 /* mm_sampler8~.pd */,
+				F2B2AD1F19FF27BE003042D6 /* mm_stereoChorus.pd */,
+				F2B2AD2019FF27BE003042D6 /* mm_stirling.pd */,
+				F2B2AD2119FF27BE003042D6 /* mm_string~.pd */,
+				F2B2AD2219FF27BE003042D6 /* mm_synth~.pd */,
+				F2B2AD2319FF27BE003042D6 /* mm_vocoder~.pd */,
+				F2B2AD2419FF27BE003042D6 /* mm_xfade.pd */,
+			);
+			name = mm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2613,6 +2708,12 @@
 				TargetAttributes = {
 					F2B2AB4A19FF1739003042D6 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = MB536HH275;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+						};
 					};
 					F2B2AB6319FF1739003042D6 = {
 						CreatedOnToolsVersion = 6.1;
@@ -2751,6 +2852,7 @@
 				F2B2B10819FF281F003042D6 /* 2-test3.txt in Resources */,
 				F2B2B07A19FF281F003042D6 /* 1-Funk2.txt in Resources */,
 				F2B2B16419FF281F003042D6 /* distortedsnare27.wav in Resources */,
+				F251C3371A005D7F00C8EE78 /* mm_test_sig.pd in Resources */,
 				F2B2AE9019FF27BE003042D6 /* u_channelstrip-help.pd in Resources */,
 				F2B2AE8519FF27BE003042D6 /* s_wsb-help.pd in Resources */,
 				F2B2B15319FF281F003042D6 /* CONGA2.aif in Resources */,
@@ -2854,6 +2956,7 @@
 				F2B2B13C19FF281F003042D6 /* mm_osc~.pd in Resources */,
 				F2B2B15819FF281F003042D6 /* conga6.wav in Resources */,
 				F2B2AEB719FF27BE003042D6 /* u_lowpass-help.pd in Resources */,
+				F2B2B1BE19FF4D87003042D6 /* modmusica.pd in Resources */,
 				F2B2AF2419FF27BE003042D6 /* rasta11.aif in Resources */,
 				F2B2B1A519FF2ABD003042D6 /* 3-Mario2.txt in Resources */,
 				F2B2AEE219FF27BE003042D6 /* list-rot.pd in Resources */,
@@ -2894,6 +2997,7 @@
 				F2B2ADC219FF27BE003042D6 /* e_forcepitch.pd in Resources */,
 				F2B2ADAE19FF27BE003042D6 /* e_apdist-help.pd in Resources */,
 				F2B2AE0E19FF27BE003042D6 /* g_vol.pd in Resources */,
+				F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */,
 				F2B2B13319FF281F003042D6 /* click~.pd in Resources */,
 				F2B2ADB719FF27BE003042D6 /* e_chorusr.pd in Resources */,
 				F2B2B15E19FF281F003042D6 /* cowbell1.wav in Resources */,
@@ -3477,6 +3581,7 @@
 			files = (
 				F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */,
 				F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */,
+				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
 				F2B2B0F519FF281F003042D6 /* makefile in Sources */,
 				F2B2B17019FF281F003042D6 /* Helmholtz.cpp in Sources */,
 				F2B2AB7C19FF1B4A003042D6 /* MMScopeView.m in Sources */,
@@ -3613,6 +3718,8 @@
 			baseConfigurationReference = 0957516C57A6187C5D65C574 /* Pods-ModMusica.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ModMusica/ModMusica.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ModMusica/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
@@ -3635,6 +3742,8 @@
 			baseConfigurationReference = C410D157FC1476ED7242B80B /* Pods-ModMusica.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ModMusica/ModMusica.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ModMusica/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (

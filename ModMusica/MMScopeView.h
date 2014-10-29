@@ -16,8 +16,7 @@
 
 @property(nonatomic)CGFloat lineWidth;
 @property(nonatomic)CGFloat animateDuration;
-@property(nonatomic)CGFloat rootMeanSquare;
 
-- (void)displayData:(NSArray *)data;
+- (void)animateLineDrawingWithPoints:(NSArray *)points width:(CGFloat)lineWidth color:(UIColor *)lineColor duration:(NSTimeInterval)duration index:(NSInteger)index;
 
 @end

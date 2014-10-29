@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import <PdAudioController.h>
 
 @interface AppDelegate ()
+
+@property (nonatomic,strong)PdAudioController *audioController;
 
 @end
 
@@ -17,6 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.audioController = [[PdAudioController alloc]init];
+    [self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:YES];
+    self.audioController.active = YES;
     return YES;
 }
 

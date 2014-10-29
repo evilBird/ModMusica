@@ -9,9 +9,14 @@
 #import "MMScopeViewController.h"
 #import "MMScopeView.h"
 #import <PdBase.h>
+#import "UIColor+HBVHarmonies.h"
 
-static NSInteger kNumPoints = 20;
+static NSInteger kNumPoints = 100;
 static NSString *kTableName = @"scopeArray";
+static NSString *kBassTable = @"bassScope";
+static NSString *kSynthTable = @"synthScope";
+static NSString *kDrumTable = @"drumScope";
+static NSString *kSamplerTable = @"samplerScope";
 
 @interface MMScopeViewController ()
 
@@ -41,9 +46,8 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     [super viewDidLoad];
     [PdBase sendFloat:1 toReceiver:@"sampleRate"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
-    [PdBase sendFloat:256 toReceiver:@"resizeScopeArray"];
-    self.timeInterval = 0.5;
-    self.scopeView.animateDuration = self.timeInterval * 0.9;
+    [PdBase sendFloat:512 toReceiver:@"resizeScopes"];
+    [PdBase sendBangToReceiver:@"clearScopes"];
     // Do any additional setup after loading the view.
 }
 
@@ -51,31 +55,68 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 {
     self.updateTimer = nil;
     self.running = YES;
+    self.timeInterval = 0.5;
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.timeInterval target:self selector:@selector(update) userInfo:nil repeats:YES];
+    self.scopeView.animateDuration = self.timeInterval * 0.9;
     self.updateTimer.tolerance = self.timeInterval * 0.1;
 }
 
 - (void)stop
 {
     [self.updateTimer invalidate];
+    [PdBase sendBangToReceiver:@"clearScopes"];
+    [self update];
     self.running = NO;
 }
 
 - (void)update
 {
-    [self.scopeView displayData:[self getNewDataFromSource:kTableName]];
+    if (self.view.backgroundColor == [UIColor whiteColor] || self.view.backgroundColor == [UIColor blackColor]) {
+        self.view.backgroundColor = [UIColor randomColor];
+        self.scopeView.alpha = 1;
+    }
+    
+    __weak MMScopeViewController *weakself = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        weakself.view.backgroundColor = [self.view.backgroundColor jitterWithPercent:10];
+        weakself.scopeView.backgroundColor = self.view.backgroundColor;
+    });
+
+    [PdBase sendBangToReceiver:@"updateScopes"];
+    NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable];
+    
+    NSInteger idx = 0;
+    for (id scope in scopes) {
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            NSArray *points = [weakself getNewDataFromSource:scope verticalOffset:idx * 20];
+            [weakself.scopeView animateLineDrawingWithPoints:points
+                                                       width:10
+                                                       color:[weakself.view.backgroundColor jitterWithPercent:33]
+                                                    duration:weakself.timeInterval
+                                                       index:idx];
+        }];
+        idx++;
+    }
 }
 
 - (NSArray *)getNewDataFromSource:(NSString *)source
 {
+    return [self getNewDataFromSource:source verticalOffset:0];
+}
+
+- (NSArray *)getNewDataFromSource:(NSString *)source verticalOffset:(CGFloat)offset
+{
     CGFloat width = CGRectGetWidth(self.view.bounds);
     CGFloat height = CGRectGetHeight(self.view.bounds);
-    CGFloat midY = CGRectGetMidY(self.view.bounds);
+    CGFloat midY = CGRectGetMidY(self.view.bounds) + offset;
     CGFloat x_int = width/(CGFloat)kNumPoints;
     CGFloat scale = height * 0.5;
     CGFloat xinset = 6;
-    [PdBase sendBangToReceiver:@"updateScope"];
     int scopeArrayLength = [PdBase arraySizeForArrayNamed:source];
+    if (scopeArrayLength < 1) {
+        return nil;
+    }
     float *rawPoints = malloc(sizeof(float) * scopeArrayLength);
     [PdBase copyArrayNamed:source withOffset:0 toArray:rawPoints count:scopeArrayLength];
     NSMutableArray *result = nil;

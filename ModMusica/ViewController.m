@@ -29,16 +29,13 @@ void bonk_tilde_setup(void);
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.audioController = [[PdAudioController alloc]init];
-    [self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:YES];
-    self.audioController.active = YES;
+    [self initalizePd];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self initalizePd];
     NSArray *children = self.childViewControllers;
     MMScopeViewController *vc = children.firstObject;
     [vc start];
@@ -46,7 +43,6 @@ void bonk_tilde_setup(void);
 
 -(void)initalizePd
 {
-    NSLog(@"initializing PD");
     self.dispatcher = [[PdDispatcher alloc]init];
     [PdBase setDelegate:self.dispatcher];
     expr_tilde_setup();
@@ -55,18 +51,15 @@ void bonk_tilde_setup(void);
     bonk_tilde_setup();
     helmholtz_tilde_setup();
     
-    [self.dispatcher addListener:self forSource:@"playbackFinished"];
     [self.dispatcher addListener:self forSource:@"detectedTempo"];
-    [self.dispatcher addListener:self forSource:@"colorTheme"];
-    [self.dispatcher addListener:self forSource:@"patternNumber"];
-    [self.dispatcher addListener:self forSource:@"CPU"];
     [self.dispatcher addListener:self forSource:@"clockBang"];
-    [self.dispatcher addListener:self forSource:@"rootMeanSquare"];
     
-    self.patch = [PdBase openFile:@"modMusicPatch_Test_3.pd" path:[[NSBundle mainBundle]resourcePath]];
-    [PdBase sendFloat:1.0f toReceiver:@"outputVolume"];
+    self.patch = [PdBase openFile:@"modmusica.pd" path:[[NSBundle mainBundle]resourcePath]];
+
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"onOff"];
+    [PdBase sendFloat:1 toReceiver:@"outputVolume"];
+    [PdBase sendFloat:0.5 toReceiver:@"drumsVolume"];
 }
 
 #pragma mark - PdListener
