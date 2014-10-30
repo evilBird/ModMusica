@@ -7,9 +7,6 @@
 #X obj 50 52 inlet~;
 #X obj 240 50 table \$1 256;
 #X msg 279 296 \; \$1 const 0 \;;
-#X obj 443 324 r resizeScopes;
-#X msg 437 359 \$1 resize \$1;
-#X obj 464 397 print scopesize;
 #X obj 648 232 loadbang;
 #X obj 668 281 symbol \$1;
 #X obj 675 317 print scopeName;
@@ -17,12 +14,10 @@
 #X connect 0 0 3 0;
 #X connect 1 0 6 0;
 #X connect 2 0 3 0;
-#X connect 4 0 13 0;
+#X connect 4 0 10 0;
 #X connect 7 0 8 0;
 #X connect 8 0 9 0;
-#X connect 10 0 11 0;
-#X connect 11 0 12 0;
-#X connect 13 0 0 0;
+#X connect 10 0 0 0;
 #X restore 439 202 pd scope;
 #X obj 429 54 inlet~;
 #X connect 1 0 0 0;

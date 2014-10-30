@@ -16,6 +16,7 @@
 
 @property (nonatomic,strong)PdAudioController *audioController;
 @property (nonatomic,strong)PdDispatcher *dispatcher;
+@property (nonatomic,strong)MMScopeViewController *scopeViewController;
 @property void *patch;
 @end
 
@@ -33,18 +34,21 @@ void bonk_tilde_setup(void);
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     NSArray *children = self.childViewControllers;
-    MMScopeViewController *vc = children.firstObject;
-    [vc start];
+    id first = children.firstObject;
+    if ([first isKindOfClass:[MMScopeViewController class]]) {
+        self.scopeViewController = first;
+    }
 }
 
 -(void)initalizePd
 {
     self.dispatcher = [[PdDispatcher alloc]init];
     [PdBase setDelegate:self.dispatcher];
+    
     expr_tilde_setup();
     fiddle_tilde_setup();
     expr_setup();
@@ -53,20 +57,26 @@ void bonk_tilde_setup(void);
     
     [self.dispatcher addListener:self forSource:@"detectedTempo"];
     [self.dispatcher addListener:self forSource:@"clockBang"];
+    self.patch = [PdBase openFile:@"modmusica_1.pd" path:[[NSBundle mainBundle]resourcePath]];
     
-    self.patch = [PdBase openFile:@"modmusica.pd" path:[[NSBundle mainBundle]resourcePath]];
-
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
-    [PdBase sendFloat:1 toReceiver:@"onOff"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
     [PdBase sendFloat:0.5 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
+    [PdBase sendFloat:0.5 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.4 toReceiver:@"bassVolume"];
+    [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
 
 #pragma mark - PdListener
 
 - (void)receiveFloat:(float)received fromSource:(NSString *)source
 {
-    
+    if ([source isEqualToString:@"detectedTempo"]){
+        NSLog(@"detectedTempo: %f",received);
+        NSTimeInterval interval = 60000.0f/received;
+        self.scopeViewController.timeInterval = interval * 0.004;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

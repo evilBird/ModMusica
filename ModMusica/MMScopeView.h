@@ -10,12 +10,15 @@
 
 @protocol MMScopeViewDelegate <NSObject>
 
+- (void)touchesBeganInScopeView:(id)sender;
+- (void)touchesEndedInScopeView:(id)sender;
 @end
 
 @interface MMScopeView : UIView
 
 @property(nonatomic)CGFloat lineWidth;
 @property(nonatomic)CGFloat animateDuration;
+@property(nonatomic,weak)id<MMScopeViewDelegate>delegate;
 
 - (void)animateLineDrawingWithPoints:(NSArray *)points width:(CGFloat)lineWidth color:(UIColor *)lineColor duration:(NSTimeInterval)duration index:(NSInteger)index;
 

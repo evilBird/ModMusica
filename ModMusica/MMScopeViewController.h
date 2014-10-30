@@ -10,11 +10,13 @@
 
 @interface MMScopeViewController : UIViewController
 
-
 @property (nonatomic,getter=isRunning)BOOL running;
 
 - (void)start;
 - (void)stop;
 - (void)update;
+
+@property (nonatomic)CGFloat timeInterval;
+@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
 @end

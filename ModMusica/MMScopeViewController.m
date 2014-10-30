@@ -17,12 +17,21 @@ static NSString *kBassTable = @"bassScope";
 static NSString *kSynthTable = @"synthScope";
 static NSString *kDrumTable = @"drumScope";
 static NSString *kSamplerTable = @"samplerScope";
+static NSString *kKickTable = @"kickScope";
+static NSString *kSnareTable = @"snareScope";
+static NSString *kPercTable = @"percScope";
+static NSString *kSynthTable1 = @"synthScope1";
+static NSString *kSynthTable2 = @"synthScope2";
+static NSString *kSynthTable3 = @"synthScope3";
+static NSString *kFuzzTable = @"fuzzScope";
+static NSString *kTremeloTable = @"tremeloScope";
 
-@interface MMScopeViewController ()
+@interface MMScopeViewController ()<MMScopeViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MMScopeView *scopeView;
-@property (nonatomic)CGFloat timeInterval;
 @property (nonatomic,strong)NSTimer *updateTimer;
+@property (nonatomic,strong)NSTimer *touchTimer;
+
 @end
 
 CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
@@ -44,21 +53,45 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [PdBase sendFloat:1 toReceiver:@"sampleRate"];
-    [PdBase sendBangToReceiver:@"loadNewSamples"];
-    [PdBase sendFloat:512 toReceiver:@"resizeScopes"];
-    [PdBase sendBangToReceiver:@"clearScopes"];
+    _timeInterval = 4.0;
+    self.scopeView.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+- (void)setTimeInterval:(CGFloat)timeInterval
+{
+    if (timeInterval != _timeInterval) {
+        _timeInterval = timeInterval;
+        if (self.isRunning) {
+            [self.updateTimer invalidate];
+            self.updateTimer = nil;
+            self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:_timeInterval
+                                                                target:self
+                                                              selector:@selector(update)
+                                                              userInfo:nil
+                                                               repeats:YES];
+        }
+    }
 }
 
 - (void)start
 {
     self.updateTimer = nil;
     self.running = YES;
-    self.timeInterval = 0.5;
+    [PdBase sendBangToReceiver:@"clearScopes"];
+    [PdBase sendFloat:1 toReceiver:@"onOff"];
+    self.messageLabel.text = NSLocalizedString(@"press and hold to stop", nil);
     self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.timeInterval target:self selector:@selector(update) userInfo:nil repeats:YES];
     self.scopeView.animateDuration = self.timeInterval * 0.9;
     self.updateTimer.tolerance = self.timeInterval * 0.1;
+    [UIView animateWithDuration:5.0
+                     animations:^{
+                         self.messageLabel.alpha = 0.0;
+                     } completion:^(BOOL finished) {
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                             [self.messageLabel removeFromSuperview];
+                         });
+                     }];
 }
 
 - (void)stop
@@ -67,37 +100,63 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     [PdBase sendBangToReceiver:@"clearScopes"];
     [self update];
     self.running = NO;
+    [PdBase sendFloat:0 toReceiver:@"onOff"];
+    [self.view addSubview:self.messageLabel];
+    self.messageLabel.text = NSLocalizedString(@"tap anywhere to start", nil);
+    [UIView animateWithDuration:0.5 animations:^{
+        self.messageLabel.alpha = 1.0f;
+    }];
 }
 
 - (void)update
 {
-    if (self.view.backgroundColor == [UIColor whiteColor] || self.view.backgroundColor == [UIColor blackColor]) {
-        self.view.backgroundColor = [UIColor randomColor];
-        self.scopeView.alpha = 1;
-    }
-    
     __weak MMScopeViewController *weakself = self;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        weakself.view.backgroundColor = [self.view.backgroundColor jitterWithPercent:10];
-        weakself.scopeView.backgroundColor = self.view.backgroundColor;
-    });
 
-    [PdBase sendBangToReceiver:@"updateScopes"];
-    NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable];
+    UIColor *newColor = [UIColor randomColor];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:weakself.timeInterval animations:^{
+            weakself.view.backgroundColor = newColor;
+            weakself.scopeView.backgroundColor = newColor;
+        }];
+    });
     
+    [PdBase sendBangToReceiver:@"updateScopes"];
+    NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable];
     NSInteger idx = 0;
     for (id scope in scopes) {
-        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-            NSArray *points = [weakself getNewDataFromSource:scope verticalOffset:idx * 20];
-            [weakself.scopeView animateLineDrawingWithPoints:points
-                                                       width:10
-                                                       color:[weakself.view.backgroundColor jitterWithPercent:33]
-                                                    duration:weakself.timeInterval
-                                                       index:idx];
-        }];
+        CGFloat completion = (CGFloat)idx/(CGFloat)scopes.count;
+        NSTimeInterval del = completion * self.timeInterval;
+        CGFloat verticalOffsetRange = CGRectGetHeight(self.scopeView.bounds);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(del * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                CGFloat width = (CGFloat)arc4random_uniform(100) * 0.5;
+                CGFloat verticalOffset = (CGFloat)arc4random_uniform(verticalOffsetRange) - verticalOffsetRange * 0.5;
+                NSArray *points = [weakself getNewDataFromSource:scope verticalOffset:verticalOffset];
+                UIColor *random = [UIColor randomColor];
+                UIColor *color = [random colorHarmonyWithExpression:^CGFloat(CGFloat value) {
+                    return value;
+                } alpha:0.5];
+                
+                [weakself.scopeView animateLineDrawingWithPoints:points
+                                                           width:width
+                                                           color:color
+                                                        duration:weakself.timeInterval
+                                                           index:idx];
+            }];
+        });
+        
         idx++;
     }
+}
+
+- (void)animateChangeColor:(UIColor *)newColor inView:(UIView *)view duration:(CGFloat)duration
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"backgroundColor"];
+    animation.fromValue = view.backgroundColor;
+    animation.toValue = newColor;
+    animation.duration = duration;
+    [view.layer addAnimation:animation forKey:@"colorAnimation"];
+    [view.layer setValue:newColor forKey:@"backgroundColor"];
 }
 
 - (NSArray *)getNewDataFromSource:(NSString *)source
@@ -146,6 +205,52 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     }
     
     return result;
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        NSLog(@"gesture recognized");
+        if (self.isRunning) {
+            [self stop];
+        }else{
+            [self start];
+        }
+    }
+}
+
+- (void)touchesBeganInScopeView:(id)sender
+{
+    if (!self.isRunning) {
+        [self start];
+        return;
+    }
+    
+    self.touchTimer = nil;
+    self.touchTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(handleTouchTimer:) userInfo:nil repeats:NO];
+    
+    //[PdBase sendBangToReceiver:@"tapTempo"];
+}
+
+- (void)handleTouchTimer:(id)sender
+{
+    if (self.isRunning) {
+        [self stop];
+    }else{
+        [self start];
+    }
+}
+
+- (void)touchesEndedInScopeView:(id)sender
+{
+    [self.touchTimer invalidate];
+    self.touchTimer = nil;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
 }
 
 #pragma mark - MMScopeViewDelegate
