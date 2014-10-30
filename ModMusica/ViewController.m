@@ -63,9 +63,9 @@ void bonk_tilde_setup(void);
     
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    [PdBase sendFloat:0.46 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
     [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.66 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.7 toReceiver:@"samplerVolume"];
     [PdBase sendFloat:0.33 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
 }

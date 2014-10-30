@@ -30,7 +30,11 @@ typedef void (^Render)(void);
 - (void)animateLineDrawingWithPoints:(NSArray *)points width:(CGFloat)lineWidth color:(UIColor *)lineColor duration:(NSTimeInterval)duration index:(NSInteger)index
 {
     
-    UIColor *color = [lineColor jitterWithPercent:10];
+    UIColor *color = lineColor;
+    if (index%2 == 1) {
+        color = [lineColor complement];
+    }
+    
     CAShapeLayer *shapeLayer = [self animateBezierPath:[self pathFromArray:points]
                                               duration:duration
                                                  color:color
@@ -41,10 +45,10 @@ typedef void (^Render)(void);
         return;
     }
     
-    static NSInteger rotate;
-    rotate += 78 * (CGFloat)(arc4random_uniform(100)<50);
-    rotate = rotate%628;
-    CGFloat angle = (CGFloat)rotate * 0.01;
+    CGFloat progress = (CGFloat)index/(CGFloat)self.layer.sublayers.count;
+    CGFloat remaining = 1.0f - progress;
+    CGFloat angle = remaining * 6.28318;
+    angle -= 3.14159;
     NSInteger layers = self.layer.sublayers.count;
     if (layers > 1) {
         [self rotateShapeLayer:shapeLayer
@@ -55,18 +59,6 @@ typedef void (^Render)(void);
     }
     UIColor *oldColor = [UIColor colorWithCGColor:shapeLayer.strokeColor];
     [self changeColor:oldColor toNewColor:lineColor inShapeLayer:shapeLayer duration:duration];
-    
-    NSInteger count = self.layer.sublayers.count;
-    if (count > 0) {
-        CGFloat z = (CGFloat)index/(CGFloat)count;
-        z *= z;
-        shapeLayer.zPosition = z;
-        CGFloat cz = (1.0 - z) * 0.5;
-        cz *= cz;
-        shapeLayer.shadowColor = [UIColor colorWithRed:cz * cz green:cz * cz blue:cz * cz alpha:1.0].CGColor;
-        shapeLayer.shadowOpacity = cz;
-        shapeLayer.shadowRadius = z;
-    }
 }
 
 - (CGPoint)anchorForPoints:(NSArray *)points
@@ -75,21 +67,33 @@ typedef void (^Render)(void);
         return self.layer.anchorPoint;
     }
     
-    NSInteger middleIndex = points.count/2;
-    NSValue *middleValue = points[middleIndex];
-    CGPoint middlePoint = middleValue.CGPointValue;
-    CGSize layerSize = self.layer.bounds.size;
-    CGPoint anchorPoint;
-    anchorPoint.x = middlePoint.x/layerSize.width;
-    anchorPoint.y = middlePoint.y/layerSize.height;
-    
-    BOOL jitter = YES;
-    if (jitter) {
-        anchorPoint.x += (arc4random_uniform(500) - 250);
-        anchorPoint.y += (arc4random_uniform(500) - 250);
+    static NSInteger idx;
+    idx += 1;
+    NSInteger i = idx%4;
+    CGRect bounds = self.bounds;
+    CGPoint origin = bounds.origin;
+    switch (i) {
+        case 0:
+            return origin;
+            break;
+            case 1:
+            origin.x += CGRectGetWidth(bounds);
+            return origin;
+            break;
+            case 2:
+            origin.x += CGRectGetWidth(bounds);
+            origin.y += CGRectGetHeight(bounds);
+            return origin;
+            break;
+            case 3:
+            origin.y += CGRectGetHeight(bounds);
+            break;
+            
+        default:
+            break;
     }
     
-    return anchorPoint;
+    return origin;
 }
 
 - (UIBezierPath *)pathFromArray:(NSArray *)array
@@ -139,40 +143,20 @@ typedef void (^Render)(void);
     CGFloat val = (CGFloat)(rand  > 0.5);
     bezier.strokeStart   = val;
     bezier.strokeEnd     = 1.0 - val;
-    UIColor *randomColor = [UIColor randomColor];
-    bezier.strokeColor = randomColor.CGColor;
-    bezier.fillColor = randomColor.CGColor;
-    [self.layer addSublayer:bezier];
+    bezier.strokeColor = color.CGColor;
+    bezier.fillColor = color.CGColor;
     
     if (index < self.layer.sublayers.count) {
         CAShapeLayer *shapeLayer = self.layer.sublayers[index];
         if ([shapeLayer isKindOfClass:[CAShapeLayer class]]) {
-            CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"fillColor"];
-            fade.fromValue = [UIColor colorWithCGColor:shapeLayer.fillColor];
-            fade.toValue = [fade.fromValue colorHarmonyWithExpression:^CGFloat(CGFloat value) {
-                return value;
-            } alpha:0.0];
-            
-            fade.duration = self.animateDuration * 0.004;
-            [shapeLayer addAnimation:fade forKey:@"fadeOutAnimation"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fade.duration * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.animateDuration * 0.000001 * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [shapeLayer removeFromSuperlayer];
             });
-            
-            CABasicAnimation *fade2 = [CABasicAnimation animationWithKeyPath:@"stokeColor"];
-            fade2.fromValue = [UIColor colorWithCGColor:shapeLayer.strokeColor];
-            fade2.toValue = [fade2.fromValue colorHarmonyWithExpression:^CGFloat(CGFloat value) {
-                return value;
-            } alpha:0.0];
-            
-            fade2.duration = self.animateDuration * 0.004;
-            [shapeLayer addAnimation:fade2 forKey:@"fadeOutAnimation2"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fade.duration * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [shapeLayer removeFromSuperlayer];
-            });
-            
         }
     }
+    
+    [self.layer addSublayer:bezier];
+    
     CABasicAnimation *animateStrokeEnd = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     animateStrokeEnd.duration  = duration;
     animateStrokeEnd.fromValue = [NSNumber numberWithFloat:val];
@@ -185,15 +169,9 @@ typedef void (^Render)(void);
 - (void)rotateShapeLayer:(CAShapeLayer *)shapeLayer anchorPoint:(CGPoint)anchorPoint angle:(CGFloat)angle duration:(CGFloat)duration index:(NSInteger)index count:(NSInteger)count
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    animation.duration = duration * 1.1;
+    animation.duration = duration + (self.animateDuration * 0.000001 * 1.2);
     animation.fromValue = [NSValue valueWithCATransform3D:shapeLayer.transform];
-    CGFloat z = (CGFloat)index/(CGFloat)count;
-    z *= z;
-    CGFloat rand = (CGFloat)(arc4random_uniform(100) > 50);
-    if (rand == 0) {
-        rand = -1.0f;
-    }
-    CATransform3D new = CATransform3DRotate(shapeLayer.transform, z * rand, 0, 0, z * rand);
+    CATransform3D new = CATransform3DRotate(shapeLayer.transform, angle, 0, 0, 1);
     animation.toValue = [NSValue valueWithCATransform3D:new];
     shapeLayer.anchorPoint = anchorPoint;
     [shapeLayer addAnimation:animation forKey:@"strokeRotation"];
@@ -217,7 +195,7 @@ typedef void (^Render)(void);
     layer.fillColor = newColor.CGColor;
     
 }
-
+/*
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.delegate touchesBeganInScopeView:self];
@@ -227,7 +205,7 @@ typedef void (^Render)(void);
 {
     [self.delegate touchesEndedInScopeView:self];
 }
-
+*/
 
 /*
 // Only override drawRect: if you perform custom drawing.

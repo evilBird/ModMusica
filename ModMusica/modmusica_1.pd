@@ -1266,7 +1266,7 @@
 #X connect 33 0 3 0;
 #X connect 33 0 27 0;
 #X restore 829 15 pd fx;
-#N canvas 68 23 1440 755 bass 0;
+#N canvas 68 23 1440 755 bass 1;
 #X obj 460 902 throw~ outputL;
 #X obj 558 901 throw~ outputR;
 #X obj 504 376 t f b;

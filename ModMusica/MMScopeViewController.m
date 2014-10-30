@@ -113,36 +113,6 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
         }];
     });
     [PdBase sendBangToReceiver:@"updateScopes"];
-
-    /*
-    [PdBase sendBangToReceiver:@"updateScopes"];
-    NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable];
-    NSInteger idx = 0;
-    for (id scope in scopes) {
-        CGFloat completion = (CGFloat)idx/(CGFloat)scopes.count;
-        NSTimeInterval del = completion * self.timeInterval;
-        CGFloat verticalOffsetRange = CGRectGetHeight(self.scopeView.bounds);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(del * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                CGFloat width = (CGFloat)arc4random_uniform(100) * 0.5;
-                CGFloat verticalOffset = (CGFloat)arc4random_uniform(verticalOffsetRange) - verticalOffsetRange * 0.5;
-                NSArray *points = [weakself getNewDataFromSource:scope verticalOffset:verticalOffset];
-                UIColor *random = [UIColor randomColor];
-                UIColor *color = [random colorHarmonyWithExpression:^CGFloat(CGFloat value) {
-                    return value;
-                } alpha:0.5];
-                
-                [weakself.scopeView animateLineDrawingWithPoints:points
-                                                           width:width
-                                                           color:color
-                                                        duration:weakself.timeInterval
-                                                           index:idx];
-            }];
-        });
-        
-        idx++;
-    }
-     */
 }
 
 - (void)updateScope:(NSInteger)scope
@@ -154,20 +124,30 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     }
     
     CGFloat verticalOffsetRange = CGRectGetHeight(self.scopeView.bounds);
-    CGFloat width = (CGFloat)arc4random_uniform(100) * 0.5;
+    CGFloat width = (CGFloat)arc4random_uniform(100) * 0.25;
     CGFloat verticalOffset = (CGFloat)arc4random_uniform(verticalOffsetRange) - verticalOffsetRange * 0.5;
     NSString *scopeName = scopes[scope];
     NSArray *points = [self getNewDataFromSource:scopeName verticalOffset:verticalOffset];
-    UIColor *random = [UIColor randomColor];
-    UIColor *color = [random colorHarmonyWithExpression:^CGFloat(CGFloat value) {
-        return value;
-    } alpha:0.5];
+    CGFloat count = (CGFloat)self.scopeView.layer.sublayers.count + 1;
+    CGFloat progress = (CGFloat)scope/(CGFloat)count;
+    CGFloat remaining = 1.0f - progress;
+    UIColor *color = [self.scopeView.backgroundColor colorHarmonyWithExpression:^CGFloat(CGFloat value) {
+        return value/(CGFloat)((scope + 1) * 2.0f);
+    } alpha:remaining];
     
-    [self.scopeView animateLineDrawingWithPoints:points
-                                           width:width
-                                           color:color
-                                        duration:self.timeInterval
-                                           index:scope];
+    if (scope%3 == 0) {
+        color = [UIColor randomColor];
+    }
+    
+    __weak MMScopeViewController *weakself = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself.scopeView animateLineDrawingWithPoints:points
+                                               width:width
+                                               color:color
+                                            duration:weakself.timeInterval
+                                               index:scope];
+    });
+
 
     
 }
@@ -230,19 +210,7 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     return result;
 }
 
-- (void)handleLongPress:(UILongPressGestureRecognizer *)sender
-{
-    if (sender.state == UIGestureRecognizerStateRecognized) {
-        NSLog(@"gesture recognized");
-        if (self.isRunning) {
-            [self stop];
-        }else{
-            [self start];
-        }
-    }
-}
-
-- (void)touchesBeganInScopeView:(id)sender
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (!self.isRunning) {
         [self start];
@@ -251,8 +219,12 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     
     self.touchTimer = nil;
     self.touchTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(handleTouchTimer:) userInfo:nil repeats:NO];
-    
-    //[PdBase sendBangToReceiver:@"tapTempo"];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.touchTimer invalidate];
+    self.touchTimer = nil;
 }
 
 - (void)handleTouchTimer:(id)sender
@@ -262,12 +234,6 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     }else{
         [self start];
     }
-}
-
-- (void)touchesEndedInScopeView:(id)sender
-{
-    [self.touchTimer invalidate];
-    self.touchTimer = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

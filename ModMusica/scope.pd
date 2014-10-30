@@ -1,5 +1,5 @@
 #N canvas 510 59 1071 573 10;
-#N canvas 143 180 1211 609 scope 0;
+#N canvas 143 180 1211 609 scope 1;
 #X obj 46 553 clip~ -1 1;
 #X obj 279 271 r clearScopes;
 #X obj 93 581 r updateScopes;
@@ -7,9 +7,9 @@
 #X obj 50 52 inlet~;
 #X obj 240 50 table \$1 256;
 #X msg 279 296 \; \$1 const 0 \;;
-#X obj 648 232 loadbang;
+#X obj 668 258 loadbang;
 #X obj 668 281 symbol \$1;
-#X obj 675 317 print scopeName;
+#X obj 672 312 print scopeName;
 #X obj 43 404 *~ 2;
 #X connect 0 0 3 0;
 #X connect 1 0 6 0;
