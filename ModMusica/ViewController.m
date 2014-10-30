@@ -57,14 +57,16 @@ void bonk_tilde_setup(void);
     
     [self.dispatcher addListener:self forSource:@"detectedTempo"];
     [self.dispatcher addListener:self forSource:@"clockBang"];
+    [self.dispatcher addListener:self forSource:@"interval"];
+    [self.dispatcher addListener:self forSource:@"beat"];
     self.patch = [PdBase openFile:@"modmusica_1.pd" path:[[NSBundle mainBundle]resourcePath]];
     
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    [PdBase sendFloat:0.5 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.46 toReceiver:@"drumsVolume"];
     [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.5 toReceiver:@"samplerVolume"];
-    [PdBase sendFloat:0.4 toReceiver:@"bassVolume"];
+    [PdBase sendFloat:0.66 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.33 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
 
@@ -72,16 +74,35 @@ void bonk_tilde_setup(void);
 
 - (void)receiveFloat:(float)received fromSource:(NSString *)source
 {
+    
+    if ([source isEqualToString:@"interval"]) {
+        NSLog(@"interval: %f",received);
+        self.scopeViewController.timeInterval = received * 0.001;
+        [self.scopeViewController update];
+        return;
+    }
+    
+    if ([source isEqualToString:@"beat"]) {
+        [self.scopeViewController updateScope:received];
+    }
+    
+    /*
     if ([source isEqualToString:@"detectedTempo"]){
         NSLog(@"detectedTempo: %f",received);
         NSTimeInterval interval = 60000.0f/received;
-        self.scopeViewController.timeInterval = interval * 0.004;
+        if (self.scopeViewController.timeInterval != (interval * 0.004)) {
+            self.scopeViewController.timeInterval = interval * 0.004;
+        }
+        return;
     }
+     */
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

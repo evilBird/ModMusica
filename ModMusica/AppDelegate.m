@@ -22,7 +22,9 @@
     // Override point for customization after application launch.
     self.audioController = [[PdAudioController alloc]init];
     [self.audioController configurePlaybackWithSampleRate:22050 numberChannels:2 inputEnabled:YES mixingEnabled:YES];
+    [self.audioController configureTicksPerBuffer:64];
     self.audioController.active = YES;
+    
     return YES;
 }
 

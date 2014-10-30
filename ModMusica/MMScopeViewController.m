@@ -11,7 +11,7 @@
 #import <PdBase.h>
 #import "UIColor+HBVHarmonies.h"
 
-static NSInteger kNumPoints = 100;
+static NSInteger kNumPoints = 64;
 static NSString *kTableName = @"scopeArray";
 static NSString *kBassTable = @"bassScope";
 static NSString *kSynthTable = @"synthScope";
@@ -62,15 +62,7 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 {
     if (timeInterval != _timeInterval) {
         _timeInterval = timeInterval;
-        if (self.isRunning) {
-            [self.updateTimer invalidate];
-            self.updateTimer = nil;
-            self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:_timeInterval
-                                                                target:self
-                                                              selector:@selector(update)
-                                                              userInfo:nil
-                                                               repeats:YES];
-        }
+        self.scopeView.animateDuration = _timeInterval;
     }
 }
 
@@ -81,13 +73,15 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     [PdBase sendBangToReceiver:@"clearScopes"];
     [PdBase sendFloat:1 toReceiver:@"onOff"];
     self.messageLabel.text = NSLocalizedString(@"press and hold to stop", nil);
-    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.timeInterval target:self selector:@selector(update) userInfo:nil repeats:YES];
-    self.scopeView.animateDuration = self.timeInterval * 0.9;
-    self.updateTimer.tolerance = self.timeInterval * 0.1;
+    [self update];
     [UIView animateWithDuration:5.0
+                          delay:5.0
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
+                         
                          self.messageLabel.alpha = 0.0;
-                     } completion:^(BOOL finished) {
+                     }
+                     completion:^(BOOL finished) {
                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                              [self.messageLabel removeFromSuperview];
                          });
@@ -96,7 +90,6 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 
 - (void)stop
 {
-    [self.updateTimer invalidate];
     [PdBase sendBangToReceiver:@"clearScopes"];
     [self update];
     self.running = NO;
@@ -119,7 +112,9 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
             weakself.scopeView.backgroundColor = newColor;
         }];
     });
-    
+    [PdBase sendBangToReceiver:@"updateScopes"];
+
+    /*
     [PdBase sendBangToReceiver:@"updateScopes"];
     NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable];
     NSInteger idx = 0;
@@ -147,6 +142,34 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
         
         idx++;
     }
+     */
+}
+
+- (void)updateScope:(NSInteger)scope
+{
+    NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable];
+    
+    if (scope >= scopes.count) {
+        return;
+    }
+    
+    CGFloat verticalOffsetRange = CGRectGetHeight(self.scopeView.bounds);
+    CGFloat width = (CGFloat)arc4random_uniform(100) * 0.5;
+    CGFloat verticalOffset = (CGFloat)arc4random_uniform(verticalOffsetRange) - verticalOffsetRange * 0.5;
+    NSString *scopeName = scopes[scope];
+    NSArray *points = [self getNewDataFromSource:scopeName verticalOffset:verticalOffset];
+    UIColor *random = [UIColor randomColor];
+    UIColor *color = [random colorHarmonyWithExpression:^CGFloat(CGFloat value) {
+        return value;
+    } alpha:0.5];
+    
+    [self.scopeView animateLineDrawingWithPoints:points
+                                           width:width
+                                           color:color
+                                        duration:self.timeInterval
+                                           index:scope];
+
+    
 }
 
 - (void)animateChangeColor:(UIColor *)newColor inView:(UIView *)view duration:(CGFloat)duration

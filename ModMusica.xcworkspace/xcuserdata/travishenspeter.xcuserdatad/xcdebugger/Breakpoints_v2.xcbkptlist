@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MMScopeView.m"
-            timestampString = "436320324.503767"
+            timestampString = "436343729.041279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-changeColor:toNewColor:inShapeLayer:duration:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MMScopeView.m"
-            timestampString = "436320324.503767"
+            timestampString = "436343729.041279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "-changeColor:toNewColor:inShapeLayer:duration:"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,45 +41,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MMScopeView.m"
-            timestampString = "436320324.503767"
+            filePath = "ModMusica/ViewController.m"
+            timestampString = "436340334.62195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-animateBezierPath:duration:color:lineWidth:index:"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-receiveFloat:fromSource:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MMScopeView.m"
-            timestampString = "436320324.503767"
+            filePath = "ModMusica/MMScopeViewController.m"
+            timestampString = "436340671.266213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "-animateBezierPath:duration:color:lineWidth:index:"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-updateScope:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MMScopeView.m"
-            timestampString = "436320324.503767"
+            filePath = "ModMusica/MMScopeViewController.m"
+            timestampString = "436340671.266213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "-animateBezierPath:duration:color:lineWidth:index:"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-updateScope:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModMusica/MMScopeViewController.m"
+            timestampString = "436340671.266213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-updateScope:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

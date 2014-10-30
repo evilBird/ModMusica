@@ -19,4 +19,6 @@
 @property (nonatomic)CGFloat timeInterval;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
+- (void)updateScope:(NSInteger)scope;
+
 @end
