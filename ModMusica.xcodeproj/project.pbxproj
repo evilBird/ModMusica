@@ -18,6 +18,15 @@
 		F24A86C81A00838600875B66 /* RenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F24A86C41A00838600875B66 /* RenderView.m */; };
 		F24A86CB1A0083B100875B66 /* MMPsychedelicArtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F24A86CA1A0083B100875B66 /* MMPsychedelicArtViewController.m */; };
 		F251C3371A005D7F00C8EE78 /* mm_test_sig.pd in Resources */ = {isa = PBXBuildFile; fileRef = F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */; };
+		F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */ = {isa = PBXBuildFile; fileRef = F298829B1A02BC78005F9B94 /* mm_pattern.pd */; };
+		F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F298829E1A02BE50005F9B94 /* MMFileReader.m */; };
+		F29882A31A02C027005F9B94 /* example_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882A21A02C027005F9B94 /* example_pattern.csv */; };
+		F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = F29882A51A02C854005F9B94 /* MMPatternLoader.m */; };
+		F29882AE1A02D022005F9B94 /* 0-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882A91A02D022005F9B94 /* 0-mario.csv */; };
+		F29882AF1A02D022005F9B94 /* 1-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AA1A02D022005F9B94 /* 1-mario.csv */; };
+		F29882B01A02D022005F9B94 /* 2-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AB1A02D022005F9B94 /* 2-mario.csv */; };
+		F29882B11A02D022005F9B94 /* 3-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AC1A02D022005F9B94 /* 3-mario.csv */; };
+		F29882B21A02D022005F9B94 /* 4-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AD1A02D022005F9B94 /* 4-mario.csv */; };
 		F2B2AB5119FF1739003042D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5019FF1739003042D6 /* main.m */; };
 		F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5319FF1739003042D6 /* AppDelegate.m */; };
 		F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5619FF1739003042D6 /* ViewController.m */; };
@@ -849,6 +858,17 @@
 		F24A86C91A0083B100875B66 /* MMPsychedelicArtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPsychedelicArtViewController.h; sourceTree = "<group>"; };
 		F24A86CA1A0083B100875B66 /* MMPsychedelicArtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPsychedelicArtViewController.m; sourceTree = "<group>"; };
 		F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_test_sig.pd; sourceTree = "<group>"; };
+		F298829B1A02BC78005F9B94 /* mm_pattern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_pattern.pd; sourceTree = "<group>"; };
+		F298829D1A02BE50005F9B94 /* MMFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFileReader.h; sourceTree = "<group>"; };
+		F298829E1A02BE50005F9B94 /* MMFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMFileReader.m; sourceTree = "<group>"; };
+		F29882A21A02C027005F9B94 /* example_pattern.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example_pattern.csv; sourceTree = "<group>"; };
+		F29882A41A02C854005F9B94 /* MMPatternLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPatternLoader.h; sourceTree = "<group>"; };
+		F29882A51A02C854005F9B94 /* MMPatternLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPatternLoader.m; sourceTree = "<group>"; };
+		F29882A91A02D022005F9B94 /* 0-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-mario.csv"; sourceTree = "<group>"; };
+		F29882AA1A02D022005F9B94 /* 1-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-mario.csv"; sourceTree = "<group>"; };
+		F29882AB1A02D022005F9B94 /* 2-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-mario.csv"; sourceTree = "<group>"; };
+		F29882AC1A02D022005F9B94 /* 3-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-mario.csv"; sourceTree = "<group>"; };
+		F29882AD1A02D022005F9B94 /* 4-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-mario.csv"; sourceTree = "<group>"; };
 		F2B2AB4B19FF1739003042D6 /* ModMusica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModMusica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B2AB4F19FF1739003042D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2B2AB5019FF1739003042D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1714,6 +1734,27 @@
 			name = PsycheArt;
 			sourceTree = "<group>";
 		};
+		F29882A71A02CCFA005F9B94 /* csv */ = {
+			isa = PBXGroup;
+			children = (
+				F29882A81A02D022005F9B94 /* mario */,
+				F29882A21A02C027005F9B94 /* example_pattern.csv */,
+			);
+			name = csv;
+			sourceTree = "<group>";
+		};
+		F29882A81A02D022005F9B94 /* mario */ = {
+			isa = PBXGroup;
+			children = (
+				F29882A91A02D022005F9B94 /* 0-mario.csv */,
+				F29882AA1A02D022005F9B94 /* 1-mario.csv */,
+				F29882AB1A02D022005F9B94 /* 2-mario.csv */,
+				F29882AC1A02D022005F9B94 /* 3-mario.csv */,
+				F29882AD1A02D022005F9B94 /* 4-mario.csv */,
+			);
+			path = mario;
+			sourceTree = "<group>";
+		};
 		F2B2AB4219FF1739003042D6 = {
 			isa = PBXGroup;
 			children = (
@@ -1746,6 +1787,10 @@
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
 				F2B2AB5519FF1739003042D6 /* ViewController.h */,
 				F2B2AB5619FF1739003042D6 /* ViewController.m */,
+				F29882A41A02C854005F9B94 /* MMPatternLoader.h */,
+				F29882A51A02C854005F9B94 /* MMPatternLoader.m */,
+				F298829D1A02BE50005F9B94 /* MMFileReader.h */,
+				F298829E1A02BE50005F9B94 /* MMFileReader.m */,
 				F24A86C91A0083B100875B66 /* MMPsychedelicArtViewController.h */,
 				F24A86CA1A0083B100875B66 /* MMPsychedelicArtViewController.m */,
 				F2B2AB7719FF1B30003042D6 /* MMScopeViewController.h */,
@@ -1789,6 +1834,7 @@
 		F2B2AB7D19FF273F003042D6 /* Pd */ = {
 			isa = PBXGroup;
 			children = (
+				F29882A71A02CCFA005F9B94 /* csv */,
 				F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */,
 				F2B2AB8419FF27BD003042D6 /* rj */,
 				F2B2B1B219FF4393003042D6 /* samples */,
@@ -2645,6 +2691,7 @@
 		F2B2B1B819FF4757003042D6 /* mm */ = {
 			isa = PBXGroup;
 			children = (
+				F298829B1A02BC78005F9B94 /* mm_pattern.pd */,
 				F246EF121A0197AC00357005 /* mm_asr~.pd */,
 				F2B2AB7F19FF27BD003042D6 /* mm_osc3~.pd */,
 				F2B2AB8019FF27BD003042D6 /* mm_xylo~.pd */,
@@ -3183,9 +3230,11 @@
 				F2B2B17819FF281F003042D6 /* list-enumerate.pd in Resources */,
 				F2B2AEE519FF27BE003042D6 /* metroClick~.pd in Resources */,
 				F2B2AEF419FF27BE003042D6 /* mm_noiseCancel~.pd in Resources */,
+				F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */,
 				F2B2AE7C19FF27BE003042D6 /* s_playtable.pd in Resources */,
 				F2B2B15D19FF281F003042D6 /* cowbell.aif in Resources */,
 				F2B2B0E319FF281F003042D6 /* big-burundi-03.wav in Resources */,
+				F29882AF1A02D022005F9B94 /* 1-mario.csv in Resources */,
 				F2B2AD9D19FF27BE003042D6 /* c_patternchange-help.pd in Resources */,
 				F2B2ADCF19FF27BE003042D6 /* e_noclickdelsig.pd in Resources */,
 				F2B2AED419FF27BE003042D6 /* u_sigm.pd in Resources */,
@@ -3203,6 +3252,7 @@
 				F2B2ADF619FF27BE003042D6 /* g_hradio.pd in Resources */,
 				F2B2ADBE19FF27BE003042D6 /* e_fbdelay-help.pd in Resources */,
 				F2B2AEEA19FF27BE003042D6 /* mm_compressor.pd in Resources */,
+				F29882B11A02D022005F9B94 /* 3-mario.csv in Resources */,
 				F2B2AE6319FF27BE003042D6 /* s_fm4.pd in Resources */,
 				F2B2AF3119FF27BE003042D6 /* slicer.pd in Resources */,
 				F2B2AEEB19FF27BE003042D6 /* mm_edge~.pd in Resources */,
@@ -3332,6 +3382,7 @@
 				F2B2AE6619FF27BE003042D6 /* s_fplaytable-help.pd in Resources */,
 				F2B2B11319FF281F003042D6 /* autoPitch1.1.pd in Resources */,
 				F2B2AEBD19FF27BE003042D6 /* u_messagesaver-help.pd in Resources */,
+				F29882AE1A02D022005F9B94 /* 0-mario.csv in Resources */,
 				F2B2B0A219FF281F003042D6 /* 2-Mega1.txt in Resources */,
 				F2B2AF2C19FF27BE003042D6 /* rasta19.aif in Resources */,
 				F2B2B08319FF281F003042D6 /* 1-majesty2.txt in Resources */,
@@ -3406,6 +3457,7 @@
 				F2B2AE5319FF27BE003042D6 /* s_blsaw.pd in Resources */,
 				F2B2B14119FF281F003042D6 /* ooh_60_1_60.wav in Resources */,
 				F2B2AED619FF27BE003042D6 /* u_spinner.pd in Resources */,
+				F29882B01A02D022005F9B94 /* 2-mario.csv in Resources */,
 				F2B2B07619FF281F003042D6 /* 0-Sad3.txt in Resources */,
 				F2B2B15219FF281F003042D6 /* conga1.wav in Resources */,
 				F2B2AE2319FF27BE003042D6 /* m_chorddict.pd in Resources */,
@@ -3421,6 +3473,7 @@
 				F2B2B08C19FF281F003042D6 /* 1-Mega7.txt in Resources */,
 				F2B2AF0D19FF27BE003042D6 /* mm_string~.pd in Resources */,
 				F2B2B06D19FF281F003042D6 /* 0-Mega4.txt in Resources */,
+				F29882B21A02D022005F9B94 /* 4-mario.csv in Resources */,
 				F2B2B17319FF281F003042D6 /* Kick-3.wav in Resources */,
 				F2B2AEA619FF27BE003042D6 /* u_listfilter.pd in Resources */,
 				F2B2AEBA19FF27BE003042D6 /* u_lowpassq.pd in Resources */,
@@ -3501,6 +3554,7 @@
 				F2B2ADC419FF27BE003042D6 /* e_freqshift.pd in Resources */,
 				F2B2B06F19FF281F003042D6 /* 0-Mega6.txt in Resources */,
 				F2B2AEAE19FF27BE003042D6 /* u_listrandom.pd in Resources */,
+				F29882A31A02C027005F9B94 /* example_pattern.csv in Resources */,
 				F2B2B10119FF281F003042D6 /* 1-test1.txt in Resources */,
 				F2B2AE0B19FF27BE003042D6 /* g_tgl-help.pd in Resources */,
 				F2B2ADF819FF27BE003042D6 /* g_hsl.pd in Resources */,
@@ -3625,7 +3679,9 @@
 				F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */,
 				F24A86C71A00838600875B66 /* NSArray+Randomness.m in Sources */,
 				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
+				F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */,
 				F2B2B0F519FF281F003042D6 /* makefile in Sources */,
+				F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */,
 				F2B2B17019FF281F003042D6 /* Helmholtz.cpp in Sources */,
 				F2B2AB7C19FF1B4A003042D6 /* MMScopeView.m in Sources */,
 				F2B2AB7919FF1B30003042D6 /* MMScopeViewController.m in Sources */,

@@ -103,7 +103,7 @@
 #X connect 43 0 37 0;
 #X restore 817 -61 pd clock;
 #N canvas 338 54 911 714 drums 1;
-#N canvas 47 41 1440 752 kick 1;
+#N canvas 47 41 1440 752 kick 0;
 #X obj 515 585 soundfiler;
 #X obj 151 26 inlet;
 #X obj 143 675 outlet~;
@@ -3077,7 +3077,7 @@
 #X obj 209 488 list prepend chord set;
 #X obj 352 303 loadbang;
 #X obj 352 402 hradio 15 1 0 8 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 7;
 #X obj 453 254 r randomize;
 #X obj 460 279 t b;
 #X obj 138 631 s \$0-randomNotes;
@@ -3652,7 +3652,7 @@
 #X obj 606 95 random 16;
 #X obj 588 38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 556 118 1 1 1 75 1 1 1 15 1 1 1 15 1 1 1 15;
+#X msg 556 118 1 1 1 15 1 1 1 15 1 1 1 75 1 1 1 15;
 #N canvas 710 242 450 300 toTremelo 0;
 #X obj 75 -66 inlet~;
 #X obj 76 167 *~;

@@ -11,12 +11,14 @@
 #import <PdAudioController.h>
 #import <PdDispatcher.h>
 #import "MMScopeViewController.h"
+#import "MMPatternLoader.h"
 
 @interface ViewController ()<PdListener>
 
 @property (nonatomic,strong)PdAudioController *audioController;
 @property (nonatomic,strong)PdDispatcher *dispatcher;
 @property (nonatomic,strong)MMScopeViewController *scopeViewController;
+@property (nonatomic,strong)MMPatternLoader *patternLoader;
 @property void *patch;
 @end
 
@@ -31,6 +33,7 @@ void bonk_tilde_setup(void);
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initalizePd];
+    self.patternLoader = [[MMPatternLoader alloc]init];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -42,6 +45,8 @@ void bonk_tilde_setup(void);
     if ([first isKindOfClass:[MMScopeViewController class]]) {
         self.scopeViewController = first;
     }
+    
+    [self.patternLoader setPattern:@"mario"];
 }
 
 -(void)initalizePd
@@ -56,15 +61,15 @@ void bonk_tilde_setup(void);
     helmholtz_tilde_setup();
     
     [self.dispatcher addListener:self forSource:@"detectedTempo"];
-    [self.dispatcher addListener:self forSource:@"clockBang"];
     [self.dispatcher addListener:self forSource:@"interval"];
     [self.dispatcher addListener:self forSource:@"beat"];
+    [self.dispatcher addListener:self forSource:@"clock"];
     self.patch = [PdBase openFile:@"modmusica_1.pd" path:[[NSBundle mainBundle]resourcePath]];
     
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
     [PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
-    [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
+    [PdBase sendFloat:0.33 toReceiver:@"synthVolume"];
     [PdBase sendFloat:0.7 toReceiver:@"samplerVolume"];
     [PdBase sendFloat:0.33 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
@@ -74,9 +79,7 @@ void bonk_tilde_setup(void);
 
 - (void)receiveFloat:(float)received fromSource:(NSString *)source
 {
-    
     if ([source isEqualToString:@"interval"]) {
-        NSLog(@"interval: %f",received);
         self.scopeViewController.timeInterval = received * 0.001;
         [self.scopeViewController update];
         return;
@@ -84,19 +87,17 @@ void bonk_tilde_setup(void);
     
     if ([source isEqualToString:@"beat"]) {
         [self.scopeViewController updateScope:received];
-    }
-    
-    /*
-    if ([source isEqualToString:@"detectedTempo"]){
-        NSLog(@"detectedTempo: %f",received);
-        NSTimeInterval interval = 60000.0f/received;
-        if (self.scopeViewController.timeInterval != (interval * 0.004)) {
-            self.scopeViewController.timeInterval = interval * 0.004;
-        }
         return;
     }
-     */
     
+    if ([source isEqualToString:@"clock"] && received == 0) {
+        static NSInteger rep;
+        if (rep%2 == 0) {
+            [self.patternLoader playNextSection];
+        }
+        
+        rep += 1;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
