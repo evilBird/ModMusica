@@ -13,7 +13,7 @@
 #import "MMScopeViewController.h"
 #import "MMPatternLoader.h"
 
-@interface ViewController ()<PdListener>
+@interface ViewController ()<PdListener,MMPlaybackDelegate>
 
 @property (nonatomic,strong)PdAudioController *audioController;
 @property (nonatomic,strong)PdDispatcher *dispatcher;
@@ -34,6 +34,7 @@ void bonk_tilde_setup(void);
     [super viewDidLoad];
     [self initalizePd];
     self.patternLoader = [[MMPatternLoader alloc]init];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -44,6 +45,7 @@ void bonk_tilde_setup(void);
     id first = children.firstObject;
     if ([first isKindOfClass:[MMScopeViewController class]]) {
         self.scopeViewController = first;
+        self.scopeViewController.playbackDelegate = self;
     }
     
     [self.patternLoader setPattern:@"mario"];
@@ -75,6 +77,16 @@ void bonk_tilde_setup(void);
     [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
 
+- (void)playbackStarted
+{
+    [self.patternLoader playNextSection];
+}
+
+- (void)playbackStopped
+{
+    
+}
+
 #pragma mark - PdListener
 
 - (void)receiveFloat:(float)received fromSource:(NSString *)source
@@ -93,7 +105,11 @@ void bonk_tilde_setup(void);
     if ([source isEqualToString:@"clock"] && received == 0) {
         static NSInteger rep;
         if (rep%2 == 0) {
-            [self.patternLoader playNextSection];
+            NSLog(@"reps: %@",@(rep));
+            if (rep == 4) {
+                rep = 0;
+                [self.patternLoader playNextSection];
+            }
         }
         
         rep += 1;

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MMPlaybackDelegate <NSObject>
+
+- (void)playbackStarted;
+- (void)playbackStopped;
+
+@end
+
 @interface MMScopeViewController : UIViewController
 
 @property (nonatomic,getter=isRunning)BOOL running;
@@ -18,6 +25,7 @@
 
 @property (nonatomic)CGFloat timeInterval;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) id<MMPlaybackDelegate>playbackDelegate;
 
 - (void)updateScope:(NSInteger)scope;
 

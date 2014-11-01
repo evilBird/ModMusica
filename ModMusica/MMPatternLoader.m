@@ -89,12 +89,23 @@ static NSString *kTableName = @"notes";
     if (noteTables == nil) {
         return NO;
     }
-    
+    NSArray *header = [MMFileReader headerForFile:pattern];
+    [self handleHeader:header];
     for (NSArray *table in noteTables) {
         [PdBase sendList:table toReceiver:kTableName];
     }
-    
     return YES;
+}
+
+- (void)handleHeader:(NSArray *)header
+{
+    for (NSString *headerLine in header) {
+        NSArray *components = [headerLine componentsSeparatedByString:@","];
+        NSString *receiver = components.firstObject;
+        float value = [components[1]floatValue];
+        [PdBase sendFloat:value toReceiver:receiver];
+        NSLog(@"sent value %f to %@",value,receiver);
+    }
 }
 
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section

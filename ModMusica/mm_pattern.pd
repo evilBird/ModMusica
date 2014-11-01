@@ -36,13 +36,13 @@
 #X connect 2 0 3 0;
 #X restore 217 194 pd inv;
 #X obj 176 -283 t f f;
-#X obj 335 -307 r \$0-rate;
-#X obj 333 -281 t b f;
-#X obj 284 -256 /;
+#X obj 348 -313 r \$0-rate;
+#X obj 353 -281 t b f;
+#X obj 282 -256 /;
 #X obj 202 -257 sel 0;
 #X obj 181 -98 +;
-#X obj 283 -227 /;
-#X obj 282 -306 t f f f;
+#X obj 283 -220 /;
+#X obj 295 -319 t f f f;
 #X obj 203 -232 f;
 #X obj 233 -232 + 1;
 #X obj 205 -171 mod;
@@ -53,7 +53,7 @@
 #X obj 1025 -221 s \$0-offset;
 #X obj 171 -337 +;
 #X obj 186 -364 r \$0-offset;
-#X obj 298 -333 r \$0-length;
+#X obj 299 -358 r \$0-length;
 #X obj 227 -327 r \$0-read;
 #X obj 384 -48 r \$0-length;
 #X obj 361 10 list-tabdump \$0-notes;
@@ -80,10 +80,11 @@
 #X obj 595 -230 pack \$0 f;
 #X obj 598 -268 t b f;
 #X obj 600 -302 change;
-#X obj 1096 -320 print read;
 #X msg 596 -200 \; \$1-notes resize \$2 \;;
+#X obj 141 311 outlet;
 #X connect 0 0 53 0;
 #X connect 1 0 42 0;
+#X connect 4 0 72 0;
 #X connect 4 1 2 0;
 #X connect 5 0 16 0;
 #X connect 6 0 47 0;
@@ -141,7 +142,6 @@
 #X connect 53 3 23 0;
 #X connect 53 4 41 0;
 #X connect 53 5 54 0;
-#X connect 53 5 71 0;
 #X connect 55 0 63 0;
 #X connect 55 1 56 0;
 #X connect 56 0 57 0;
@@ -158,7 +158,7 @@
 #X connect 65 0 60 0;
 #X connect 65 1 58 0;
 #X connect 67 0 70 0;
-#X connect 68 0 72 0;
+#X connect 68 0 71 0;
 #X connect 69 0 68 0;
 #X connect 69 1 68 1;
 #X connect 70 0 69 0;

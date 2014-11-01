@@ -11,6 +11,7 @@
 @interface MMFileReader : NSObject
 
 + (NSArray *)readFile:(NSString *)fileName;
++ (NSArray *)headerForFile:(NSString *)fileName;
 + (NSArray *)readFile:(NSString *)fileName section:(NSInteger)section length:(NSInteger)length;
 
 

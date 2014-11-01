@@ -74,6 +74,7 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     [PdBase sendFloat:1 toReceiver:@"onOff"];
     self.messageLabel.text = NSLocalizedString(@"press and hold to stop", nil);
     [self update];
+    [self.playbackDelegate playbackStarted];
     [UIView animateWithDuration:5.0
                           delay:5.0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -92,6 +93,7 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 {
     [PdBase sendBangToReceiver:@"clearScopes"];
     [self update];
+    [self.playbackDelegate playbackStopped];
     self.running = NO;
     [PdBase sendFloat:0 toReceiver:@"onOff"];
     [self.view addSubview:self.messageLabel];

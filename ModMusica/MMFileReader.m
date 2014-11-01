@@ -22,6 +22,33 @@
     return [MMFileReader parseText:fileText];
 }
 
++ (NSArray *)headerForFile:(NSString *)fileName
+{
+    NSError *err = nil;
+    NSArray *components = [fileName componentsSeparatedByString:@"."];
+    if (components.count < 2) {
+        return nil;
+    }
+    NSString *path = [[NSBundle mainBundle]pathForResource:components.firstObject ofType:components.lastObject];
+    NSString *fileText = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+    return [MMFileReader extractHeader:fileText];
+}
+
++ (NSArray *)extractHeader:(NSString *)text
+{
+    if (!text) {
+        return nil;
+    }
+    
+    NSArray *rows = [text componentsSeparatedByString:@"\n"];
+    NSRange headerRange;
+    headerRange.location = 0;
+    headerRange.length = 6;
+    NSIndexSet *headerIndexSet = [NSIndexSet indexSetWithIndexesInRange:headerRange];
+    NSArray *header = [rows objectsAtIndexes:headerIndexSet];
+    return header;
+}
+
 + (NSArray *)readFile:(NSString *)fileName section:(NSInteger)section length:(NSInteger)length
 {
     NSArray *allRows = [self readFile:fileName];
@@ -37,12 +64,23 @@
     }
     
     NSArray *rows = [text componentsSeparatedByString:@"\n"];
-    if (!rows) {
+    NSMutableArray *rowsCopy = rows.mutableCopy;
+    NSRange headerRange;
+    headerRange.location = 0;
+    headerRange.length = 6;
+    NSIndexSet *headerIndexSet = [NSIndexSet indexSetWithIndexesInRange:headerRange];
+    [rowsCopy removeObjectsAtIndexes:headerIndexSet];
+    if (!rowsCopy) {
         return nil;
     }
     
-    return [MMFileReader readFromRows:rows startIndex:0 stopIndex:rows.count];
+    return [MMFileReader readFromRows:rowsCopy startIndex:0 stopIndex:rowsCopy.count];
 
+}
+
++ (void)handleHeader:(NSArray *)header
+{
+    NSLog(@"header: %@",header);
 }
 
 + (NSArray *)readFromRows:(NSArray *)allRows startIndex:(NSInteger)startIndex stopIndex:(NSInteger)stopIndex
@@ -76,9 +114,10 @@
             }else{
                 columnArray = result[idx];
             }
-            
+
             NSInteger integer = value.integerValue;
             [columnArray addObject:@(integer)];
+            
             idx ++;
         }
     }
