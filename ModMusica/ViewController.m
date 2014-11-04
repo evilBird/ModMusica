@@ -48,7 +48,7 @@ void bonk_tilde_setup(void);
         self.scopeViewController.playbackDelegate = self;
     }
     
-    [self.patternLoader setPattern:@"mario"];
+    [self.patternLoader setPattern:@"mega"];
 }
 
 -(void)initalizePd
@@ -66,13 +66,13 @@ void bonk_tilde_setup(void);
     [self.dispatcher addListener:self forSource:@"interval"];
     [self.dispatcher addListener:self forSource:@"beat"];
     [self.dispatcher addListener:self forSource:@"clock"];
-    self.patch = [PdBase openFile:@"modmusica_1.pd" path:[[NSBundle mainBundle]resourcePath]];
+    self.patch = [PdBase openFile:@"modmusica_2.pd" path:[[NSBundle mainBundle]resourcePath]];
     
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    [PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
-    [PdBase sendFloat:0.33 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.7 toReceiver:@"samplerVolume"];
+    //[PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
+    //[PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
+    //[PdBase sendFloat:0.7 toReceiver:@"samplerVolume"];
     [PdBase sendFloat:0.33 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
@@ -119,6 +119,11 @@ void bonk_tilde_setup(void);
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touches began in vc");
 }
 
 

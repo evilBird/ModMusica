@@ -23,7 +23,20 @@ typedef void (^Render)(void);
     if (self) {
         _lineWidth = 2;
         _animateDuration = 1;
+        self.userInteractionEnabled = NO;
     }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _lineWidth = 2;
+        _animateDuration = 1;
+        self.userInteractionEnabled = NO;
+    }
+    
     return self;
 }
 
@@ -50,6 +63,7 @@ typedef void (^Render)(void);
     CGFloat angle = remaining * 6.28318;
     angle -= 3.14159;
     NSInteger layers = self.layer.sublayers.count;
+    
     if (layers > 1) {
         [self rotateShapeLayer:shapeLayer
                    anchorPoint:[self anchorForPoints:points]
@@ -57,6 +71,7 @@ typedef void (^Render)(void);
                          index:index
                          count:layers];
     }
+     
     UIColor *oldColor = [UIColor colorWithCGColor:shapeLayer.strokeColor];
     [self changeColor:oldColor toNewColor:lineColor inShapeLayer:shapeLayer duration:duration];
 }
@@ -195,12 +210,13 @@ typedef void (^Render)(void);
     layer.fillColor = newColor.CGColor;
     
 }
-/*
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.delegate touchesBeganInScopeView:self];
-}
+    NSLog(@"touches began in scope");
 
+}
+/*
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.delegate touchesEndedInScopeView:self];

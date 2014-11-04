@@ -73,13 +73,13 @@ static NSString *kTableName = @"notes";
 {
     if (_currentPattern == nil) {
         _currentPattern = currentPattern;
-        self.currentSection = 0;
+        self.currentSection = -1;
         return;
     }
     
     if (![currentPattern isEqualToString:_currentPattern]) {
         _currentPattern = currentPattern;
-        self.currentSection = 0;
+        self.currentSection = -1;
     }
 }
 
@@ -104,12 +104,13 @@ static NSString *kTableName = @"notes";
         NSString *receiver = components.firstObject;
         float value = [components[1]floatValue];
         [PdBase sendFloat:value toReceiver:receiver];
-        NSLog(@"sent value %f to %@",value,receiver);
     }
 }
 
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section
 {
+    //NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(0),pattern];
+
     NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(section),pattern];
     return [self loadPattern:fileName];
 }

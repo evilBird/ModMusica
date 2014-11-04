@@ -82,11 +82,7 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
                          
                          self.messageLabel.alpha = 0.0;
                      }
-                     completion:^(BOOL finished) {
-                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                             [self.messageLabel removeFromSuperview];
-                         });
-                     }];
+                     completion:NULL];
 }
 
 - (void)stop
@@ -96,7 +92,6 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     [self.playbackDelegate playbackStopped];
     self.running = NO;
     [PdBase sendFloat:0 toReceiver:@"onOff"];
-    [self.view addSubview:self.messageLabel];
     self.messageLabel.text = NSLocalizedString(@"tap anywhere to start", nil);
     [UIView animateWithDuration:0.5 animations:^{
         self.messageLabel.alpha = 1.0f;
@@ -109,11 +104,22 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 
     UIColor *newColor = [UIColor randomColor];
     dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:weakself.timeInterval
+                              delay:0.0
+                            options:UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             weakself.view.backgroundColor = newColor;
+                             weakself.scopeView.backgroundColor = newColor;
+                         }
+                         completion:NULL];
+        /*
         [UIView animateWithDuration:weakself.timeInterval animations:^{
             weakself.view.backgroundColor = newColor;
             weakself.scopeView.backgroundColor = newColor;
         }];
+         */
     });
+    
     [PdBase sendBangToReceiver:@"updateScopes"];
 }
 
@@ -184,7 +190,9 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     float *rawPoints = malloc(sizeof(float) * scopeArrayLength);
     [PdBase copyArrayNamed:source withOffset:0 toArray:rawPoints count:scopeArrayLength];
     NSMutableArray *result = nil;
-    
+    static NSInteger counter;
+    counter += 1;
+    CGFloat dy = (CGFloat)((counter%10) - 5);
     for (int i = 0; i<kNumPoints; i++) {
         
         int sampleIdx = i * scopeArrayLength/kNumPoints;
@@ -199,7 +207,7 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
         
         float norm = (value + 1.0f) * 0.5f;
         CGFloat x = i * x_int + xinset;
-        CGFloat y = midY - norm * scale;
+        CGFloat y = midY - norm * scale + dy * i;
         
         if (y!=y) {
             y = 0.0f;
@@ -214,6 +222,8 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"touches began in scope vc");
+
     if (!self.isRunning) {
         [self start];
         return;
