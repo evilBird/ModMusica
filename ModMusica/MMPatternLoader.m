@@ -109,8 +109,7 @@ static NSString *kTableName = @"notes";
 
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section
 {
-    //NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(0),pattern];
-
+    //NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(2),pattern];
     NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(section),pattern];
     return [self loadPattern:fileName];
 }

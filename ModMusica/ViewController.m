@@ -34,7 +34,6 @@ void bonk_tilde_setup(void);
     [super viewDidLoad];
     [self initalizePd];
     self.patternLoader = [[MMPatternLoader alloc]init];
-    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -48,7 +47,7 @@ void bonk_tilde_setup(void);
         self.scopeViewController.playbackDelegate = self;
     }
     
-    [self.patternLoader setPattern:@"mega"];
+    [self.patternLoader setPattern:@"menace"];
 }
 
 -(void)initalizePd
@@ -70,7 +69,7 @@ void bonk_tilde_setup(void);
     
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    //[PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
     //[PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
     //[PdBase sendFloat:0.7 toReceiver:@"samplerVolume"];
     [PdBase sendFloat:0.33 toReceiver:@"bassVolume"];
@@ -79,6 +78,11 @@ void bonk_tilde_setup(void);
 
 - (void)playbackStarted
 {
+    NSArray *patterns = @[@"mario",@"fantasy",@"mega",@"menace"];
+    NSInteger idx;
+    idx = 3;
+    NSString *pattern = patterns[idx%patterns.count];
+    //self.patternLoader.currentPattern = pattern;
     [self.patternLoader playNextSection];
 }
 
