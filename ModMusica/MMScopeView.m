@@ -61,19 +61,47 @@ typedef void (^Render)(void);
     CGFloat progress = (CGFloat)index/(CGFloat)self.layer.sublayers.count;
     CGFloat remaining = 1.0f - progress;
     CGFloat angle = remaining * 6.28318;
-    angle -= 3.14159;
+    angle -= 3.14159 * 0.00001;
+    //angle = 0.0;
     NSInteger layers = self.layer.sublayers.count;
     
     if (layers > 1) {
-        [self rotateShapeLayer:shapeLayer
-                   anchorPoint:[self anchorForPoints:points]
-                         angle:angle duration:duration
-                         index:index
-                         count:layers];
+        
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            [UIView animateWithDuration:duration
+                                  delay:0
+                 usingSpringWithDamping:0.1
+                  initialSpringVelocity:([self randomUniformFloat] * 2.0)
+                                options:UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 CATransform3D t1 = CATransform3DMakeScale([self randomUniformFloat] * 2.0, [self randomUniformFloat] * 2.0, [self randomUniformFloat] * 2.0);
+                                 CATransform3D t2 = CATransform3DMakeTranslation([self randomUniformFloat] * 2.0, [self randomUniformFloat] * 2.0, [self randomUniformFloat] * 2.0);
+                                 CATransform3D trans = CATransform3DConcat(t1, t2);
+                                 
+                                 shapeLayer.transform = trans;
+                             }
+                             completion:^(BOOL finished) {
+                                 
+                             }];
+        }];
+
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            [self rotateShapeLayer:shapeLayer
+                       anchorPoint:self.center//[self anchorForPoints:points]
+                             angle:angle duration:duration
+                             index:index
+                             count:layers];
+        }];
+
     }
      
     UIColor *oldColor = [UIColor colorWithCGColor:shapeLayer.strokeColor];
     [self changeColor:oldColor toNewColor:lineColor inShapeLayer:shapeLayer duration:duration];
+}
+
+- (CGFloat)randomUniformFloat
+{
+    return (CGFloat)arc4random_uniform(100) * 0.01;
 }
 
 - (CGPoint)anchorForPoints:(NSArray *)points

@@ -1,7 +1,7 @@
 #N canvas 147 43 925 425 10;
 #X floatatom 538 55 5 0 0 0 - - -;
 #X obj 597 281 tabwrite~ \$0-scope;
-#N canvas 0 0 450 300 (subpatch) 0;
+#N canvas 0 22 450 300 (subpatch) 0;
 #X array \$0-scope 2205 float 0;
 #X coords 0 1 2204 -1 200 140 1;
 #X restore 706 123 graph;
@@ -9,7 +9,7 @@
 1;
 #X obj 538 82 mtof;
 #X obj 621 53 hsl 128 15 0 0.9 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 1400 1;
 #X obj 618 83 moses 1;
 #X text 633 34 Harmonicity-Env;
 #X text 679 84 don't go equal or over 1!;
@@ -19,7 +19,6 @@
 #X msg 610 257 bang;
 #X obj 597 235 metro 100;
 #X obj 538 217 s_buzz;
-#X obj 493 314 soundoutput;
 #N canvas 452 179 639 392 REFERENCE 0;
 #X text 109 129 Outlet 0: output signal;
 #X text 110 58 Summary: buzz harmonics generator;
@@ -35,6 +34,7 @@ It generates a waveform using the summation forumula: out = sqrt[(1-a^2)(1+a^2)]
 #X coords 0 -1 1 1 450 250 1 100 20;
 #X restore 21 45 pd REFERENCE;
 #X text 20 22 s_buzz - buzz harmonics generator;
+#X obj 493 314 dac~;
 #X connect 0 0 4 0;
 #X connect 3 0 13 0;
 #X connect 4 0 14 0;
@@ -46,5 +46,5 @@ It generates a waveform using the summation forumula: out = sqrt[(1-a^2)(1+a^2)]
 #X connect 12 0 1 0;
 #X connect 13 0 1 0;
 #X connect 14 0 1 0;
-#X connect 14 0 15 0;
-#X connect 14 0 15 1;
+#X connect 14 0 17 0;
+#X connect 14 0 17 1;

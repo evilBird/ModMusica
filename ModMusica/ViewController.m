@@ -65,22 +65,33 @@ void bonk_tilde_setup(void);
     [self.dispatcher addListener:self forSource:@"interval"];
     [self.dispatcher addListener:self forSource:@"beat"];
     [self.dispatcher addListener:self forSource:@"clock"];
-    self.patch = [PdBase openFile:@"modmusica_2.pd" path:[[NSBundle mainBundle]resourcePath]];
+    /*self.patch = [PdBase openFile:@"modmusica_5.pd" path:[[NSBundle mainBundle]resourcePath]];
     
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
     [PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
     [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.7 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.6 toReceiver:@"samplerVolume"];
     [PdBase sendFloat:0.33 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
+     */
 }
 
 - (void)playbackStarted
 {
     NSArray *patterns = @[@"mario",@"fantasy",@"mega",@"menace"];
-    NSInteger idx;
-    idx += 1;
+    static NSInteger idx;
+    idx += 1 + arc4random_uniform(100);
+    self.patch = nil;
+    NSString *patchName = [NSString stringWithFormat:@"modmusica_%@.pd",@((idx + arc4random_uniform(100))%patterns.count + 2 )];
+    self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
+    [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
+    [PdBase sendFloat:1 toReceiver:@"outputVolume"];
+    [PdBase sendFloat:0.5 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.33 toReceiver:@"synthVolume"];
+    [PdBase sendFloat:0.5 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.5 toReceiver:@"bassVolume"];
+    [PdBase sendBangToReceiver:@"loadNewSamples"];
     
     NSString *pattern = patterns[idx%patterns.count];
     self.patternLoader.currentPattern = pattern;
@@ -89,6 +100,7 @@ void bonk_tilde_setup(void);
 
 - (void)playbackStopped
 {
+    [PdBase closeFile:self.patch];
     
 }
 

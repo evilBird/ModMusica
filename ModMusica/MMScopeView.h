@@ -18,6 +18,7 @@
 
 @property(nonatomic)CGFloat lineWidth;
 @property(nonatomic)CGFloat animateDuration;
+@property(nonatomic)CGFloat rms;
 @property(nonatomic,weak)id<MMScopeViewDelegate>delegate;
 
 - (void)animateLineDrawingWithPoints:(NSArray *)points width:(CGFloat)lineWidth color:(UIColor *)lineColor duration:(NSTimeInterval)duration index:(NSInteger)index;
