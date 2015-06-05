@@ -25,7 +25,6 @@ NSString *const kGPUImageKaleidoscopeFragmentShaderString = SHADER_STRING
      mediump float a = atan(p.y, p.x);
      
      // kaleidoscope
-     //mediump float tau = 4. * 3.1416;
      a = mod(a, tau/sides);
      a = abs(a - tau/sides/2.);
      
