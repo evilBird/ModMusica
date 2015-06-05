@@ -7,14 +7,11 @@
 //
 
 #import "MMVisualViewController.h"
-#import "GPUImage.h"
 #import "UIView+Layout.h"
 
 @interface MMVisualViewController ()
 
-@property (nonatomic,strong)GPUImageFilter *filter;
-@property (nonatomic,strong)GPUImageView *imageView;
-@property (nonatomic,strong)GPUImagePicture *picture;
+
 
 @end
 
@@ -24,28 +21,31 @@
     [super viewDidLoad];
     self.imageView = [[GPUImageView alloc]init];
     self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.imageView.backgroundColor = [UIColor blueColor];
+    self.imageView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.imageView];
     [self.view addConstraints:[self.imageView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
     [self.view layoutIfNeeded];
-    UIImage *image = [UIImage imageNamed:@"Icon"];
-    [self setupFilterWithImage:image];
+    [self setupFilter];
+    [self processImage];
     // Do any additional setup after loading the view.
 }
 
-- (void)setupFilterWithImage:(UIImage *)image
+- (void)setupFilter
 {
     if (self.picture) {
         [self.picture removeAllTargets];
+        self.picture = nil;
     }
     if (!self.filter) {
         self.filter = [self makeFilter];
     }
     
+    UIImage *image = [self baseImage];
     self.picture = [[GPUImagePicture alloc]initWithImage:image];
     [self.filter forceProcessingAtSize:self.picture.outputImageSize];
     [self.picture addTarget:self.filter];
     [self.filter addTarget:self.imageView];
+    [self.filter useNextFrameForImageCapture];
 }
 
 - (void)tearDownFilter
@@ -67,15 +67,25 @@
     return nil;
 }
 
+- (UIImage *)baseImage
+{
+    return nil;
+}
+
 - (void)processImage
 {
-    [self.filter useNextFrameForImageCapture];
     [self.picture processImage];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - MMPlaybackDelegate
+- (void)playback:(id)sender clockDidChange:(NSInteger)clock
+{
+    [self processImage];
 }
 
 /*

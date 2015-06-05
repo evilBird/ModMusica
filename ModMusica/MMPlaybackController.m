@@ -60,6 +60,7 @@ void bonk_tilde_setup(void);
 - (void)startNow
 {
     [PdBase sendFloat:1 toReceiver:@"onOff"];
+    self.playing = YES;
 }
 
 - (void)playbackDidStop
@@ -70,6 +71,7 @@ void bonk_tilde_setup(void);
 - (void)stopNow
 {
     [PdBase sendFloat:0 toReceiver:@"onOff"];
+    self.playing = NO;
 }
 
 - (void)commonInit
@@ -190,7 +192,7 @@ void bonk_tilde_setup(void);
     }
     
     if ([source isEqualToString:@"clock"]) {
-        
+        [self.delegate playback:self clockDidChange:(NSInteger)received];
     }
     
 }

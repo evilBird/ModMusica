@@ -491,6 +491,7 @@
 		F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */; };
 		F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */; };
 		F2DE9EA21B2235F700FEBE5F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DE9EA11B2235F700FEBE5F /* Icon@2x.png */; };
+		F2DE9EA51B22370D00FEBE5F /* KaleidoscopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EA41B22370D00FEBE5F /* KaleidoscopeViewController.m */; };
 		F2EE00FF1A11A22100398C04 /* _markovanal.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF911A11A22000398C04 /* _markovanal.pd */; };
 		F2EE01001A11A22100398C04 /* a.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF921A11A22000398C04 /* a.txt */; };
 		F2EE01011A11A22100398C04 /* a_breath-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF931A11A22000398C04 /* a_breath-help.pd */; };
@@ -1394,6 +1395,8 @@
 		F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		F2DE9E9F1B22328C00FEBE5F /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
 		F2DE9EA11B2235F700FEBE5F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		F2DE9EA31B22370D00FEBE5F /* KaleidoscopeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaleidoscopeViewController.h; sourceTree = "<group>"; };
+		F2DE9EA41B22370D00FEBE5F /* KaleidoscopeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaleidoscopeViewController.m; sourceTree = "<group>"; };
 		F2EE00001A11A22000398C04 /* e_reverb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_reverb.pd; sourceTree = "<group>"; };
 		F2EE00011A11A22000398C04 /* e_scompress-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "e_scompress-help.pd"; sourceTree = "<group>"; };
 		F2EE00021A11A22000398C04 /* e_scompress.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_scompress.pd; sourceTree = "<group>"; };
@@ -1931,6 +1934,12 @@
 				F298829E1A02BE50005F9B94 /* MMFileReader.m */,
 				F2B2AB7A19FF1B4A003042D6 /* MMScopeView.h */,
 				F2B2AB7B19FF1B4A003042D6 /* MMScopeView.m */,
+				F2DE9E981B222BC200FEBE5F /* MMPlaybackController.h */,
+				F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */,
+				F2DE9E951B222ACB00FEBE5F /* MMVisualViewController.h */,
+				F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */,
+				F2DE9EA31B22370D00FEBE5F /* KaleidoscopeViewController.h */,
+				F2DE9EA41B22370D00FEBE5F /* KaleidoscopeViewController.m */,
 			);
 			name = MM;
 			sourceTree = "<group>";
@@ -1961,16 +1970,12 @@
 				F24A3E9C1A0058300074471B /* ModMusica.entitlements */,
 				F2DE9E931B2229F400FEBE5F /* OpenGL */,
 				F2B2AB7D19FF273F003042D6 /* Pd */,
-				F2AD7F351A47EEA100840ABC /* MM */,
 				F2DE9E941B222A0E00FEBE5F /* Categories */,
+				F2AD7F351A47EEA100840ABC /* MM */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
 				F2B2AB5519FF1739003042D6 /* ViewController.h */,
 				F2B2AB5619FF1739003042D6 /* ViewController.m */,
-				F2DE9E981B222BC200FEBE5F /* MMPlaybackController.h */,
-				F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */,
-				F2DE9E951B222ACB00FEBE5F /* MMVisualViewController.h */,
-				F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */,
 				F2B2AB5819FF1739003042D6 /* Main.storyboard */,
 				F2B2AB5B19FF1739003042D6 /* Images.xcassets */,
 				F2B2AB5D19FF1739003042D6 /* LaunchScreen.xib */,
@@ -3963,6 +3968,7 @@
 				F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */,
 				F2B2B17019FF281F003042D6 /* Helmholtz.cpp in Sources */,
 				F2B2AB7C19FF1B4A003042D6 /* MMScopeView.m in Sources */,
+				F2DE9EA51B22370D00FEBE5F /* KaleidoscopeViewController.m in Sources */,
 				F2B2B0F319FF281F003042D6 /* bonk~.c in Sources */,
 				F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */,
 				F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */,

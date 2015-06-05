@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="288" y="451"/>
         </scene>
-        <!--Visual View Controller-->
+        <!--Kaleidoscope View Controller-->
         <scene sceneID="4Oe-oq-HlN">
             <objects>
-                <viewController id="53T-g1-cSR" customClass="MMVisualViewController" sceneMemberID="viewController">
+                <viewController id="53T-g1-cSR" customClass="KaleidoscopeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V00-he-QxK"/>
                         <viewControllerLayoutGuide type="bottom" id="5ib-go-B8T"/>
