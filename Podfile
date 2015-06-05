@@ -6,6 +6,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'ModMusica' do
     
     pod 'libpd', '~> 0.7'
+    pod 'GPUImage'
 
 end
 

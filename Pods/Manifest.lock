@@ -1,10 +1,13 @@
 PODS:
+  - GPUImage (0.1.6)
   - libpd (0.7.0)
 
 DEPENDENCIES:
+  - GPUImage
   - libpd (~> 0.7)
 
 SPEC CHECKSUMS:
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   libpd: f9e63d090e284438826f9b2fdc0810dbb9889e6f
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0

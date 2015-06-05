@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F2B2AB4A19FF1739003042D6"
-               BuildableName = "ModMusica.app"
+               BuildableName = "ModYule.app"
                BlueprintName = "ModMusica"
                ReferencedContainer = "container:ModMusica.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2B2AB4A19FF1739003042D6"
-            BuildableName = "ModMusica.app"
+            BuildableName = "ModYule.app"
             BlueprintName = "ModMusica"
             ReferencedContainer = "container:ModMusica.xcodeproj">
          </BuildableReference>
@@ -68,15 +68,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2B2AB4A19FF1739003042D6"
-            BuildableName = "ModMusica.app"
+            BuildableName = "ModYule.app"
             BlueprintName = "ModMusica"
             ReferencedContainer = "container:ModMusica.xcodeproj">
          </BuildableReference>
@@ -90,11 +91,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F2B2AB4A19FF1739003042D6"
-            BuildableName = "ModMusica.app"
+            BuildableName = "ModYule.app"
             BlueprintName = "ModMusica"
             ReferencedContainer = "container:ModMusica.xcodeproj">
          </BuildableReference>

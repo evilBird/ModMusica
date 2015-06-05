@@ -66,7 +66,7 @@ typedef void (^Render)(void);
     NSInteger layers = self.layer.sublayers.count;
     
     if (layers > 1) {
-        
+        /*
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             [UIView animateWithDuration:duration
                                   delay:0
@@ -84,7 +84,8 @@ typedef void (^Render)(void);
                                  
                              }];
         }];
-
+*/
+        /*
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             [self rotateShapeLayer:shapeLayer
                        anchorPoint:self.center//[self anchorForPoints:points]
@@ -92,11 +93,12 @@ typedef void (^Render)(void);
                              index:index
                              count:layers];
         }];
+         */
 
     }
      
-    UIColor *oldColor = [UIColor colorWithCGColor:shapeLayer.strokeColor];
-    [self changeColor:oldColor toNewColor:lineColor inShapeLayer:shapeLayer duration:duration];
+    //UIColor *oldColor = [UIColor colorWithCGColor:shapeLayer.strokeColor];
+    //[self changeColor:oldColor toNewColor:lineColor inShapeLayer:shapeLayer duration:duration];
 }
 
 - (CGFloat)randomUniformFloat
@@ -192,9 +194,7 @@ typedef void (^Render)(void);
     if (index < self.layer.sublayers.count) {
         CAShapeLayer *shapeLayer = self.layer.sublayers[index];
         if ([shapeLayer isKindOfClass:[CAShapeLayer class]]) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.animateDuration * 0.000001 * 1.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [shapeLayer removeFromSuperlayer];
-            });
+            [shapeLayer removeFromSuperlayer];
         }
     }
     

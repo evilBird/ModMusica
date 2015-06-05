@@ -265,6 +265,7 @@
 #X connect 17 0 18 1;
 #X connect 18 0 43 0;
 #X connect 19 0 1 0;
+#X connect 20 0 24 0;
 #X connect 21 0 22 0;
 #X connect 22 0 23 0;
 #X connect 25 0 27 0;

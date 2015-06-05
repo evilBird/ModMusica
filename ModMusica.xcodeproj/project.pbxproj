@@ -11,6 +11,8 @@
 		F2162CE91A0876FF0016C544 /* mm_bsosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE71A0876FF0016C544 /* mm_bsosc~.pd */; };
 		F2162CEA1A0876FF0016C544 /* mm_sosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE81A0876FF0016C544 /* mm_sosc~.pd */; };
 		F22C3E171A06E29900A18E0C /* modmusica_2.pd in Resources */ = {isa = PBXBuildFile; fileRef = F22C3E161A06E29900A18E0C /* modmusica_2.pd */; };
+		F235E66E1A33D1C600F67F8E /* BSDFireShader.m in Sources */ = {isa = PBXBuildFile; fileRef = F235E66D1A33D1C600F67F8E /* BSDFireShader.m */; };
+		F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F235E6711A33DD0100F67F8E /* BSDKaleidoscopeFilter.m */; };
 		F246EF131A0197AC00357005 /* mm_asr~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F246EF121A0197AC00357005 /* mm_asr~.pd */; };
 		F246EF151A01A86400357005 /* modmusica_1.pd in Resources */ = {isa = PBXBuildFile; fileRef = F246EF141A01A86400357005 /* modmusica_1.pd */; };
 		F24A3E9E1A0058300074471B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24A3E9D1A0058300074471B /* AudioToolbox.framework */; };
@@ -28,6 +30,10 @@
 		F25B8F951A043B3D006E801D /* 4-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8E1A043B3D006E801D /* 4-mega.csv */; };
 		F25B8F961A043B3D006E801D /* 5-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8F1A043B3D006E801D /* 5-mega.csv */; };
 		F25B8F971A043B3D006E801D /* 6-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F901A043B3D006E801D /* 6-mega.csv */; };
+		F280FA831A365D3100FE0550 /* 1-jb.csv in Resources */ = {isa = PBXBuildFile; fileRef = F280FA821A365D3100FE0550 /* 1-jb.csv */; };
+		F29386801A36A373008F0EDF /* 0-ohn.csv in Resources */ = {isa = PBXBuildFile; fileRef = F293867E1A36A373008F0EDF /* 0-ohn.csv */; };
+		F29386861A36C74C008F0EDF /* 2-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29386841A36C74C008F0EDF /* 2-gs.csv */; };
+		F29386871A36C74C008F0EDF /* 3-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29386851A36C74C008F0EDF /* 3-gs.csv */; };
 		F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */ = {isa = PBXBuildFile; fileRef = F298829B1A02BC78005F9B94 /* mm_pattern.pd */; };
 		F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F298829E1A02BE50005F9B94 /* MMFileReader.m */; };
 		F29882A31A02C027005F9B94 /* example_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882A21A02C027005F9B94 /* example_pattern.csv */; };
@@ -43,6 +49,20 @@
 		F29882BB1A02E973005F9B94 /* 3-menace.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882B71A02E973005F9B94 /* 3-menace.csv */; };
 		F29882C11A02F033005F9B94 /* 0-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882BF1A02F033005F9B94 /* 0-fantasy.csv */; };
 		F29882C21A02F033005F9B94 /* 1-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882C01A02F033005F9B94 /* 1-fantasy.csv */; };
+		F29B436B1A327AE5006AD07F /* 0-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29B43691A327AE5006AD07F /* 0-gs.csv */; };
+		F29B436C1A327AE5006AD07F /* 1-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29B436A1A327AE5006AD07F /* 1-gs.csv */; };
+		F29B43731A32B27A006AD07F /* 0-jb.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29B43721A32B27A006AD07F /* 0-jb.csv */; };
+		F2A59CFA1A47683F0000CDC1 /* YuleLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A59CF91A47683F0000CDC1 /* YuleLogViewController.m */; };
+		F2A59CFD1A4769EF0000CDC1 /* YuleLogAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A59CFC1A4769EF0000CDC1 /* YuleLogAudioController.m */; };
+		F2A59D011A4793160000CDC1 /* 0-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59CFF1A4793160000CDC1 /* 0-als.csv */; };
+		F2A59D021A4793160000CDC1 /* 1-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D001A4793160000CDC1 /* 1-als.csv */; };
+		F2A59D051A479B440000CDC1 /* 2-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D031A479B440000CDC1 /* 2-als.csv */; };
+		F2A59D061A479B440000CDC1 /* 3-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D041A479B440000CDC1 /* 3-als.csv */; };
+		F2AD7F3A1A47EF0400840ABC /* mm_fx.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F361A47EF0400840ABC /* mm_fx.pd */; };
+		F2AD7F3B1A47EF0400840ABC /* mm_randomness.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F371A47EF0400840ABC /* mm_randomness.pd */; };
+		F2AD7F3C1A47EF0400840ABC /* mm_drums.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F381A47EF0400840ABC /* mm_drums.pd */; };
+		F2AD7F3D1A47EF0400840ABC /* mm_out.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F391A47EF0400840ABC /* mm_out.pd */; };
+		F2AD7F3F1A47FC8100840ABC /* mm_reverb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F3E1A47FC8100840ABC /* mm_reverb.pd */; };
 		F2B2AB5119FF1739003042D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5019FF1739003042D6 /* main.m */; };
 		F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5319FF1739003042D6 /* AppDelegate.m */; };
 		F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5619FF1739003042D6 /* ViewController.m */; };
@@ -862,6 +882,13 @@
 		F2EE02921A11C1B100398C04 /* modmusica_5.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EE02901A11C1B100398C04 /* modmusica_5.pd */; };
 		F2EE02931A11C1B100398C04 /* mm_osc6~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EE02911A11C1B100398C04 /* mm_osc6~.pd */; };
 		F2EEFF8F1A11A0D300398C04 /* modmusica_3.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF8E1A11A0D300398C04 /* modmusica_3.pd */; };
+		F2F611021A3A91E300B43A75 /* log.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2F611011A3A91E300B43A75 /* log.jpg */; };
+		F2F611041A3A926F00B43A75 /* log.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F611031A3A926F00B43A75 /* log.png */; };
+		F2F611061A3A9A5C00B43A75 /* log2.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F611051A3A9A5C00B43A75 /* log2.png */; };
+		F2F611081A3AA07400B43A75 /* log3.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F611071A3AA07400B43A75 /* log3.png */; };
+		F2F6110A1A3AA15E00B43A75 /* log4.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F611091A3AA15E00B43A75 /* log4.png */; };
+		F2F6110C1A3AA21F00B43A75 /* log5.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F6110B1A3AA21F00B43A75 /* log5.png */; };
+		F2F6110E1A3AA86900B43A75 /* log6.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F6110D1A3AA86900B43A75 /* log6.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -875,12 +902,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0957516C57A6187C5D65C574 /* Pods-ModMusica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModMusica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModMusica/Pods-ModMusica.debug.xcconfig"; sourceTree = "<group>"; };
-		C410D157FC1476ED7242B80B /* Pods-ModMusica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModMusica.release.xcconfig"; path = "Pods/Target Support Files/Pods-ModMusica/Pods-ModMusica.release.xcconfig"; sourceTree = "<group>"; };
+		5C30F41CE71A6CAD48C558B2 /* Pods-ModMusica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModMusica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModMusica/Pods-ModMusica.debug.xcconfig"; sourceTree = "<group>"; };
+		79D374DB4130BD64E7F9080A /* Pods-ModMusica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModMusica.release.xcconfig"; path = "Pods/Target Support Files/Pods-ModMusica/Pods-ModMusica.release.xcconfig"; sourceTree = "<group>"; };
 		C766045950CFEDBA070D14FE /* libPods-ModMusica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModMusica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2162CE71A0876FF0016C544 /* mm_bsosc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_bsosc~.pd"; sourceTree = "<group>"; };
 		F2162CE81A0876FF0016C544 /* mm_sosc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_sosc~.pd"; sourceTree = "<group>"; };
 		F22C3E161A06E29900A18E0C /* modmusica_2.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_2.pd; sourceTree = "<group>"; };
+		F235E66C1A33D1C600F67F8E /* BSDFireShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDFireShader.h; sourceTree = "<group>"; };
+		F235E66D1A33D1C600F67F8E /* BSDFireShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDFireShader.m; sourceTree = "<group>"; };
+		F235E6711A33DD0100F67F8E /* BSDKaleidoscopeFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDKaleidoscopeFilter.m; sourceTree = "<group>"; };
+		F235E6721A33DD0100F67F8E /* BSDKaleidoscopeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDKaleidoscopeFilter.h; sourceTree = "<group>"; };
 		F246EF121A0197AC00357005 /* mm_asr~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_asr~.pd"; sourceTree = "<group>"; };
 		F246EF141A01A86400357005 /* modmusica_1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_1.pd; sourceTree = "<group>"; };
 		F24A3E9C1A0058300074471B /* ModMusica.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ModMusica.entitlements; sourceTree = "<group>"; };
@@ -905,6 +936,10 @@
 		F25B8F8E1A043B3D006E801D /* 4-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-mega.csv"; sourceTree = "<group>"; };
 		F25B8F8F1A043B3D006E801D /* 5-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5-mega.csv"; sourceTree = "<group>"; };
 		F25B8F901A043B3D006E801D /* 6-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "6-mega.csv"; sourceTree = "<group>"; };
+		F280FA821A365D3100FE0550 /* 1-jb.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-jb.csv"; sourceTree = "<group>"; };
+		F293867E1A36A373008F0EDF /* 0-ohn.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-ohn.csv"; sourceTree = "<group>"; };
+		F29386841A36C74C008F0EDF /* 2-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-gs.csv"; sourceTree = "<group>"; };
+		F29386851A36C74C008F0EDF /* 3-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-gs.csv"; sourceTree = "<group>"; };
 		F298829B1A02BC78005F9B94 /* mm_pattern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_pattern.pd; sourceTree = "<group>"; };
 		F298829D1A02BE50005F9B94 /* MMFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFileReader.h; sourceTree = "<group>"; };
 		F298829E1A02BE50005F9B94 /* MMFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMFileReader.m; sourceTree = "<group>"; };
@@ -922,6 +957,22 @@
 		F29882B71A02E973005F9B94 /* 3-menace.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-menace.csv"; sourceTree = "<group>"; };
 		F29882BF1A02F033005F9B94 /* 0-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-fantasy.csv"; sourceTree = "<group>"; };
 		F29882C01A02F033005F9B94 /* 1-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-fantasy.csv"; sourceTree = "<group>"; };
+		F29B43691A327AE5006AD07F /* 0-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-gs.csv"; sourceTree = "<group>"; };
+		F29B436A1A327AE5006AD07F /* 1-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-gs.csv"; sourceTree = "<group>"; };
+		F29B43721A32B27A006AD07F /* 0-jb.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-jb.csv"; sourceTree = "<group>"; };
+		F2A59CF81A47683F0000CDC1 /* YuleLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuleLogViewController.h; sourceTree = "<group>"; };
+		F2A59CF91A47683F0000CDC1 /* YuleLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuleLogViewController.m; sourceTree = "<group>"; };
+		F2A59CFB1A4769EF0000CDC1 /* YuleLogAudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuleLogAudioController.h; sourceTree = "<group>"; };
+		F2A59CFC1A4769EF0000CDC1 /* YuleLogAudioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuleLogAudioController.m; sourceTree = "<group>"; };
+		F2A59CFF1A4793160000CDC1 /* 0-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-als.csv"; sourceTree = "<group>"; };
+		F2A59D001A4793160000CDC1 /* 1-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-als.csv"; sourceTree = "<group>"; };
+		F2A59D031A479B440000CDC1 /* 2-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-als.csv"; sourceTree = "<group>"; };
+		F2A59D041A479B440000CDC1 /* 3-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-als.csv"; sourceTree = "<group>"; };
+		F2AD7F361A47EF0400840ABC /* mm_fx.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_fx.pd; sourceTree = "<group>"; };
+		F2AD7F371A47EF0400840ABC /* mm_randomness.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_randomness.pd; sourceTree = "<group>"; };
+		F2AD7F381A47EF0400840ABC /* mm_drums.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_drums.pd; sourceTree = "<group>"; };
+		F2AD7F391A47EF0400840ABC /* mm_out.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_out.pd; sourceTree = "<group>"; };
+		F2AD7F3E1A47FC8100840ABC /* mm_reverb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_reverb.pd; sourceTree = "<group>"; };
 		F2B2AB4B19FF1739003042D6 /* ModMusica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModMusica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B2AB4F19FF1739003042D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2B2AB5019FF1739003042D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1753,6 +1804,13 @@
 		F2EEFFFD1A11A22000398C04 /* e_resonzq-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "e_resonzq-help.pd"; sourceTree = "<group>"; };
 		F2EEFFFE1A11A22000398C04 /* e_resonzq.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_resonzq.pd; sourceTree = "<group>"; };
 		F2EEFFFF1A11A22000398C04 /* e_reverb-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "e_reverb-help.pd"; sourceTree = "<group>"; };
+		F2F611011A3A91E300B43A75 /* log.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = log.jpg; sourceTree = "<group>"; };
+		F2F611031A3A926F00B43A75 /* log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log.png; sourceTree = "<group>"; };
+		F2F611051A3A9A5C00B43A75 /* log2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log2.png; sourceTree = "<group>"; };
+		F2F611071A3AA07400B43A75 /* log3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log3.png; sourceTree = "<group>"; };
+		F2F611091A3AA15E00B43A75 /* log4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log4.png; sourceTree = "<group>"; };
+		F2F6110B1A3AA21F00B43A75 /* log5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log5.png; sourceTree = "<group>"; };
+		F2F6110D1A3AA86900B43A75 /* log6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log6.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1775,11 +1833,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		282F7CD59758A15F36478169 /* Pods */ = {
+		00192E61856B7D4542379B4E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0957516C57A6187C5D65C574 /* Pods-ModMusica.debug.xcconfig */,
-				C410D157FC1476ED7242B80B /* Pods-ModMusica.release.xcconfig */,
+				5C30F41CE71A6CAD48C558B2 /* Pods-ModMusica.debug.xcconfig */,
+				79D374DB4130BD64E7F9080A /* Pods-ModMusica.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1822,9 +1880,21 @@
 			path = mega;
 			sourceTree = "<group>";
 		};
+		F293867D1A36A373008F0EDF /* ohn */ = {
+			isa = PBXGroup;
+			children = (
+				F293867E1A36A373008F0EDF /* 0-ohn.csv */,
+			);
+			path = ohn;
+			sourceTree = "<group>";
+		};
 		F29882A71A02CCFA005F9B94 /* csv */ = {
 			isa = PBXGroup;
 			children = (
+				F2A59CFE1A4793160000CDC1 /* als */,
+				F293867D1A36A373008F0EDF /* ohn */,
+				F29B436D1A32AEFF006AD07F /* jb */,
+				F29B43681A327AE5006AD07F /* gs */,
 				F25B8F891A043B3D006E801D /* mega */,
 				F29882BE1A02F033005F9B94 /* fantasy */,
 				F29882B31A02E973005F9B94 /* menace */,
@@ -1866,14 +1936,64 @@
 			path = fantasy;
 			sourceTree = "<group>";
 		};
+		F29B43681A327AE5006AD07F /* gs */ = {
+			isa = PBXGroup;
+			children = (
+				F29B43691A327AE5006AD07F /* 0-gs.csv */,
+				F29B436A1A327AE5006AD07F /* 1-gs.csv */,
+				F29386841A36C74C008F0EDF /* 2-gs.csv */,
+				F29386851A36C74C008F0EDF /* 3-gs.csv */,
+			);
+			path = gs;
+			sourceTree = "<group>";
+		};
+		F29B436D1A32AEFF006AD07F /* jb */ = {
+			isa = PBXGroup;
+			children = (
+				F29B43721A32B27A006AD07F /* 0-jb.csv */,
+				F280FA821A365D3100FE0550 /* 1-jb.csv */,
+			);
+			path = jb;
+			sourceTree = "<group>";
+		};
+		F2A59CFE1A4793160000CDC1 /* als */ = {
+			isa = PBXGroup;
+			children = (
+				F2A59CFF1A4793160000CDC1 /* 0-als.csv */,
+				F2A59D001A4793160000CDC1 /* 1-als.csv */,
+				F2A59D031A479B440000CDC1 /* 2-als.csv */,
+				F2A59D041A479B440000CDC1 /* 3-als.csv */,
+			);
+			path = als;
+			sourceTree = "<group>";
+		};
+		F2AD7F351A47EEA100840ABC /* MM */ = {
+			isa = PBXGroup;
+			children = (
+				F2B2AB5519FF1739003042D6 /* ViewController.h */,
+				F2B2AB5619FF1739003042D6 /* ViewController.m */,
+				F29882A41A02C854005F9B94 /* MMPatternLoader.h */,
+				F29882A51A02C854005F9B94 /* MMPatternLoader.m */,
+				F298829D1A02BE50005F9B94 /* MMFileReader.h */,
+				F298829E1A02BE50005F9B94 /* MMFileReader.m */,
+				F24A86C91A0083B100875B66 /* MMPsychedelicArtViewController.h */,
+				F24A86CA1A0083B100875B66 /* MMPsychedelicArtViewController.m */,
+				F2B2AB7719FF1B30003042D6 /* MMScopeViewController.h */,
+				F2B2AB7819FF1B30003042D6 /* MMScopeViewController.m */,
+				F2B2AB7A19FF1B4A003042D6 /* MMScopeView.h */,
+				F2B2AB7B19FF1B4A003042D6 /* MMScopeView.m */,
+			);
+			name = MM;
+			sourceTree = "<group>";
+		};
 		F2B2AB4219FF1739003042D6 = {
 			isa = PBXGroup;
 			children = (
 				F2B2AB4D19FF1739003042D6 /* ModMusica */,
 				F2B2AB6719FF1739003042D6 /* ModMusicaTests */,
 				F2B2AB4C19FF1739003042D6 /* Products */,
-				282F7CD59758A15F36478169 /* Pods */,
 				A8D00E89E66249B2177C0FBF /* Frameworks */,
+				00192E61856B7D4542379B4E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1896,18 +2016,15 @@
 				F2B2AB7D19FF273F003042D6 /* Pd */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
-				F2B2AB5519FF1739003042D6 /* ViewController.h */,
-				F2B2AB5619FF1739003042D6 /* ViewController.m */,
-				F29882A41A02C854005F9B94 /* MMPatternLoader.h */,
-				F29882A51A02C854005F9B94 /* MMPatternLoader.m */,
-				F298829D1A02BE50005F9B94 /* MMFileReader.h */,
-				F298829E1A02BE50005F9B94 /* MMFileReader.m */,
-				F24A86C91A0083B100875B66 /* MMPsychedelicArtViewController.h */,
-				F24A86CA1A0083B100875B66 /* MMPsychedelicArtViewController.m */,
-				F2B2AB7719FF1B30003042D6 /* MMScopeViewController.h */,
-				F2B2AB7819FF1B30003042D6 /* MMScopeViewController.m */,
-				F2B2AB7A19FF1B4A003042D6 /* MMScopeView.h */,
-				F2B2AB7B19FF1B4A003042D6 /* MMScopeView.m */,
+				F2A59CF81A47683F0000CDC1 /* YuleLogViewController.h */,
+				F2A59CF91A47683F0000CDC1 /* YuleLogViewController.m */,
+				F2A59CFB1A4769EF0000CDC1 /* YuleLogAudioController.h */,
+				F2A59CFC1A4769EF0000CDC1 /* YuleLogAudioController.m */,
+				F2AD7F351A47EEA100840ABC /* MM */,
+				F235E66C1A33D1C600F67F8E /* BSDFireShader.h */,
+				F235E66D1A33D1C600F67F8E /* BSDFireShader.m */,
+				F235E6721A33DD0100F67F8E /* BSDKaleidoscopeFilter.h */,
+				F235E6711A33DD0100F67F8E /* BSDKaleidoscopeFilter.m */,
 				F2B2AB5819FF1739003042D6 /* Main.storyboard */,
 				F2B2AB5B19FF1739003042D6 /* Images.xcassets */,
 				F2B2AB5D19FF1739003042D6 /* LaunchScreen.xib */,
@@ -1919,6 +2036,13 @@
 		F2B2AB4E19FF1739003042D6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F2F6110D1A3AA86900B43A75 /* log6.png */,
+				F2F6110B1A3AA21F00B43A75 /* log5.png */,
+				F2F611091A3AA15E00B43A75 /* log4.png */,
+				F2F611011A3A91E300B43A75 /* log.jpg */,
+				F2F611051A3A9A5C00B43A75 /* log2.png */,
+				F2F611071A3AA07400B43A75 /* log3.png */,
+				F2F611031A3A926F00B43A75 /* log.png */,
 				F2B2AB4F19FF1739003042D6 /* Info.plist */,
 				F2B2AB5019FF1739003042D6 /* main.m */,
 			);
@@ -2399,6 +2523,11 @@
 				F2EE02841A11B91400398C04 /* g_synthcontrol.pd */,
 				F2EEFF901A11A22000398C04 /* rj */,
 				F246EF141A01A86400357005 /* modmusica_1.pd */,
+				F2AD7F3E1A47FC8100840ABC /* mm_reverb.pd */,
+				F2AD7F361A47EF0400840ABC /* mm_fx.pd */,
+				F2AD7F371A47EF0400840ABC /* mm_randomness.pd */,
+				F2AD7F381A47EF0400840ABC /* mm_drums.pd */,
+				F2AD7F391A47EF0400840ABC /* mm_out.pd */,
 				F22C3E161A06E29900A18E0C /* modmusica_2.pd */,
 				F2EEFF8E1A11A0D300398C04 /* modmusica_3.pd */,
 				F2EE02801A11B78300398C04 /* modmusica_4.pd */,
@@ -3010,6 +3139,7 @@
 				F2B2B14E19FF281F003042D6 /* voxPitcher~.pd in Resources */,
 				F2EE01A81A11A22100398C04 /* m_accel_status.pd in Resources */,
 				F2EE014B1A11A22100398C04 /* e_fbdelay-help.pd in Resources */,
+				F2AD7F3F1A47FC8100840ABC /* mm_reverb.pd in Resources */,
 				F2B2B0A319FF281F003042D6 /* 2-Mega2.txt in Resources */,
 				F2B2B09B19FF281F003042D6 /* 2-Happy3.txt in Resources */,
 				F2B2B08D19FF281F003042D6 /* 1-Menace1.txt in Resources */,
@@ -3033,6 +3163,7 @@
 				F2EE016B1A11A22100398C04 /* e_resonzq-help.pd in Resources */,
 				F2EE02251A11A22100398C04 /* u_dumpfile-help.pd in Resources */,
 				F2EE01A71A11A22100398C04 /* m_accel_status-help.pd in Resources */,
+				F29386861A36C74C008F0EDF /* 2-gs.csv in Resources */,
 				F2B2B11519FF281F003042D6 /* birdCountIn.pd in Resources */,
 				F2B2B0DC19FF281F003042D6 /* autoPitch1.0.pd in Resources */,
 				F2EE01FF1A11A22100398C04 /* s_noish.pd in Resources */,
@@ -3053,6 +3184,7 @@
 				F2B2B12B19FF281F003042D6 /* birdSqueeze.pd in Resources */,
 				F2B2AF1319FF27BE003042D6 /* modMusicPatchOld.pd in Resources */,
 				F2B2B0AC19FF281F003042D6 /* 2-Sad1.txt in Resources */,
+				F2F611021A3A91E300B43A75 /* log.jpg in Resources */,
 				F2B2B15519FF281F003042D6 /* conga3.wav in Resources */,
 				F2B2AF1419FF27BE003042D6 /* other1.aif in Resources */,
 				F2EE01E51A11A22100398C04 /* s_chip-help.pd in Resources */,
@@ -3095,6 +3227,7 @@
 				F2EE018E1A11A22100398C04 /* g_showimage-help.pd in Resources */,
 				F2B2B07A19FF281F003042D6 /* 1-Funk2.txt in Resources */,
 				F2B2B16419FF281F003042D6 /* distortedsnare27.wav in Resources */,
+				F2A59D061A479B440000CDC1 /* 3-als.csv in Resources */,
 				F251C3371A005D7F00C8EE78 /* mm_test_sig.pd in Resources */,
 				F2B2B15319FF281F003042D6 /* CONGA2.aif in Resources */,
 				F2EE02561A11A22100398C04 /* u_samplebank-help.pd in Resources */,
@@ -3183,8 +3316,10 @@
 				F2EE010E1A11A22100398C04 /* c_cpfade-help.pd in Resources */,
 				F2B2B1BE19FF4D87003042D6 /* modmusica.pd in Resources */,
 				F2B2AF2419FF27BE003042D6 /* rasta11.aif in Resources */,
+				F2A59D011A4793160000CDC1 /* 0-als.csv in Resources */,
 				F2B2B1A519FF2ABD003042D6 /* 3-Mario2.txt in Resources */,
 				F2EE02061A11A22100398C04 /* s_playolap-help.pd in Resources */,
+				F2F6110C1A3AA21F00B43A75 /* log5.png in Resources */,
 				F2B2AEE219FF27BE003042D6 /* list-rot.pd in Resources */,
 				F2B2B07C19FF281F003042D6 /* 1-Funk4.txt in Resources */,
 				F2EE02631A11A22100398C04 /* u_spinner.pd in Resources */,
@@ -3236,6 +3371,7 @@
 				F2B2B17D19FF281F003042D6 /* list-math.pd in Resources */,
 				F2EE012D1A11A22100398C04 /* c_seqplay.pd in Resources */,
 				F2EE015E1A11A22100398C04 /* e_pan.pd in Resources */,
+				F29B436B1A327AE5006AD07F /* 0-gs.csv in Resources */,
 				F2EE02171A11A22100398C04 /* u_bandpass1q-help.pd in Resources */,
 				F2B2B13F19FF281F003042D6 /* ms2samp.pd in Resources */,
 				F2EE01351A11A22100398C04 /* c_xfade.pd in Resources */,
@@ -3302,6 +3438,7 @@
 				F2B2B07B19FF281F003042D6 /* 1-Funk3.txt in Resources */,
 				F2B2B0CF19FF281F003042D6 /* 808_P4.aif in Resources */,
 				F2B2B0C419FF281F003042D6 /* 3-Mega7.txt in Resources */,
+				F2F6110A1A3AA15E00B43A75 /* log4.png in Resources */,
 				F2EE01391A11A22100398C04 /* e_alias-help.pd in Resources */,
 				F2EE024A1A11A22100398C04 /* u_messagesaver-help.pd in Resources */,
 				F2B2B0CC19FF281F003042D6 /* 3-Sad5.txt in Resources */,
@@ -3391,6 +3528,7 @@
 				F2EE02461A11A22100398C04 /* u_lowpassq-help.pd in Resources */,
 				F2B2B0BD19FF281F003042D6 /* 3-majesty4.txt in Resources */,
 				F2B2B13119FF281F003042D6 /* bsm_switch~.pd in Resources */,
+				F2F611081A3AA07400B43A75 /* log3.png in Resources */,
 				F2EE025A1A11A22100398C04 /* u_samplekit-help.pd in Resources */,
 				F2B2AF4D19FF27BE003042D6 /* 0-Happy3.txt in Resources */,
 				F2B2AF0A19FF27BE003042D6 /* mm_sampler8~.pd in Resources */,
@@ -3407,6 +3545,7 @@
 				F2B2B08A19FF281F003042D6 /* 1-Mega5.txt in Resources */,
 				F2EE017C1A11A22100398C04 /* e_vocoder.pd in Resources */,
 				F2B2B16019FF281F003042D6 /* ctr.pd in Resources */,
+				F29B436C1A327AE5006AD07F /* 1-gs.csv in Resources */,
 				F2EE01081A11A22100398C04 /* c_adsrj-help.pd in Resources */,
 				F2EE010A1A11A22100398C04 /* c_bangx-help.pd in Resources */,
 				F2EE01B11A11A22100398C04 /* m_intv2ratio-help.pd in Resources */,
@@ -3463,6 +3602,7 @@
 				F2B2B10319FF281F003042D6 /* 1-test3.txt in Resources */,
 				F2B2B13D19FF281F003042D6 /* ModMusic.pd in Resources */,
 				F2B2AF2119FF27BE003042D6 /* rasta8.wav in Resources */,
+				F29386801A36A373008F0EDF /* 0-ohn.csv in Resources */,
 				F2B2B13819FF281F003042D6 /* interact4~.pd in Resources */,
 				F2B2AEFC19FF27BE003042D6 /* mm_randFilter2~.pd in Resources */,
 				F2B2B12119FF281F003042D6 /* birdPan~.pd in Resources */,
@@ -3512,6 +3652,8 @@
 				F2EEFF8F1A11A0D300398C04 /* modmusica_3.pd in Resources */,
 				F2EE016A1A11A22100398C04 /* e_reslop.pd in Resources */,
 				F2B2AF2C19FF27BE003042D6 /* rasta19.aif in Resources */,
+				F2F611061A3A9A5C00B43A75 /* log2.png in Resources */,
+				F2AD7F3B1A47EF0400840ABC /* mm_randomness.pd in Resources */,
 				F2B2B08319FF281F003042D6 /* 1-majesty2.txt in Resources */,
 				F2EE01681A11A22100398C04 /* e_repeater.pd in Resources */,
 				F2EE01921A11A22100398C04 /* g_symbol-help.pd in Resources */,
@@ -3599,7 +3741,9 @@
 				F2B2B07619FF281F003042D6 /* 0-Sad3.txt in Resources */,
 				F2EE021F1A11A22100398C04 /* u_cocollect-help.pd in Resources */,
 				F2EE01B41A11A22100398C04 /* m_keyfollow.pd in Resources */,
+				F2A59D021A4793160000CDC1 /* 1-als.csv in Resources */,
 				F2EE01521A11A22100398C04 /* e_graindelread-help.pd in Resources */,
+				F280FA831A365D3100FE0550 /* 1-jb.csv in Resources */,
 				F2EE01A11A11A22100398C04 /* m_accel_magnitude-help.pd in Resources */,
 				F2B2B15219FF281F003042D6 /* conga1.wav in Resources */,
 				F2EE01951A11A22100398C04 /* g_synsl.pd in Resources */,
@@ -3642,6 +3786,7 @@
 				F2B2AF2319FF27BE003042D6 /* rasta10.wav in Resources */,
 				F2B2B12919FF281F003042D6 /* birdSnare~.pd in Resources */,
 				F2EE024B1A11A22100398C04 /* u_messagesaver.pd in Resources */,
+				F29B43731A32B27A006AD07F /* 0-jb.csv in Resources */,
 				F2EE02421A11A22100398C04 /* u_loadmeter-help.pd in Resources */,
 				F2EE01EC1A11A22100398C04 /* s_drumelectro.pd in Resources */,
 				F2EE01071A11A22100398C04 /* c_adsr.pd in Resources */,
@@ -3668,6 +3813,7 @@
 				F2EE02241A11A22100398C04 /* u_dispatch.pd in Resources */,
 				F2EE01D41A11A22100398C04 /* r_#loc-help.pd in Resources */,
 				F2EE02831A11B80000398C04 /* u_sssad.pd in Resources */,
+				F2F611041A3A926F00B43A75 /* log.png in Resources */,
 				F2EE02351A11A22100398C04 /* u_listloop.pd in Resources */,
 				F2EE01231A11A22100398C04 /* c_mphasor.pd in Resources */,
 				F2EE02621A11A22100398C04 /* u_spinner-help.pd in Resources */,
@@ -3690,7 +3836,9 @@
 				F29882C21A02F033005F9B94 /* 1-fantasy.csv in Resources */,
 				F2EE01581A11A22100398C04 /* e_mcompressor-help.pd in Resources */,
 				F2EE018C1A11A22100398C04 /* g_pattern32-help.pd in Resources */,
+				F2AD7F3D1A47EF0400840ABC /* mm_out.pd in Resources */,
 				F2EE01F11A11A22100398C04 /* s_fmoscil-help.pd in Resources */,
+				F2AD7F3C1A47EF0400840ABC /* mm_drums.pd in Resources */,
 				F2EE010B1A11A22100398C04 /* c_bangx.pd in Resources */,
 				F2EE01661A11A22100398C04 /* e_platereverb.pd in Resources */,
 				F2EE01191A11A22100398C04 /* c_lfo.pd in Resources */,
@@ -3719,6 +3867,7 @@
 				F2EE02501A11A22100398C04 /* u_record-help.pd in Resources */,
 				F2EE01761A11A22100398C04 /* e_softclip.pd in Resources */,
 				F2EE01E91A11A22100398C04 /* s_czz-help.pd in Resources */,
+				F2AD7F3A1A47EF0400840ABC /* mm_fx.pd in Resources */,
 				F2B2AF2819FF27BE003042D6 /* rasta15.aif in Resources */,
 				F2B2B08019FF281F003042D6 /* 1-Happy4.txt in Resources */,
 				F2B2AEE819FF27BE003042D6 /* mm_bassstring~.pd in Resources */,
@@ -3766,9 +3915,11 @@
 				F2EE01051A11A22100398C04 /* c.txt in Resources */,
 				F2B2B15719FF281F003042D6 /* conga5.wav in Resources */,
 				F2EE022A1A11A22100398C04 /* u_highpass-help.pd in Resources */,
+				F2A59D051A479B440000CDC1 /* 2-als.csv in Resources */,
 				F2B2B14A19FF281F003042D6 /* sampleInstrument~.pd in Resources */,
 				F2B2B0B519FF281F003042D6 /* 3-Happy.txt in Resources */,
 				F2B2AF2D19FF27BE003042D6 /* rasta20.aif in Resources */,
+				F2F6110E1A3AA86900B43A75 /* log6.png in Resources */,
 				F2EE02371A11A22100398C04 /* u_listmap.pd in Resources */,
 				F2B2AEDF19FF27BE003042D6 /* wrandom.pd in Resources */,
 				F2B2B12019FF281F003042D6 /* birdOut~.pd in Resources */,
@@ -3794,6 +3945,7 @@
 				F2EE011C1A11A22100398C04 /* c_madsrj-help.pd in Resources */,
 				F2B2B0BB19FF281F003042D6 /* 3-majesty2.txt in Resources */,
 				F2B2AF1C19FF27BE003042D6 /* rasta3.aif in Resources */,
+				F29386871A36C74C008F0EDF /* 3-gs.csv in Resources */,
 				F2B2B07719FF281F003042D6 /* 0-Sad4.txt in Resources */,
 				F2B2B0A419FF281F003042D6 /* 2-Mega3.txt in Resources */,
 			);
@@ -3849,6 +4001,7 @@
 				F24A86CB1A0083B100875B66 /* MMPsychedelicArtViewController.m in Sources */,
 				F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */,
 				F2EE019E1A11A22100398C04 /* HBVOperation.m in Sources */,
+				F235E66E1A33D1C600F67F8E /* BSDFireShader.m in Sources */,
 				F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */,
 				F24A86C71A00838600875B66 /* NSArray+Randomness.m in Sources */,
 				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
@@ -3859,12 +4012,15 @@
 				F2B2AB7C19FF1B4A003042D6 /* MMScopeView.m in Sources */,
 				F2B2AB7919FF1B30003042D6 /* MMScopeViewController.m in Sources */,
 				F2B2B0F319FF281F003042D6 /* bonk~.c in Sources */,
+				F2A59CFD1A4769EF0000CDC1 /* YuleLogAudioController.m in Sources */,
 				F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */,
 				F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */,
 				F2B2AF4419FF27BE003042D6 /* vexp_if.c in Sources */,
 				F2B2AB5119FF1739003042D6 /* main.m in Sources */,
 				F24A86C51A00838600875B66 /* DrawingFilter.m in Sources */,
 				F24A86C61A00838600875B66 /* Functions.m in Sources */,
+				F2A59CFA1A47683F0000CDC1 /* YuleLogViewController.m in Sources */,
+				F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */,
 				F2B2AF4319FF27BE003042D6 /* vexp_fun.c in Sources */,
 				F2B2B17119FF281F003042D6 /* helmholtz~.cpp in Sources */,
 				F24A86C81A00838600875B66 /* RenderView.m in Sources */,
@@ -3989,13 +4145,19 @@
 		};
 		F2B2AB6F19FF1739003042D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0957516C57A6187C5D65C574 /* Pods-ModMusica.debug.xcconfig */;
+			baseConfigurationReference = 5C30F41CE71A6CAD48C558B2 /* Pods-ModMusica.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ModMusica/ModMusica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ModMusica/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/travishenspeter/Desktop,
+				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -4007,19 +4169,28 @@
 					"-DPD",
 					"-DHAVE_UNISTD_H",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ModMusica;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../BlackBox.framework/**";
 			};
 			name = Debug;
 		};
 		F2B2AB7019FF1739003042D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C410D157FC1476ED7242B80B /* Pods-ModMusica.release.xcconfig */;
+			baseConfigurationReference = 79D374DB4130BD64E7F9080A /* Pods-ModMusica.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ModMusica/ModMusica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = ModMusica/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/travishenspeter/Desktop,
+				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-isystem",
@@ -4031,7 +4202,10 @@
 					"-DPD",
 					"-DHAVE_UNISTD_H",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ModMusica;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../BlackBox.framework/**";
 			};
 			name = Release;
 		};

@@ -36,11 +36,13 @@ static NSString *kTableName = @"notes";
     
     if ([self loadPattern:self.currentPattern section:self.currentSection + 1]) {
         self.currentSection += 1;
+        NSLog(@"current section:%@",@(self.currentSection));
         return;
     }
     
     self.currentSection = 0;
     [self loadPattern:self.currentPattern section:self.currentSection];
+    NSLog(@"current section:%@",@(self.currentSection));
 }
 
 - (void)playPreviousSection
@@ -109,8 +111,11 @@ static NSString *kTableName = @"notes";
 
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section
 {
-    //NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(2),pattern];
     NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(section),pattern];
+    if ([self.currentPattern isEqualToString:@"ohn"]) {
+        fileName = [NSString stringWithFormat:@"0-%@.csv",pattern];
+    }
+
     return [self loadPattern:fileName];
 }
 

@@ -28,5 +28,6 @@
 @property (weak, nonatomic) id<MMPlaybackDelegate>playbackDelegate;
 
 - (void)updateScope:(NSInteger)scope;
+- (void)setTime:(CGFloat)time;
 
 @end

@@ -14,6 +14,9 @@
 #import "MMPatternLoader.h"
 
 @interface ViewController ()<PdListener,MMPlaybackDelegate>
+{
+    NSTimer *kTimer;
+}
 
 @property (nonatomic,strong)PdAudioController *audioController;
 @property (nonatomic,strong)PdDispatcher *dispatcher;
@@ -47,7 +50,7 @@ void bonk_tilde_setup(void);
         self.scopeViewController.playbackDelegate = self;
     }
     
-    [self.patternLoader setPattern:@"menace"];
+    //[self.patternLoader setPattern:@"menace"];
 }
 
 -(void)initalizePd
@@ -65,43 +68,93 @@ void bonk_tilde_setup(void);
     [self.dispatcher addListener:self forSource:@"interval"];
     [self.dispatcher addListener:self forSource:@"beat"];
     [self.dispatcher addListener:self forSource:@"clock"];
-    /*self.patch = [PdBase openFile:@"modmusica_5.pd" path:[[NSBundle mainBundle]resourcePath]];
-    
-    [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
-    [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    [PdBase sendFloat:0.66 toReceiver:@"drumsVolume"];
-    [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.6 toReceiver:@"samplerVolume"];
-    [PdBase sendFloat:0.33 toReceiver:@"bassVolume"];
-    [PdBase sendBangToReceiver:@"loadNewSamples"];
-     */
 }
 
 - (void)playbackStarted
 {
+    //[self changeEverything];
+    //[self setInstrumentLevels];
+    
     NSArray *patterns = @[@"mario",@"fantasy",@"mega",@"menace"];
     static NSInteger idx;
     idx += 1 + arc4random_uniform(100);
     self.patch = nil;
-    NSString *patchName = [NSString stringWithFormat:@"modmusica_%@.pd",@((idx + arc4random_uniform(100))%patterns.count + 2 )];
+    //NSString *patchName = [NSString stringWithFormat:@"modmusica_%@.pd",@((idx + arc4random_uniform(100))%patterns.count + 1)];
+    NSString *patchName = @"modmusica_2.pd";
     self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    [PdBase sendFloat:0.5 toReceiver:@"drumsVolume"];
-    [PdBase sendFloat:0.33 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.5 toReceiver:@"samplerVolume"];
-    [PdBase sendFloat:0.5 toReceiver:@"bassVolume"];
+    [PdBase sendFloat:0.45 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.23 toReceiver:@"synthVolume"];
+    [PdBase sendFloat:0.4 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.27 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
-    
     NSString *pattern = patterns[idx%patterns.count];
     self.patternLoader.currentPattern = pattern;
     [self.patternLoader playNextSection];
+    kTimer = [NSTimer scheduledTimerWithTimeInterval:0.033 target:self selector:@selector(incrementTimer) userInfo:nil repeats:YES];
+    
+}
+
+- (void)incrementTimer
+{
+    static CGFloat timer;
+    timer+=0.01;
+    [self.scopeViewController setTime:timer];
+}
+
+- (void)changeEverything
+{
+    [self changePatch];
+    [self changePattern];
+    [self changeSection];
+}
+
+- (void)changePatch
+{
+    NSArray *patterns = @[@"als",@"gs",@"jb",@"ohn"];
+    static NSInteger idx;
+    idx += 1 + arc4random_uniform(100);
+    if (self.patch != nil) {
+        [PdBase closeFile:self.patch];
+    }
+    idx += 1 + arc4random_uniform(100);
+    self.patch = nil;
+    NSString *patchName = [NSString stringWithFormat:@"modmusica_%@.pd",@((idx + arc4random_uniform(100))%patterns.count + 1 )];
+    self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
+}
+
+- (void)changePattern
+{
+    NSArray *patterns = @[@"gs",@"jb",@"ohn"];
+    static NSInteger idx;
+    idx += 1 + arc4random_uniform(100);
+    NSString *pattern = patterns[idx%patterns.count];
+    self.patternLoader.currentPattern = pattern;
+    self.patternLoader.currentSection = -1;
+}
+
+- (void)changeSection
+{
+    [self.patternLoader playNextSection];
+}
+
+- (void)setInstrumentLevels
+{
+    [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
+    [PdBase sendFloat:1 toReceiver:@"outputVolume"];
+    [PdBase sendFloat:0.5 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.23 toReceiver:@"synthVolume"];
+    [PdBase sendFloat:0.4 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.3 toReceiver:@"bassVolume"];
+    [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
 
 - (void)playbackStopped
 {
     [PdBase closeFile:self.patch];
-    
+    [kTimer invalidate];
+    kTimer = nil;
 }
 
 #pragma mark - PdListener
@@ -110,26 +163,21 @@ void bonk_tilde_setup(void);
 {
     if ([source isEqualToString:@"interval"]) {
         self.scopeViewController.timeInterval = received * 0.001;
-        [self.scopeViewController update];
         return;
     }
     
     if ([source isEqualToString:@"beat"]) {
-        [self.scopeViewController updateScope:received];
+        //[self.scopeViewController updateScope:received];
         return;
     }
-    
+    if ([source isEqualToString:@"clock"]) {
+        //[self.scopeViewController setTime:received];
+    }
+
     if ([source isEqualToString:@"clock"] && received == 0) {
-        static NSInteger rep;
-        if (rep%2 == 0) {
-            NSLog(@"reps: %@",@(rep));
-            if (rep == 4) {
-                rep = 0;
-                [self.patternLoader playNextSection];
-            }
-        }
-        
-        rep += 1;
+
+        //[self changeSection];
+
     }
 }
 

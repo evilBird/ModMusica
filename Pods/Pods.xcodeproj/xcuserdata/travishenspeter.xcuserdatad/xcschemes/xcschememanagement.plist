@@ -4,25 +4,41 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-ModMusica-GPUImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Pods-ModMusica-libpd.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-ModMusica.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>53D5B0AF8E1E69C4536648DE</key>
+		<key>455866C82B844180AD6C54D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6466F85F818B51F12B84BCE</key>
+		<key>6C7AC45C1FAC4F4CCA4C332E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9665DEBFEB8009363F3906D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,9 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--Yule Log View Controller-->
+        <scene sceneID="6sg-Eb-U0w">
+            <objects>
+                <viewController id="kYS-3h-Mae" customClass="YuleLogViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n4v-lk-IB0"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Iq-Tg-t52"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zrH-0N-Flc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gej-Jr-sfn" userLabel="Background" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YW-Z1-2rM">
+                                        <rect key="frame" x="226" y="30" width="149.5" height="41"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="3YW-Z1-2rM" secondAttribute="centerX" id="MfF-by-IM2"/>
+                                    <constraint firstItem="3YW-Z1-2rM" firstAttribute="top" secondItem="Gej-Jr-sfn" secondAttribute="top" constant="30" id="YfT-Dm-ASo"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQ6-a6-wFw" userLabel="Kaleidoscope" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HaN-Iv-Qju" userLabel="Foreground" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Gej-Jr-sfn" firstAttribute="leading" secondItem="zrH-0N-Flc" secondAttribute="leading" id="3zy-bs-PJE"/>
+                            <constraint firstAttribute="bottom" secondItem="Gej-Jr-sfn" secondAttribute="bottom" id="5La-JE-gdp"/>
+                            <constraint firstAttribute="trailing" secondItem="Gej-Jr-sfn" secondAttribute="trailing" id="LPt-1i-vAi"/>
+                            <constraint firstAttribute="trailing" secondItem="HaN-Iv-Qju" secondAttribute="trailing" id="PJT-wh-3sr"/>
+                            <constraint firstItem="Gej-Jr-sfn" firstAttribute="top" secondItem="zrH-0N-Flc" secondAttribute="top" id="Rlk-ha-YYz"/>
+                            <constraint firstAttribute="bottom" secondItem="kQ6-a6-wFw" secondAttribute="bottom" id="XWr-JB-vww"/>
+                            <constraint firstItem="HaN-Iv-Qju" firstAttribute="leading" secondItem="zrH-0N-Flc" secondAttribute="leading" id="YLy-F6-aKg"/>
+                            <constraint firstAttribute="bottom" secondItem="HaN-Iv-Qju" secondAttribute="bottom" id="gQe-Oe-DTX"/>
+                            <constraint firstItem="HaN-Iv-Qju" firstAttribute="top" secondItem="zrH-0N-Flc" secondAttribute="top" id="gj1-Vn-DpQ"/>
+                            <constraint firstItem="kQ6-a6-wFw" firstAttribute="top" secondItem="zrH-0N-Flc" secondAttribute="top" id="k11-IO-fBr"/>
+                            <constraint firstAttribute="trailing" secondItem="kQ6-a6-wFw" secondAttribute="trailing" id="mfW-kt-4Bn"/>
+                            <constraint firstItem="kQ6-a6-wFw" firstAttribute="leading" secondItem="zrH-0N-Flc" secondAttribute="leading" id="p4e-TW-jAH"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="UEk-93-D1Y" appends="YES" id="n4Q-Q9-QvY"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="Gej-Jr-sfn" id="Y6y-P0-HAH"/>
+                        <outlet property="foregroundImageView" destination="HaN-Iv-Qju" id="7RX-q6-kgP"/>
+                        <outlet property="kaleidoscopeImageView" destination="kQ6-a6-wFw" id="RLh-Si-g7g"/>
+                        <outlet property="titleLabel" destination="3YW-Z1-2rM" id="3pd-Af-Dk6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gHf-dw-GtV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="UEk-93-D1Y">
+                    <connections>
+                        <action selector="handleTapGesture:" destination="kYS-3h-Mae" id="xsO-zG-gxD"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-271" y="-207"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -19,7 +92,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmR-5N-B75">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="Gib-gz-sfu" kind="embed" id="2Y9-73-VPO"/>
+                                    <segue destination="53T-g1-cSR" kind="embed" id="mml-Rs-mo6"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -34,6 +107,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="288" y="451"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4Oe-oq-HlN">
+            <objects>
+                <viewController id="53T-g1-cSR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V00-he-QxK"/>
+                        <viewControllerLayoutGuide type="bottom" id="5ib-go-B8T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z5X-ym-8Be">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.97302691610000003" green="0.99178832120000004" blue="0.46170734489999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lPj-bd-0K6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="985" y="451"/>
         </scene>
         <!--Psychedelic Art View Controller-->
         <scene sceneID="5nG-uK-nha">
@@ -63,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5J-Ml-UCr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1330" y="769"/>
+            <point key="canvasLocation" x="1345" y="1476"/>
         </scene>
         <!--Scope View Controller-->
         <scene sceneID="BT1-Pn-ltB">
@@ -110,7 +202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGM-H9-liE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="340" y="1324"/>
+            <point key="canvasLocation" x="340" y="1284"/>
         </scene>
     </scenes>
 </document>

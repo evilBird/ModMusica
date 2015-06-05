@@ -10,6 +10,9 @@
 #import "MMScopeView.h"
 #import <PdBase.h>
 #import "UIColor+HBVHarmonies.h"
+#import "GPUImage.h"
+#import "BSDFireShader.h"
+#import "BSDKaleidoscopeFilter.h"
 
 static NSInteger kNumPoints = 64;
 static NSString *kTableName = @"scopeArray";
@@ -27,10 +30,15 @@ static NSString *kFuzzTable = @"fuzzScope";
 static NSString *kTremeloTable = @"tremeloScope";
 
 @interface MMScopeViewController ()<MMScopeViewDelegate>
-
+{
+    NSTimer *kTimer;
+}
 @property (strong, nonatomic) IBOutlet MMScopeView *scopeView;
 @property (nonatomic,strong)NSTimer *updateTimer;
 @property (nonatomic,strong)NSTimer *touchTimer;
+@property (nonatomic,strong)GPUImageFilter *filter;
+@property (nonatomic,strong)GPUImageView *imageView;
+@property (nonatomic,strong)GPUImagePicture *picture;
 
 @end
 
@@ -54,8 +62,51 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 - (void)viewDidLoad {
     [super viewDidLoad];
     _timeInterval = 4.0;
-    self.scopeView.delegate = self;
+    [self.scopeView removeFromSuperview];
+    self.scopeView = nil;
+    //self.scopeView.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (!self.imageView) {
+        self.imageView = [[GPUImageView alloc]initWithFrame:self.view.bounds];
+        self.imageView.backgroundColor = [UIColor clearColor];
+        self.imageView.clipsToBounds = YES;
+        self.view.backgroundColor = [UIColor blackColor];
+        [self.view addSubview:self.imageView];
+    }
+}
+
+- (void)setupFilter:(CGFloat)time
+{
+    if (self.picture) {
+        [self.picture removeAllTargets];
+    }
+    if (!self.filter) {
+        self.filter = [[BSDFireShader alloc]init];
+    }
+    
+    UIImage *image = [self imageFromLayer:self.view.layer];
+    self.picture = [[GPUImagePicture alloc]initWithImage:image];
+    [self.filter forceProcessingAtSize:self.picture.outputImageSize];
+    [self.picture addTarget:self.filter];
+    [self.filter useNextFrameForImageCapture];
+    [self.filter addTarget:self.imageView];
+    [(BSDFireShader *)self.filter setGlobalTime:time];
+    UIImageView *iv = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    iv.image = [UIImage imageNamed:@"log5"];
+    iv.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view insertSubview:iv belowSubview:self.imageView];
+    [self.picture processImage];
+}
+
+- (void)setTime:(CGFloat)time
+{
+    [(BSDFireShader *)self.filter setGlobalTime:time];
+    [self.picture processImage];
 }
 
 - (void)setTimeInterval:(CGFloat)timeInterval
@@ -66,6 +117,15 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     }
 }
 
+- (UIImage *)imageFromLayer:(CALayer *)layer
+{
+    UIGraphicsBeginImageContext(layer.bounds.size);
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (void)start
 {
     self.updateTimer = nil;
@@ -73,8 +133,11 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
     [PdBase sendBangToReceiver:@"clearScopes"];
     [PdBase sendFloat:1 toReceiver:@"onOff"];
     self.messageLabel.text = NSLocalizedString(@"press and hold to stop", nil);
-    [self update];
+    //[self update];
+    [self setupFilter:0];
     [self.playbackDelegate playbackStarted];
+    //kTimer = [NSTimer scheduledTimerWithTimeInterval:0.017 target:self selector:@selector(updateFilter) userInfo:nil repeats:YES];
+
     [UIView animateWithDuration:5.0
                           delay:5.0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -87,6 +150,8 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 
 - (void)stop
 {
+    [kTimer invalidate];
+    kTimer = nil;
     [PdBase sendBangToReceiver:@"clearScopes"];
     [self update];
     [self.playbackDelegate playbackStopped];
@@ -100,6 +165,7 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
 
 - (void)update
 {
+    /*
     __weak MMScopeViewController *weakself = self;
 
     UIColor *newColor = [UIColor randomColor];
@@ -112,21 +178,17 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
                              weakself.scopeView.backgroundColor = newColor;
                          }
                          completion:NULL];
-        /*
-        [UIView animateWithDuration:weakself.timeInterval animations:^{
-            weakself.view.backgroundColor = newColor;
-            weakself.scopeView.backgroundColor = newColor;
-        }];
-         */
     });
     
     [PdBase sendBangToReceiver:@"updateScopes"];
+     */
 }
 
 - (void)updateScope:(NSInteger)scope
 {
-    NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable];
-    
+    /*
+    //NSArray *scopes = @[kTableName,kBassTable,kSamplerTable,kSynthTable,kDrumTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable];
+        NSArray *scopes = @[kTableName,kBassTable,kSynthTable,kDrumTable];
     if (scope >= scopes.count) {
         return;
     }
@@ -155,9 +217,17 @@ CGFloat wrapValue(CGFloat value, CGFloat min, CGFloat max)
                                             duration:weakself.timeInterval
                                                index:scope];
     });
+    */
+}
 
+- (void)setupTimer
+{
+    //kTimer = [NSTimer scheduledTimerWithTimeInterval:0.017 target:self selector:@selector(updateFilter) userInfo:nil repeats:YES];
+}
 
-    
+- (void)updateFilter
+{
+    //[self setupFilter:0];
 }
 
 - (void)animateChangeColor:(UIColor *)newColor inView:(UIView *)view duration:(CGFloat)duration
