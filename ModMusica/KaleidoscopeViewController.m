@@ -8,6 +8,7 @@
 
 #import "KaleidoscopeViewController.h"
 #import "BSDKaleidoscopeFilter.h"
+
 @interface KaleidoscopeViewController ()
 
 @end
@@ -24,19 +25,17 @@
     return [[BSDKaleidoscopeFilter alloc]init];
 }
 
-- (UIImage *)baseImage
+- (UIImage *)initialSourceImage
 {
     return [UIImage imageNamed:@"Icon"];
 }
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
-    if (clock%4 == 0) {
-        BSDKaleidoscopeFilter *k = (BSDKaleidoscopeFilter *)self.filter;
-        k.sides = clock%6 + 2;
-        k.tau = (clock%4)/4;
-        [self setupFilter];
-    }
+    BSDKaleidoscopeFilter *k = (BSDKaleidoscopeFilter *)self.filter;
+    k.sides = arc4random_uniform(16)+1;
+    k.tau = clock%2 + 2;
+    [self processImage];
 }
 
 - (void)didReceiveMemoryWarning {

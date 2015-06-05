@@ -124,7 +124,6 @@ NSString *const kGPUImageKaleidoscopeFragmentShaderString = SHADER_STRING
 - (void)setTau:(CGFloat)tau
 {
     _tau = tau;
-    
     CGFloat t = tau * 3.1416;
     [self setFloat:t forUniform:tauUniform program:filterProgram];
 }

@@ -10,6 +10,7 @@
 #import <PdBase.h>
 #import <PdAudioController.h>
 #import <PdDispatcher.h>
+#import "MMScopeDataSource.h"
 
 @interface MMPlaybackController () <PdListener>
 {
@@ -42,12 +43,14 @@ void bonk_tilde_setup(void);
 {
     [self playbackWillStart];
     [self startNow];
+    [self.delegate playbackBegan:self];
 }
 
 - (void)stopPlayback
 {
     [self stopNow];
     [self playbackDidStop];
+    [self.delegate playbackEnded:self];
 }
 
 - (void)playbackWillStart
@@ -140,7 +143,8 @@ void bonk_tilde_setup(void);
         [PdBase closeFile:self.patch];
     }
     self.patch = nil;
-    NSString *patchName = [NSString stringWithFormat:@"modmusica_%@.pd",@((kIdx + arc4random_uniform(100))%self.patterns.count + 1 )];
+    NSInteger i = kIdx%3 + 3;
+    NSString *patchName = [NSString stringWithFormat:@"modmusica_%@.pd",@(i)];
     self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
 }
 
@@ -194,7 +198,6 @@ void bonk_tilde_setup(void);
     if ([source isEqualToString:@"clock"]) {
         [self.delegate playback:self clockDidChange:(NSInteger)received];
     }
-    
 }
 
 - (void)dealloc

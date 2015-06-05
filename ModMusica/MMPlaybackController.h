@@ -13,8 +13,10 @@
 #import "MMPatternLoader.h"
 
 @protocol MMPlaybackDelegate
-
+@optional
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock;
+- (void)playbackBegan:(id)sender;
+- (void)playbackEnded:(id)sender;
 
 @end
 

@@ -8,11 +8,13 @@
 
 #import "ViewController.h"
 #import "MMVisualViewController.h"
+#import "MMScopeDataSource.h"
 
-@interface ViewController () <MMPlaybackDelegate>
+@interface ViewController () <MMPlaybackDelegate,MMScopeDataSourceConsumer>
 
 @property (nonatomic,strong)        MMPlaybackController            *playbackController;
 @property (nonatomic,strong)        MMVisualViewController          *visualViewController;
+@property (nonatomic,strong)        MMScopeDataSource               *scopeData;
 
 @end
 
@@ -49,9 +51,32 @@
 }
 
 #pragma mark - MMVisualPlaybackDelegate
+- (void)playbackBegan:(id)sender
+{
+    if (!self.scopeData) {
+        self.scopeData = [[MMScopeDataSource alloc]initWithUpdateInterval:0.06 sourceTable:kDrumTable];
+        self.scopeData.dataConsumer = self;
+    }
+    
+    [self.scopeData beginUpdates];
+}
+
+- (void)playbackEnded:(id)sender
+{
+    [self.scopeData endUpdates];
+}
+
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
     [self.visualViewController playback:sender clockDidChange:clock];
+}
+
+#pragma mark - MMScopeDataConsumer
+
+- (void)scopeData:(id)sender receivedData:(NSArray *)data
+{
+    UIBezierPath *path = [self.visualViewController pathWithScopeData:data];
+    [self.visualViewController animateScopePath:path duration:self.scopeData.interval];
 }
 
 @end
