@@ -13,7 +13,8 @@
 
 - (void)beginUpdates;
 - (void)endUpdates;
-
 - (void)randomizeColors;
+
+- (void)showStepsPerMinute:(double)steps;
 
 @end

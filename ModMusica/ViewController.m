@@ -9,12 +9,14 @@
 #import "ViewController.h"
 #import "MMVisualViewController.h"
 #import "MMAudioScopeViewController.h"
+#import "MMStepCounter.h"
 
 @interface ViewController () <MMPlaybackDelegate>
 
 @property (nonatomic,strong)        MMPlaybackController            *playbackController;
 @property (nonatomic,strong)        MMVisualViewController          *visualViewController;
 @property (nonatomic,strong)        MMAudioScopeViewController      *scopeViewController;
+@property (nonatomic,strong)        MMStepCounter                   *stepCounter;
 
 @end
 
@@ -25,6 +27,8 @@
     [super viewDidLoad];
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
+    self.stepCounter = [[MMStepCounter alloc]init];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -59,16 +63,23 @@
 {
     [self.scopeViewController randomizeColors];
     [self.scopeViewController beginUpdates];
+    [self.stepCounter startUpdates];
 }
 
 - (void)playbackEnded:(id)sender
 {
     [self.scopeViewController endUpdates];
+    [self.stepCounter endUpdates];
 }
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
     [self.visualViewController playback:sender clockDidChange:clock];
+    [self.scopeViewController showStepsPerMinute:self.stepCounter.stepsPerMinute];
+    double bpm = self.stepCounter.stepsPerMinute;
+    if (bpm >= 40) {
+        [PdBase sendFloat:self.stepCounter.stepsPerMinute toReceiver:@"detectedTempo"];
+    }
 }
 
 

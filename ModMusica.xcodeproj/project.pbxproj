@@ -494,6 +494,7 @@
 		F2DE9EB81B2245DD00FEBE5F /* mm_pulse~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2DE9EB01B2245DD00FEBE5F /* mm_pulse~.pd */; };
 		F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EBA1B225A1C00FEBE5F /* CALayer+Image.m */; };
 		F2DE9EBE1B2262B500FEBE5F /* MMAudioScopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */; };
+		F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EC01B22928100FEBE5F /* MMStepCounter.m */; };
 		F2EE00FF1A11A22100398C04 /* _markovanal.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF911A11A22000398C04 /* _markovanal.pd */; };
 		F2EE01001A11A22100398C04 /* a.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF921A11A22000398C04 /* a.txt */; };
 		F2EE01011A11A22100398C04 /* a_breath-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF931A11A22000398C04 /* a_breath-help.pd */; };
@@ -1403,6 +1404,8 @@
 		F2DE9EBA1B225A1C00FEBE5F /* CALayer+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Image.m"; sourceTree = "<group>"; };
 		F2DE9EBC1B2262B500FEBE5F /* MMAudioScopeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAudioScopeViewController.h; sourceTree = "<group>"; };
 		F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAudioScopeViewController.m; sourceTree = "<group>"; };
+		F2DE9EBF1B22928100FEBE5F /* MMStepCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMStepCounter.h; sourceTree = "<group>"; };
+		F2DE9EC01B22928100FEBE5F /* MMStepCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMStepCounter.m; sourceTree = "<group>"; };
 		F2EE00001A11A22000398C04 /* e_reverb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_reverb.pd; sourceTree = "<group>"; };
 		F2EE00011A11A22000398C04 /* e_scompress-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "e_scompress-help.pd"; sourceTree = "<group>"; };
 		F2EE00021A11A22000398C04 /* e_scompress.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_scompress.pd; sourceTree = "<group>"; };
@@ -1948,6 +1951,8 @@
 				F2DE9EA41B22370D00FEBE5F /* KaleidoscopeViewController.m */,
 				F2DE9EBC1B2262B500FEBE5F /* MMAudioScopeViewController.h */,
 				F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */,
+				F2DE9EBF1B22928100FEBE5F /* MMStepCounter.h */,
+				F2DE9EC01B22928100FEBE5F /* MMStepCounter.m */,
 			);
 			name = MM;
 			sourceTree = "<group>";
@@ -3967,6 +3972,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */,
 				F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */,
 				F2EE019E1A11A22100398C04 /* HBVOperation.m in Sources */,
 				F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */,

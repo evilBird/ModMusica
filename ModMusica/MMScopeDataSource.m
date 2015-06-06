@@ -8,9 +8,10 @@
 
 #import "MMScopeDataSource.h"
 #import "PdBase.h"
+#import <UIKit/UIKit.h>
 
 static NSString *kUpdateScopes = @"updateScopes";
-static int kDefaultLength = 64;
+static double sampsPerWidth = 0.25;
 
 @interface MMScopeDataSource ()
 
@@ -33,7 +34,9 @@ static int kDefaultLength = 64;
 - (void)handleUpdateTimer:(id)sender
 {
     __weak MMScopeDataSource *weakself = self;
-    [MMScopeDataSource getScopeDataFromTable:self.sourceTable length:kDefaultLength completion:^(NSArray *data) {
+    double width = [UIScreen mainScreen].bounds.size.width;
+    int length = (int)(width *sampsPerWidth);
+    [MMScopeDataSource getScopeDataFromTable:self.sourceTable length:length completion:^(NSArray *data) {
         if (data && data.count) {
             [weakself.dataConsumer scopeData:weakself receivedData:data];
         }
@@ -96,6 +99,7 @@ static int kDefaultLength = 64;
         completion(nil);
         return;
     }
+    
     [PdBase sendBangToReceiver:kUpdateScopes];
     float *rawPoints = malloc(sizeof(float) * scopeArrayLength);
     [PdBase copyArrayNamed:table withOffset:0 toArray:rawPoints count:scopeArrayLength];

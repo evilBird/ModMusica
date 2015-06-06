@@ -15,6 +15,7 @@
 @interface MMPlaybackController () <PdListener>
 {
     NSInteger kIdx;
+    float kPrev;
 }
 
 @property (nonatomic,strong)            NSArray             *patterns;
@@ -75,6 +76,8 @@ void bonk_tilde_setup(void);
 {
     [PdBase sendFloat:0 toReceiver:@"onOff"];
     self.playing = NO;
+    kPrev = 0;
+    kIdx = -1;
 }
 
 - (void)commonInit
@@ -82,6 +85,7 @@ void bonk_tilde_setup(void);
     self.patternLoader = [[MMPatternLoader alloc]init];
     self.patterns = @[@"mario",@"fantasy",@"mega",@"menace"];
     kIdx = -1;
+    kPrev = 0;
     [self initalizePd];
 }
 
@@ -149,8 +153,10 @@ void bonk_tilde_setup(void);
 
 - (void)changePattern
 {
-    NSString *pattern = self.patterns[kIdx%self.patterns.count];
+    NSInteger newPattern = arc4random_uniform((int)self.patterns.count);
+    NSString *pattern = self.patterns[newPattern];
     self.patternLoader.currentPattern = pattern;
+    NSLog(@"\n\nSelected pattern: %@\n\n",pattern);
     self.patternLoader.currentSection = -1;
 }
 
@@ -163,10 +169,10 @@ void bonk_tilde_setup(void);
 {
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    [PdBase sendFloat:0.5 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.45 toReceiver:@"drumsVolume"];
     [PdBase sendFloat:0.23 toReceiver:@"synthVolume"];
     [PdBase sendFloat:0.4 toReceiver:@"samplerVolume"];
-    [PdBase sendFloat:0.3 toReceiver:@"bassVolume"];
+    [PdBase sendFloat:0.2 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
 
@@ -196,6 +202,14 @@ void bonk_tilde_setup(void);
     
     if ([source isEqualToString:@"clock"]) {
         [self.delegate playback:self clockDidChange:(NSInteger)received];
+        static int ct;
+        if (received==0) {
+            ct++;
+        }
+        
+        if (ct%2 == 2) {
+            [self changeSection];
+        }
     }
 }
 

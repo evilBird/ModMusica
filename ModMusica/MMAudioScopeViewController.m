@@ -8,6 +8,7 @@
 
 #import "MMAudioScopeViewController.h"
 #import "UIColor+HBVHarmonies.h"
+#import "UIView+Layout.h"
 
 @interface MMAudioScopeViewController ()
 
@@ -16,15 +17,35 @@
 @property (nonatomic,strong)        NSMutableArray          *oldPaths;
 @property (nonatomic,strong)        NSMutableArray          *oldColors;
 
+@property (nonatomic,strong)        UILabel                 *label;
+@property (nonatomic,strong)        UILabel                 *titleLabel;
+
 @end
 
 @implementation MMAudioScopeViewController
+
+- (void)showStepsPerMinute:(double)steps
+{
+    self.label.text = [NSString stringWithFormat:@"%.f steps/min",steps];
+    self.label.alpha = 1.0;
+}
 
 - (void)beginUpdates
 {
     for (MMScopeDataSource *source in self.scopeDataSources) {
         [source beginUpdates];
     }
+    
+    
+    self.label.text = NSLocalizedString(@"Tap to stop", nil);
+    
+    [UIView animateWithDuration:10.0
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.label.alpha = 0.0;
+                         self.titleLabel.alpha = 0.0;
+                     } completion:NULL];
 }
 
 - (void)endUpdates
@@ -32,6 +53,9 @@
     for (MMScopeDataSource *source in self.scopeDataSources) {
         [source endUpdates];
     }
+    self.label.text = NSLocalizedString(@"Tap to start", nil);
+    self.label.alpha = 1.0;
+    self.titleLabel.alpha = 1.0;
 }
 
 - (CAShapeLayer *)newShapeLayer
@@ -51,7 +75,7 @@
         UIColor *myColor = [randomColor adjustAlpha:0.1];
         layer.fillColor = myColor.CGColor;
         layer.strokeColor = randomColor.CGColor;
-        layer.lineWidth = arc4random_uniform(10)/2.0;
+        layer.lineWidth = (arc4random_uniform(4) + 2)/2.0;
     }
     
     self.view.backgroundColor = [UIColor randomColor];
@@ -94,6 +118,34 @@
     
     [super viewDidLoad];
     [self configureLayersAndData];
+    [self.view setBackgroundColor:[UIColor randomColor]];
+    self.label = [UILabel new];
+    self.label.translatesAutoresizingMaskIntoConstraints = NO;
+    self.label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]];
+    self.label.textAlignment = NSTextAlignmentCenter;
+    self.label.textColor = [self.view.backgroundColor complement];
+    self.label.text = NSLocalizedString(@"Tap to start", nil);
+    [self.view addSubview:self.label];
+    [self.view addConstraint:[self.label alignCenterXToSuperOffset:0]];
+    [self.view addConstraint:[self.label pinEdge:LayoutEdge_Bottom
+                                          toEdge:LayoutEdge_Bottom
+                                          ofView:self.view
+                                       withInset:-20]];
+    self.titleLabel = [UILabel new];
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]*2];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.textColor = [self.view.backgroundColor complement];
+    self.titleLabel.text = NSLocalizedString(@"ModMusica", nil);
+    [self.view addSubview:self.titleLabel];
+    [self.view addConstraint:[self.titleLabel alignCenterXToSuperOffset:0]];
+    [self.view addConstraint:[self.titleLabel pinEdge:LayoutEdge_Top
+                                          toEdge:LayoutEdge_Top
+                                          ofView:self.view
+                                       withInset:20]];
+    
+    [self.view layoutIfNeeded];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -146,11 +198,6 @@
     }
     point.x = self.view.bounds.size.width;
     [path addLineToPoint:point];
-    point.y = self.view.bounds.size.height;
-    //[path addLineToPoint:point];
-    point.x = 0;
-    //[path addLineToPoint:point];
-    //[path closePath];
     
     if (sum == 0) {
         return nil;
