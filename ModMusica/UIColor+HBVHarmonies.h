@@ -28,4 +28,6 @@
 //Returns an instance of UIColor in which the caller's RGB components are jittered by a proportion (percent, range 0.0 - 100.0) of the caller's RGB component values.
 - (UIColor *)jitterWithPercent:(CGFloat)percent;
 
+- (UIColor *)adjustAlpha:(CGFloat)alpha;
+
 @end

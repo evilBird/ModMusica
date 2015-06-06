@@ -493,6 +493,7 @@
 		F2DE9EB71B2245DD00FEBE5F /* mm_fm~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2DE9EAF1B2245DD00FEBE5F /* mm_fm~.pd */; };
 		F2DE9EB81B2245DD00FEBE5F /* mm_pulse~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2DE9EB01B2245DD00FEBE5F /* mm_pulse~.pd */; };
 		F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EBA1B225A1C00FEBE5F /* CALayer+Image.m */; };
+		F2DE9EBE1B2262B500FEBE5F /* MMAudioScopeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */; };
 		F2EE00FF1A11A22100398C04 /* _markovanal.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF911A11A22000398C04 /* _markovanal.pd */; };
 		F2EE01001A11A22100398C04 /* a.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF921A11A22000398C04 /* a.txt */; };
 		F2EE01011A11A22100398C04 /* a_breath-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF931A11A22000398C04 /* a_breath-help.pd */; };
@@ -1400,6 +1401,8 @@
 		F2DE9EB01B2245DD00FEBE5F /* mm_pulse~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_pulse~.pd"; sourceTree = "<group>"; };
 		F2DE9EB91B225A1C00FEBE5F /* CALayer+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Image.h"; sourceTree = "<group>"; };
 		F2DE9EBA1B225A1C00FEBE5F /* CALayer+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Image.m"; sourceTree = "<group>"; };
+		F2DE9EBC1B2262B500FEBE5F /* MMAudioScopeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAudioScopeViewController.h; sourceTree = "<group>"; };
+		F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAudioScopeViewController.m; sourceTree = "<group>"; };
 		F2EE00001A11A22000398C04 /* e_reverb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_reverb.pd; sourceTree = "<group>"; };
 		F2EE00011A11A22000398C04 /* e_scompress-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "e_scompress-help.pd"; sourceTree = "<group>"; };
 		F2EE00021A11A22000398C04 /* e_scompress.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_scompress.pd; sourceTree = "<group>"; };
@@ -1943,6 +1946,8 @@
 				F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */,
 				F2DE9EA31B22370D00FEBE5F /* KaleidoscopeViewController.h */,
 				F2DE9EA41B22370D00FEBE5F /* KaleidoscopeViewController.m */,
+				F2DE9EBC1B2262B500FEBE5F /* MMAudioScopeViewController.h */,
+				F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */,
 			);
 			name = MM;
 			sourceTree = "<group>";
@@ -3969,6 +3974,7 @@
 				F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */,
 				F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */,
 				F2DE9E971B222ACB00FEBE5F /* MMVisualViewController.m in Sources */,
+				F2DE9EBE1B2262B500FEBE5F /* MMAudioScopeViewController.m in Sources */,
 				F2B2B0F519FF281F003042D6 /* makefile in Sources */,
 				F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */,
 				F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */,

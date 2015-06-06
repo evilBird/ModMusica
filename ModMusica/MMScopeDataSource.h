@@ -29,7 +29,7 @@ static NSString *kTremeloTable = @"tremeloScope";
 @end
 
 @interface MMScopeDataSource : NSObject
-
++ (NSArray *)allTableNames;
 + (void)getRandomScopeDataLength:(int)length completion:(void(^)(NSArray *data))completion;
 + (void)getScopeDataFromTable:(NSString *)table length:(int)length completion:(void(^)(NSArray *data))completion;
 

@@ -143,8 +143,7 @@ void bonk_tilde_setup(void);
         [PdBase closeFile:self.patch];
     }
     self.patch = nil;
-    NSInteger i = kIdx%3 + 3;
-    NSString *patchName = [NSString stringWithFormat:@"modmusica_%@.pd",@(i)];
+    NSString *patchName = @"modmusica_1.pd";
     self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
 }
 

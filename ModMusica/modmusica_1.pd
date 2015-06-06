@@ -1,4 +1,4 @@
-#N canvas 121 23 1268 785 10;
+#N canvas 64 23 1268 785 10;
 #X obj 35 -69 adc~;
 #X obj 66 48 s~ input;
 #N canvas 344 23 903 680 clock 0;
@@ -1629,7 +1629,7 @@
 #X obj 637 -89 s onOff;
 #X obj 638 -109 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 0 1;
-#N canvas 187 73 1440 754 synth 1;
+#N canvas 187 73 1440 754 synth 0;
 #X obj 457 1498 throw~ outputL;
 #X obj 621 1498 throw~ outputR;
 #X obj 509 553 t f b;
@@ -3636,7 +3636,7 @@
 #X obj 606 95 random 16;
 #X obj 588 38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 556 118 15 1 1 1 15 1 1 1 75 1 1 1 15 1 1 1;
+#X msg 556 118 1 1 1 75 1 1 1 15 1 1 1 15 1 1 1 15;
 #N canvas 710 242 450 300 toTremelo 0;
 #X obj 75 -66 inlet~;
 #X obj 76 167 *~;

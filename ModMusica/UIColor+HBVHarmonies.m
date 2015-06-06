@@ -95,6 +95,20 @@
     return result;
 }
 
+- (UIColor *)adjustAlpha:(CGFloat)alpha
+{
+    UIColor *result = nil;
+    CGFloat newComponents[4];
+    for (NSInteger index = 0; index < 3; index ++) {
+        CGFloat newComponent = CGColorGetComponents(self.CGColor)[index];
+        newComponents[index] = newComponent;
+    }
+    
+    newComponents[3] = alpha;
+    result = [UIColor colorWithRed:newComponents[0] green:newComponents[1] blue:newComponents[2] alpha:newComponents[3]];
+    return result;
+}
+
 #pragma mark - Private methods
 
 + (CGFloat)clipValue:(CGFloat)value withMin:(CGFloat)min max:(CGFloat)max

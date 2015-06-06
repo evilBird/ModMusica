@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MMVisualViewController.m"
-            timestampString = "455237514.829351"
+            timestampString = "455239633.370868"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-playback:clockDidChange:"
             landmarkType = "5">
          </BreakpointContent>
@@ -280,13 +280,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/ViewController.m"
-            timestampString = "455235584.798882"
+            timestampString = "455241593.081523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
             landmarkName = "-playbackEnded:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

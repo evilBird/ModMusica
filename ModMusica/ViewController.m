@@ -8,13 +8,13 @@
 
 #import "ViewController.h"
 #import "MMVisualViewController.h"
-#import "MMScopeDataSource.h"
+#import "MMAudioScopeViewController.h"
 
-@interface ViewController () <MMPlaybackDelegate,MMScopeDataSourceConsumer>
+@interface ViewController () <MMPlaybackDelegate>
 
 @property (nonatomic,strong)        MMPlaybackController            *playbackController;
 @property (nonatomic,strong)        MMVisualViewController          *visualViewController;
-@property (nonatomic,strong)        MMScopeDataSource               *scopeData;
+@property (nonatomic,strong)        MMAudioScopeViewController      *scopeViewController;
 
 @end
 
@@ -47,23 +47,23 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id dest = segue.destinationViewController;
-    self.visualViewController = dest;
+    if ([dest isKindOfClass:[MMVisualViewController class]]) {
+        self.visualViewController = dest;
+    }else{
+        self.scopeViewController = dest;
+    }
 }
 
 #pragma mark - MMVisualPlaybackDelegate
 - (void)playbackBegan:(id)sender
 {
-    if (!self.scopeData) {
-        self.scopeData = [[MMScopeDataSource alloc]initWithUpdateInterval:0.06 sourceTable:kDrumTable];
-        self.scopeData.dataConsumer = self;
-    }
-    
-    [self.scopeData beginUpdates];
+    [self.scopeViewController randomizeColors];
+    [self.scopeViewController beginUpdates];
 }
 
 - (void)playbackEnded:(id)sender
 {
-    [self.scopeData endUpdates];
+    [self.scopeViewController endUpdates];
 }
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
@@ -71,12 +71,5 @@
     [self.visualViewController playback:sender clockDidChange:clock];
 }
 
-#pragma mark - MMScopeDataConsumer
-
-- (void)scopeData:(id)sender receivedData:(NSArray *)data
-{
-    UIBezierPath *path = [self.visualViewController pathWithScopeData:data];
-    [self.visualViewController animateScopePath:path duration:self.scopeData.interval];
-}
 
 @end
