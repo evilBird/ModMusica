@@ -112,10 +112,6 @@ static NSString *kTableName = @"notes";
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section
 {
     NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(section),pattern];
-    if ([self.currentPattern isEqualToString:@"ohn"]) {
-        fileName = [NSString stringWithFormat:@"0-%@.csv",pattern];
-    }
-
     return [self loadPattern:fileName];
 }
 

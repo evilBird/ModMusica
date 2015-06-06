@@ -162,17 +162,23 @@ void bonk_tilde_setup(void);
 
 - (void)changeSection
 {
-    [self.patternLoader playNextSection];
+    NSInteger rand = arc4random_uniform(100);
+    if (rand > 50 && rand <= 75) {
+        [self.patternLoader playNextSection];
+    }else if (rand > 75){
+        [self.patternLoader playPreviousSection];
+    }
 }
 
 - (void)setInstrumentLevelsOn
 {
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
-    [PdBase sendFloat:0.45 toReceiver:@"drumsVolume"];
-    [PdBase sendFloat:0.23 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.4 toReceiver:@"samplerVolume"];
-    [PdBase sendFloat:0.2 toReceiver:@"bassVolume"];
+    [PdBase sendFloat:1 toReceiver:@"inputVolume"];
+    [PdBase sendFloat:0.25 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
+    [PdBase sendFloat:0.25 toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:0.25 toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
 
@@ -180,6 +186,7 @@ void bonk_tilde_setup(void);
 {
     [PdBase sendFloat:0 toReceiver:@"outputVolume"];
     [PdBase sendFloat:0.0 toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:0.0 toReceiver:@"inputVolume"];
     [PdBase sendFloat:0.0 toReceiver:@"synthVolume"];
     [PdBase sendFloat:0.0 toReceiver:@"samplerVolume"];
     [PdBase sendFloat:0.0 toReceiver:@"bassVolume"];
@@ -192,22 +199,9 @@ void bonk_tilde_setup(void);
 
 - (void)receiveFloat:(float)received fromSource:(NSString *)source
 {
-    if ([source isEqualToString:@"interval"]) {
-        return;
-    }
-    
-    if ([source isEqualToString:@"beat"]) {
-        return;
-    }
-    
     if ([source isEqualToString:@"clock"]) {
         [self.delegate playback:self clockDidChange:(NSInteger)received];
-        static int ct;
         if (received==0) {
-            ct++;
-        }
-        
-        if (ct%2 == 2) {
             [self changeSection];
         }
     }

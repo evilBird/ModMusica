@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol MMStepCounterDelegate <NSObject>
+
+- (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute;
+
+@end
+
 @interface MMStepCounter : NSObject
 
-@property (nonatomic,getter=isUpdating)             BOOL            updating;
-@property (nonatomic)                               double          stepsPerMinute;
+@property (nonatomic,weak)                          id<MMStepCounterDelegate>       delegate;
+@property (nonatomic,getter=isUpdating)             BOOL                            updating;
+@property (nonatomic)                               double                          stepsPerMinute;
+
 - (void)startUpdates;
 - (void)endUpdates;
 

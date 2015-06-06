@@ -9,26 +9,53 @@
 #import "MMStepCounter.h"
 #import <CoreMotion/CoreMotion.h>
 
-@interface MMStepCounter ()
+static NSUInteger kQueueSize = 4;
 
+@interface MMStepCounter ()
+{
+    NSInteger kPrevStepCt;
+}
 @property (nonatomic,strong)        CMPedometer         *pedometer;
 @property (nonatomic,strong)        NSTimer             *timer;
 @property (nonatomic,strong)        NSDate              *startDate;
 @property (nonatomic,strong)        CMPedometerHandler  pedometerHandler;
 @property (nonatomic)               NSTimeInterval      elaspedTime;
+@property (nonatomic,strong)        NSMutableArray      *myStepQueue;
+
 @end
 
 @implementation MMStepCounter
 
 - (void)handlePedometerData:(CMPedometerData *)data
 {
-    double bpm = data.numberOfSteps.integerValue/self.elaspedTime;
-    self.stepsPerMinute = bpm;
-    NSLog(@"\n\nBPM: %@\n\n",@(bpm));
-}
-
-- (void)commonInit
-{
+    NSInteger newStepCount = data.numberOfSteps.integerValue;
+    
+    if (newStepCount > kPrevStepCt) {
+        if (!self.myStepQueue) {
+            self.myStepQueue = [NSMutableArray array];
+        }
+        
+        NSDate *now = [NSDate date];
+        NSDictionary *newest = @{@"date":now,@"count":@(newStepCount)};
+        NSInteger prevCount = self.myStepQueue.count;
+        [self.myStepQueue addObject:newest];
+        
+        if (prevCount == kQueueSize){
+            NSDictionary *oldest = self.myStepQueue.firstObject;
+            [self.myStepQueue removeObjectAtIndex:0];
+            [self.myStepQueue addObject:newest];
+            NSDate *oldestDate = oldest[@"date"];
+            NSNumber *oldestSteps = oldest[@"steps"];
+            NSTimeInterval elapsed = [now timeIntervalSinceDate:oldestDate];
+            NSInteger newSteps = newStepCount - oldestSteps.integerValue;
+            double secPerStep = elapsed/(double)(newSteps - 1.0);
+            double bpm = 60.0/secPerStep;
+            self.stepsPerMinute = bpm;
+            [self.delegate stepCounter:self updatedStepsPerMinute:self.stepsPerMinute];
+        }
+    }
+    
+    kPrevStepCt = newStepCount;
 }
 
 - (void)startUpdates
@@ -42,9 +69,11 @@
     if (!self.pedometer) {
         self.pedometer = [[CMPedometer alloc]init];
     }
+    
     self.updating = YES;
+    kPrevStepCt = 0;
     self.startDate = [NSDate date];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(incrementTimer:) userInfo:nil repeats:YES];
+    
     __weak MMStepCounter *weakself = self;
     [self.pedometer startPedometerUpdatesFromDate:self.startDate withHandler:^(CMPedometerData *pedometerData, NSError *error) {
         if (error) {
@@ -63,20 +92,8 @@
     [self.timer invalidate];
     self.timer = nil;
     [self.pedometer stopPedometerUpdates];
+    self.myStepQueue = nil;
 }
 
-- (void)incrementTimer:(id)sender
-{
-    self.elaspedTime = (1.0/60.0) * [[NSDate date]timeIntervalSinceDate:self.startDate] + 0.000001;
-    if (self.elaspedTime > 1.0) {
-        [self restartUpdatesFromNow];
-    }
-}
-
-- (void)restartUpdatesFromNow
-{
-    [self.pedometer stopPedometerUpdates];
-    [self startUpdates];
-}
 
 @end

@@ -30,4 +30,8 @@
 
 - (UIColor *)adjustAlpha:(CGFloat)alpha;
 
+- (UIColor *)blendColor1:(UIColor *)color1
+              withColor2:(UIColor *)color2
+         usingExpression:(CGFloat*(^)(CGFloat color1[],CGFloat color2[])) expression;
+
 @end

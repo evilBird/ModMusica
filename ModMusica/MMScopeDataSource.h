@@ -21,10 +21,12 @@ static NSString *kSynthTable2 = @"synthScope2";
 static NSString *kSynthTable3 = @"synthScope3";
 static NSString *kFuzzTable = @"fuzzScope";
 static NSString *kTremeloTable = @"tremeloScope";
+static NSString *kInputTable = @"inputScope";
+static NSString *kRawInputTable = @"rawInputTable";
 
 @protocol MMScopeDataSourceConsumer <NSObject>
 
-- (void)scopeData:(id)sender receivedData:(NSArray *)data;
+- (void)scope:(id)sender receivedData:(NSArray *)data;
 
 @end
 

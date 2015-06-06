@@ -11,7 +11,10 @@
 #import "MMAudioScopeViewController.h"
 #import "MMStepCounter.h"
 
-@interface ViewController () <MMPlaybackDelegate>
+
+#define kSetTempoReceiver @"manualSetTempo"
+
+@interface ViewController () <MMPlaybackDelegate,MMStepCounterDelegate>
 
 @property (nonatomic,strong)        MMPlaybackController            *playbackController;
 @property (nonatomic,strong)        MMVisualViewController          *visualViewController;
@@ -28,7 +31,7 @@
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
     self.stepCounter = [[MMStepCounter alloc]init];
-    
+    self.stepCounter.delegate = self;
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -75,10 +78,15 @@
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
     [self.visualViewController playback:sender clockDidChange:clock];
-    [self.scopeViewController showStepsPerMinute:self.stepCounter.stepsPerMinute];
-    double bpm = self.stepCounter.stepsPerMinute;
-    if (bpm >= 40) {
-        [PdBase sendFloat:self.stepCounter.stepsPerMinute toReceiver:@"detectedTempo"];
+}
+
+
+#pragma mark - MMStepCounterDelegate
+- (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
+{
+    [self.scopeViewController showStepsPerMinute:stepsPerMinute];
+    if (stepsPerMinute > 1 && self.stepCounter.isUpdating) {
+        [PdBase sendFloat:stepsPerMinute toReceiver:kSetTempoReceiver];
     }
 }
 

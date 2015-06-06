@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 
 static NSString *kUpdateScopes = @"updateScopes";
-static double sampsPerWidth = 0.25;
+static double sampsPerWidth = 0.1333;
 
 @interface MMScopeDataSource ()
 
@@ -38,7 +38,7 @@ static double sampsPerWidth = 0.25;
     int length = (int)(width *sampsPerWidth);
     [MMScopeDataSource getScopeDataFromTable:self.sourceTable length:length completion:^(NSArray *data) {
         if (data && data.count) {
-            [weakself.dataConsumer scopeData:weakself receivedData:data];
+            [weakself.dataConsumer scope:weakself receivedData:data];
         }
     }];
 }
@@ -70,7 +70,7 @@ static double sampsPerWidth = 0.25;
 
 + (NSArray *)allTableNames
 {
-    return @[kBassTable,kSynthTable,kDrumTable,kSamplerTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable];
+    return @[kBassTable,kSynthTable,kDrumTable,kSamplerTable,kKickTable,kSnareTable,kPercTable,kSynthTable1,kSynthTable2,kSynthTable3,kFuzzTable,kTremeloTable,kInputTable,kRawInputTable];
 }
 
 + (NSString *)randomTable

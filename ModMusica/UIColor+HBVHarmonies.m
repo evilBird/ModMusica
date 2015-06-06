@@ -124,4 +124,25 @@
     return result;
 }
 
+- (UIColor *)blendColor1:(UIColor *)color1 withColor2:(UIColor *)color2 usingExpression:(CGFloat*(^)(CGFloat color1[],CGFloat color2[]))expression
+{
+    CGFloat color1Components[4];
+    CGFloat color2Components[4];
+    
+    for (NSInteger i = 0; i < 4; i ++) {
+        color1Components[i] = CGColorGetComponents(color1.CGColor)[i];
+        color2Components[i] = CGColorGetComponents(color2.CGColor)[i];
+    }
+    
+    CGFloat newComponents[4];
+    for (NSInteger i = 0; i < 4; i++) {
+        newComponents[i] = expression(color1Components,color2Components)[i];
+    }
+    UIColor *result = nil;
+    
+    result = [UIColor colorWithRed:newComponents[0] green:newComponents[1] blue:newComponents[2] alpha:newComponents[3]];
+    
+    return result;
+}
+
 @end
