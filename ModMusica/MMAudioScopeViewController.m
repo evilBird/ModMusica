@@ -80,6 +80,7 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
 - (void)hideLabel
 {
     self.label.alpha = 0.0;
+    self.label.text = kStopMessage;
 }
 
 - (void)beginUpdates
@@ -148,7 +149,7 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     [self randomizeColorsInShapeLayers:self.shapeLayers.mutableCopy];
     [self randomizeAlphasInShapeLayers:self.shapeLayers coefficient:0.2];
     self.view.backgroundColor = [UIColor randomColor];
-    self.myContentView.backgroundColor = self.view.backgroundColor;
+    //self.myContentView.backgroundColor = self.view.backgroundColor;
     self.label.textColor = [[self.myContentView backgroundColor]complement];
     self.titleLabel.textColor = [[self.myContentView backgroundColor]complement];
     self.nowPlayingLabel.textColor = [self.titleLabel.textColor jitterWithPercent:5];
@@ -172,7 +173,7 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
         [self.scopeDataSources addObject:datasource];
         CAShapeLayer *layer = [self newShapeLayer];
         [self.shapeLayers addObject:layer];
-        [self.myContentView.layer addSublayer:layer];
+        [self.effectsView.contentView.layer addSublayer:layer];
     }
 }
 
@@ -226,16 +227,17 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
 
 - (void)setupViews
 {
-    UIVisualEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffect *blur = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    
     self.effectsView = [[UIVisualEffectView alloc]initWithEffect:blur];
     self.effectsView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.effectsView];
     [self.view addConstraints:[self.effectsView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
     
-    self.myContentView = [UIView new];
-    self.myContentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.effectsView.contentView addSubview:self.myContentView];
-    [self.view addConstraints:[self.myContentView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
+    //self.myContentView = [UIView new];
+    //self.myContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    //[self.effectsView.contentView addSubview:self.myContentView];
+    //[self.view addConstraints:[self.myContentView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
     
 }
 
@@ -244,11 +246,11 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     [super viewDidLoad];
     [self setupViews];
     [self configureLayersAndData];
-    [self.myContentView setBackgroundColor:[UIColor randomColor]];
+    [self.view setBackgroundColor:[UIColor randomColor]];
     [self configureLabels];
-    [self.myContentView addSubview:self.label];
-    [self.myContentView addSubview:self.titleLabel];
-    [self.myContentView addSubview:self.nowPlayingLabel];
+    [self.effectsView.contentView addSubview:self.label];
+    [self.effectsView.contentView addSubview:self.titleLabel];
+    [self.effectsView.contentView addSubview:self.nowPlayingLabel];
     [self configureLabelConstraints];
     
     // Do any additional setup after loading the view.
