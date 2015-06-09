@@ -14,7 +14,7 @@
 - (void)beginUpdates;
 - (void)endUpdates;
 - (void)randomizeColors;
-
 - (void)showStepsPerMinute:(double)steps;
+- (void)showBeatsPerMinute:(double)bpm;
 
 @end

@@ -50,6 +50,21 @@
 		F2A59D021A4793160000CDC1 /* 1-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D001A4793160000CDC1 /* 1-als.csv */; };
 		F2A59D051A479B440000CDC1 /* 2-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D031A479B440000CDC1 /* 2-als.csv */; };
 		F2A59D061A479B440000CDC1 /* 3-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D041A479B440000CDC1 /* 3-als.csv */; };
+		F2A68B9E1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68B9D1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd */; };
+		F2A68BA01B26B10900FA13F5 /* bsd_biquad~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68B9F1B26B10900FA13F5 /* bsd_biquad~.pd */; };
+		F2A68BAE1B26B54C00FA13F5 /* complex_add.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA21B26B54C00FA13F5 /* complex_add.mmb.pd */; };
+		F2A68BAF1B26B54C00FA13F5 /* complex_add.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA31B26B54C00FA13F5 /* complex_add.mmb~.pd */; };
+		F2A68BB01B26B54C00FA13F5 /* complex_con.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA41B26B54C00FA13F5 /* complex_con.mmb.pd */; };
+		F2A68BB11B26B54C00FA13F5 /* complex_con.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA51B26B54C00FA13F5 /* complex_con.mmb~.pd */; };
+		F2A68BB21B26B54C00FA13F5 /* complex_div.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA61B26B54C00FA13F5 /* complex_div.mmb.pd */; };
+		F2A68BB31B26B54C00FA13F5 /* complex_div.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA71B26B54C00FA13F5 /* complex_div.mmb~.pd */; };
+		F2A68BB41B26B54C00FA13F5 /* complex_math.mmb-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA81B26B54C00FA13F5 /* complex_math.mmb-help.pd */; };
+		F2A68BB51B26B54C00FA13F5 /* complex_mul.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA91B26B54C00FA13F5 /* complex_mul.mmb.pd */; };
+		F2A68BB61B26B54C00FA13F5 /* complex_mul.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BAA1B26B54C00FA13F5 /* complex_mul.mmb~.pd */; };
+		F2A68BB71B26B54C00FA13F5 /* complex_sub.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BAB1B26B54C00FA13F5 /* complex_sub.mmb.pd */; };
+		F2A68BB81B26B54C00FA13F5 /* complex_sub.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BAC1B26B54C00FA13F5 /* complex_sub.mmb~.pd */; };
+		F2A68BB91B26B54C00FA13F5 /* number.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BAD1B26B54C00FA13F5 /* number.mmb~.pd */; };
+		F2A68BD21B2773AE00FA13F5 /* ViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A68BD11B2773AE00FA13F5 /* ViewController+Touch.m */; };
 		F2AD7F3A1A47EF0400840ABC /* mm_fx.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F361A47EF0400840ABC /* mm_fx.pd */; };
 		F2AD7F3B1A47EF0400840ABC /* mm_randomness.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F371A47EF0400840ABC /* mm_randomness.pd */; };
 		F2AD7F3C1A47EF0400840ABC /* mm_drums.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F381A47EF0400840ABC /* mm_drums.pd */; };
@@ -946,6 +961,22 @@
 		F2A59D001A4793160000CDC1 /* 1-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-als.csv"; sourceTree = "<group>"; };
 		F2A59D031A479B440000CDC1 /* 2-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-als.csv"; sourceTree = "<group>"; };
 		F2A59D041A479B440000CDC1 /* 3-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-als.csv"; sourceTree = "<group>"; };
+		F2A68B9D1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bsd_filterCoefficients.pd; sourceTree = "<group>"; };
+		F2A68B9F1B26B10900FA13F5 /* bsd_biquad~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bsd_biquad~.pd"; sourceTree = "<group>"; };
+		F2A68BA21B26B54C00FA13F5 /* complex_add.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_add.mmb.pd; sourceTree = "<group>"; };
+		F2A68BA31B26B54C00FA13F5 /* complex_add.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "complex_add.mmb~.pd"; sourceTree = "<group>"; };
+		F2A68BA41B26B54C00FA13F5 /* complex_con.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_con.mmb.pd; sourceTree = "<group>"; };
+		F2A68BA51B26B54C00FA13F5 /* complex_con.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "complex_con.mmb~.pd"; sourceTree = "<group>"; };
+		F2A68BA61B26B54C00FA13F5 /* complex_div.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_div.mmb.pd; sourceTree = "<group>"; };
+		F2A68BA71B26B54C00FA13F5 /* complex_div.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "complex_div.mmb~.pd"; sourceTree = "<group>"; };
+		F2A68BA81B26B54C00FA13F5 /* complex_math.mmb-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "complex_math.mmb-help.pd"; sourceTree = "<group>"; };
+		F2A68BA91B26B54C00FA13F5 /* complex_mul.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_mul.mmb.pd; sourceTree = "<group>"; };
+		F2A68BAA1B26B54C00FA13F5 /* complex_mul.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "complex_mul.mmb~.pd"; sourceTree = "<group>"; };
+		F2A68BAB1B26B54C00FA13F5 /* complex_sub.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_sub.mmb.pd; sourceTree = "<group>"; };
+		F2A68BAC1B26B54C00FA13F5 /* complex_sub.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "complex_sub.mmb~.pd"; sourceTree = "<group>"; };
+		F2A68BAD1B26B54C00FA13F5 /* number.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "number.mmb~.pd"; sourceTree = "<group>"; };
+		F2A68BD01B2773AE00FA13F5 /* ViewController+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+Touch.h"; sourceTree = "<group>"; };
+		F2A68BD11B2773AE00FA13F5 /* ViewController+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+Touch.m"; sourceTree = "<group>"; };
 		F2AD7F361A47EF0400840ABC /* mm_fx.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_fx.pd; sourceTree = "<group>"; };
 		F2AD7F371A47EF0400840ABC /* mm_randomness.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_randomness.pd; sourceTree = "<group>"; };
 		F2AD7F381A47EF0400840ABC /* mm_drums.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_drums.pd; sourceTree = "<group>"; };
@@ -1258,7 +1289,7 @@
 		F2B2B00519FF281E003042D6 /* birdFilter~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "birdFilter~.pd"; sourceTree = "<group>"; };
 		F2B2B00619FF281E003042D6 /* birdFX~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "birdFX~.pd"; sourceTree = "<group>"; };
 		F2B2B00719FF281E003042D6 /* birdGate~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "birdGate~.pd"; sourceTree = "<group>"; };
-		F2B2B00819FF281E003042D6 /* birdInvert.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = birdInvert.pd; path = Composer/birdInvert.pd; sourceTree = "<group>"; };
+		F2B2B00819FF281E003042D6 /* birdInvert.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdInvert.pd; sourceTree = "<group>"; };
 		F2B2B00919FF281E003042D6 /* birdKick~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "birdKick~.pd"; sourceTree = "<group>"; };
 		F2B2B00A19FF281E003042D6 /* birdMidiIn.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = birdMidiIn.pd; sourceTree = "<group>"; };
 		F2B2B00B19FF281E003042D6 /* birdOsc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "birdOsc~.pd"; sourceTree = "<group>"; };
@@ -1940,6 +1971,25 @@
 			path = als;
 			sourceTree = "<group>";
 		};
+		F2A68BA11B26B54C00FA13F5 /* complex_math.mmb */ = {
+			isa = PBXGroup;
+			children = (
+				F2A68BA21B26B54C00FA13F5 /* complex_add.mmb.pd */,
+				F2A68BA31B26B54C00FA13F5 /* complex_add.mmb~.pd */,
+				F2A68BA41B26B54C00FA13F5 /* complex_con.mmb.pd */,
+				F2A68BA51B26B54C00FA13F5 /* complex_con.mmb~.pd */,
+				F2A68BA61B26B54C00FA13F5 /* complex_div.mmb.pd */,
+				F2A68BA71B26B54C00FA13F5 /* complex_div.mmb~.pd */,
+				F2A68BA81B26B54C00FA13F5 /* complex_math.mmb-help.pd */,
+				F2A68BA91B26B54C00FA13F5 /* complex_mul.mmb.pd */,
+				F2A68BAA1B26B54C00FA13F5 /* complex_mul.mmb~.pd */,
+				F2A68BAB1B26B54C00FA13F5 /* complex_sub.mmb.pd */,
+				F2A68BAC1B26B54C00FA13F5 /* complex_sub.mmb~.pd */,
+				F2A68BAD1B26B54C00FA13F5 /* number.mmb~.pd */,
+			);
+			path = complex_math.mmb;
+			sourceTree = "<group>";
+		};
 		F2AD7F351A47EEA100840ABC /* MM */ = {
 			isa = PBXGroup;
 			children = (
@@ -1996,6 +2046,9 @@
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
 				F2B2AB5519FF1739003042D6 /* ViewController.h */,
 				F2B2AB5619FF1739003042D6 /* ViewController.m */,
+				F2A68BD01B2773AE00FA13F5 /* ViewController+Touch.h */,
+				F2A68BD11B2773AE00FA13F5 /* ViewController+Touch.m */,
+				F246EF141A01A86400357005 /* modmusica_1.pd */,
 				F2B2AB5819FF1739003042D6 /* Main.storyboard */,
 				F2B2AB5B19FF1739003042D6 /* Images.xcassets */,
 				F2B2AB5D19FF1739003042D6 /* LaunchScreen.xib */,
@@ -2034,7 +2087,6 @@
 		F2B2AB7D19FF273F003042D6 /* Pd */ = {
 			isa = PBXGroup;
 			children = (
-				F2B2B00819FF281E003042D6 /* birdInvert.pd */,
 				F29882A71A02CCFA005F9B94 /* csv */,
 				F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */,
 				F2B2B1B219FF4393003042D6 /* samples */,
@@ -2081,6 +2133,7 @@
 		F2B2AFE719FF281E003042D6 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				F2B2B00819FF281E003042D6 /* birdInvert.pd */,
 				F2B2B01C19FF281E003042D6 /* bsm_compressor~.pd */,
 				F2B2B01D19FF281E003042D6 /* bsm_switch~.pd */,
 				F2B2B01E19FF281E003042D6 /* btoms.pd */,
@@ -2478,6 +2531,7 @@
 		F2B2B1B619FF46A4003042D6 /* patches */ = {
 			isa = PBXGroup;
 			children = (
+				F2A68BA11B26B54C00FA13F5 /* complex_math.mmb */,
 				F2EE028E1A11BE1500398C04 /* c_adsr.pd */,
 				F2EE028A1A11BD6C00398C04 /* s_chip.pd */,
 				F2EE028C1A11BD9400398C04 /* u_loader.pd */,
@@ -2487,7 +2541,6 @@
 				F2EE027A1A11B65000398C04 /* u_dispatch.pd */,
 				F2EE02841A11B91400398C04 /* g_synthcontrol.pd */,
 				F2EEFF901A11A22000398C04 /* rj */,
-				F246EF141A01A86400357005 /* modmusica_1.pd */,
 				F2AD7F3E1A47FC8100840ABC /* mm_reverb.pd */,
 				F2AD7F361A47EF0400840ABC /* mm_fx.pd */,
 				F2AD7F371A47EF0400840ABC /* mm_randomness.pd */,
@@ -2505,6 +2558,8 @@
 				F2B2AD2519FF27BE003042D6 /* modMusicPatch_Test_1.0.pd */,
 				F2B2AD2619FF27BE003042D6 /* modMusicPatch.pd */,
 				F2B2AD2719FF27BE003042D6 /* modMusicPatchOld.pd */,
+				F2A68B9D1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd */,
+				F2A68B9F1B26B10900FA13F5 /* bsd_biquad~.pd */,
 			);
 			name = patches;
 			sourceTree = "<group>";
@@ -3232,6 +3287,7 @@
 				F2B2B08619FF281F003042D6 /* 1-Mega1.txt in Resources */,
 				F2EE01C71A11A22100398C04 /* m_symbolarray-help.pd in Resources */,
 				F25B8F971A043B3D006E801D /* 6-mega.csv in Resources */,
+				F2A68B9E1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd in Resources */,
 				F2B2B09A19FF281F003042D6 /* 2-Happy2.txt in Resources */,
 				F2EE02201A11A22100398C04 /* u_cocollect.pd in Resources */,
 				F2B2B0D519FF281F003042D6 /* african3.wav in Resources */,
@@ -3273,6 +3329,7 @@
 				F2B2B0D819FF281F003042D6 /* african6.aif in Resources */,
 				F2B2B10719FF281F003042D6 /* 2-test2.txt in Resources */,
 				F2EE01371A11A22100398C04 /* e_agc-help.pd in Resources */,
+				F2A68BB31B26B54C00FA13F5 /* complex_div.mmb~.pd in Resources */,
 				F2EE01CB1A11A22100398C04 /* m_touch2grid-help.pd in Resources */,
 				F2EE01331A11A22100398C04 /* c_urn.pd in Resources */,
 				F2B2B0D619FF281F003042D6 /* african4.wav in Resources */,
@@ -3335,6 +3392,7 @@
 				F2B2AD6E19FF27BE003042D6 /* mm_xylo~.pd in Resources */,
 				F2B2B14719FF281F003042D6 /* randomPlayer.pd in Resources */,
 				F2B2B12519FF281F003042D6 /* birdSampler3~.pd in Resources */,
+				F2A68BB11B26B54C00FA13F5 /* complex_con.mmb~.pd in Resources */,
 				F2EE01F01A11A22100398C04 /* s_fm4.pd in Resources */,
 				F2B2B19C19FF2ABD003042D6 /* 0-Mario5.txt in Resources */,
 				F246EF151A01A86400357005 /* modmusica_1.pd in Resources */,
@@ -3501,6 +3559,7 @@
 				F2B2B17819FF281F003042D6 /* list-enumerate.pd in Resources */,
 				F2EE01D11A11A22100398C04 /* r_#compass.pd in Resources */,
 				F2B2AEE519FF27BE003042D6 /* metroClick~.pd in Resources */,
+				F2A68BB01B26B54C00FA13F5 /* complex_con.mmb.pd in Resources */,
 				F2B2AEF419FF27BE003042D6 /* mm_noiseCancel~.pd in Resources */,
 				F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */,
 				F2B2B15D19FF281F003042D6 /* cowbell.aif in Resources */,
@@ -3519,6 +3578,7 @@
 				F2B2AEEB19FF27BE003042D6 /* mm_edge~.pd in Resources */,
 				F2EE01E01A11A22100398C04 /* s_blsaw.pd in Resources */,
 				F2EE01CD1A11A22100398C04 /* OVERVIEW.pd in Resources */,
+				F2A68BAF1B26B54C00FA13F5 /* complex_add.mmb~.pd in Resources */,
 				F2B2AF4219FF27BE003042D6 /* timbreStamp3.pd in Resources */,
 				F2EE02461A11A22100398C04 /* u_lowpassq-help.pd in Resources */,
 				F2B2B0BD19FF281F003042D6 /* 3-majesty4.txt in Resources */,
@@ -3582,6 +3642,7 @@
 				F2B2B1A719FF2ABD003042D6 /* 3-Mario4.txt in Resources */,
 				F2EE01AD1A11A22100398C04 /* m_bpm2ms-help.pd in Resources */,
 				F2B2B0E619FF281F003042D6 /* big-burundi-06.wav in Resources */,
+				F2A68BB81B26B54C00FA13F5 /* complex_sub.mmb~.pd in Resources */,
 				F2B2AD6D19FF27BE003042D6 /* mm_osc3~.pd in Resources */,
 				F2B2B09219FF281F003042D6 /* 1-Sad3.txt in Resources */,
 				F2B2B08F19FF281F003042D6 /* 1-Menace4.txt in Resources */,
@@ -3600,6 +3661,7 @@
 				F2B2B13D19FF281F003042D6 /* ModMusic.pd in Resources */,
 				F2B2AF2119FF27BE003042D6 /* rasta8.wav in Resources */,
 				F29386801A36A373008F0EDF /* 0-ohn.csv in Resources */,
+				F2A68BA01B26B10900FA13F5 /* bsd_biquad~.pd in Resources */,
 				F2B2B13819FF281F003042D6 /* interact4~.pd in Resources */,
 				F2B2AEFC19FF27BE003042D6 /* mm_randFilter2~.pd in Resources */,
 				F2B2B12119FF281F003042D6 /* birdPan~.pd in Resources */,
@@ -3695,6 +3757,7 @@
 				F2EE028B1A11BD6C00398C04 /* s_chip.pd in Resources */,
 				F2B2B07519FF281F003042D6 /* 0-Sad2.txt in Resources */,
 				F2B2B0C719FF281F003042D6 /* 3-Menace4.txt in Resources */,
+				F2A68BAE1B26B54C00FA13F5 /* complex_add.mmb.pd in Resources */,
 				F2B2B0E519FF281F003042D6 /* big-burundi-05.wav in Resources */,
 				F2B2B10019FF281F003042D6 /* 0-test5.txt in Resources */,
 				F2EE01811A11A22100398C04 /* g_compressorgui.pd in Resources */,
@@ -3732,6 +3795,7 @@
 				F2EE01FE1A11A22100398C04 /* s_noish-help.pd in Resources */,
 				F2EE01DF1A11A22100398C04 /* s_blsaw-help.pd in Resources */,
 				F2EE02671A11A22100398C04 /* u_stereo-help.pd in Resources */,
+				F2A68BB71B26B54C00FA13F5 /* complex_sub.mmb.pd in Resources */,
 				F29882B01A02D022005F9B94 /* 2-mario.csv in Resources */,
 				F2EE01161A11A22100398C04 /* c_frombus-help.pd in Resources */,
 				F2B2B07619FF281F003042D6 /* 0-Sad3.txt in Resources */,
@@ -3781,6 +3845,7 @@
 				F2B2AF2319FF27BE003042D6 /* rasta10.wav in Resources */,
 				F2B2B12919FF281F003042D6 /* birdSnare~.pd in Resources */,
 				F2EE024B1A11A22100398C04 /* u_messagesaver.pd in Resources */,
+				F2A68BB51B26B54C00FA13F5 /* complex_mul.mmb.pd in Resources */,
 				F29B43731A32B27A006AD07F /* 0-jb.csv in Resources */,
 				F2EE02421A11A22100398C04 /* u_loadmeter-help.pd in Resources */,
 				F2EE01EC1A11A22100398C04 /* s_drumelectro.pd in Resources */,
@@ -3791,6 +3856,7 @@
 				F2EE02891A11BA0F00398C04 /* m_scale.pd in Resources */,
 				F2B2B13919FF281F003042D6 /* interact~.pd in Resources */,
 				F2B2AF1A19FF27BE003042D6 /* rasta1.wav in Resources */,
+				F2A68BB61B26B54C00FA13F5 /* complex_mul.mmb~.pd in Resources */,
 				F2B2B1A619FF2ABD003042D6 /* 3-Mario3.txt in Resources */,
 				F2B2AF0519FF27BE003042D6 /* mm_sampler3~.pd in Resources */,
 				F2B2B09F19FF281F003042D6 /* 2-majesty2.txt in Resources */,
@@ -3825,6 +3891,7 @@
 				F2B2B0CA19FF281F003042D6 /* 3-Sad3.txt in Resources */,
 				F2EE016D1A11A22100398C04 /* e_reverb-help.pd in Resources */,
 				F2EE01471A11A22100398C04 /* e_dubdel-help.pd in Resources */,
+				F2A68BB41B26B54C00FA13F5 /* complex_math.mmb-help.pd in Resources */,
 				F2EE02101A11A22100398C04 /* s_vphasor-help.pd in Resources */,
 				F2B2B0FC19FF281F003042D6 /* 0-test1.txt in Resources */,
 				F29882C21A02F033005F9B94 /* 1-fantasy.csv in Resources */,
@@ -3901,8 +3968,10 @@
 				F2EE01DB1A11A22100398C04 /* rj.txt in Resources */,
 				F2B2B1AC19FF2AF6003042D6 /* birdCountIn.pd in Resources */,
 				F2EE018D1A11A22100398C04 /* g_pattern32.pd in Resources */,
+				F2A68BB21B26B54C00FA13F5 /* complex_div.mmb.pd in Resources */,
 				F2EE01BA1A11A22100398C04 /* m_minorscale.pd in Resources */,
 				F2B2AF0C19FF27BE003042D6 /* mm_stirling.pd in Resources */,
+				F2A68BB91B26B54C00FA13F5 /* number.mmb~.pd in Resources */,
 				F2162CE91A0876FF0016C544 /* mm_bsosc~.pd in Resources */,
 				F2EE02771A11B5BE00398C04 /* mm_osc5~.pd in Resources */,
 				F2EE02851A11B91400398C04 /* g_synthcontrol.pd in Resources */,
@@ -4007,6 +4076,7 @@
 				F2DE9EA51B22370D00FEBE5F /* KaleidoscopeViewController.m in Sources */,
 				F2B2B0F319FF281F003042D6 /* bonk~.c in Sources */,
 				F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */,
+				F2A68BD21B2773AE00FA13F5 /* ViewController+Touch.m in Sources */,
 				F2DE9EC81B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m in Sources */,
 				F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */,
 				F2DE9EA81B22407600FEBE5F /* MMScopeDataSource.m in Sources */,

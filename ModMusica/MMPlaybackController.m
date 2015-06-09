@@ -137,7 +137,7 @@ void bonk_tilde_setup(void);
     kIdx ++;
     [self changePatch];
     [self changePattern];
-    [self changeSection];
+    [self changeSectionMaybe];
 }
 
 - (void)changePatch
@@ -160,12 +160,12 @@ void bonk_tilde_setup(void);
     self.patternLoader.currentSection = -1;
 }
 
-- (void)changeSection
+- (void)changeSectionMaybe
 {
     NSInteger rand = arc4random_uniform(100);
-    if (rand > 50 && rand <= 75) {
+    if (rand > 80 && rand <= 94) {
         [self.patternLoader playNextSection];
-    }else if (rand > 75){
+    }else if (rand > 94){
         [self.patternLoader playPreviousSection];
     }
 }
@@ -202,8 +202,10 @@ void bonk_tilde_setup(void);
     if ([source isEqualToString:@"clock"]) {
         [self.delegate playback:self clockDidChange:(NSInteger)received];
         if (received==0) {
-            [self changeSection];
+            [self changeSectionMaybe];
         }
+    }else if ([source isEqualToString:@"detectedTempo"]){
+        [self.delegate playback:self detectedUserTempo:received];
     }
 }
 

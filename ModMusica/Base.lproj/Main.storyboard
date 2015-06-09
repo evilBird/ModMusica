@@ -47,7 +47,44 @@
                     <view key="view" contentMode="scaleToFill" id="Z5X-ym-8Be">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SeI-jF-vHk">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ll0-J7-JMY">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBk-Dt-AxP">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CzB-q0-chy">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <vibrancyEffect>
+                                                <blurEffect style="dark"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XBk-Dt-AxP" firstAttribute="leading" secondItem="ll0-J7-JMY" secondAttribute="leading" id="6le-Ah-roD"/>
+                                        <constraint firstAttribute="bottom" secondItem="XBk-Dt-AxP" secondAttribute="bottom" id="N50-68-WjD"/>
+                                        <constraint firstAttribute="trailing" secondItem="XBk-Dt-AxP" secondAttribute="trailing" id="RaM-Ic-ZW0"/>
+                                        <constraint firstItem="XBk-Dt-AxP" firstAttribute="top" secondItem="ll0-J7-JMY" secondAttribute="top" id="h25-9z-j75"/>
+                                    </constraints>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="dark"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
                         <color key="backgroundColor" red="0.97302691610000003" green="0.99178832120000004" blue="0.46170734489999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SeI-jF-vHk" secondAttribute="trailing" id="Pw8-5s-qJ7"/>
+                            <constraint firstAttribute="bottom" secondItem="SeI-jF-vHk" secondAttribute="bottom" id="ieT-7c-yrb"/>
+                            <constraint firstItem="SeI-jF-vHk" firstAttribute="top" secondItem="Z5X-ym-8Be" secondAttribute="top" id="kJJ-l0-v5X"/>
+                            <constraint firstItem="SeI-jF-vHk" firstAttribute="leading" secondItem="Z5X-ym-8Be" secondAttribute="leading" id="yvo-lC-BXW"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lPj-bd-0K6" userLabel="First Responder" sceneMemberID="firstResponder"/>

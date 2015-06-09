@@ -12,6 +12,9 @@
 #import "UIColor+HBVHarmonies.h"
 #import "UIView+Layout.h"
 
+static NSString *kStartMessage = @"Press & hold to start";
+static NSString *kStopMessage = @"Press & hold to stop";
+static NSString *kTapTempoMessage = @"Tap to set tempo";
 
 @interface MMAudioScopeViewController ()
 
@@ -27,6 +30,32 @@
 
 @implementation MMAudioScopeViewController
 
+- (NSString *)messageTextPlaying:(BOOL)playing
+{
+    NSString *result = nil;
+    NSString *start = NSLocalizedString(kStartMessage, nil);
+    NSString *stop = NSLocalizedString(kStopMessage, nil);
+    NSString *tap = NSLocalizedString(kTapTempoMessage, nil);
+    
+    if (playing) {
+        result = [NSString stringWithFormat:@"%@\n\n%@",tap,stop];
+    }else{
+        result = [NSString stringWithFormat:@"%@",start];
+    }
+    
+    return result;
+}
+
+- (void)showLabel
+{
+    self.label.alpha = 1.0;
+}
+
+- (void)hideLabel
+{
+    self.label.alpha = 0.0;
+}
+
 - (void)beginUpdates
 {
     for (MMScopeDataSource *source in self.scopeDataSources) {
@@ -34,7 +63,7 @@
     }
     
     
-    self.label.text = NSLocalizedString(@"Tap to stop", nil);
+    self.label.text = [self messageTextPlaying:YES];
     
     [UIView animateWithDuration:10.0
                           delay:0
@@ -56,7 +85,7 @@
     for (MMScopeDataSource *source in self.scopeDataSources) {
         [source endUpdates];
     }
-    self.label.text = NSLocalizedString(@"Tap to start", nil);
+    self.label.text = [self messageTextPlaying:NO];
     self.label.alpha = 1.0;
     self.titleLabel.alpha = 1.0;
 }
@@ -64,7 +93,17 @@
 - (void)showStepsPerMinute:(double)steps
 {
     self.label.text = [NSString stringWithFormat:@"%.f steps/min",steps];
-    self.label.alpha = 1.0;
+    [self showLabel];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
+    [self performSelector:@selector(hideLabel) withObject:nil afterDelay:5];
+}
+
+- (void)showBeatsPerMinute:(double)bpm
+{
+    self.label.text = [NSString stringWithFormat:@"%.f beats/min",bpm];
+    [self showLabel];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
+    [self performSelector:@selector(hideLabel) withObject:nil afterDelay:5];
 }
 
 - (void)randomizeColors
@@ -72,6 +111,8 @@
     [self randomizeColorsInShapeLayers:self.shapeLayers.mutableCopy];
     [self randomizeAlphasInShapeLayers:self.shapeLayers coefficient:0.2];
     self.view.backgroundColor = [UIColor randomColor];
+    self.label.textColor = [[self.view backgroundColor]complement];
+    self.titleLabel.textColor = [[self.view backgroundColor]complement];
 }
 
 - (MMScopeDataSource *)newScopeDataSource:(NSString *)table
@@ -101,14 +142,15 @@
 {
     self.label = [UILabel new];
     self.label.translatesAutoresizingMaskIntoConstraints = NO;
+    self.label.numberOfLines = 4;
     self.label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]];
     self.label.textAlignment = NSTextAlignmentCenter;
     self.label.textColor = [self.view.backgroundColor complement];
-    self.label.text = NSLocalizedString(@"Tap to start", nil);
+    self.label.text = [self messageTextPlaying:NO];
     
     self.titleLabel = [UILabel new];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]*4];
+    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]*2.7];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [self.view.backgroundColor complement];
     self.titleLabel.text = NSLocalizedString(@"ModMusica", nil);

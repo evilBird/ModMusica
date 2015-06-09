@@ -14,9 +14,11 @@
 
 @protocol MMPlaybackDelegate
 @optional
+
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock;
 - (void)playbackBegan:(id)sender;
 - (void)playbackEnded:(id)sender;
+- (void)playback:(id)sender detectedUserTempo:(double)tempo;
 
 @end
 

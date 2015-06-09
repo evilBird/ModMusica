@@ -10,11 +10,11 @@
 #import "MMVisualViewController.h"
 #import "MMAudioScopeViewController.h"
 #import "MMStepCounter.h"
-
+#import "ViewController+Touch.h"
 
 #define kSetTempoReceiver @"manualSetTempo"
 
-@interface ViewController () <MMPlaybackDelegate,MMStepCounterDelegate>
+@interface ViewController () <MMPlaybackDelegate,MMStepCounterDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong)        MMPlaybackController            *playbackController;
 @property (nonatomic,strong)        MMVisualViewController          *visualViewController;
@@ -25,6 +25,24 @@
 
 @implementation ViewController
 
+#pragma mark - Public
+#pragma mark - Accessors
+
+- (void)setPlaying:(BOOL)playing
+{
+    BOOL old = _playing;
+    _playing = playing;
+    if (_playing != old) {
+        if (_playing) {
+            [self.playbackController startPlayback];
+        }else{
+            [self.playbackController stopPlayback];
+        }
+    }
+}
+
+#pragma mark - Private
+#pragma mark - View Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,16 +57,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"touches began in vc");
-    if (self.playbackController.isPlaying) {
-        [self.playbackController stopPlayback];
-    }else{
-        [self.playbackController startPlayback];
-    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -80,6 +88,10 @@
     [self.visualViewController playback:sender clockDidChange:clock];
 }
 
+- (void)playback:(id)sender detectedUserTempo:(double)tempo
+{
+    [self.scopeViewController showBeatsPerMinute:tempo];
+}
 
 #pragma mark - MMStepCounterDelegate
 - (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
