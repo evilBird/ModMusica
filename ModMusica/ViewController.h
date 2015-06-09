@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MSDynamicsDrawerViewController.h"
+#import "MMPlaybackController.h"
+#import "MMAudioScopeViewController.h"
 
 @interface ViewController : MSDynamicsDrawerViewController
 
 @property (nonatomic,getter=isPlaying)      BOOL        playing;
+@property (nonatomic,strong)                MMPlaybackController            *playbackController;
+@property (nonatomic,strong)                MMAudioScopeViewController      *scopeViewController;
+
 
 - (void)showDetails;
 

@@ -33,4 +33,6 @@
 - (void)startPlayback;
 - (void)stopPlayback;
 
+- (void)playPattern:(NSString *)patternName;
+
 @end

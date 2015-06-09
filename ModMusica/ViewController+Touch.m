@@ -18,6 +18,13 @@ static NSInteger kTapCount;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    if (self.paneState == MSDynamicsDrawerPaneStateOpen || self.paneState == MSDynamicsDrawerPaneStateOpenWide) {
+        kStartDate = nil;
+        return;
+        
+    }
+    
     kStartDate = [NSDate date];
     kPressTimer = [NSTimer scheduledTimerWithTimeInterval:0.35
                                                    target:self

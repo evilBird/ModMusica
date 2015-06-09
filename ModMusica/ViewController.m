@@ -8,17 +8,15 @@
 
 #import "ViewController.h"
 #import "MMVisualViewController.h"
-#import "MMAudioScopeViewController.h"
 #import "MMStepCounter.h"
 #import "ViewController+Touch.h"
+#import "ViewController+Module.h"
 
 #define kSetTempoReceiver @"manualSetTempo"
 
 @interface ViewController () <MMPlaybackDelegate,MMStepCounterDelegate,UIGestureRecognizerDelegate>
 
-@property (nonatomic,strong)        MMPlaybackController            *playbackController;
 @property (nonatomic,strong)        MMVisualViewController          *visualViewController;
-@property (nonatomic,strong)        MMAudioScopeViewController      *scopeViewController;
 @property (nonatomic,strong)        MMStepCounter                   *stepCounter;
 
 @end
@@ -58,8 +56,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.scopeViewController = [storyboard instantiateViewControllerWithIdentifier:@"AudioScopeViewController"];
     self.paneViewController = self.scopeViewController;
-    [self setDrawerViewController:[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"] forDirection:MSDynamicsDrawerDirectionLeft];
-    
+    [self configureModules];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

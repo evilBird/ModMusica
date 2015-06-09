@@ -147,6 +147,12 @@ void bonk_tilde_setup(void);
     self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
 }
 
+- (void)playPattern:(NSString *)patternName
+{
+    self.patternLoader.currentPattern = patternName;
+    self.patternLoader.currentSection = -1;
+}
+
 - (void)changePattern
 {
     NSInteger newPattern = arc4random_uniform((int)self.patterns.count);

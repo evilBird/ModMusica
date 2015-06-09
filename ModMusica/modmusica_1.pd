@@ -3192,7 +3192,7 @@
 #X restore 932 -36 pd synth;
 #X obj 545 -122 noise~;
 #X obj 545 -94 s~ theNoise;
-#N canvas 33 23 1332 748 randomness 1;
+#N canvas 33 23 1332 748 randomness 0;
 #X obj 29 355 s drumPattern;
 #X obj 29 184 loadbang;
 #X text 379 393 pattern 0-4;
