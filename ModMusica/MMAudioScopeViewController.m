@@ -12,9 +12,9 @@
 #import "UIColor+HBVHarmonies.h"
 #import "UIView+Layout.h"
 
-static NSString *kStartMessage = @"Press & hold to start";
-static NSString *kStopMessage = @"Press & hold to stop";
-static NSString *kTapTempoMessage = @"Tap to set tempo";
+static NSString *kStartMessage = @"press & hold to start";
+static NSString *kStopMessage = @"press & hold to stop";
+static NSString *kTapTempoMessage = @"tap to set tempo";
 
 @interface MMAudioScopeViewController ()
 
@@ -25,7 +25,8 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
 
 @property (nonatomic,strong)        UILabel                 *titleLabel;
 @property (nonatomic,strong)        UILabel                 *nowPlayingLabel;
-
+@property (nonatomic,strong)        UIVisualEffectView      *effectsView;
+@property (nonatomic,strong)        UIView                  *myContentView;
 @end
 
 @implementation MMAudioScopeViewController
@@ -114,7 +115,10 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
 
 - (void)showStepsPerMinute:(double)steps
 {
-    self.label.text = [NSString stringWithFormat:@"%.f steps/min",steps];
+    NSString *spm = [NSString stringWithFormat:@"%.f steps/min",steps];
+    NSString *other = [self messageTextPlaying:YES];
+    NSString *full = [NSString stringWithFormat:@"%@\n\n%@",spm,other];
+    self.label.text = full;
     [self showLabel];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
     [self performSelector:@selector(hideLabel) withObject:nil afterDelay:5];
@@ -122,7 +126,10 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
 
 - (void)showBeatsPerMinute:(double)bpm
 {
-    self.label.text = [NSString stringWithFormat:@"%.f beats/min",bpm];
+    NSString *tempo = [NSString stringWithFormat:@"%.f beats/min",bpm];
+    NSString *other = [self messageTextPlaying:YES];
+    NSString *full = [NSString stringWithFormat:@"%@\n\n%@",tempo,other];
+    self.label.text = full;
     [self showLabel];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
     [self performSelector:@selector(hideLabel) withObject:nil afterDelay:5];
@@ -130,7 +137,7 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
 
 - (void)showNowPlaying:(NSString *)nowPlaying
 {
-    self.nowPlayingLabel.text = [NSString stringWithFormat:@"Now playing: %@",nowPlaying];
+    self.nowPlayingLabel.text = [NSString stringWithFormat:@"now playing: %@",nowPlaying];
     self.nowPlayingLabel.alpha = 1.0;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideNowPlaying) object:nil];
     [self performSelector:@selector(hideNowPlaying) withObject:nil afterDelay:5];
@@ -141,8 +148,9 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
     [self randomizeColorsInShapeLayers:self.shapeLayers.mutableCopy];
     [self randomizeAlphasInShapeLayers:self.shapeLayers coefficient:0.2];
     self.view.backgroundColor = [UIColor randomColor];
-    self.label.textColor = [[self.view backgroundColor]complement];
-    self.titleLabel.textColor = [[self.view backgroundColor]complement];
+    self.myContentView.backgroundColor = self.view.backgroundColor;
+    self.label.textColor = [[self.myContentView backgroundColor]complement];
+    self.titleLabel.textColor = [[self.myContentView backgroundColor]complement];
     self.nowPlayingLabel.textColor = [self.titleLabel.textColor jitterWithPercent:5];
 }
 
@@ -164,7 +172,7 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
         [self.scopeDataSources addObject:datasource];
         CAShapeLayer *layer = [self newShapeLayer];
         [self.shapeLayers addObject:layer];
-        [self.view.layer addSublayer:layer];
+        [self.myContentView.layer addSublayer:layer];
     }
 }
 
@@ -173,7 +181,7 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
 {
     self.label = [UILabel new];
     self.label.translatesAutoresizingMaskIntoConstraints = NO;
-    self.label.numberOfLines = 4;
+    self.label.numberOfLines = 8;
     self.label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]];
     self.label.textAlignment = NSTextAlignmentCenter;
     self.label.textColor = [self.view.backgroundColor complement];
@@ -216,15 +224,31 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
     [self.view layoutIfNeeded];
 }
 
+- (void)setupViews
+{
+    UIVisualEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    self.effectsView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    self.effectsView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.effectsView];
+    [self.view addConstraints:[self.effectsView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
+    
+    self.myContentView = [UIView new];
+    self.myContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.effectsView.contentView addSubview:self.myContentView];
+    [self.view addConstraints:[self.myContentView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
+    
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self setupViews];
     [self configureLayersAndData];
-    [self.view setBackgroundColor:[UIColor randomColor]];
+    [self.myContentView setBackgroundColor:[UIColor randomColor]];
     [self configureLabels];
-    [self.view addSubview:self.label];
-    [self.view addSubview:self.titleLabel];
-    [self.view addSubview:self.nowPlayingLabel];
+    [self.myContentView addSubview:self.label];
+    [self.myContentView addSubview:self.titleLabel];
+    [self.myContentView addSubview:self.nowPlayingLabel];
     [self configureLabelConstraints];
     
     // Do any additional setup after loading the view.

@@ -67,8 +67,6 @@
 {
     if (paneState == MSDynamicsDrawerPaneStateClosed) {
         [self showDetails];
-    }else if (paneState == MSDynamicsDrawerPaneStateOpen || paneState == MSDynamicsDrawerPaneStateOpenWide){
-        [[(MMModuleViewController *)drawerViewController tableView]reloadData];
     }
 }
 
