@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Kry-L5-mqu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrawerViewController" id="BYZ-38-t0r" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,31 +15,35 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmR-5N-B75">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <connections>
-                                    <segue destination="53T-g1-cSR" kind="embed" id="mml-Rs-mo6"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="WmR-5N-B75" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LEn-3l-oFA"/>
-                            <constraint firstAttribute="bottom" secondItem="WmR-5N-B75" secondAttribute="bottom" id="djc-MW-wB8"/>
-                            <constraint firstItem="WmR-5N-B75" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fU4-3s-vBM"/>
-                            <constraint firstAttribute="trailing" secondItem="WmR-5N-B75" secondAttribute="trailing" id="s5X-3p-AZJ"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.97302691610000003" green="0.99178832120000004" blue="0.46170734489999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="451"/>
+            <point key="canvasLocation" x="-515" y="812"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="151-JR-I8s">
+            <objects>
+                <viewController id="Kry-L5-mqu" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OvZ-xR-SDn"/>
+                        <viewControllerLayoutGuide type="bottom" id="nSG-wG-iDf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s3f-ao-O2Y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zEr-gm-MKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121" y="-322"/>
         </scene>
         <!--Audio Scope View Controller-->
         <scene sceneID="4Oe-oq-HlN">
             <objects>
-                <viewController id="53T-g1-cSR" customClass="MMAudioScopeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AudioScopeViewController" id="53T-g1-cSR" customClass="MMAudioScopeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V00-he-QxK"/>
                         <viewControllerLayoutGuide type="bottom" id="5ib-go-B8T"/>
@@ -51,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lPj-bd-0K6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="985" y="451"/>
+            <point key="canvasLocation" x="1144" y="429"/>
         </scene>
     </scenes>
 </document>

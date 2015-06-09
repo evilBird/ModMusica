@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSDynamicsDrawerViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : MSDynamicsDrawerViewController
 
 @property (nonatomic,getter=isPlaying)      BOOL        playing;
 

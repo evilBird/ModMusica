@@ -55,6 +55,11 @@
     self.playbackController.delegate = self;
     self.stepCounter = [[MMStepCounter alloc]init];
     self.stepCounter.delegate = self;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.scopeViewController = [storyboard instantiateViewControllerWithIdentifier:@"AudioScopeViewController"];
+    self.paneViewController = self.scopeViewController;
+    [self setDrawerViewController:[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"] forDirection:MSDynamicsDrawerDirectionLeft];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C9665DEBFEB8009363F3906D"
+               BlueprintIdentifier = "EE6DD17C070D44C437BF6FDA"
                BuildableName = "libPods-ModMusica.a"
                BlueprintName = "Pods-ModMusica"
                ReferencedContainer = "container:Pods.xcodeproj">
