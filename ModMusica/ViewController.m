@@ -41,6 +41,11 @@
     }
 }
 
+- (void)showDetails
+{
+    [self.scopeViewController showDetails];
+}
+
 #pragma mark - Private
 #pragma mark - View Life Cycle
 

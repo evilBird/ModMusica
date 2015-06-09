@@ -27,8 +27,9 @@
     double x_scale = mySize.width/(double)data.count;
     UIBezierPath *path = [UIBezierPath bezierPath];
     CGPoint point = CGPointZero;
+    point.y = self.view.bounds.size.height/2;
+    [path moveToPoint:point];
     double sum = 0;
-    
     for (NSUInteger i = 0; i < data.count; i ++) {
         NSNumber *sample = data[i];
         float val = sample.floatValue * 0.8333;
@@ -37,13 +38,11 @@
         point.x = x_scale * (double)i;
         point.y = mySize.height - (norm * mySize.height);
         
-        if (i == 0) {
-            [path moveToPoint:point];
-        }else{
-            [path addLineToPoint:point];
-        }
+
+        [path addLineToPoint:point];
     }
     point.x = self.view.bounds.size.width;
+    point.y = self.view.bounds.size.height/2;
     [path addLineToPoint:point];
     
     if (sum == 0) {

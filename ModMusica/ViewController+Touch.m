@@ -13,11 +13,13 @@
 
 static NSDate   *kStartDate;
 static NSTimer  *kPressTimer;
+static NSDate   *kLastTap;
+static NSInteger kTapCount;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     kStartDate = [NSDate date];
-    kPressTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
+    kPressTimer = [NSTimer scheduledTimerWithTimeInterval:0.35
                                                    target:self
                                                  selector:@selector(handlePress)
                                                  userInfo:nil
@@ -40,12 +42,31 @@ static NSTimer  *kPressTimer;
 
 - (void)handleTap
 {
-    NSTimeInterval touchDuration = [[NSDate date]timeIntervalSinceDate:kStartDate];
+    NSDate *now = [NSDate date];
+    NSTimeInterval touchDuration = [now timeIntervalSinceDate:kStartDate];
     [kPressTimer invalidate];
+    NSLog(@"\ntap lasted %@ seconds\n",@(touchDuration));
+    
+    NSTimeInterval timeSinceLastTap = 0;
+    if (kLastTap!=nil) {
+        timeSinceLastTap = [now timeIntervalSinceDate:kLastTap];
+    }
+    
+    if (timeSinceLastTap > 4.0) {
+        kTapCount = 0;
+    }else{
+        kTapCount++;
+    }
+    
+    if (kTapCount > 1) {
+        [PdBase sendBangToReceiver:@"tapTempo"];
+    }else if (kTapCount == 1){
+        [self showDetails];
+    }
+    
+    kLastTap = [NSDate date];
     kPressTimer = nil;
     kStartDate = nil;
-    NSLog(@"\ntap lasted %@ seconds\n",@(touchDuration));
-    [PdBase sendBangToReceiver:@"tapTempo"];
 }
 
 - (void)handlePress

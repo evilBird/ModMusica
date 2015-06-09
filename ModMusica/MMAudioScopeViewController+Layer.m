@@ -60,7 +60,20 @@
     anim.toValue = (__bridge id)(newPath.CGPath);
     anim.duration = duration;
     [shapeLayer addAnimation:anim forKey:@"scopeData"];
-    
+}
+
+- (void)animateLayer:(CAShapeLayer *)shapeLayer
+           transform:(CGAffineTransform)transform
+            duration:(CGFloat)duration
+{
+    CABasicAnimation *anim = [[CABasicAnimation alloc]init];
+    anim.keyPath = @"affineTransform";
+    anim.fromValue = [NSValue valueWithCGAffineTransform:shapeLayer.affineTransform];
+    anim.toValue = [NSValue valueWithCGAffineTransform:transform];
+    anim.duration = duration;
+    anim.removedOnCompletion = NO;
+    shapeLayer.affineTransform = transform;
+    [shapeLayer addAnimation:anim forKey:@"scopeData"];
 }
 
 

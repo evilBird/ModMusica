@@ -20,6 +20,8 @@
              oldPath:(UIBezierPath *)oldPath
             duration:(CGFloat)duration;
 
+
+
 - (void)addGradientToLayer:(CALayer *)layer
                 withColors:(NSArray *)colors
                  locations:(NSArray *)locations;

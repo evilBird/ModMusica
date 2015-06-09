@@ -12,5 +12,7 @@
 
 @property (nonatomic,getter=isPlaying)      BOOL        playing;
 
+- (void)showDetails;
+
 @end
 

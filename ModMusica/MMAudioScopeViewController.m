@@ -30,6 +30,19 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
 
 @implementation MMAudioScopeViewController
 
+- (void)showDetails
+{
+    self.titleLabel.alpha = 1.0;
+    self.label.alpha = 1.0;
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideTitle) object:nil];
+    
+    [self performSelector:@selector(hideLabel) withObject:nil afterDelay:10];
+    [self performSelector:@selector(hideTitle) withObject:nil afterDelay:10];
+    
+}
+
 - (NSString *)messageTextPlaying:(BOOL)playing
 {
     NSString *result = nil;
@@ -44,6 +57,11 @@ static NSString *kTapTempoMessage = @"Tap to set tempo";
     }
     
     return result;
+}
+
+- (void)hideTitle
+{
+    self.titleLabel.alpha = 0.0;
 }
 
 - (void)showLabel

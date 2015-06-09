@@ -11,6 +11,7 @@
 
 @interface MMAudioScopeViewController : UIViewController <MMScopeDataSourceConsumer>
 
+- (void)showDetails;
 - (void)beginUpdates;
 - (void)endUpdates;
 - (void)randomizeColors;

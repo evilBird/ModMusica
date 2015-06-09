@@ -93,6 +93,7 @@ void bonk_tilde_setup(void);
 {
     [self setupPdExternals];
     [self subscribeToPdMessages];
+    [self openPatch];
 }
 
 - (void)setupPdExternals
@@ -135,17 +136,12 @@ void bonk_tilde_setup(void);
 - (void)changeEverything
 {
     kIdx ++;
-    [self changePatch];
     [self changePattern];
     [self changeSectionMaybe];
 }
 
-- (void)changePatch
+- (void)openPatch
 {
-
-    if (self.patch != nil) {
-        [PdBase closeFile:self.patch];
-    }
     self.patch = nil;
     NSString *patchName = @"modmusica_1.pd";
     self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
