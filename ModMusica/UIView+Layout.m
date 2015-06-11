@@ -10,6 +10,19 @@
 
 @implementation UIView (Layout)
 
++ (NSLayoutAttribute)axisAttribute:(LayoutAxis)axis
+{
+    switch (axis) {
+        case LayoutAxis_Horizontal:
+            return NSLayoutAttributeCenterX;
+            break;
+            
+        default:
+            return NSLayoutAttributeCenterY;
+            break;
+    }
+}
+
 + (NSLayoutAttribute)edgeAttribute:(LayoutEdge)edge
 {
     switch (edge) {
@@ -34,6 +47,27 @@
             break;
         }
     }
+}
+
+- (NSLayoutConstraint *)alignAxis:(LayoutAxis)axis1 toAxis:(LayoutAxis)axis2 ofView:(UIView *)view offset:(CGFloat)offset
+{
+    if (!view) {
+        return nil;
+    }
+    
+    NSLayoutAttribute attr1 = [UIView axisAttribute:axis1];
+    NSLayoutAttribute attr2 = [UIView axisAttribute:axis2];
+    
+    NSLayoutConstraint *constraint = nil;
+    constraint = [NSLayoutConstraint constraintWithItem:self
+                                              attribute:attr1
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:view
+                                              attribute:attr2
+                                             multiplier:1.0
+                                               constant:offset];
+    
+    return constraint;
 }
 
 - (NSLayoutConstraint *)pinHeight:(CGFloat)height

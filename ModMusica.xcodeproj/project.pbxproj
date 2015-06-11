@@ -497,6 +497,7 @@
 		F2B2B1BE19FF4D87003042D6 /* modmusica.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BC19FF4D87003042D6 /* modmusica.pd */; };
 		F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BD19FF4D87003042D6 /* scope.pd */; };
 		F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */; };
+		F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA91B291A6100AA7708 /* HamburgerButton.m */; };
 		F2DE9E971B222ACB00FEBE5F /* MMVisualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */; };
 		F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */; };
 		F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */; };
@@ -1426,6 +1427,8 @@
 		F2B2B1BD19FF4D87003042D6 /* scope.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scope.pd; sourceTree = "<group>"; };
 		F2D06FA21B290B0C00AA7708 /* MMAudioScopeViewController+Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Label.h"; sourceTree = "<group>"; };
 		F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Label.m"; sourceTree = "<group>"; };
+		F2D06FA81B291A6100AA7708 /* HamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerButton.h; sourceTree = "<group>"; };
+		F2D06FA91B291A6100AA7708 /* HamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerButton.m; sourceTree = "<group>"; };
 		F2DE9E951B222ACB00FEBE5F /* MMVisualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVisualViewController.h; sourceTree = "<group>"; };
 		F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVisualViewController.m; sourceTree = "<group>"; };
 		F2DE9E981B222BC200FEBE5F /* MMPlaybackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlaybackController.h; sourceTree = "<group>"; };
@@ -2013,6 +2016,8 @@
 				F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */,
 				F2DE9EA61B22407600FEBE5F /* MMScopeDataSource.h */,
 				F2DE9EA71B22407600FEBE5F /* MMScopeDataSource.m */,
+				F2D06FA81B291A6100AA7708 /* HamburgerButton.h */,
+				F2D06FA91B291A6100AA7708 /* HamburgerButton.m */,
 				F2DE9EC21B22B64C00FEBE5F /* GPUImage View Controllers */,
 				F2DE9EBC1B2262B500FEBE5F /* MMAudioScopeViewController.h */,
 				F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */,
@@ -4099,6 +4104,7 @@
 				F2B2B0F319FF281F003042D6 /* bonk~.c in Sources */,
 				F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */,
 				F2A68BD21B2773AE00FA13F5 /* ViewController+Touch.m in Sources */,
+				F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */,
 				F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */,
 				F2DE9EC81B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m in Sources */,
 				F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */,

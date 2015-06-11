@@ -83,7 +83,7 @@
     c.titleLabel.text = mod[@"title"];
     NSNumber *purchased = mod[@"purchased"];
     c.actionButton.tag = indexPath.row;
-    c.actionButton.layer.cornerRadius = 5;
+    c.actionButton.layer.cornerRadius = 4;
     c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
     UIColor *fillColor = [self.delegate currentFillColor];
     UIColor *textColor = [self.delegate currentTextColor];
@@ -92,11 +92,11 @@
     
     tableView.backgroundView.backgroundColor = fillColor;
     
-    [c.actionButton setTitleColor:c.contentView.backgroundColor forState:UIControlStateNormal];
+    [c.actionButton setTitleColor:[fillColor jitterWithPercent:5] forState:UIControlStateNormal];
     
-    [c.actionButton setBackgroundColor:textColor];
+    [c.actionButton setBackgroundColor:[textColor jitterWithPercent:5]];
     c.titleLabel.textColor = textColor;
-    self.sectionHeaderLabel.textColor = textColor;
+    self.sectionHeaderLabel.textColor = [textColor jitterWithPercent:5];
     self.sectionHeaderView.backgroundColor = [fillColor jitterWithPercent:5];
     tableView.backgroundColor = [fillColor jitterWithPercent:5];
     
@@ -122,13 +122,14 @@
         titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.textColor = [self.delegate currentTextColor];
-        titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-        titleLabel.text = NSLocalizedString(@"My Mods",nil);
+        titleLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]*1.3];
+        titleLabel.text = NSLocalizedString(@"Mods",nil);
         [header addSubview:titleLabel];
         [header addConstraint:[titleLabel pinEdge:LayoutEdge_Left
                                            toEdge:LayoutEdge_Left
                                            ofView:header
                                         withInset:8]];
+        
         [header addConstraint:[titleLabel alignCenterYToSuperOffset:0]];
         
         [titleLabel layoutIfNeeded];

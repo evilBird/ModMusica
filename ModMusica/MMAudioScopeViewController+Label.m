@@ -46,7 +46,7 @@ static NSTimeInterval kTime = 10;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [self.view.backgroundColor complement];
     self.titleLabel.text = NSLocalizedString(@"ModMusica", nil);
-    
+    self.titleLabel.contentMode = UIViewContentModeTop;
     self.nowPlayingLabel = [UILabel new];
     self.nowPlayingLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.nowPlayingLabel.textAlignment = NSTextAlignmentCenter;
@@ -68,7 +68,7 @@ static NSTimeInterval kTime = 10;
     [self.view addConstraint:[self.titleLabel pinEdge:LayoutEdge_Top
                                                toEdge:LayoutEdge_Top
                                                ofView:self.view
-                                            withInset:28]];
+                                            withInset:20]];
     [self.view addConstraint:[self.nowPlayingLabel pinEdge:LayoutEdge_Top
                                                     toEdge:LayoutEdge_Bottom
                                                     ofView:self.titleLabel
@@ -125,7 +125,9 @@ static NSTimeInterval kTime = 10;
 {
     self.titleLabel.alpha = 1.0;
     self.nowPlayingLabel.alpha = 1.0;
+    self.label.text = [self defaultLabelText];
     self.label.alpha = 1.0;
+    self.hamburgerButton.alpha = 1.0;
 }
 
 - (void)showAllForDuration:(NSTimeInterval)duration
@@ -139,6 +141,8 @@ static NSTimeInterval kTime = 10;
     self.titleLabel.alpha = 0.0;
     self.nowPlayingLabel.alpha = 0.0;
     self.label.alpha = 0.0;
+    self.hamburgerButton.alpha = 0.0;
+    self.label.text = [self defaultLabelText];
 }
 
 - (void)hideAllAfterDelay:(NSTimeInterval)duration

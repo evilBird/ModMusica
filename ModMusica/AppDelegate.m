@@ -23,7 +23,7 @@
     [[UIApplication sharedApplication]setIdleTimerDisabled:YES];
     self.audioController = [[PdAudioController alloc]init];
     [self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:YES];
-    [self.audioController configureTicksPerBuffer:32];
+    [self.audioController configureTicksPerBuffer:64];
     self.audioController.active = YES;
     
     return YES;

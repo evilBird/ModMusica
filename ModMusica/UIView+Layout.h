@@ -16,11 +16,19 @@ typedef NS_ENUM(NSInteger, LayoutEdge)
     LayoutEdge_Left
 };
 
+typedef NS_ENUM(NSInteger, LayoutAxis)
+{
+    LayoutAxis_Horizontal,
+    LayoutAxis_Vertical
+};
+
 @interface UIView (Layout)
 
 - (NSLayoutConstraint *)alignCenterYToSuperOffset:(CGFloat)offset;
 
 - (NSLayoutConstraint *)alignCenterXToSuperOffset:(CGFloat)offset;
+
+- (NSLayoutConstraint *)alignAxis:(LayoutAxis)axis1 toAxis:(LayoutAxis)axis2 ofView:(UIView *)view offset:(CGFloat)offset;
 
 - (NSLayoutConstraint *)pinWidthEqualToHeight;
 

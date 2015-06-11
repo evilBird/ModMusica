@@ -28,6 +28,11 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
 
 @implementation MMAudioScopeViewController
 
+- (void)tapInHamburgerButton:(id)sender
+{
+    [self.delegate showSettings:self];
+}
+
 - (void)showDetails
 {
     [self showAllForDuration:10];
@@ -87,6 +92,7 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     self.label.textColor = [[baseColor complement]jitterWithPercent:5];
     self.titleLabel.textColor = [[baseColor complement]jitterWithPercent:5];
     self.nowPlayingLabel.textColor = [[baseColor complement] jitterWithPercent:5];
+    self.hamburgerButton.mainColor = self.titleLabel.textColor;
 }
 
 - (MMScopeDataSource *)newScopeDataSource:(NSString *)table
@@ -134,6 +140,23 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     [self.effectsView.contentView addSubview:self.titleLabel];
     [self.effectsView.contentView addSubview:self.nowPlayingLabel];
     [self configureLabelConstraints];
+    
+    self.hamburgerButton = [[HamburgerButton alloc]init];
+    self.hamburgerButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.hamburgerButton addTarget:self action:@selector(tapInHamburgerButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.effectsView.contentView addSubview:self.hamburgerButton];
+    [self.view addConstraint:[self.hamburgerButton pinHeight:30]];
+    [self.view addConstraint:[self.hamburgerButton pinWidth:40]];
+    [self.view addConstraint:[self.hamburgerButton alignAxis:LayoutAxis_Vertical
+                                                      toAxis:LayoutAxis_Vertical
+                                                      ofView:self.titleLabel
+                                                      offset:0]];
+    
+    [self.view addConstraint:[self.hamburgerButton pinEdge:LayoutEdge_Left
+                                                    toEdge:LayoutEdge_Left
+                                                    ofView:self.hamburgerButton.superview withInset:20]];
+    [self.view layoutIfNeeded];
+    self.hamburgerButton.mainColor = self.titleLabel.textColor;
     // Do any additional setup after loading the view.
 }
 

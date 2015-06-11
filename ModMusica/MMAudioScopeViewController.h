@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MMScopeDataSource.h"
+#import "HamburgerButton.h"
+
+@protocol MMAudioScopeViewControllerDelegate <NSObject>
+
+- (void)showSettings:(id)sender;
+
+@end
 
 @interface MMAudioScopeViewController : UIViewController <MMScopeDataSourceConsumer>
+
+@property (nonatomic,weak)                  id<MMAudioScopeViewControllerDelegate> delegate;
 
 @property (nonatomic,strong)                UILabel                 *label;
 @property (nonatomic,strong)                UILabel                 *titleLabel;
@@ -18,6 +27,7 @@
 @property (nonatomic)                       double                  stepsPerMinute;
 @property (nonatomic)                       double                  beatsPerMinute;
 @property (nonatomic,strong)                NSString                *nowPlaying;
+@property (nonatomic,strong)                HamburgerButton         *hamburgerButton;
 
 @property (nonatomic,getter=isUpdating)     BOOL                    updating;
 

@@ -14,7 +14,7 @@
 
 #define kSetTempoReceiver @"manualSetTempo"
 
-@interface ViewController () <MMPlaybackDelegate,MMStepCounterDelegate,UIGestureRecognizerDelegate>
+@interface ViewController () <MMPlaybackDelegate,MMStepCounterDelegate,MMAudioScopeViewControllerDelegate>
 
 @property (nonatomic,strong)        MMVisualViewController          *visualViewController;
 @property (nonatomic,strong)        MMStepCounter                   *stepCounter;
@@ -54,6 +54,7 @@
     self.playbackController.delegate = self;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.scopeViewController = [storyboard instantiateViewControllerWithIdentifier:@"AudioScopeViewController"];
+    self.scopeViewController.delegate = self;
     self.paneViewController = self.scopeViewController;
     [self configureModules];
     // Do any additional setup after loading the view, typically from a nib.
@@ -108,5 +109,16 @@
     [PdBase sendFloat:stepsPerMinute toReceiver:kSetTempoReceiver];
 }
 
+#pragma mark - MMAudioScopeViewControllerDelegate
+- (void)showSettings:(id)sender
+{
+    if (self.paneState == MSDynamicsDrawerPaneStateClosed) {
+        [self setPaneState:MSDynamicsDrawerPaneStateOpen
+               inDirection:MSDynamicsDrawerDirectionLeft
+                  animated:YES
+     allowUserInterruption:NO
+                completion:NULL];
+    }
+}
 
 @end
