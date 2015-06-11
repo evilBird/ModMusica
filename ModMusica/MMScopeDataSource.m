@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 
 static NSString *kUpdateScopes = @"updateScopes";
-static double sampsPerWidth = 0.1333;
+static double sampsPerWidth = 0.08333;
 
 @interface MMScopeDataSource ()
 

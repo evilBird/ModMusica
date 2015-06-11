@@ -12,6 +12,11 @@
 #import <PdDispatcher.h>
 #import "MMScopeDataSource.h"
 
+static float kDrumVolume = 0.35;
+static float kBassVolume = 0.25;
+static float kSynthVolume = 0.25;
+static float kSamplerVolume = 0.30;
+
 @interface MMPlaybackController () <PdListener>
 {
     NSInteger kIdx;
@@ -42,6 +47,11 @@ void bonk_tilde_setup(void);
 
 - (void)startPlayback
 {
+    if (!self.patternName) {
+        [self playPattern:self.patterns.firstObject];
+        return;
+    }
+    
     [self playbackWillStart];
     [self startNow];
     [self.delegate playbackBegan:self];
@@ -56,7 +66,7 @@ void bonk_tilde_setup(void);
 
 - (void)playbackWillStart
 {
-    [self changeEverything];
+    
     [self setInstrumentLevelsOn];
     [self.patternLoader playNextSection];
 }
@@ -121,7 +131,6 @@ void bonk_tilde_setup(void);
         [PdBase closeFile:self.patch];
     }
     [self unsubscribePdMessages];
-    
 }
 
 - (void)unsubscribePdMessages
@@ -133,13 +142,6 @@ void bonk_tilde_setup(void);
     self.dispatcher = nil;
 }
 
-- (void)changeEverything
-{
-    kIdx ++;
-    [self changePattern];
-    [self changeSectionMaybe];
-}
-
 - (void)openPatch
 {
     self.patch = nil;
@@ -149,17 +151,14 @@ void bonk_tilde_setup(void);
 
 - (void)playPattern:(NSString *)patternName
 {
+    self.patternName = patternName;
     self.patternLoader.currentPattern = patternName;
     self.patternLoader.currentSection = -1;
-}
-
-- (void)changePattern
-{
-    NSInteger newPattern = arc4random_uniform((int)self.patterns.count);
-    NSString *pattern = self.patterns[newPattern];
-    self.patternLoader.currentPattern = pattern;
-    NSLog(@"\n\nSelected pattern: %@\n\n",pattern);
-    self.patternLoader.currentSection = -1;
+    [self.patternLoader playSection:0];
+    
+    if (!self.isPlaying) {
+        [self startPlayback];
+    }
 }
 
 - (void)changeSectionMaybe
@@ -177,10 +176,10 @@ void bonk_tilde_setup(void);
     [PdBase sendFloat:1 toReceiver:@"audioSwitch"];
     [PdBase sendFloat:1 toReceiver:@"outputVolume"];
     [PdBase sendFloat:1 toReceiver:@"inputVolume"];
-    [PdBase sendFloat:0.25 toReceiver:@"drumsVolume"];
-    [PdBase sendFloat:0.25 toReceiver:@"synthVolume"];
-    [PdBase sendFloat:0.25 toReceiver:@"samplerVolume"];
-    [PdBase sendFloat:0.25 toReceiver:@"bassVolume"];
+    [PdBase sendFloat:kDrumVolume toReceiver:@"drumsVolume"];
+    [PdBase sendFloat:kSynthVolume toReceiver:@"synthVolume"];
+    [PdBase sendFloat:kSamplerVolume toReceiver:@"samplerVolume"];
+    [PdBase sendFloat:kBassVolume toReceiver:@"bassVolume"];
     [PdBase sendBangToReceiver:@"loadNewSamples"];
 }
 

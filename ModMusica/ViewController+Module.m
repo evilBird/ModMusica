@@ -33,7 +33,7 @@
     __weak ViewController *weakself = self;
     [self setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:NO completion:^{
         [weakself.playbackController playPattern:moduleName];
-        [weakself.scopeViewController showNowPlaying:moduleName];
+        weakself.scopeViewController.nowPlaying = moduleName;
         if (!weakself.isPlaying) {
             weakself.playing = YES;
         }

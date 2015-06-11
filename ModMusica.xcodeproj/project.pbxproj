@@ -496,6 +496,7 @@
 		F2B2B1AE19FF2B0D003042D6 /* list-dripslow.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */; };
 		F2B2B1BE19FF4D87003042D6 /* modmusica.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BC19FF4D87003042D6 /* modmusica.pd */; };
 		F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BD19FF4D87003042D6 /* scope.pd */; };
+		F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */; };
 		F2DE9E971B222ACB00FEBE5F /* MMVisualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */; };
 		F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */; };
 		F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */; };
@@ -1423,6 +1424,8 @@
 		F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-dripslow.pd"; sourceTree = "<group>"; };
 		F2B2B1BC19FF4D87003042D6 /* modmusica.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica.pd; sourceTree = "<group>"; };
 		F2B2B1BD19FF4D87003042D6 /* scope.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scope.pd; sourceTree = "<group>"; };
+		F2D06FA21B290B0C00AA7708 /* MMAudioScopeViewController+Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Label.h"; sourceTree = "<group>"; };
+		F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Label.m"; sourceTree = "<group>"; };
 		F2DE9E951B222ACB00FEBE5F /* MMVisualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVisualViewController.h; sourceTree = "<group>"; };
 		F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVisualViewController.m; sourceTree = "<group>"; };
 		F2DE9E981B222BC200FEBE5F /* MMPlaybackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlaybackController.h; sourceTree = "<group>"; };
@@ -2013,6 +2016,8 @@
 				F2DE9EC21B22B64C00FEBE5F /* GPUImage View Controllers */,
 				F2DE9EBC1B2262B500FEBE5F /* MMAudioScopeViewController.h */,
 				F2DE9EBD1B2262B500FEBE5F /* MMAudioScopeViewController.m */,
+				F2D06FA21B290B0C00AA7708 /* MMAudioScopeViewController+Label.h */,
+				F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */,
 				F2DE9EC31B22B86700FEBE5F /* MMAudioScopeViewController+Layer.h */,
 				F2DE9EC41B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m */,
 				F2DE9EC61B22BA9600FEBE5F /* MMAudioScopeViewController+Path.h */,
@@ -4082,6 +4087,7 @@
 				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
 				F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */,
 				F2DE9EC51B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m in Sources */,
+				F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */,
 				F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */,
 				F2DE9E971B222ACB00FEBE5F /* MMVisualViewController.m in Sources */,
 				F2DE9EBE1B2262B500FEBE5F /* MMAudioScopeViewController.m in Sources */,

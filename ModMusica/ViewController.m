@@ -33,6 +33,7 @@
     if (_playing != old) {
         if (_playing) {
             [self.playbackController startPlayback];
+            self.scopeViewController.nowPlaying = self.playbackController.patternName;
         }else{
             [self.playbackController stopPlayback];
         }
@@ -51,8 +52,6 @@
     [super viewDidLoad];
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
-    self.stepCounter = [[MMStepCounter alloc]init];
-    self.stepCounter.delegate = self;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.scopeViewController = [storyboard instantiateViewControllerWithIdentifier:@"AudioScopeViewController"];
     self.paneViewController = self.scopeViewController;
@@ -69,9 +68,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id dest = segue.destinationViewController;
-    if ([dest isKindOfClass:[MMVisualViewController class]]) {
-        self.visualViewController = dest;
-    }else{
+    if ([dest isKindOfClass:[MMAudioScopeViewController class]]) {
         self.scopeViewController = dest;
     }
 }
@@ -81,6 +78,8 @@
 {
     [self.scopeViewController randomizeColors];
     [self.scopeViewController beginUpdates];
+    self.stepCounter = [[MMStepCounter alloc]init];
+    self.stepCounter.delegate = self;
     [self.stepCounter startUpdates];
 }
 
@@ -88,25 +87,25 @@
 {
     [self.scopeViewController endUpdates];
     [self.stepCounter endUpdates];
+    self.stepCounter = nil;
 }
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
-    [self.visualViewController playback:sender clockDidChange:clock];
+    
 }
 
 - (void)playback:(id)sender detectedUserTempo:(double)tempo
 {
-    [self.scopeViewController showBeatsPerMinute:tempo];
+    self.scopeViewController.beatsPerMinute = tempo;
 }
 
 #pragma mark - MMStepCounterDelegate
+
 - (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
 {
-    [self.scopeViewController showStepsPerMinute:stepsPerMinute];
-    if (stepsPerMinute > 1 && self.stepCounter.isUpdating) {
-        [PdBase sendFloat:stepsPerMinute toReceiver:kSetTempoReceiver];
-    }
+    self.scopeViewController.stepsPerMinute = stepsPerMinute;
+    [PdBase sendFloat:stepsPerMinute toReceiver:kSetTempoReceiver];
 }
 
 

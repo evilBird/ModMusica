@@ -67,7 +67,7 @@ static NSInteger kTapCount;
     
     if (kTapCount > 1) {
         [PdBase sendBangToReceiver:@"tapTempo"];
-    }else if (kTapCount == 1){
+    }else if (kTapCount == 0){
         [self showDetails];
     }
     

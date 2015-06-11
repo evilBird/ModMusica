@@ -9,6 +9,7 @@
 #import "MMAudioScopeViewController.h"
 #import "MMAudioScopeViewController+Layer.h"
 #import "MMAudioScopeViewController+Path.h"
+#import "MMAudioScopeViewController+Label.h"
 #import "UIColor+HBVHarmonies.h"
 #import "UIView+Layout.h"
 
@@ -22,142 +23,76 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
 @property (nonatomic,strong)        NSMutableArray          *shapeLayers;
 @property (nonatomic,strong)        NSMutableArray          *oldPaths;
 @property (nonatomic,strong)        NSMutableArray          *oldColors;
-
-@property (nonatomic,strong)        UILabel                 *titleLabel;
-@property (nonatomic,strong)        UILabel                 *nowPlayingLabel;
 @property (nonatomic,strong)        UIVisualEffectView      *effectsView;
-@property (nonatomic,strong)        UIView                  *myContentView;
 @end
 
 @implementation MMAudioScopeViewController
 
 - (void)showDetails
 {
-    self.titleLabel.alpha = 1.0;
-    self.label.alpha = 1.0;
-    self.nowPlayingLabel.alpha = 1.0;
-    
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideTitle) object:nil];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideNowPlaying) object:nil];
-    [self performSelector:@selector(hideLabel) withObject:nil afterDelay:10];
-    [self performSelector:@selector(hideTitle) withObject:nil afterDelay:10];
-    [self performSelector:@selector(hideNowPlaying) withObject:nil afterDelay:10];
-    
-}
-
-- (NSString *)messageTextPlaying:(BOOL)playing
-{
-    NSString *result = nil;
-    NSString *start = NSLocalizedString(kStartMessage, nil);
-    NSString *stop = NSLocalizedString(kStopMessage, nil);
-    NSString *tap = NSLocalizedString(kTapTempoMessage, nil);
-    
-    if (playing) {
-        result = [NSString stringWithFormat:@"%@\n\n%@",tap,stop];
-    }else{
-        result = [NSString stringWithFormat:@"%@",start];
-    }
-    
-    return result;
-}
-
-- (void)hideNowPlaying
-{
-    self.nowPlayingLabel.alpha = 0.0;
-}
-
-- (void)hideTitle
-{
-    self.titleLabel.alpha = 0.0;
-}
-
-- (void)showLabel
-{
-    self.label.alpha = 1.0;
-}
-
-- (void)hideLabel
-{
-    self.label.alpha = 0.0;
-    self.label.text = kStopMessage;
+    [self showAllForDuration:10];
 }
 
 - (void)beginUpdates
 {
+    self.updating = YES;
+    
     for (MMScopeDataSource *source in self.scopeDataSources) {
         [source beginUpdates];
     }
     
-    
-    self.label.text = [self messageTextPlaying:YES];
-    
     [UIView animateWithDuration:10.0
-                          delay:10.0
+                          delay:5
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         self.label.alpha = 0.0;
-                         self.titleLabel.alpha = 0.0;
-                         self.nowPlayingLabel.alpha = 0.0;
+                         [self hideAll];
                      } completion:NULL];
 
 }
 
 - (void)endUpdates
 {
+    self.updating = NO;
+    
     for (MMScopeDataSource *source in self.scopeDataSources) {
         [source endUpdates];
     }
-    self.label.text = [self messageTextPlaying:NO];
-    self.label.alpha = 1.0;
-    self.titleLabel.alpha = 1.0;
-    self.nowPlayingLabel.alpha = 0.0;
+    
+    [self showAll];
 }
 
-- (void)showStepsPerMinute:(double)steps
+- (void)setStepsPerMinute:(double)stepsPerMinute
 {
-    NSString *spm = [NSString stringWithFormat:@"%.f steps/min",steps];
-    NSString *other = [self messageTextPlaying:YES];
-    NSString *full = [NSString stringWithFormat:@"%@\n\n%@",spm,other];
-    self.label.text = full;
-    [self showLabel];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
-    [self performSelector:@selector(hideLabel) withObject:nil afterDelay:5];
+    _stepsPerMinute = stepsPerMinute;
+    [self showStepsPerMinute];
 }
 
-- (void)showBeatsPerMinute:(double)bpm
+- (void)setBeatsPerMinute:(double)beatsPerMinute
 {
-    NSString *tempo = [NSString stringWithFormat:@"%.f beats/min",bpm];
-    NSString *other = [self messageTextPlaying:YES];
-    NSString *full = [NSString stringWithFormat:@"%@\n\n%@",tempo,other];
-    self.label.text = full;
-    [self showLabel];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabel) object:nil];
-    [self performSelector:@selector(hideLabel) withObject:nil afterDelay:5];
+    _beatsPerMinute = beatsPerMinute;
+    [self showBeatsPerMinute];
 }
-
-- (void)showNowPlaying:(NSString *)nowPlaying
+- (void)setNowPlaying:(NSString *)nowPlaying
 {
-    self.nowPlayingLabel.text = [NSString stringWithFormat:@"now playing: %@",nowPlaying];
-    self.nowPlayingLabel.alpha = 1.0;
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideNowPlaying) object:nil];
-    [self performSelector:@selector(hideNowPlaying) withObject:nil afterDelay:5];
+    _nowPlaying = nowPlaying;
+    [self showNowPlaying];
 }
 
 - (void)randomizeColors
 {
     [self randomizeColorsInShapeLayers:self.shapeLayers.mutableCopy];
     [self randomizeAlphasInShapeLayers:self.shapeLayers coefficient:0.2];
-    self.view.backgroundColor = [UIColor randomColor];
-    //self.myContentView.backgroundColor = self.view.backgroundColor;
-    self.label.textColor = [[self.myContentView backgroundColor]complement];
-    self.titleLabel.textColor = [[self.myContentView backgroundColor]complement];
-    self.nowPlayingLabel.textColor = [self.titleLabel.textColor jitterWithPercent:5];
+    UIColor *baseColor = [UIColor randomColor];
+    self.view.backgroundColor = baseColor;
+    self.label.textColor = [[baseColor complement]jitterWithPercent:5];
+    self.titleLabel.textColor = [[baseColor complement]jitterWithPercent:5];
+    self.nowPlayingLabel.textColor = [[baseColor complement] jitterWithPercent:5];
 }
 
 - (MMScopeDataSource *)newScopeDataSource:(NSString *)table
 {
-    MMScopeDataSource *scopeData = [[MMScopeDataSource alloc]initWithUpdateInterval:0.1 sourceTable:table];
+    CGFloat updateInterval = 0.1;
+    MMScopeDataSource *scopeData = [[MMScopeDataSource alloc]initWithUpdateInterval:updateInterval sourceTable:table];
     scopeData.dataConsumer = self;
     return scopeData;
 }
@@ -178,53 +113,6 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
 }
 
 
-- (void)configureLabels
-{
-    self.label = [UILabel new];
-    self.label.translatesAutoresizingMaskIntoConstraints = NO;
-    self.label.numberOfLines = 8;
-    self.label.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]];
-    self.label.textAlignment = NSTextAlignmentCenter;
-    self.label.textColor = [self.view.backgroundColor complement];
-    self.label.text = [self messageTextPlaying:NO];
-    
-    self.titleLabel = [UILabel new];
-    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]*2.7];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.textColor = [self.view.backgroundColor complement];
-    self.titleLabel.text = NSLocalizedString(@"ModMusica", nil);
-    
-    self.nowPlayingLabel = [UILabel new];
-    self.nowPlayingLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.nowPlayingLabel.textAlignment = NSTextAlignmentCenter;
-    self.nowPlayingLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]];
-    self.nowPlayingLabel.textColor = [self.titleLabel.textColor jitterWithPercent:10];
-    
-}
-
-- (void)configureLabelConstraints
-{
-    [self.view addConstraint:[self.label alignCenterXToSuperOffset:0]];
-    [self.view addConstraint:[self.label pinEdge:LayoutEdge_Bottom
-                                          toEdge:LayoutEdge_Bottom
-                                          ofView:self.view
-                                       withInset:-20]];
-    [self.view addConstraint:[self.titleLabel alignCenterXToSuperOffset:0]];
-    
-    [self.view addConstraint:[self.titleLabel pinEdge:LayoutEdge_Top
-                                               toEdge:LayoutEdge_Top
-                                               ofView:self.view
-                                            withInset:28]];
-    [self.view addConstraint:[self.nowPlayingLabel pinEdge:LayoutEdge_Top
-                                                    toEdge:LayoutEdge_Bottom
-                                                    ofView:self.titleLabel
-                                                 withInset:8]];
-    [self.view addConstraint:[self.nowPlayingLabel alignCenterXToSuperOffset:0]];
-    
-    [self.view layoutIfNeeded];
-}
-
 - (void)setupViews
 {
     UIVisualEffect *blur = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
@@ -233,12 +121,6 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     self.effectsView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.effectsView];
     [self.view addConstraints:[self.effectsView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
-    
-    //self.myContentView = [UIView new];
-    //self.myContentView.translatesAutoresizingMaskIntoConstraints = NO;
-    //[self.effectsView.contentView addSubview:self.myContentView];
-    //[self.view addConstraints:[self.myContentView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
-    
 }
 
 - (void)viewDidLoad {
@@ -252,7 +134,6 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     [self.effectsView.contentView addSubview:self.titleLabel];
     [self.effectsView.contentView addSubview:self.nowPlayingLabel];
     [self configureLabelConstraints];
-    
     // Do any additional setup after loading the view.
 }
 

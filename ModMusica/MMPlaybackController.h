@@ -27,6 +27,7 @@
 @property (nonatomic,weak)                  id<MMPlaybackDelegate>  delegate;
 @property (nonatomic,strong)                PdDispatcher            *dispatcher;
 @property (nonatomic,strong)                MMPatternLoader         *patternLoader;
+@property (nonatomic,strong)                NSString                *patternName;
 @property                                   void                    *patch;
 @property (nonatomic,getter=isPlaying)      BOOL                    playing;
 
