@@ -8,10 +8,15 @@
 
 #import "AppDelegate.h"
 #import <PdAudioController.h>
+#import "MMPlaybackController.h"
+
+#define SAMPLE_RATE 44100
+#define TICKS_PER_BUFFER 64
 
 @interface AppDelegate ()
 
 @property (nonatomic,strong)PdAudioController *audioController;
+@property (nonatomic,getter=isPlaying) BOOL playing;
 
 @end
 
@@ -22,11 +27,18 @@
     // Override point for customization after application launch.
     [[UIApplication sharedApplication]setIdleTimerDisabled:YES];
     self.audioController = [[PdAudioController alloc]init];
-    [self.audioController configurePlaybackWithSampleRate:44100 numberChannels:2 inputEnabled:YES mixingEnabled:YES];
-    [self.audioController configureTicksPerBuffer:64];
+    [self.audioController configurePlaybackWithSampleRate:SAMPLE_RATE numberChannels:2 inputEnabled:YES mixingEnabled:YES];
+    [self.audioController configureTicksPerBuffer:TICKS_PER_BUFFER];
     self.audioController.active = YES;
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(handlePlaybackDidChange:) name:kPlaybackDidChangeNotification object:nil];
     return YES;
+}
+
+- (void)handlePlaybackDidChange:(NSNotification *)notification
+{
+    NSDictionary *obj = notification.object;
+    self.playing = [obj[@"playback"]boolValue];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -37,6 +49,9 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    if (self.isPlaying) {
+        self.audioController.active = YES;
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -45,10 +60,13 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    self.audioController.active = YES;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    self.audioController.active = NO;
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:kPlaybackDidChangeNotification object:nil];
 }
 
 @end

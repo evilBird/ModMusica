@@ -13,7 +13,7 @@
 #import "MMScopeDataSource.h"
 
 static float kDrumVolume = 0.35;
-static float kBassVolume = 0.25;
+static float kBassVolume = 0.3;
 static float kSynthVolume = 0.25;
 static float kSamplerVolume = 0.30;
 
@@ -34,6 +34,20 @@ void helmholtz_tilde_setup(void);
 void bonk_tilde_setup(void);
 
 @implementation MMPlaybackController
+
+- (void)setPlaying:(BOOL)playing
+{
+    if (playing != _playing) {
+        [self sendPlaybackNotification:playing];
+    }
+    
+    _playing = playing;
+}
+
+- (void)sendPlaybackNotification:(BOOL)playback
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kPlaybackDidChangeNotification object:nil userInfo:@{@"playback":@(playback)}];
+}
 
 - (instancetype)init
 {
@@ -93,7 +107,7 @@ void bonk_tilde_setup(void);
 - (void)commonInit
 {
     self.patternLoader = [[MMPatternLoader alloc]init];
-    self.patterns = @[@"mario",@"fantasy",@"mega",@"menace"];
+    self.patterns = @[@"mario",@"fantasy",@"mega",@"menace",@"sad"];
     kIdx = -1;
     kPrev = 0;
     [self initalizePd];
@@ -164,9 +178,9 @@ void bonk_tilde_setup(void);
 - (void)changeSectionMaybe
 {
     NSInteger rand = arc4random_uniform(100);
-    if (rand > 80 && rand <= 94) {
+    if (rand > 65 && rand <= 90) {
         [self.patternLoader playNextSection];
-    }else if (rand > 94){
+    }else if (rand > 90){
         [self.patternLoader playPreviousSection];
     }
 }

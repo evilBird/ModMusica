@@ -11,6 +11,7 @@
 #import "MMStepCounter.h"
 #import "ViewController+Touch.h"
 #import "ViewController+Module.h"
+#import "MMAudioScopeViewController+Random.h"
 
 #define kSetTempoReceiver @"manualSetTempo"
 
@@ -93,7 +94,9 @@
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
-    
+    if (clock%64 == 0) {
+        [self.scopeViewController randomizeColors];
+    }
 }
 
 - (void)playback:(id)sender detectedUserTempo:(double)tempo

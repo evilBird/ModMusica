@@ -16,7 +16,8 @@
     self.backgroundColor = [UIColor clearColor];
     self.tintColor = [UIColor clearColor];
     self.clearsContextBeforeDrawing = YES;
-    _mainColor = [[UIColor blueColor]adjustAlpha:0.7];
+    _mainColor = [UIColor blueColor];
+    self.alpha = 0.8;
 }
 
 - (instancetype)init
@@ -57,7 +58,7 @@
         sectionRect.origin.y = i * rectHt + ((i + 1) * kPad);
         sectionRect.size.width = self.bounds.size.width;
         sectionRect.size.height = rectHt;
-        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:sectionRect cornerRadius:2];
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:sectionRect cornerRadius:1];
         [path stroke];
         [path fill];
     }

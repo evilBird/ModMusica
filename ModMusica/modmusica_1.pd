@@ -3192,7 +3192,7 @@
 #X restore 932 -36 pd synth;
 #X obj 545 -122 noise~;
 #X obj 545 -94 s~ theNoise;
-#N canvas 33 23 1332 748 randomness 0;
+#N canvas 33 23 1332 748 randomness 1;
 #X obj 29 355 s drumPattern;
 #X obj 29 184 loadbang;
 #X text 379 393 pattern 0-4;
@@ -3313,8 +3313,8 @@
 -1 -1;
 #X obj 1146 74 random 5;
 #X obj 790 208 random 8;
-#X obj 645 -104 mod 64;
 #X obj 641 24 mod 4;
+#X obj 645 -104 mod 4;
 #X connect 1 0 69 0;
 #X connect 3 0 4 0;
 #X connect 4 0 69 0;
@@ -3341,7 +3341,7 @@
 #X connect 19 0 32 0;
 #X connect 19 0 50 0;
 #X connect 19 0 70 0;
-#X connect 19 0 118 0;
+#X connect 19 0 119 0;
 #X connect 20 0 19 1;
 #X connect 21 0 93 0;
 #X connect 23 0 22 0;
@@ -3417,7 +3417,7 @@
 #X connect 92 0 65 0;
 #X connect 92 0 72 0;
 #X connect 93 0 91 0;
-#X connect 93 0 119 0;
+#X connect 93 0 118 0;
 #X connect 97 0 96 0;
 #X connect 98 0 95 0;
 #X connect 99 0 94 0;
@@ -3441,8 +3441,8 @@
 #X connect 115 0 36 0;
 #X connect 116 0 48 0;
 #X connect 117 0 47 0;
-#X connect 118 0 21 0;
-#X connect 119 0 41 0;
+#X connect 118 0 41 0;
+#X connect 119 0 21 0;
 #X restore 830 38 pd randomness;
 #N canvas 476 85 697 664 improvise 0;
 #X obj 69 13 r \$0-note0;
@@ -4041,7 +4041,7 @@
 #X obj 606 95 random 16;
 #X obj 588 38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 556 118 1 1 1 15 1 1 1 15 1 1 1 75 1 1 1 15;
+#X msg 556 118 1 75 1 1 1 15 1 1 1 15 1 1 1 15 1 1;
 #N canvas 710 242 450 300 toTremelo 0;
 #X obj 75 -66 inlet~;
 #X obj 76 167 *~;
@@ -4279,8 +4279,8 @@
 #X obj 553 -81 r \$0-timer;
 #X msg 551 -34 seed \$1;
 #X obj 551 -58 mod 95;
-#X msg 411 14 25 4 4 4 75 4 4 4 25 4 4 4 25 4 4 4;
-#X msg 1274 20 4 4 4 25 4 4 4 25 4 1 4 75 4 4 4 25;
+#X msg 411 14 4 4 25 4 4 4 25 4 4 4 25 4 4 4 75 4;
+#X msg 1274 20 4 25 4 4 4 25 4 1 4 75 4 4 4 25 4 4;
 #X obj 558 205 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 318 489 s \$0-armSampler2;

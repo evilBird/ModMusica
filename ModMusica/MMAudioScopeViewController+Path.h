@@ -10,7 +10,6 @@
 
 @interface MMAudioScopeViewController (Path)
 
-- (NSArray *)setupPathBuffers:(NSInteger)count;
 - (UIBezierPath *)pathWithScopeData:(NSArray *)data;
 
 @end

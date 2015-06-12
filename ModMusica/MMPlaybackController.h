@@ -12,6 +12,8 @@
 #import <PdDispatcher.h>
 #import "MMPatternLoader.h"
 
+static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.playbackDidChange";
+
 @protocol MMPlaybackDelegate
 @optional
 
@@ -33,7 +35,6 @@
 
 - (void)startPlayback;
 - (void)stopPlayback;
-
 - (void)playPattern:(NSString *)patternName;
 
 @end

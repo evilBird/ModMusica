@@ -12,20 +12,22 @@
 
 - (CAShapeLayer *)newShapeLayer;
 
-- (void)randomizeColorsInShapeLayers:(NSArray *)shapeLayers;
-- (void)randomizeAlphasInShapeLayers:(NSArray *)shapeLayers coefficient:(CGFloat)coeff;
-
 - (void)animateLayer:(CAShapeLayer *)shapeLayer
-             newPath:(UIBezierPath *)newPath
-             oldPath:(UIBezierPath *)oldPath
+           transform:(CGAffineTransform)transform
             duration:(CGFloat)duration;
 
+- (void)animateLayer:(CAShapeLayer *)shapeLayer
+                path:(UIBezierPath *)path
+            duration:(CGFloat)duration;
 
+- (void)animateLayer:(CAShapeLayer *)shapeLayer toIdentityFromTransform:(CGAffineTransform)transform duration:(CGFloat)duration;
 
-- (void)addGradientToLayer:(CALayer *)layer
-                withColors:(NSArray *)colors
-                 locations:(NSArray *)locations;
+- (void)animateLayerZPosition:(CAShapeLayer *)shapeLayer
+            duration:(CGFloat)duration;
 
+- (void)animateLayer:(CAShapeLayer *)shapeLayer
+             opacity:(CGFloat)opacity
+            duration:(CGFloat)duration;
 
 
 @end

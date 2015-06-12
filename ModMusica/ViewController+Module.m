@@ -8,6 +8,7 @@
 
 #import "ViewController+Module.h"
 #import "MMModuleViewController.h"
+#import "MMAudioScopeViewController+Random.h"
 
 @implementation ViewController (Module)
 
@@ -24,7 +25,7 @@
 #pragma mark - MMModuleViewControllerDatasource
 - (NSArray *)modulesForModuleView:(id)sender
 {
-    return @[@{@"title":@"mario",@"purchased":@(1)},@{@"title":@"fantasy",@"purchased":@(1)},@{@"title":@"mega",@"purchased":@(1)},@{@"title":@"menace",@"purchased":@(1)}];
+    return @[@{@"title":@"mario",@"purchased":@(1)},@{@"title":@"fantasy",@"purchased":@(1)},@{@"title":@"mega",@"purchased":@(1)},@{@"title":@"menace",@"purchased":@(1)},@{@"title":@"sad",@"purchased":@(1)}];
 }
 
 #pragma mark - MMModuleViewControllerDelegate
@@ -34,6 +35,7 @@
     [self setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:NO completion:^{
         [weakself.playbackController playPattern:moduleName];
         weakself.scopeViewController.nowPlaying = moduleName;
+        [weakself.scopeViewController randomizeColors];
         if (!weakself.isPlaying) {
             weakself.playing = YES;
         }

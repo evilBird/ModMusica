@@ -47,11 +47,16 @@ static NSTimeInterval kTime = 10;
     self.titleLabel.textColor = [self.view.backgroundColor complement];
     self.titleLabel.text = NSLocalizedString(@"ModMusica", nil);
     self.titleLabel.contentMode = UIViewContentModeTop;
+    
     self.nowPlayingLabel = [UILabel new];
     self.nowPlayingLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.nowPlayingLabel.textAlignment = NSTextAlignmentCenter;
     self.nowPlayingLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:[UIFont labelFontSize]];
     self.nowPlayingLabel.textColor = [self.titleLabel.textColor jitterWithPercent:5];
+    
+    [self.contentView addSubview:self.label];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.nowPlayingLabel];
     
     [self showAll];
 }
@@ -127,7 +132,7 @@ static NSTimeInterval kTime = 10;
     self.nowPlayingLabel.alpha = 1.0;
     self.label.text = [self defaultLabelText];
     self.label.alpha = 1.0;
-    self.hamburgerButton.alpha = 1.0;
+    self.hamburgerButton.alpha = 0.8;
 }
 
 - (void)showAllForDuration:(NSTimeInterval)duration

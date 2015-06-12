@@ -8,6 +8,7 @@
 
 #import "MMAudioScopeViewController+Layer.h"
 #import "UIColor+HBVHarmonies.h"
+#import "MMAudioScopeViewController+Depth.h"
 
 @implementation MMAudioScopeViewController (Layer)
 
@@ -21,93 +22,88 @@
     return shapeLayer;
 }
 
-- (void)randomizeColorsInShapeLayers:(NSArray *)shapeLayers
+- (void)animateLayer:(CAShapeLayer *)shapeLayer
+                path:(UIBezierPath *)path
+            duration:(CGFloat)duration
 {
-    for (CAShapeLayer *layer in shapeLayers) {
-        UIColor *randomColor = [UIColor randomColor];
-        UIColor *myColor = [randomColor adjustAlpha:0.1333];
-        layer.fillColor = myColor.CGColor;
-        layer.strokeColor = randomColor.CGColor;
-        layer.lineWidth = (arc4random_uniform(4) + 2)/2.0;
-    }
+    CABasicAnimation *anim = [[CABasicAnimation alloc]init];
+    anim.keyPath = @"path";
+    CAShapeLayer *presentationLayer = shapeLayer.presentationLayer;
+    anim.fromValue = (__bridge id)(presentationLayer.path);
+    anim.toValue = (__bridge id)(path.CGPath);
+    anim.duration = duration;
+    anim.removedOnCompletion = YES;
+    [shapeLayer addAnimation:anim forKey:@"scopeDataPath"];
+    shapeLayer.path = path.CGPath;
 }
 
-- (void)randomizeAlphasInShapeLayers:(NSArray *)shapeLayers coefficient:(CGFloat)coeff
+- (void)animateLayer:(CAShapeLayer *)shapeLayer toIdentityFromTransform:(CGAffineTransform)transform duration:(CGFloat)duration
 {
-    for (CAShapeLayer *layer in shapeLayers) {
-        CGFloat randomAlpha = arc4random_uniform(100) * 0.01 * coeff;
-        CGColorRef col = layer.fillColor;
-        UIColor *prevColor = [UIColor colorWithCGColor:col];
-        UIColor *adjustedColor = [prevColor adjustAlpha:randomAlpha];
-        layer.fillColor = adjustedColor.CGColor;
-    }
+    NSString *key = @"affineTransform";
+    CAShapeLayer *temp = [CAShapeLayer layer];
+    temp.affineTransform = transform;
+    CABasicAnimation *anim = [[CABasicAnimation alloc]init];
+    anim.keyPath = key;
+    anim.fromValue = [NSValue valueWithCGAffineTransform:transform];
+    anim.duration = duration;
+    temp.affineTransform = CGAffineTransformIdentity;
+    anim.toValue = [NSValue valueWithCGAffineTransform:CGAffineTransformIdentity];
+    anim.removedOnCompletion = YES;
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    [shapeLayer addAnimation:anim forKey:@"layerOffset"];
+    shapeLayer.affineTransform = transform;
+}
+
+- (void)animateLayerZPosition:(CAShapeLayer *)shapeLayer
+            duration:(CGFloat)duration
+{
+    NSString *key = @"zPosition";
+    CABasicAnimation *anim = [[CABasicAnimation alloc]init];
+    anim.keyPath = key;
+    anim.toValue = @(kMinZPosition);
+    anim.fromValue = @(kMaxZPosition);
+    anim.duration = duration;
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    anim.removedOnCompletion = YES;
+    [shapeLayer addAnimation:anim forKey:@"perspective"];
+    shapeLayer.zPosition = kMinZPosition;
 }
 
 - (void)animateLayer:(CAShapeLayer *)shapeLayer
-             newPath:(UIBezierPath *)newPath
-             oldPath:(UIBezierPath *)oldPath
+               opacity:(CGFloat)opacity
             duration:(CGFloat)duration
 {
-    
-    if (!oldPath) {
-        shapeLayer.path = newPath.CGPath;
-        return;
-    }
-    
+    NSString *key = @"opacity";
     CABasicAnimation *anim = [[CABasicAnimation alloc]init];
-    anim.keyPath = @"path";
-    anim.fromValue = (__bridge id)(oldPath.CGPath);
-    anim.toValue = (__bridge id)(newPath.CGPath);
+    anim.keyPath = key;
+    CAShapeLayer *presentationLayer = shapeLayer.presentationLayer;
+    anim.fromValue = [presentationLayer valueForKey:key];
+    anim.toValue = @(opacity);
     anim.duration = duration;
-    [shapeLayer addAnimation:anim forKey:@"scopeData"];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    [shapeLayer addAnimation:anim forKey:@"layerOpacity"];
+    shapeLayer.opacity = opacity;
 }
 
 - (void)animateLayer:(CAShapeLayer *)shapeLayer
            transform:(CGAffineTransform)transform
             duration:(CGFloat)duration
 {
+    NSString *key = @"affineTransform";
     CABasicAnimation *anim = [[CABasicAnimation alloc]init];
+    CAShapeLayer *presentationLayer = shapeLayer.presentationLayer;
     anim.keyPath = @"affineTransform";
-    anim.fromValue = [NSValue valueWithCGAffineTransform:shapeLayer.affineTransform];
-    anim.toValue = [NSValue valueWithCGAffineTransform:transform];
+    anim.fromValue = [presentationLayer valueForKey:key];
+    CAShapeLayer *tempLayer = [[CAShapeLayer alloc]init];
+    tempLayer.affineTransform = transform;
+    anim.toValue = [tempLayer valueForKey:key];
     anim.duration = duration;
     anim.removedOnCompletion = NO;
+    [shapeLayer addAnimation:anim forKey:@"scopeDataTransform"];
     shapeLayer.affineTransform = transform;
-    [shapeLayer addAnimation:anim forKey:@"scopeData"];
 }
 
 
-- (void)addGradientToLayer:(CALayer *)layer
-                withColors:(NSArray *)colors
-                 locations:(NSArray *)locations
-{
-    /*
-    if (!colors.count || !locations.count || colors.count != locations.count) {
-        return;
-    }
-    
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    NSMutableArray *myColors = [NSMutableArray array];
-    NSArray *gradientColors = nil;
-    for (UIColor *color in colors) {
-        
-    }
-    
-    [NSArray arrayWithObjects:
-                               (id)[UIColor blueColor].CGColor,
-                               (id)gradientColor.CGColor,
-                               (id)[UIColor redColor].CGColor, nil];
-    CGFloat gradientLocations[] = {0, 0.5, 1};
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFArrayRef)gradientColors, gradientLocations);
-    
-    gradientLayer.colors = (__bridge NSArray *)(gradient);
-    
-    gradientLayer.startPoint = CGPointMake(0.0,0.7);
-    gradientLayer.endPoint = CGPointMake(1,-0.1);
-    [self.layer addSublayer:gradientLayer];
-    gradientLayer.mask = arc;
-     */
-}
+
 
 @end

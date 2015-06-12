@@ -10,16 +10,6 @@
 
 @implementation MMAudioScopeViewController (Path)
 
-- (NSArray *)setupPathBuffers:(NSInteger)count
-{
-    NSMutableArray *oldPaths = [NSMutableArray array];
-    
-    for (NSUInteger i = 0; i < count; i ++) {
-        [oldPaths addObject:[UIBezierPath bezierPath]];
-    }
-    
-    return oldPaths;
-}
 
 - (UIBezierPath *)pathWithScopeData:(NSArray *)data
 {
@@ -29,25 +19,18 @@
     CGPoint point = CGPointZero;
     point.y = self.view.bounds.size.height/2;
     [path moveToPoint:point];
-    double sum = 0;
     for (NSUInteger i = 0; i < data.count; i ++) {
         NSNumber *sample = data[i];
-        float val = sample.floatValue * 0.8333;
+        float val = sample.floatValue * 1;
         double norm = (val+1.0 * 0.5);
-        sum+=val;
+        norm += (double)(arc4random_uniform(100) * 0.001);
         point.x = x_scale * (double)i;
         point.y = mySize.height - (norm * mySize.height);
-        
-
         [path addLineToPoint:point];
     }
     point.x = self.view.bounds.size.width;
     point.y = self.view.bounds.size.height/2;
     [path addLineToPoint:point];
-    
-    if (sum == 0) {
-        return nil;
-    }
     
     return path;
 }

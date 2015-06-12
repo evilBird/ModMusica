@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 
 static NSString *kUpdateScopes = @"updateScopes";
-static double sampsPerWidth = 0.1;
+static double sampsPerWidth = 0.2;
 
 @interface MMScopeDataSource ()
 
@@ -51,6 +51,7 @@ static double sampsPerWidth = 0.1;
                                                       selector:@selector(handleUpdateTimer:)
                                                       userInfo:nil
                                                        repeats:YES];
+    self.updateTimer.tolerance = (self.interval * 0.05);
     
 }
 

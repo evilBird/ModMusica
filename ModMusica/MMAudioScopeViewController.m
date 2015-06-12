@@ -10,6 +10,8 @@
 #import "MMAudioScopeViewController+Layer.h"
 #import "MMAudioScopeViewController+Path.h"
 #import "MMAudioScopeViewController+Label.h"
+#import "MMAudioScopeViewController+Random.h"
+#import "MMAudioScopeViewController+Depth.h"
 #import "UIColor+HBVHarmonies.h"
 #import "UIView+Layout.h"
 
@@ -20,22 +22,21 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
 @interface MMAudioScopeViewController ()
 
 @property (nonatomic,strong)        NSMutableArray          *scopeDataSources;
-@property (nonatomic,strong)        NSMutableArray          *shapeLayers;
-@property (nonatomic,strong)        NSMutableArray          *oldPaths;
-@property (nonatomic,strong)        NSMutableArray          *oldColors;
 @property (nonatomic,strong)        UIVisualEffectView      *effectsView;
+
+
 @end
 
 @implementation MMAudioScopeViewController
 
-- (void)tapInHamburgerButton:(id)sender
-{
-    [self.delegate showSettings:self];
-}
+#pragma mark - Public Methods
 
 - (void)showDetails
 {
-    [self showAllForDuration:10];
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         [self showAllForDuration:10];
+                     }];
 }
 
 - (void)beginUpdates
@@ -45,7 +46,7 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     for (MMScopeDataSource *source in self.scopeDataSources) {
         [source beginUpdates];
     }
-    
+    [self startUpdatingDepth];
     [UIView animateWithDuration:10.0
                           delay:5
                         options:UIViewAnimationOptionCurveEaseOut
@@ -64,6 +65,7 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     }
     
     [self showAll];
+    [self stopUpdatingDepth];
 }
 
 - (void)setStepsPerMinute:(double)stepsPerMinute
@@ -83,17 +85,14 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     [self showNowPlaying];
 }
 
-- (void)randomizeColors
+- (void)tapInHamburgerButton:(id)sender
 {
-    [self randomizeColorsInShapeLayers:self.shapeLayers.mutableCopy];
-    [self randomizeAlphasInShapeLayers:self.shapeLayers coefficient:0.2];
-    UIColor *baseColor = [UIColor randomColor];
-    self.view.backgroundColor = baseColor;
-    self.label.textColor = [[baseColor complement]jitterWithPercent:5];
-    self.titleLabel.textColor = [[baseColor complement]jitterWithPercent:5];
-    self.nowPlayingLabel.textColor = [[baseColor complement] jitterWithPercent:5];
-    self.hamburgerButton.mainColor = self.titleLabel.textColor;
+    [self.delegate showSettings:self];
 }
+
+#pragma mark - Private Methods
+
+#pragma mark - ScopeData config
 
 - (MMScopeDataSource *)newScopeDataSource:(NSString *)table
 {
@@ -101,68 +100,6 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     MMScopeDataSource *scopeData = [[MMScopeDataSource alloc]initWithUpdateInterval:updateInterval sourceTable:table];
     scopeData.dataConsumer = self;
     return scopeData;
-}
-
-- (void)configureLayersAndData
-{
-    self.scopeDataSources = [NSMutableArray array];
-    self.shapeLayers = [NSMutableArray array];
-    NSArray *scopeNames = [MMScopeDataSource allTableNames];
-    self.oldPaths = [self setupPathBuffers:scopeNames.count].mutableCopy;
-    for (NSString *name in scopeNames) {
-        MMScopeDataSource *datasource = [self newScopeDataSource:name];
-        [self.scopeDataSources addObject:datasource];
-        CAShapeLayer *layer = [self newShapeLayer];
-        [self.shapeLayers addObject:layer];
-        [self.effectsView.contentView.layer addSublayer:layer];
-    }
-}
-
-
-- (void)setupViews
-{
-    UIVisualEffect *blur = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-    
-    self.effectsView = [[UIVisualEffectView alloc]initWithEffect:blur];
-    self.effectsView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.effectsView];
-    [self.view addConstraints:[self.effectsView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
-}
-
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-    [self setupViews];
-    [self configureLayersAndData];
-    [self.view setBackgroundColor:[UIColor randomColor]];
-    [self configureLabels];
-    [self.effectsView.contentView addSubview:self.label];
-    [self.effectsView.contentView addSubview:self.titleLabel];
-    [self.effectsView.contentView addSubview:self.nowPlayingLabel];
-    [self configureLabelConstraints];
-    
-    self.hamburgerButton = [[HamburgerButton alloc]init];
-    self.hamburgerButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.hamburgerButton addTarget:self action:@selector(tapInHamburgerButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.effectsView.contentView addSubview:self.hamburgerButton];
-    [self.view addConstraint:[self.hamburgerButton pinHeight:30]];
-    [self.view addConstraint:[self.hamburgerButton pinWidth:40]];
-    [self.view addConstraint:[self.hamburgerButton alignAxis:LayoutAxis_Vertical
-                                                      toAxis:LayoutAxis_Vertical
-                                                      ofView:self.titleLabel
-                                                      offset:0]];
-    
-    [self.view addConstraint:[self.hamburgerButton pinEdge:LayoutEdge_Left
-                                                    toEdge:LayoutEdge_Left
-                                                    ofView:self.hamburgerButton.superview withInset:20]];
-    [self.view layoutIfNeeded];
-    self.hamburgerButton.mainColor = self.titleLabel.textColor;
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - MMScopeDataConsumer
@@ -175,24 +112,83 @@ static NSString *kTapTempoMessage = @"tap to set tempo";
     MMScopeDataSource *source = sender;
     NSUInteger index = [self.scopeDataSources indexOfObject:source];
     CAShapeLayer *layer = self.shapeLayers[index];
-    
     UIBezierPath *newPath = [self pathWithScopeData:data];
-    if (newPath == nil) {
-        return;
+    
+    if (newPath)
+    {
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            [self animateLayer:layer
+                          path:newPath
+                      duration:source.interval];
+        }];
     }
-    
-    UIBezierPath *oldPath = nil;
-    
-    if (self.oldPaths) {
-        oldPath = self.oldPaths[index];
+}
+
+#pragma mark - UI config
+- (void)configureLayersAndData
+{
+    self.scopeDataSources = [NSMutableArray array];
+    self.shapeLayers = [NSMutableArray array];
+    NSArray *scopeNames = [MMScopeDataSource allTableNames];
+    for (NSString *name in scopeNames) {
+        MMScopeDataSource *datasource = [self newScopeDataSource:name];
+        [self.scopeDataSources addObject:datasource];
+        CAShapeLayer *layer = [self newShapeLayer];
+        [self.shapeLayers addObject:layer];
+        [self.contentView.layer addSublayer:layer];
     }
+}
+
+
+- (void)setupViews
+{
+    UIVisualEffect *blur = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    self.effectsView = [[UIVisualEffectView alloc]initWithEffect:blur];
+    self.effectsView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.effectsView];
+    [self.view addConstraints:[self.effectsView pinEdgesToSuperWithInsets:UIEdgeInsetsZero]];
+    self.contentView = self.effectsView.contentView;
+}
+
+- (void)setupHamburgerButton
+{
+    self.hamburgerButton = [[HamburgerButton alloc]init];
+    self.hamburgerButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.hamburgerButton addTarget:self action:@selector(tapInHamburgerButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.hamburgerButton];
+    [self.view addConstraint:[self.hamburgerButton pinHeight:30]];
+    [self.view addConstraint:[self.hamburgerButton pinWidth:40]];
+    [self.view addConstraint:[self.hamburgerButton alignAxis:LayoutAxis_Vertical
+                                                      toAxis:LayoutAxis_Vertical
+                                                      ofView:self.titleLabel
+                                                      offset:0]];
     
-    [self animateLayer:layer
-               newPath:newPath
-               oldPath:oldPath
-              duration:source.interval];
+    [self.view addConstraint:[self.hamburgerButton pinEdge:LayoutEdge_Left
+                                                    toEdge:LayoutEdge_Left
+                                                    ofView:self.hamburgerButton.superview withInset:20]];
+    self.hamburgerButton.mainColor = self.titleLabel.textColor;
+}
+
+#pragma mark - ViewController LifeCycle
+
+- (void)viewDidLoad {
     
-    self.oldPaths[index] = newPath;
+    [super viewDidLoad];
+    //[self setupViews];
+    [self.view setBackgroundColor:[UIColor randomColor]];
+    self.contentView = self.view;
+    [self configureLayersAndData];
+    [self configureLabels];
+    [self configureLabelConstraints];
+    [self setupHamburgerButton];
+    [self setupDepthOfField];
+    [self.view layoutIfNeeded];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /*
