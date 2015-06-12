@@ -31,9 +31,14 @@ static NSString *kRawInputTable = @"rawInputTable";
 @end
 
 @interface MMScopeDataSource : NSObject
+
 + (NSArray *)allTableNames;
+
 + (void)getRandomScopeDataLength:(int)length completion:(void(^)(NSArray *data))completion;
+
 + (void)getScopeDataFromTable:(NSString *)table length:(int)length completion:(void(^)(NSArray *data))completion;
+
++ (void)getRawScopeDataFromTable:(NSString *)table length:(int)length completion:(void(^)(float data[]))completion;
 
 - (instancetype)initWithUpdateInterval:(NSTimeInterval)interval sourceTable:(NSString *)table;
 
