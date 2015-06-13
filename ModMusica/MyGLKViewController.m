@@ -10,21 +10,44 @@
 #import "MMScopeDataSource.h"
 #import "MMPlaybackController.h"
 
-#define NUM_POINTS 500
-#define NUM_TABLES 13
+#define NUM_POINTS 100
+#define NUM_REPS 2
+#define SAMPLE_RATE 44100
+#define BLOCK_SIZE 64
+#define TICKS 64
+#define TABLE_SIZE 2048
+#define NUM_TABLES 1
 
 typedef struct {
     float Position[3];
     float Color[4];
 } Vertex;
 
+
+static void init_indices(GLubyte indices[])
+{
+    //int numVertices
+    for (int i = 0; i < (NUM_POINTS-1); i++) {
+        int idx = i*6;
+        indices[idx] = (GLubyte)i;
+        indices[idx+1] = (GLubyte)(i+1);
+        indices[idx+2] = (GLubyte)(i+NUM_POINTS);
+        
+        indices[idx+3] = (GLubyte)(i+NUM_POINTS);
+        indices[idx+4] = (GLubyte)(i+NUM_POINTS + 1);
+        indices[idx+5] = (GLubyte)(i+1);
+    }
+}
+
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
     GLuint _vertexBuffer;
-    Vertex Vertices[NUM_POINTS * NUM_TABLES];
+    Vertex Vertices[NUM_POINTS * NUM_REPS];
     NSArray *kTables;
     BOOL kUpdating;
-    float scale;
+    float _rotation;
+    GLubyte Indices[(NUM_POINTS-1)*6];
+    GLuint _indexBuffer;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -41,9 +64,17 @@ typedef struct {
     
     self.effect = [[GLKBaseEffect alloc] init];
     
+    
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+    
+    init_indices(Indices);
+    
+    glGenBuffers(1, &_indexBuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
+    
 }
 
 - (void)tearDownGL {
@@ -51,6 +82,7 @@ typedef struct {
     [EAGLContext setCurrentContext:self.context];
     
     glDeleteBuffers(1, &_vertexBuffer);
+    glDeleteBuffers(1, &_indexBuffer);
     self.effect = nil;
 }
 
@@ -59,12 +91,15 @@ typedef struct {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSInteger tbs = SAMPLE_RATE/TABLE_SIZE;
+    NSInteger fps = 1000/tbs;
+    
+    self.preferredFramesPerSecond = fps;
+    
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
     
-    kTables = @[kDrumTable,kSynthTable,kBassTable,kSamplerTable,kInputTable,kSnareTable,kPercTable,kTremeloTable,kFuzzTable,kKickTable,kSynthTable1,kSynthTable2,kSynthTable3];
-    
-    scale = 0.5;
+    kTables = @[kDrumTable];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -74,7 +109,7 @@ typedef struct {
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
     [self setupGL];
     [self.playbackController startPlayback];
     // Do any additional setup after loading the view.
@@ -133,16 +168,24 @@ typedef struct {
 
 #pragma mark - MMScopeDataConsumer
 
+- (BOOL)shouldDraw
+{
+    if ((self.timeSinceLastDraw * SAMPLE_RATE) < TABLE_SIZE) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 #pragma mark - GLKViewDelegate
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
     glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    [self.effect prepareToDraw];
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
@@ -151,40 +194,62 @@ typedef struct {
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
     
-    glDrawArrays(GL_LINE_LOOP, 0, NUM_POINTS * NUM_TABLES);
+    [self.effect prepareToDraw];
+
+    glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
 }
 
 #pragma mark - GLKViewControllerDelegate
 
 - (void)update {
     
-    if (kUpdating) {
-        
-        for (int i = 0; i< NUM_TABLES; i ++) {
-            [MMScopeDataSource getRawScopeDataFromTable:kDrumTable length:NUM_POINTS completion:^(float data[]) {
+    if (!kUpdating) {
+        return;
+    }
+    
+    int len = self.timeSinceLastUpdate * SAMPLE_RATE;
+    if (len > TABLE_SIZE) {
+        len = TABLE_SIZE;
+    }
+    
+    [MMScopeDataSource sampleArray:NUM_POINTS maxIndex:len fromTable:kDrumTable completion:^(float *data) {
+        if (data != NULL) {
+            
+            for (int i = 0; i< NUM_REPS; i ++) {
                 for (int j = 0; j < NUM_POINTS; j ++) {
-                    int idx = (i*j)+j;
+                    
+                    int idx = (i*NUM_POINTS)+j;
+                    
                     Vertex v = Vertices[idx];
                     v.Position[0] = ((float)j/(float)NUM_POINTS) * 2.0 - 1.0;
-                    v.Position[1] = data[j];
-                    v.Position[2] = (arc4random_uniform(200)-100)*0.01;
-                    v.Color[i%3] = 1;
+                    
+                    float y = -1;
+                    
+                    if (i) {
+                        y = 1;
+                    }
+                    v.Position[1] = y;
+                    v.Position[2] = data[j];;
+                    v.Color[0] = (1.0-(v.Position[2]+1.0)*0.5) * (1.0-(v.Position[2]+1.0)*0.5);
+                    v.Color[1] = (v.Position[2]+1.0)*0.5*(v.Position[2]+1.0)*0.5 * 0.5;
+                    v.Color[2] = (v.Position[2]+1.0)*0.5 * (v.Position[2]+1.0)*0.5;
+                    v.Color[3] = 0.5;
                     Vertices[idx] = v;
                 }
-            }];
+            }
         }
-        /*
-        float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-        GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 4.0f, 10.0f);
-        self.effect.transform.projectionMatrix = projectionMatrix;
-        float s = scale + 0.1 * self.timeSinceLastUpdate;
-        GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -6.0f);
-        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix,
-                                          s, s, s);
-        self.effect.transform.modelviewMatrix = modelViewMatrix;
-        scale = s;
-         */
-    }
+    }];
+    
+    float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 100.0f);
+    self.effect.transform.projectionMatrix = projectionMatrix;
+    
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -3.5f);
+    _rotation -= 15 * self.timeSinceLastUpdate;
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 1, 0, 0);
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.5, 2, 1.25);
+    
+    self.effect.transform.modelviewMatrix = modelViewMatrix;
 }
 
 /*

@@ -87,31 +87,38 @@ static double sampsPerWidth = 0.2;
     [MMScopeDataSource getScopeDataFromTable:table length:length completion:completion];
 }
 
-+ (void)getRawScopeDataFromTable:(NSString *)table length:(int)length completion:(void(^)(float data[]))completion
++ (void)sampleArray:(int)numSamples maxIndex:(int)maxIndex fromTable:(NSString *)table completion:(void(^)(float data[]))completion
 {
-    if (!length || !table) {
+    if (!table) {
         completion(nil);
         return;
     }
+    
     int scopeArrayLength = [PdBase arraySizeForArrayNamed:table];
     
-    if (scopeArrayLength < 1) {
+    if (scopeArrayLength <= maxIndex) {
         completion(nil);
         return;
     }
-    float myData[length];
-    float *temp = malloc(sizeof(float)*scopeArrayLength);
-    [PdBase sendBangToReceiver:kUpdateScopes];
-    [PdBase copyArrayNamed:table withOffset:0 toArray:temp count:scopeArrayLength];
-    double stepSize = (double)scopeArrayLength/(double)length;
     
-    for (int i = 0; i<(length-1); i ++) {
+    int bufferSize = maxIndex + 1;
+    float myData[bufferSize];
+    float *temp = malloc(sizeof(float)*bufferSize);
+    [PdBase copyArrayNamed:table withOffset:0 toArray:temp count:bufferSize];
+    double stepSize = (double)maxIndex/(double)numSamples;
+    for (int i = 0; i<bufferSize; i ++) {
         int idx = round(i*stepSize);
         float val = temp[idx];
-        myData[i] = val;
+        if (val!=val) {
+            myData[i] = 0.0;
+        }else{
+            myData[i] = val;
+        }
     }
+    
     free(temp);
     completion(myData);
+    [PdBase sendBangToReceiver:kUpdateScopes];
 }
 
 + (void)getScopeDataFromTable:(NSString *)table length:(int)length completion:(void(^)(NSArray *data))completion
