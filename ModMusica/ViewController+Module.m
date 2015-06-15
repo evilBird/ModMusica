@@ -9,6 +9,7 @@
 #import "ViewController+Module.h"
 #import "MMModuleViewController.h"
 #import "MMAudioScopeViewController+Random.h"
+#import "MMModuleManager.h"
 
 @implementation ViewController (Module)
 
@@ -25,7 +26,7 @@
 #pragma mark - MMModuleViewControllerDatasource
 - (NSArray *)modulesForModuleView:(id)sender
 {
-    return @[@{@"title":@"mario",@"purchased":@(1)},@{@"title":@"fantasy",@"purchased":@(1)},@{@"title":@"mega",@"purchased":@(1)},@{@"title":@"menace",@"purchased":@(1)},@{@"title":@"sad",@"purchased":@(1)}];
+    return [MMModuleManager mods];
 }
 
 #pragma mark - MMModuleViewControllerDelegate

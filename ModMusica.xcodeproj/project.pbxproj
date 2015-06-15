@@ -503,6 +503,9 @@
 		F2D06FB71B29386500AA7708 /* 2-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB21B29386500AA7708 /* 2-sad.csv */; };
 		F2D06FB81B29386500AA7708 /* 3-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB31B29386500AA7708 /* 3-sad.csv */; };
 		F2D06FB91B29386500AA7708 /* 4-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB41B29386500AA7708 /* 4-sad.csv */; };
+		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
+		F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564361B2CD177008D9C76 /* 0-new.csv */; };
+		F2D564391B2CD177008D9C76 /* 1-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564371B2CD177008D9C76 /* 1-new.csv */; };
 		F2DE9E971B222ACB00FEBE5F /* MMVisualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */; };
 		F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */; };
 		F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */; };
@@ -1442,6 +1445,10 @@
 		F2D06FB21B29386500AA7708 /* 2-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-sad.csv"; sourceTree = "<group>"; };
 		F2D06FB31B29386500AA7708 /* 3-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-sad.csv"; sourceTree = "<group>"; };
 		F2D06FB41B29386500AA7708 /* 4-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-sad.csv"; sourceTree = "<group>"; };
+		F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleManager.h; sourceTree = "<group>"; };
+		F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleManager.m; sourceTree = "<group>"; };
+		F2D564361B2CD177008D9C76 /* 0-new.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-new.csv"; sourceTree = "<group>"; };
+		F2D564371B2CD177008D9C76 /* 1-new.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-new.csv"; sourceTree = "<group>"; };
 		F2DE9E951B222ACB00FEBE5F /* MMVisualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVisualViewController.h; sourceTree = "<group>"; };
 		F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVisualViewController.m; sourceTree = "<group>"; };
 		F2DE9E981B222BC200FEBE5F /* MMPlaybackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlaybackController.h; sourceTree = "<group>"; };
@@ -1929,6 +1936,7 @@
 		F29882A71A02CCFA005F9B94 /* csv */ = {
 			isa = PBXGroup;
 			children = (
+				F2D564351B2CD177008D9C76 /* new */,
 				F2D06FAF1B29386500AA7708 /* sad */,
 				F2A59CFE1A4793160000CDC1 /* als */,
 				F293867D1A36A373008F0EDF /* ohn */,
@@ -2720,6 +2728,8 @@
 				F2575C111B2792EA00DE5571 /* MMModuleViewController.m */,
 				F2575C131B27930300DE5571 /* MMModuleCellView.h */,
 				F2575C141B27930300DE5571 /* MMModuleCellView.m */,
+				F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */,
+				F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */,
 			);
 			name = MMModuleTable;
 			sourceTree = "<group>";
@@ -2747,6 +2757,15 @@
 				F2D06FB41B29386500AA7708 /* 4-sad.csv */,
 			);
 			path = sad;
+			sourceTree = "<group>";
+		};
+		F2D564351B2CD177008D9C76 /* new */ = {
+			isa = PBXGroup;
+			children = (
+				F2D564361B2CD177008D9C76 /* 0-new.csv */,
+				F2D564371B2CD177008D9C76 /* 1-new.csv */,
+			);
+			path = new;
 			sourceTree = "<group>";
 		};
 		F2DE9E931B2229F400FEBE5F /* OpenGL */ = {
@@ -3310,6 +3329,7 @@
 				F2EE02541A11A22100398C04 /* u_robinpolymono-help.pd in Resources */,
 				F2EE016B1A11A22100398C04 /* e_resonzq-help.pd in Resources */,
 				F2EE02251A11A22100398C04 /* u_dumpfile-help.pd in Resources */,
+				F2D564391B2CD177008D9C76 /* 1-new.csv in Resources */,
 				F2EE01A71A11A22100398C04 /* m_accel_status-help.pd in Resources */,
 				F29386861A36C74C008F0EDF /* 2-gs.csv in Resources */,
 				F2B2B11519FF281F003042D6 /* birdCountIn.pd in Resources */,
@@ -3444,6 +3464,7 @@
 				F2EE01D61A11A22100398C04 /* r_#time-help.pd in Resources */,
 				F2B2AD7019FF27BE003042D6 /* mm_bassosc3~.pd in Resources */,
 				F2B2AF3319FF27BE003042D6 /* Snare-3.wav in Resources */,
+				F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */,
 				F2EE020C1A11A22100398C04 /* s_rhodey-help.pd in Resources */,
 				F29882B91A02E973005F9B94 /* 1-menace.csv in Resources */,
 				F2B2AF1919FF27BE003042D6 /* rap2.wav in Resources */,
@@ -4182,6 +4203,7 @@
 				F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */,
 				F2FD2BC01B2A84F100974562 /* MMAudioScopeViewController+Random.m in Sources */,
 				F2A68BD21B2773AE00FA13F5 /* ViewController+Touch.m in Sources */,
+				F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */,
 				F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */,
 				F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */,
 				F2DE9EC81B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m in Sources */,
