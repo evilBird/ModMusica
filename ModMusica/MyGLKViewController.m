@@ -10,8 +10,8 @@
 #import "MMScopeDataSource.h"
 #import "MMPlaybackController.h"
 
-#define NUM_POINTS 30
-#define NUM_TABLES 3
+#define NUM_POINTS 64
+#define NUM_TABLES 4
 #define SAMPLE_RATE 44100
 #define BLOCK_SIZE 64
 #define TICKS 64
@@ -115,7 +115,7 @@ static void init_indices(GLubyte indices[])
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
     
-    kTables = @[kDrumTable,kSynthTable,kBassTable];
+    kTables = @[kDrumTable,kSynthTable,kBassTable,kSamplerTable];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
