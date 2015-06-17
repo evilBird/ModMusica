@@ -11,6 +11,7 @@
 #import <PdAudioController.h>
 #import <PdDispatcher.h>
 #import "MMScopeDataSource.h"
+#import "MMModuleManager.h"
 
 static float kDrumVolume = 0.35;
 static float kBassVolume = 0.3;
@@ -107,7 +108,7 @@ void bonk_tilde_setup(void);
 - (void)commonInit
 {
     self.patternLoader = [[MMPatternLoader alloc]init];
-    self.patterns = @[@"mario",@"fantasy",@"mega",@"menace",@"sad"];
+    self.patterns = [MMModuleManager modNames];
     kIdx = -1;
     kPrev = 0;
     [self initalizePd];

@@ -1,19 +1,19 @@
 #N canvas 510 59 1071 573 10;
 #N canvas 143 180 1211 609 scope 1;
 #X obj 46 553 clip~ -1 1;
-#X obj 279 195 r clearScopes;
-#X obj 93 581 r updateScopes;
+#X obj 289 210 r clearScopes;
+#X obj 93 598 r updateScopes;
 #X obj 38 703 tabwrite~ \$1;
 #X obj 50 52 inlet~;
-#X msg 282 389 \; \$1 const 0 \;;
+#X msg 298 404 \; \$1 const 0 \;;
 #X obj 668 157 loadbang;
 #X obj 669 181 symbol \$1;
 #X obj 672 312 print scopeName;
-#X obj 287 274 symbol \$1;
-#X obj 290 355 pack s;
+#X obj 291 280 symbol \$1;
+#X obj 297 362 pack s;
 #X obj 425 176 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 293 309 list trim;
+#X obj 296 322 list trim;
 #X obj 668 245 list trim;
 #X obj 838 188 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
