@@ -10,8 +10,8 @@
 #import "MMScopeDataSource.h"
 #import "MMPlaybackController.h"
 
-#define NUM_POINTS 100
-#define NUM_TABLES 2
+#define NUM_POINTS 30
+#define NUM_TABLES 3
 #define SAMPLE_RATE 44100
 #define BLOCK_SIZE 64
 #define TICKS 64
@@ -29,39 +29,29 @@ static void init_indices(GLubyte indices[])
     int drawIndex = 0;
     int rows = (NUM_POINTS - 1);
     int cols = (NUM_TABLES - 1);
+    
     for (int i = 0; i < rows; i++) {
         
-        for (int j = 0; j < (2*cols); j++) {
+        for (int j = 0; j < cols; j++) {
             
-            int tabIndex = 0;
-            int direction = 0;
-            if (j < cols) {
-                tabIndex = j;
-                direction = 0;
-            }else{
-                tabIndex = cols - (j-cols) - 1;
-                direction = 1;
-            }
-            
-            GLubyte dataIndex = (GLubyte)((tabIndex * NUM_POINTS) + i);
-            
-            if (!direction) {
-                indices[drawIndex] = dataIndex;
-                drawIndex++;
-                indices[drawIndex] = (dataIndex+1);
-                drawIndex++;
-                indices[drawIndex] = (dataIndex + NUM_POINTS);
-                drawIndex++;
-            }else{
-                indices[drawIndex] = (dataIndex + NUM_POINTS);
-                drawIndex++;
-                indices[drawIndex] = (dataIndex + NUM_POINTS + 1);
-                drawIndex++;
-                indices[drawIndex] = (dataIndex + 1);
-                drawIndex++;
-            }
-            
+            indices[drawIndex] = (GLubyte)((j * NUM_POINTS) + i);
+            drawIndex++;
+            indices[drawIndex] = (GLubyte)((j * NUM_POINTS) + (i + 1));
+            drawIndex++;
+            indices[drawIndex] = (GLubyte)(((j + 1) * NUM_POINTS) + i);
+            drawIndex++;
         }
+        
+        for (int j = 0; j < cols; j++) {
+            GLubyte idx = cols - 1 - j;
+            indices[drawIndex] = (GLubyte)(((idx + 1) * NUM_POINTS) + i);
+            drawIndex++;
+            indices[drawIndex] = (GLubyte)(((idx + 1) * NUM_POINTS) + (i + 1));
+            drawIndex++;
+            indices[drawIndex] = (GLubyte)((idx * NUM_POINTS) + (i + 1));
+            drawIndex++;
+        }
+        
     }
 }
 
@@ -93,7 +83,7 @@ static void init_indices(GLubyte indices[])
     
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     
     init_indices(Indices);
     
@@ -117,15 +107,15 @@ static void init_indices(GLubyte indices[])
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSInteger tbs = SAMPLE_RATE/TABLE_SIZE;
-    NSInteger fps = 1000/tbs;
+    //NSInteger tbs = SAMPLE_RATE/TABLE_SIZE;
+    //NSInteger fps = 1000/tbs;
     
-    //self.preferredFramesPerSecond = fps;
+    //self.preferredFramesPerSecond = 30;
     
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
     
-    kTables = @[kDrumTable,kSamplerTable];
+    kTables = @[kDrumTable,kSynthTable,kBassTable];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -212,7 +202,6 @@ static void init_indices(GLubyte indices[])
     
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
@@ -221,8 +210,8 @@ static void init_indices(GLubyte indices[])
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
     
     [self.effect prepareToDraw];
-
-    glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
+    
+    glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_BYTE, 0);
 }
 
 #pragma mark - GLKViewControllerDelegate
@@ -242,26 +231,33 @@ static void init_indices(GLubyte indices[])
     [PdBase sendBangToReceiver:@"updateScopes"];
     for (int i = 0; i < NUM_TABLES; i++) {
         NSString *kTable = kTables[i];
-        double normY = 1.0 - ((float)i/(float)(NUM_TABLES - 1.0) * 2.0);
+        GLfloat normY = (GLfloat)(1.0 - ((float)i/(float)(NUM_TABLES - 1.0) * 2.0));
         [MMScopeDataSource sampleArray:NUM_POINTS maxIndex:maxIdx fromTable:kTable completion:^(float data[], int n) {
             if (data != NULL) {
                 for (int j = 0; j < NUM_POINTS; j ++) {
-                    int idx = ((i * NUM_POINTS) + j);
+                    int idx = (int)((i * NUM_POINTS) + j);
                     Vertex v = Vertices[idx];
-                    v.Position[0] = ((float)j/(float)NUM_POINTS) * 2.0 - 1.0;
+                    v.Position[0] = (GLfloat)(((float)j/(float)NUM_POINTS) * 2.0 - 1.0);
+                    GLfloat d = (GLfloat)data[j];
+                    if (d!=d) {
+                        d = 0.0;
+                    }
                     v.Position[1] = normY;
-                    v.Position[2] = data[j];
-                    v.Color[0] = data[j] + 1.0 * 0.5;
-                    v.Color[1] = (1.0 - v.Color[0]);
+                    v.Position[2] = d;
+                    v.Color[0] = (d + 1.0 * 0.5);
+                    v.Color[1] = 1.0 - ((normY + 1.0) * 0.5);
                     v.Color[2] = ((normY + 1.0) * 0.5);
                     v.Color[3] = 0.5;
                     Vertices[idx] = v;
                 }
             }
         }];
+        
     }
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
+
 
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 100.0f);

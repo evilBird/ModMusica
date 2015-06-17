@@ -94,21 +94,21 @@ static double sampsPerWidth = 0.2;
         return;
     }
     
-    int scopeArrayLength = [PdBase arraySizeForArrayNamed:table];
-    
-    if (scopeArrayLength < maxIndex) {
+    int bufferSize = [PdBase arraySizeForArrayNamed:table];
+    /*
+    if (scopeArrayLength <= maxIndex) {
         maxIndex = (scopeArrayLength - 1);
     }
-    
-    int bufferSize = maxIndex + 1;
+    */
+    //int bufferSize = maxIndex + 1;
     float myData[numSamples];
     float *temp = malloc(sizeof(float)*bufferSize);
     [PdBase copyArrayNamed:table withOffset:0 toArray:temp count:bufferSize];
-    double stepSize = (double)(bufferSize - 1.0)/(double)numSamples;
+    double stepSize = (double)bufferSize/((double)numSamples - 1);
     
     int n = 0;
     for (int i = 0; i<numSamples; i ++) {
-        int idx = round(i*stepSize);
+        int idx = round((double)i*stepSize);
         float val = temp[idx];
         if (val!=val) {
             myData[i] = 0.0;
