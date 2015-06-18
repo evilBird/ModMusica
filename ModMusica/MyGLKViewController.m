@@ -10,8 +10,8 @@
 #import "MMScopeDataSource.h"
 #import "MMPlaybackController.h"
 
-#define NUM_POINTS 64
-#define NUM_TABLES 7
+#define NUM_POINTS 128
+#define NUM_TABLES 8
 #define SAMPLE_RATE 44100
 #define BLOCK_SIZE 64
 #define TICKS 64
@@ -231,7 +231,7 @@ static void init_indices(GLuint indices[])
     [PdBase sendBangToReceiver:@"updateScopes"];
     for (int i = 0; i < NUM_TABLES; i++) {
         NSString *kTable = kTables[i];
-        GLfloat normY = (GLfloat)(1.0 - ((float)i/(float)(NUM_TABLES - 1.0) * 2.0));
+        GLfloat normY = (GLfloat)(((float)i/(float)(NUM_TABLES - 1.0) * 2.0) - 1.0);
         [MMScopeDataSource sampleArray:NUM_POINTS maxIndex:maxIdx fromTable:kTable completion:^(float data[], int n) {
             if (data != NULL) {
                 for (int j = 0; j < NUM_POINTS; j ++) {
@@ -245,8 +245,8 @@ static void init_indices(GLuint indices[])
                     v.Position[1] = normY;
                     v.Position[2] = d;
                     v.Color[0] = (d + 1.0 * 0.5);
-                    v.Color[1] = 1.0 - v.Color[0];
-                    v.Color[2] = v.Color[0];
+                    v.Color[1] = v.Color[1] * 0.66;
+                    v.Color[2] = v.Color[0] * 0.33;
                     v.Color[3] = 0.75;
                     Vertices[idx] = v;
                 }
@@ -262,9 +262,9 @@ static void init_indices(GLuint indices[])
     self.effect.transform.projectionMatrix = projectionMatrix;
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -3.5f);
-    _rotation -= 5 * self.timeSinceLastUpdate;
+    _rotation = -35;//-= 5 * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 1, 0, 0);
-    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.25, 1.5, 1.25);
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1.45, 1.5, 1.1);
     
     self.effect.transform.modelviewMatrix = modelViewMatrix;
 }
