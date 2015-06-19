@@ -12,11 +12,15 @@
 #import "MyGLKViewController+Labels.h"
 
 #define NUM_POINTS 100
-#define NUM_TABLES 4
+#define NUM_TABLES 8
 #define SAMPLE_RATE 44100
 #define BLOCK_SIZE 64
 #define TICKS 64
 #define TABLE_SIZE 2048
+#define SCALE_COEFF 0.05
+#define SCALE_MIN 0.1
+#define SCALE_MAX 10.0
+#define ZOOM_INIT -3.5
 
 typedef struct {
     float Position[3];
@@ -108,6 +112,7 @@ static void init_indices(GLuint indices[])
     NSArray *kTables;
     BOOL kUpdating;
     float _rotation;
+    float _zoom;
     float _scale;
     GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES - 1) * 6];
     GLuint _indexBuffer;
@@ -128,6 +133,9 @@ static void init_indices(GLuint indices[])
 - (void)setupGL {
     
     [EAGLContext setCurrentContext:self.context];
+    _zoom = ZOOM_INIT;
+    _scale = SCALE_MIN;
+    _rotation = 0.0;
     self.effect = [[GLKBaseEffect alloc]init];
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
@@ -325,23 +333,29 @@ static void init_indices(GLuint indices[])
 - (void)updateModelViewMatrix
 {
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 100.0f);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 20.0f);
     self.effect.transform.projectionMatrix = projectionMatrix;
     
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -3.5f);
+    
+    _zoom += 0.01 * self.timeSinceLastUpdate;
+    if (_zoom < -0.5) {
+        _zoom = ZOOM_INIT;
+    }
+    
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     _rotation += 10 * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(-90), 1, 0, 0);
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0, 1, 0);
     static double coeff;
     
     if (!coeff) {
-        coeff = 0.1;
+        coeff = SCALE_COEFF;
     }
     
-    if (_scale > 4.0 && coeff > 0) {
-        coeff = -0.1;
-    }else if (_scale < 0.2 && coeff < 0){
-        coeff = 0.1;
+    if (_scale > SCALE_MAX && coeff > 0) {
+        coeff = -SCALE_COEFF;
+    }else if (_scale < SCALE_MIN && coeff < 0){
+        coeff = SCALE_COEFF;
     }
     
     _scale += coeff * self.timeSinceLastUpdate;

@@ -25,7 +25,7 @@ static NSTimer *infoLabelTimer;
     if (infoLabelTimer.isValid) {
         [infoLabelTimer invalidate];
     }else{
-        [self showLabelsAnimated:YES];
+        [self showLabelsAnimated:NO];
     }
     
     infoLabelTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
