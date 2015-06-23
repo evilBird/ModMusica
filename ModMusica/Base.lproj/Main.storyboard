@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Blame View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="wFa-tN-3Ha">
             <objects>
-                <viewController id="Wpo-eC-G0q" customClass="BlameViewController" sceneMemberID="viewController">
+                <viewController id="Wpo-eC-G0q" customClass="MMRootViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v7K-ED-mFk"/>
                         <viewControllerLayoutGuide type="bottom" id="rt1-54-KfQ"/>

@@ -7,7 +7,9 @@
 //
 
 #import "MSDynamicsDrawerViewController.h"
+#import "MyGLKViewController.h"
+@interface MMRootViewController : MSDynamicsDrawerViewController
 
-@interface BlameViewController : MSDynamicsDrawerViewController
+- (MyGLKViewController *)getGLKViewController;
 
 @end

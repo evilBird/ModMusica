@@ -122,7 +122,7 @@ static void init_indices(GLuint indices[])
 
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
-@property (strong, nonatomic) MMPlaybackController *playbackController;
+@property (nonatomic)         double        tempo;
 
 @end
 
@@ -177,7 +177,7 @@ static void init_indices(GLuint indices[])
 
 - (void)setupViews
 {
-    random_rgb(colors,(NUM_TABLES+1));
+    [self randomizeColors];
     self.currentModName = @"Mario";
     [self setupLabels];
     [self updateLabelText];
@@ -221,7 +221,17 @@ static void init_indices(GLuint indices[])
 }
 
 
-- (void)showDetails {}
+- (void)showDetails {
+    
+    NSString *tempoInfo = [NSString stringWithFormat:@"%.f beats/min",self.tempo];
+    [self showTempoInfo:tempoInfo];
+}
+
+- (void)randomizeColors
+{
+    random_rgb(colors,(NUM_TABLES+1));
+    [self updateLabelColors];
+}
 
 #pragma mark - Property accessors
 
@@ -240,11 +250,21 @@ static void init_indices(GLuint indices[])
     }
 }
 
+- (void)setCurrentModName:(NSString *)currentModName
+{
+    NSString *prevModName = _currentModName;
+    _currentModName = currentModName;
+    
+    if (![currentModName isEqualToString:prevModName]) {
+        [self updateLabelText];
+        [self showDetails];
+    }
+}
 
 #pragma mark - MMPlaybackControllerDelegate
 - (void)playbackBegan:(id)sender
 {
-    random_rgb(colors,(NUM_TABLES+1));
+    [self randomizeColors];
     [self updateLabelText];
     [self hideLabelsAnimated:YES];
     kUpdating = YES;
@@ -261,12 +281,13 @@ static void init_indices(GLuint indices[])
 {
     kClock = (int)clock;
     if (kClock == 0) {
-        random_rgb(colors,(NUM_TABLES+1));
+        [self randomizeColors];
     }
 }
 
 - (void)playback:(id)sender detectedUserTempo:(double)tempo {
 
+    self.tempo = tempo;
     NSString *tempoInfo = [NSString stringWithFormat:@"%.f beats/min",tempo];
     [self showTempoInfo:tempoInfo];
 }
@@ -374,6 +395,8 @@ static void init_indices(GLuint indices[])
     GLfloat g = colors[colorIdx];
     colorIdx++;
     GLfloat b = colors[colorIdx];
+    
+    self.mainColor = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
     
     glClearColor(r, g, b, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -8,6 +8,7 @@
 
 #import "UIView+Layout.h"
 #import "MyGLKViewController+Labels.h"
+#import "UIColor+HBVHarmonies.h"
 
 @implementation MyGLKViewController (Labels)
 
@@ -44,6 +45,16 @@ static NSTimer *infoLabelTimer;
         self.infoLabel.text = @"Press and hold to stop";
     }else{
         self.infoLabel.text = @"Press and hold to start";
+    }
+
+}
+
+- (void)updateLabelColors
+{
+    if (self.mainColor!=nil){
+        self.nowPlayingLabel.textColor = [self.mainColor complement];
+        self.titleLabel.textColor = [self.mainColor complement];
+        self.infoLabel.textColor = [self.mainColor complement];
     }
 }
 

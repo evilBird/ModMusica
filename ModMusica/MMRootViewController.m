@@ -6,15 +6,17 @@
 //  Copyright (c) 2015 birdSound. All rights reserved.
 //
 
-#import "BlameViewController.h"
+#import "MMRootViewController.h"
 #import "MMModuleViewController.h"
 #import "MyGLKViewController.h"
+#import "MMRootViewController+Mods.h"
+#import "MMRootViewController+Touches.h"
 
-@interface BlameViewController ()<MSDynamicsDrawerViewControllerDelegate>
+@interface MMRootViewController ()
 
 @end
 
-@implementation BlameViewController
+@implementation MMRootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,8 +24,9 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.paneViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyGLKViewController"];
     MMModuleViewController *mm =[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"];
+    mm.delegate = self;
+    mm.datasource = self;
     [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
-    [(MyGLKViewController *)self.paneViewController setPlaying:YES];
     // Do any additional setup after loading the view.
 }
 
@@ -31,6 +34,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (MyGLKViewController *)getGLKViewController
+{
+    return (MyGLKViewController *)(self.paneViewController);
+}
+
 
 /*
 #pragma mark - Navigation
