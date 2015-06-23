@@ -10,6 +10,7 @@
 #import "MMScopeDataSource.h"
 #import "MMPlaybackController.h"
 #import "MyGLKViewController+Labels.h"
+#import "OpenGLHelper.h"
 
 #define NUM_POINTS 100
 #define NUM_TABLES 8
@@ -26,6 +27,33 @@ typedef struct {
     float Position[3];
     float Color[4];
 } Vertex;
+
+
+static NSString *const vertShader = SHADER_STRING
+(
+ attribute vec4 position;
+ attribute vec4 inputTextureCoordinate;
+ varying highp vec2 textureCoordinate;
+ void main()
+ {
+     gl_Position = position;
+     textureCoordinate = inputTextureCoordinate.xy;
+ }
+ );
+
+static NSString *const fragShader = SHADER_STRING
+(
+ precision highp float;
+ varying vec2 textureCoordinate;
+ uniform sampler2D inputImageTexture;
+ const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
+ void main()
+ {
+     float luminance = dot(texture2D(inputImageTexture, textureCoordinate).rgb, W);
+     highp vec3 col = vec3(0.5,0.5,0.5);
+     gl_FragColor = vec4(col, 1.0);
+ }
+ );
 
 static GLfloat wrap_float(GLfloat myFloat)
 {
@@ -146,7 +174,6 @@ static void init_indices(GLuint indices[])
     glGenBuffers(1, &_indexBuffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
-    
 }
 
 - (void)setupPlayback
@@ -414,6 +441,7 @@ static void init_indices(GLuint indices[])
     
     glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
 }
+
 
 #pragma mark - GLKViewControllerDelegate
 

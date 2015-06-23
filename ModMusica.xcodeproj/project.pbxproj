@@ -507,6 +507,7 @@
 		F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */; };
 		F2D3DFAC1B3A178D000AA933 /* MMRootViewController+Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAB1B3A178D000AA933 /* MMRootViewController+Touches.m */; };
 		F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */; };
+		F2D3DFB31B3A1D9A000AA933 /* OpenGLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFB21B3A1D9A000AA933 /* OpenGLHelper.m */; };
 		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
 		F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564361B2CD177008D9C76 /* 0-new.csv */; };
 		F2D564391B2CD177008D9C76 /* 1-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564371B2CD177008D9C76 /* 1-new.csv */; };
@@ -1459,6 +1460,8 @@
 		F2D3DFAB1B3A178D000AA933 /* MMRootViewController+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Touches.m"; sourceTree = "<group>"; };
 		F2D3DFAD1B3A1859000AA933 /* MMRootViewController+Mods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Mods.h"; sourceTree = "<group>"; };
 		F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Mods.m"; sourceTree = "<group>"; };
+		F2D3DFB11B3A1D9A000AA933 /* OpenGLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLHelper.h; sourceTree = "<group>"; };
+		F2D3DFB21B3A1D9A000AA933 /* OpenGLHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLHelper.m; sourceTree = "<group>"; };
 		F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleManager.h; sourceTree = "<group>"; };
 		F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleManager.m; sourceTree = "<group>"; };
 		F2D564361B2CD177008D9C76 /* 0-new.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-new.csv"; sourceTree = "<group>"; };
@@ -2095,6 +2098,8 @@
 				F2D06FAE1B2933ED00AA7708 /* ViewController */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
+				F2D3DFB11B3A1D9A000AA933 /* OpenGLHelper.h */,
+				F2D3DFB21B3A1D9A000AA933 /* OpenGLHelper.m */,
 				F2D3DFA71B3A10A8000AA933 /* MMRootViewController.h */,
 				F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */,
 				F2D3DFAA1B3A178D000AA933 /* MMRootViewController+Touches.h */,
@@ -4219,6 +4224,7 @@
 				F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */,
 				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
 				F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */,
+				F2D3DFB31B3A1D9A000AA933 /* OpenGLHelper.m in Sources */,
 				F2DE9EC51B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m in Sources */,
 				F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */,
 				F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */,

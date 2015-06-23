@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MyGLKViewController.m"
-            timestampString = "456793314.063801"
+            timestampString = "456795248.532676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "-updateVertexData"
             landmarkType = "5">
          </BreakpointContent>
