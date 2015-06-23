@@ -1,0 +1,45 @@
+//
+//  BlameViewController.m
+//  ModMusica
+//
+//  Created by Travis Henspeter on 6/23/15.
+//  Copyright (c) 2015 birdSound. All rights reserved.
+//
+
+#import "BlameViewController.h"
+#import "MMModuleViewController.h"
+#import "MyGLKViewController.h"
+
+@interface BlameViewController ()<MSDynamicsDrawerViewControllerDelegate>
+
+@end
+
+@implementation BlameViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.delegate = self;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.paneViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyGLKViewController"];
+    MMModuleViewController *mm =[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"];
+    [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
+    [(MyGLKViewController *)self.paneViewController setPlaying:YES];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

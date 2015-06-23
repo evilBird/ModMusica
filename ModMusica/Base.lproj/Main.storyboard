@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dkA-4j-bDi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wpo-eC-G0q">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--Blame View Controller-->
+        <scene sceneID="wFa-tN-3Ha">
+            <objects>
+                <viewController id="Wpo-eC-G0q" customClass="BlameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v7K-ED-mFk"/>
+                        <viewControllerLayoutGuide type="bottom" id="rt1-54-KfQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ip8-g2-hij">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RsJ-yf-Ad0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="-1169"/>
+        </scene>
         <!--GLKit View Controller-->
         <scene sceneID="VB7-V3-GaO">
             <objects>
-                <glkViewController preferredFramesPerSecond="30" id="dkA-4j-bDi" customClass="MyGLKViewController" sceneMemberID="viewController">
+                <glkViewController storyboardIdentifier="MyGLKViewController" preferredFramesPerSecond="30" id="dkA-4j-bDi" customClass="MyGLKViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yen-yG-QYa"/>
                         <viewControllerLayoutGuide type="bottom" id="VMZ-jj-isd"/>
@@ -22,7 +40,7 @@
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1J-KR-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1622" y="-1035"/>
+            <point key="canvasLocation" x="1770" y="-1175"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="151-JR-I8s">

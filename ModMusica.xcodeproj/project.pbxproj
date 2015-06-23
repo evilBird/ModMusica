@@ -504,6 +504,7 @@
 		F2D06FB71B29386500AA7708 /* 2-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB21B29386500AA7708 /* 2-sad.csv */; };
 		F2D06FB81B29386500AA7708 /* 3-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB31B29386500AA7708 /* 3-sad.csv */; };
 		F2D06FB91B29386500AA7708 /* 4-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB41B29386500AA7708 /* 4-sad.csv */; };
+		F2D3DFA91B3A10A8000AA933 /* BlameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* BlameViewController.m */; };
 		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
 		F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564361B2CD177008D9C76 /* 0-new.csv */; };
 		F2D564391B2CD177008D9C76 /* 1-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564371B2CD177008D9C76 /* 1-new.csv */; };
@@ -1450,6 +1451,8 @@
 		F2D06FB21B29386500AA7708 /* 2-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-sad.csv"; sourceTree = "<group>"; };
 		F2D06FB31B29386500AA7708 /* 3-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-sad.csv"; sourceTree = "<group>"; };
 		F2D06FB41B29386500AA7708 /* 4-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-sad.csv"; sourceTree = "<group>"; };
+		F2D3DFA71B3A10A8000AA933 /* BlameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlameViewController.h; sourceTree = "<group>"; };
+		F2D3DFA81B3A10A8000AA933 /* BlameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlameViewController.m; sourceTree = "<group>"; };
 		F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleManager.h; sourceTree = "<group>"; };
 		F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleManager.m; sourceTree = "<group>"; };
 		F2D564361B2CD177008D9C76 /* 0-new.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-new.csv"; sourceTree = "<group>"; };
@@ -2086,6 +2089,8 @@
 				F2D06FAE1B2933ED00AA7708 /* ViewController */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
+				F2D3DFA71B3A10A8000AA933 /* BlameViewController.h */,
+				F2D3DFA81B3A10A8000AA933 /* BlameViewController.m */,
 				F2F676A91B2B900400CA79A9 /* MyGLKViewController.h */,
 				F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */,
 				F2F0FE921B34D27B00B00A21 /* MyGLKViewController+Labels.h */,
@@ -4227,6 +4232,7 @@
 				F2F676AB1B2B900400CA79A9 /* MyGLKViewController.m in Sources */,
 				F2DE9EA81B22407600FEBE5F /* MMScopeDataSource.m in Sources */,
 				F2F0FE941B34D27B00B00A21 /* MyGLKViewController+Labels.m in Sources */,
+				F2D3DFA91B3A10A8000AA933 /* BlameViewController.m in Sources */,
 				F2B2AF4419FF27BE003042D6 /* vexp_if.c in Sources */,
 				F2B2AB5119FF1739003042D6 /* main.m in Sources */,
 				F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */,
