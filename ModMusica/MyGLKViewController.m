@@ -11,10 +11,14 @@
 #import "MMPlaybackController.h"
 #import "MyGLKViewController+Labels.h"
 #import "OpenGLHelper.h"
+#import "MyGLKFunctions.h"
 
 #define STRINGIZE(x) #x
 #define STRINGIZE2(x) STRINGIZE(x)
 #define SHADER_STRING(text) @ STRINGIZE2(text)
+
+#define TORUS 0
+#define USE_SHADERS 0
 
 NSString *const kFragmentShader = SHADER_STRING
 (
@@ -53,124 +57,12 @@ NSString *const kVertexShader = SHADER_STRING
 #define VERTEX_SHADER @"vertex"
 #define FRAGMENT_SHADER @"fragment"
 
-typedef struct {
-    float Position[3];
-    float Color[4];
-} Vertex;
-
 typedef struct
 {
     char *Name;
     GLint Location;
 }Uniform;
 
-static GLfloat wrap_float(GLfloat myFloat)
-{
-    GLfloat result = 0.0;
-    if (myFloat > 1.0) {
-        result = (myFloat - 1.0);
-    }else if (myFloat < 0.0){
-        result = (1.0 - myFloat);
-    }else{
-        result = myFloat;
-    }
-    
-    return myFloat;
-}
-
-static GLfloat clamp_float(GLfloat myFloat)
-{
-    if (myFloat > 1.0) {
-        return 1.0;
-    }else if (myFloat < 0.0){
-        return 0.0;
-    }
-    return myFloat;
-}
-
-static GLfloat jitter_float(GLfloat myFloat, GLfloat percent)
-{
-    GLfloat jit = (GLfloat)((arc4random_uniform(200) - 100) * percent * 0.01);
-    return clamp_float((myFloat + jit));
-}
-
-static void jitter_rgb(GLfloat rgb[], GLfloat result[], GLfloat jitter, int table)
-{
-    int tableIndex = table * 3;
-    for (int i = 0; i<3; i++) {
-        int idx = (tableIndex + i);
-        GLfloat component = rgb[idx];
-        result[i] = jitter_float(component, jitter);
-    }
-}
-
-static void random_rgb(GLfloat rgb[], int n)
-{
-    for (int i = 0; i < (n*3); i ++) {
-        rgb[i] = (GLfloat)(arc4random_uniform(1000) * 0.001);
-    }
-}
-
-static void init_indices(GLuint indices[])
-{
-    int drawIndex = 0;
-    int rows = (NUM_POINTS - 1);
-    int cols = (NUM_TABLES - 1);
-    
-    for (int i = 0; i < rows; i++) {
-        
-        for (int j = 0; j < cols; j++) {
-            
-            indices[drawIndex] = (GLuint)((j * NUM_POINTS) + i);
-            drawIndex++;
-            indices[drawIndex] = (GLuint)((j * NUM_POINTS) + (i + 1));
-            drawIndex++;
-            indices[drawIndex] = (GLuint)(((j + 1) * NUM_POINTS) + i);
-            drawIndex++;
-        }
-        
-        for (int j = 0; j < cols; j++) {
-            GLubyte idx = cols - 1 - j;
-            indices[drawIndex] = (GLuint)(((idx + 1) * NUM_POINTS) + i);
-            drawIndex++;
-            indices[drawIndex] = (GLuint)(((idx + 1) * NUM_POINTS) + (i + 1));
-            drawIndex++;
-            indices[drawIndex] = (GLuint)((idx * NUM_POINTS) + (i + 1));
-            drawIndex++;
-        }
-        
-    }
-    /*
-    for (int i = 0; i < rows; i ++) {
-        if (i%2 == 0) {
-            indices[drawIndex] = (GLuint)i;
-            drawIndex++;
-            indices[drawIndex] = (GLuint)(i+1);
-            drawIndex++;
-            indices[drawIndex] = (GLuint)((cols * NUM_POINTS) + i);
-            drawIndex++;
-        }else{
-            indices[drawIndex] = (GLuint)i;
-            drawIndex++;
-            indices[drawIndex] = (GLuint)((cols * NUM_POINTS) + i - 1);
-            drawIndex++;
-            indices[drawIndex] = (GLuint)((cols * NUM_POINTS) + i);
-            drawIndex++;
-        }
-        
-    }
-     */
-}
-
-static void init_vertices(Vertex vertices[])
-{
-    int numVertices = (NUM_POINTS * NUM_TABLES);
-    for (int i = 0; i < numVertices; i++) {
-        vertices[i].Position[0] = (GLfloat)((float)i/(float)numVertices * 2.0 - 1.0);
-        vertices[i].Position[1] = (GLfloat)((float)i/(float)numVertices * 2.0 - 1.0);
-        vertices[i].Position[2] = (GLfloat)((float)i/(float)numVertices * 2.0 - 1.0);
-    }
-}
 
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
@@ -181,9 +73,13 @@ static void init_vertices(Vertex vertices[])
     float _rotation;
     float _zoom;
     float _scale;
-    //GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES) * 6];
+#if TORUS
+    GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES) * 6];
+#else
     GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES - 1) * 6];
+#endif
 
+    float samples[(NUM_POINTS * NUM_TABLES)];
     GLuint _indicesVBO;
     GLfloat colors[((NUM_TABLES + 1) * 3)];
     int kClock;
@@ -209,8 +105,10 @@ static void init_vertices(Vertex vertices[])
 
 - (void)setupShaders
 {
-    //[self createProgram];
-    //[self getUniforms];
+#if USE_SHADERS
+    [self createProgram];
+    [self getUniforms];
+#endif
 }
 
 - (void)setupEffect
@@ -225,14 +123,12 @@ static void init_vertices(Vertex vertices[])
     _zoom = ZOOM_INIT;
     _scale = SCALE_MIN;
     _rotation = 0.0;
-    
-    init_vertices(Vertices);
-    
+
     glGenBuffers(1, &_verticesVBO);
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     
-    init_indices(Indices);
+    make_mesh_indices(Indices, NUM_POINTS, NUM_TABLES);
     
     glGenBuffers(1, &_indicesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
@@ -266,7 +162,6 @@ static void init_vertices(Vertex vertices[])
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     view.drawableMultisample = GLKViewDrawableMultisample4X;
-    //self.preferredFramesPerSecond = 60;
     
     // Enable face culling and depth test
     glEnable(GL_DEPTH_TEST);
@@ -290,7 +185,6 @@ static void init_vertices(Vertex vertices[])
     
     glDeleteBuffers(1, &_verticesVBO);
     glDeleteBuffers(1, &_indicesVBO);
-    //glDeleteVertexArraysOES(1, &_VAO);
     
     if (_program) {
         glDeleteProgram(_program);
@@ -326,6 +220,7 @@ static void init_vertices(Vertex vertices[])
     [self setupEffect];
     [self setupShaders];
     [self setupGL];
+    [self playbackEnded:nil];
     // Do any additional setup after loading the view.
 }
 
@@ -426,14 +321,14 @@ static void init_vertices(Vertex vertices[])
     }
     
     [PdBase sendBangToReceiver:@"updateScopes"];
-    
+    __block int idx = 0;
     for (int i = 0; i < NUM_TABLES; i++) {
         NSString *kTable = kTables[i];
         GLfloat y = (GLfloat)(((float)i/(float)(NUM_TABLES - 1.0) * 2.0) - 1.0);
         [MMScopeDataSource sampleArray:NUM_POINTS maxIndex:maxIdx fromTable:kTable completion:^(float data[], int n) {
             if (data != NULL) {
                 for (int j = 0; j < NUM_POINTS; j ++) {
-                    int idx = (int)((i * NUM_POINTS) + j);
+                    idx = (int)((i * NUM_POINTS) + j);
                     Vertex v = Vertices[idx];
                     float sample = data[j];
                     GLfloat d = (GLfloat)sample;
@@ -442,9 +337,11 @@ static void init_vertices(Vertex vertices[])
                     }
                     
                     GLfloat normSample = ((d + 1)/2.0);
-                    
-                    //double rads = (GLfloat)((float)j * ((2.0 * M_PI)/(float)(NUM_POINTS)));
+#if TORUS
+                    double rads = (GLfloat)((float)j * ((2.0 * M_PI)/(float)(NUM_POINTS)));
+#else
                     double rads = (GLfloat)((float)j * ((2.0 * M_PI)/(float)(NUM_POINTS-1)));
+#endif
 
                     
                     GLfloat x = cos(rads) + cos(rads) * fabs(sample);
@@ -472,6 +369,9 @@ static void init_vertices(Vertex vertices[])
         
     }
     
+#if !TORUS
+    //Vertices[idx] = Vertices[0];
+#endif
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
 }
 
