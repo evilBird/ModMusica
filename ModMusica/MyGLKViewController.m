@@ -12,6 +12,34 @@
 #import "MyGLKViewController+Labels.h"
 #import "OpenGLHelper.h"
 
+#define STRINGIZE(x) #x
+#define STRINGIZE2(x) STRINGIZE(x)
+#define SHADER_STRING(text) @ STRINGIZE2(text)
+
+NSString *const kFragmentShader = SHADER_STRING
+(
+ 
+ void main( void )
+{
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+}
+ 
+);
+
+NSString *const kVertexShader = SHADER_STRING
+(
+ 
+ uniform mediump mat4 ModelViewProjectionMatrix;
+ attribute mediump vec3 Position;
+ 
+ void main( void )
+{
+    gl_Position = ModelViewProjectionMatrix * vec4(Position, 1.0);
+}
+ 
+);
+
+
 #define NUM_POINTS 100
 #define NUM_TABLES 8
 #define SAMPLE_RATE 44100
@@ -22,6 +50,8 @@
 #define SCALE_MIN 0.1
 #define SCALE_MAX 10.0
 #define ZOOM_INIT -3.5
+#define VERTEX_SHADER @"vertex"
+#define FRAGMENT_SHADER @"fragment"
 
 typedef struct {
     float Position[3];
@@ -33,32 +63,6 @@ typedef struct
     char *Name;
     GLint Location;
 }Uniform;
-
-static NSString *const vertShader = SHADER_STRING
-(
- attribute vec4 position;
- attribute vec4 inputTextureCoordinate;
- varying highp vec2 textureCoordinate;
- void main()
- {
-     gl_Position = position;
-     textureCoordinate = inputTextureCoordinate.xy;
- }
- );
-
-static NSString *const fragShader = SHADER_STRING
-(
- precision highp float;
- varying vec2 textureCoordinate;
- uniform sampler2D inputImageTexture;
- const highp vec3 W = vec3(0.2125, 0.7154, 0.0721);
- void main()
- {
-     float luminance = dot(texture2D(inputImageTexture, textureCoordinate).rgb, W);
-     highp vec3 col = vec3(0.5,0.5,0.5);
-     gl_FragColor = vec4(col, 1.0);
- }
- );
 
 static GLfloat wrap_float(GLfloat myFloat)
 {
@@ -136,6 +140,36 @@ static void init_indices(GLuint indices[])
         }
         
     }
+    /*
+    for (int i = 0; i < rows; i ++) {
+        if (i%2 == 0) {
+            indices[drawIndex] = (GLuint)i;
+            drawIndex++;
+            indices[drawIndex] = (GLuint)(i+1);
+            drawIndex++;
+            indices[drawIndex] = (GLuint)((cols * NUM_POINTS) + i);
+            drawIndex++;
+        }else{
+            indices[drawIndex] = (GLuint)i;
+            drawIndex++;
+            indices[drawIndex] = (GLuint)((cols * NUM_POINTS) + i - 1);
+            drawIndex++;
+            indices[drawIndex] = (GLuint)((cols * NUM_POINTS) + i);
+            drawIndex++;
+        }
+        
+    }
+     */
+}
+
+static void init_vertices(Vertex vertices[])
+{
+    int numVertices = (NUM_POINTS * NUM_TABLES);
+    for (int i = 0; i < numVertices; i++) {
+        vertices[i].Position[0] = (GLfloat)((float)i/(float)numVertices * 2.0 - 1.0);
+        vertices[i].Position[1] = (GLfloat)((float)i/(float)numVertices * 2.0 - 1.0);
+        vertices[i].Position[2] = (GLfloat)((float)i/(float)numVertices * 2.0 - 1.0);
+    }
 }
 
 @interface MyGLKViewController () <MMPlaybackDelegate>
@@ -147,7 +181,9 @@ static void init_indices(GLuint indices[])
     float _rotation;
     float _zoom;
     float _scale;
+    //GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES) * 6];
     GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES - 1) * 6];
+
     GLuint _indicesVBO;
     GLfloat colors[((NUM_TABLES + 1) * 3)];
     int kClock;
@@ -155,6 +191,8 @@ static void init_indices(GLuint indices[])
     Uniform* _uniformArray;
     int _uniformArraySize;
     GLuint _VAO;
+    GLKMatrix4 _projectionMatrix;
+    GLKMatrix4 _modelViewMatrix;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -169,6 +207,12 @@ static void init_indices(GLuint indices[])
 
 #pragma mark - setup
 
+- (void)setupShaders
+{
+    //[self createProgram];
+    //[self getUniforms];
+}
+
 - (void)setupEffect
 {
     self.effect = [[GLKBaseEffect alloc]init];
@@ -177,21 +221,22 @@ static void init_indices(GLuint indices[])
 - (void)setupGL {
     
     [EAGLContext setCurrentContext:self.context];
+    
     _zoom = ZOOM_INIT;
     _scale = SCALE_MIN;
     _rotation = 0.0;
+    
+    init_vertices(Vertices);
+    
     glGenBuffers(1, &_verticesVBO);
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     init_indices(Indices);
     
     glGenBuffers(1, &_indicesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
 }
 
 - (void)setupPlayback
@@ -199,7 +244,7 @@ static void init_indices(GLuint indices[])
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
     
-    NSArray *allTables = @[kSynthTable,kBassTable,kDrumTable,kSamplerTable,kFuzzTable,kSynthTable1,kTremeloTable,kSynthTable2];
+    NSArray *allTables = @[kSynthTable,kBassTable,kDrumTable,kSamplerTable,kDrumTable,kSynthTable,kSamplerTable,kBassTable];
     NSRange indexRange;
     indexRange.location = 0;
     indexRange.length = NUM_TABLES;
@@ -217,16 +262,16 @@ static void init_indices(GLuint indices[])
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
+    view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
+    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
+    view.drawableMultisample = GLKViewDrawableMultisample4X;
+    //self.preferredFramesPerSecond = 60;
     
     // Enable face culling and depth test
-    glEnable( GL_DEPTH_TEST );
-    glEnable( GL_CULL_FACE  );
-    
-    // Set up the viewport
-    int width = view.bounds.size.width;
-    int height = view.bounds.size.height;
-    glViewport(0, 0, width, height);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+
 }
 
 - (void)setupViews
@@ -245,6 +290,19 @@ static void init_indices(GLuint indices[])
     
     glDeleteBuffers(1, &_verticesVBO);
     glDeleteBuffers(1, &_indicesVBO);
+    //glDeleteVertexArraysOES(1, &_VAO);
+    
+    if (_program) {
+        glDeleteProgram(_program);
+        _program = 0;
+    }
+    
+    for (int i = 0; i < _uniformArraySize; i++) {
+        free(_uniformArray[i].Name);
+    }
+    
+    free(_uniformArray);
+    
     self.effect = nil;
 }
 
@@ -266,8 +324,16 @@ static void init_indices(GLuint indices[])
     [self setupPlayback];
     [self setupContext];
     [self setupEffect];
+    [self setupShaders];
     [self setupGL];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self showLabelsAnimated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -323,6 +389,7 @@ static void init_indices(GLuint indices[])
     [self updateLabelText];
     [self hideLabelsAnimated:YES];
     kUpdating = YES;
+    self.paused = NO;
 }
 
 - (void)playbackEnded:(id)sender
@@ -330,6 +397,7 @@ static void init_indices(GLuint indices[])
     [self updateLabelText];
     [self showLabelsAnimated:YES];
     kUpdating = NO;
+    self.paused = YES;
 }
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
@@ -375,7 +443,9 @@ static void init_indices(GLuint indices[])
                     
                     GLfloat normSample = ((d + 1)/2.0);
                     
+                    //double rads = (GLfloat)((float)j * ((2.0 * M_PI)/(float)(NUM_POINTS)));
                     double rads = (GLfloat)((float)j * ((2.0 * M_PI)/(float)(NUM_POINTS-1)));
+
                     
                     GLfloat x = cos(rads) + cos(rads) * fabs(sample);
                     GLfloat z = sin(rads) + sin(rads) * fabs(sample);
@@ -384,10 +454,9 @@ static void init_indices(GLuint indices[])
                     v.Position[1] = y;
                     v.Position[2] = z;
                     
-                    GLfloat jitteredColors[3];
-                    jitter_rgb(colors, jitteredColors, 5.0, i);
-                    int colorIdx = i * NUM_TABLES;
+                    int colorIdx = i * 3;
                     GLfloat c = colors[colorIdx];
+
                     v.Color[0] = (c * normSample);
                     colorIdx++;
                     c = colors[colorIdx];
@@ -403,17 +472,17 @@ static void init_indices(GLuint indices[])
         
     }
     
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
 }
 
 - (void)updateModelViewMatrix
 {
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 20.0f);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 0.1f, 100.0f);
     self.effect.transform.projectionMatrix = projectionMatrix;
     
     
-    _zoom += 0.01 * self.timeSinceLastUpdate;
+    _zoom -= 0.1 * self.timeSinceLastUpdate;
     if (_zoom < -0.5) {
         _zoom = ZOOM_INIT;
     }
@@ -421,7 +490,7 @@ static void init_indices(GLuint indices[])
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     _rotation += 10 * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(-90), 1, 0, 0);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0, 1, 0);
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0.5, 1, 0.5);
     static double coeff;
     
     if (!coeff) {
@@ -458,8 +527,8 @@ static void init_indices(GLuint indices[])
     
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
-    
     glEnableVertexAttribArray(GLKVertexAttribPosition);
+    
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
@@ -467,7 +536,7 @@ static void init_indices(GLuint indices[])
     
     [self.effect prepareToDraw];
     
-    glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
 }
 
 
@@ -492,36 +561,31 @@ static void init_indices(GLuint indices[])
     NSString *shaderPath = [[NSBundle mainBundle] pathForResource:shaderName ofType:@"glsl"];
     NSError *error;
     NSString *shaderString = [NSString stringWithContentsOfFile:shaderPath encoding:NSUTF8StringEncoding error:&error];
+    
     if(!shaderString)
     {
         NSLog(@"Error loading shader: %@", error.localizedDescription);
         exit(1);
     }
     
-    // Create the shader inside openGL
+    return [self compileShaderString:shaderString withType:shaderType];
+}
+
+- (GLuint)compileShaderString:(NSString *)shaderString  withType:(GLenum)shaderType
+{
     GLuint shaderHandle = glCreateShader(shaderType);
-    
-    // Give that shader the source code loaded in memory
-    const char *shaderStringUTF8 = [shaderString UTF8String];
-    int shaderStringLength = [shaderString length];
+    const char * shaderStringUTF8 = [shaderString UTF8String];
+    int shaderStringLength = (int)[shaderString length];
     glShaderSource(shaderHandle, 1, &shaderStringUTF8, &shaderStringLength);
-    
-    // Compile the source code
     glCompileShader(shaderHandle);
     
-    // Get the error messages in case the compiling has failed
     GLint compileSuccess;
     glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &compileSuccess);
     if (compileSuccess == GL_FALSE) {
-        GLint logLength;
-        glGetShaderiv(shaderHandle, GL_INFO_LOG_LENGTH, &logLength);
-        if(logLength > 0)
-        {
-            GLchar *log = (GLchar *)malloc(logLength);
-            glGetShaderInfoLog(shaderHandle, logLength, &logLength, log);
-            NSLog(@"Shader compile log:\n%s", log);
-            free(log);
-        }
+        GLchar messages[256];
+        glGetShaderInfoLog(shaderHandle, sizeof(messages), 0, &messages[0]);
+        NSString *messageString = [NSString stringWithUTF8String:messages];
+        NSLog(@"%@", messageString);
         exit(1);
     }
     
@@ -531,8 +595,8 @@ static void init_indices(GLuint indices[])
 -(void)createProgram
 {
     // Compile both shaders
-    GLuint vertexShader = [self compileShader:VERTEX_SHADER withType:GL_VERTEX_SHADER];
-    GLuint fragmentShader = [self compileShader:FRAGMENT_SHADER withType:GL_FRAGMENT_SHADER];
+    GLuint vertexShader = [self compileShaderString:kVertexShader withType:GL_VERTEX_SHADER];
+    GLuint fragmentShader = [self compileShaderString:kFragmentShader withType:GL_FRAGMENT_SHADER];
     
     // Create the program in openGL, attach the shaders and link them
     GLuint programHandle = glCreateProgram();

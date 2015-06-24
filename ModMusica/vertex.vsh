@@ -1,5 +1,7 @@
-//vertex.glsl
- 
+#ifdef GL_ES
+precision mediump float;
+#endif
+
 uniform mediump mat4 ModelViewProjectionMatrix;
  
 attribute mediump vec3 Position;

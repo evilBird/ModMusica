@@ -507,9 +507,9 @@
 		F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */; };
 		F2D3DFAC1B3A178D000AA933 /* MMRootViewController+Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAB1B3A178D000AA933 /* MMRootViewController+Touches.m */; };
 		F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */; };
-		F2D3DFB31B3A1D9A000AA933 /* OpenGLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFB21B3A1D9A000AA933 /* OpenGLHelper.m */; };
-		F2D3DFB71B3A35C6000AA933 /* fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F2D3DFB51B3A35C6000AA933 /* fragment.glsl */; };
-		F2D3DFB81B3A35C6000AA933 /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = F2D3DFB61B3A35C6000AA933 /* vertex.glsl */; };
+		F2D3DFB71B3A35C6000AA933 /* fragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = F2D3DFB51B3A35C6000AA933 /* fragment.fsh */; };
+		F2D3DFB81B3A35C6000AA933 /* vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = F2D3DFB61B3A35C6000AA933 /* vertex.vsh */; };
+		F2D3DFBB1B3A496B000AA933 /* OpenGLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFBA1B3A496B000AA933 /* OpenGLHelper.m */; };
 		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
 		F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564361B2CD177008D9C76 /* 0-new.csv */; };
 		F2D564391B2CD177008D9C76 /* 1-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564371B2CD177008D9C76 /* 1-new.csv */; };
@@ -1462,10 +1462,10 @@
 		F2D3DFAB1B3A178D000AA933 /* MMRootViewController+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Touches.m"; sourceTree = "<group>"; };
 		F2D3DFAD1B3A1859000AA933 /* MMRootViewController+Mods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Mods.h"; sourceTree = "<group>"; };
 		F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Mods.m"; sourceTree = "<group>"; };
-		F2D3DFB11B3A1D9A000AA933 /* OpenGLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLHelper.h; sourceTree = "<group>"; };
-		F2D3DFB21B3A1D9A000AA933 /* OpenGLHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLHelper.m; sourceTree = "<group>"; };
-		F2D3DFB51B3A35C6000AA933 /* fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment.glsl; sourceTree = "<group>"; };
-		F2D3DFB61B3A35C6000AA933 /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex.glsl; sourceTree = "<group>"; };
+		F2D3DFB51B3A35C6000AA933 /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragment.fsh; sourceTree = "<group>"; };
+		F2D3DFB61B3A35C6000AA933 /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertex.vsh; sourceTree = "<group>"; };
+		F2D3DFB91B3A496B000AA933 /* OpenGLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLHelper.h; sourceTree = "<group>"; };
+		F2D3DFBA1B3A496B000AA933 /* OpenGLHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLHelper.m; sourceTree = "<group>"; };
 		F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleManager.h; sourceTree = "<group>"; };
 		F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleManager.m; sourceTree = "<group>"; };
 		F2D564361B2CD177008D9C76 /* 0-new.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-new.csv"; sourceTree = "<group>"; };
@@ -2102,8 +2102,6 @@
 				F2D06FAE1B2933ED00AA7708 /* ViewController */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
-				F2D3DFB11B3A1D9A000AA933 /* OpenGLHelper.h */,
-				F2D3DFB21B3A1D9A000AA933 /* OpenGLHelper.m */,
 				F2D3DFA71B3A10A8000AA933 /* MMRootViewController.h */,
 				F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */,
 				F2D3DFAA1B3A178D000AA933 /* MMRootViewController+Touches.h */,
@@ -2112,12 +2110,14 @@
 				F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */,
 				F2F676A91B2B900400CA79A9 /* MyGLKViewController.h */,
 				F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */,
+				F2D3DFB91B3A496B000AA933 /* OpenGLHelper.h */,
+				F2D3DFBA1B3A496B000AA933 /* OpenGLHelper.m */,
 				F2F0FE921B34D27B00B00A21 /* MyGLKViewController+Labels.h */,
 				F2F0FE931B34D27B00B00A21 /* MyGLKViewController+Labels.m */,
 				F2399C781B3267D20062B5E6 /* MyGLKViewController+Touch.h */,
 				F2399C791B3267D20062B5E6 /* MyGLKViewController+Touch.m */,
-				F2D3DFB51B3A35C6000AA933 /* fragment.glsl */,
-				F2D3DFB61B3A35C6000AA933 /* vertex.glsl */,
+				F2D3DFB51B3A35C6000AA933 /* fragment.fsh */,
+				F2D3DFB61B3A35C6000AA933 /* vertex.vsh */,
 				F246EF141A01A86400357005 /* modmusica_1.pd */,
 				F2B2AB5819FF1739003042D6 /* Main.storyboard */,
 				F2B2AB5B19FF1739003042D6 /* Images.xcassets */,
@@ -3492,7 +3492,7 @@
 				F2B2B0D619FF281F003042D6 /* african4.wav in Resources */,
 				F2B2AF4A19FF27BE003042D6 /* 0-Funk4.txt in Resources */,
 				F2B2AEFD19FF27BE003042D6 /* mm_rgate.pd in Resources */,
-				F2D3DFB81B3A35C6000AA933 /* vertex.glsl in Resources */,
+				F2D3DFB81B3A35C6000AA933 /* vertex.vsh in Resources */,
 				F2EE01B91A11A22100398C04 /* m_minorscale-help.pd in Resources */,
 				F25B8F961A043B3D006E801D /* 5-mega.csv in Resources */,
 				F2EE02131A11A22100398C04 /* s_wsb.pd in Resources */,
@@ -3762,7 +3762,7 @@
 				F2B2B08A19FF281F003042D6 /* 1-Mega5.txt in Resources */,
 				F2EE017C1A11A22100398C04 /* e_vocoder.pd in Resources */,
 				F2DE9EB31B2245DD00FEBE5F /* mm_blsine~.pd in Resources */,
-				F2D3DFB71B3A35C6000AA933 /* fragment.glsl in Resources */,
+				F2D3DFB71B3A35C6000AA933 /* fragment.fsh in Resources */,
 				F2B2B16019FF281F003042D6 /* ctr.pd in Resources */,
 				F29B436C1A327AE5006AD07F /* 1-gs.csv in Resources */,
 				F2EE01081A11A22100398C04 /* c_adsrj-help.pd in Resources */,
@@ -4232,7 +4232,7 @@
 				F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */,
 				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
 				F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */,
-				F2D3DFB31B3A1D9A000AA933 /* OpenGLHelper.m in Sources */,
+				F2D3DFBB1B3A496B000AA933 /* OpenGLHelper.m in Sources */,
 				F2DE9EC51B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m in Sources */,
 				F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */,
 				F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */,

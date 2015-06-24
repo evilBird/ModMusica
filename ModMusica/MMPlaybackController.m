@@ -179,7 +179,7 @@ void bonk_tilde_setup(void);
 - (void)changeSectionMaybe
 {
     NSInteger rand = arc4random_uniform(100);
-    if (rand > 65 && rand <= 90) {
+    if (rand > 55 && rand <= 90) {
         [self.patternLoader playNextSection];
     }else if (rand > 90){
         [self.patternLoader playPreviousSection];

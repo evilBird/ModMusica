@@ -95,12 +95,6 @@ static double sampsPerWidth = 0.2;
     }
     
     int bufferSize = [PdBase arraySizeForArrayNamed:table];
-    /*
-    if (scopeArrayLength <= maxIndex) {
-        maxIndex = (scopeArrayLength - 1);
-    }
-    */
-    //int bufferSize = maxIndex + 1;
     float myData[numSamples];
     float *temp = malloc(sizeof(float)*bufferSize);
     [PdBase copyArrayNamed:table withOffset:0 toArray:temp count:bufferSize];
@@ -118,7 +112,7 @@ static double sampsPerWidth = 0.2;
         
         n++;
     }
-    
+    myData[(numSamples - 1)] = myData[0];
     free(temp);
     completion(myData,n);
 }
