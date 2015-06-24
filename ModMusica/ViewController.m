@@ -104,13 +104,7 @@
     self.scopeViewController.beatsPerMinute = tempo;
 }
 
-#pragma mark - MMStepCounterDelegate
 
-- (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
-{
-    self.scopeViewController.stepsPerMinute = stepsPerMinute;
-    [PdBase sendFloat:stepsPerMinute toReceiver:kSetTempoReceiver];
-}
 
 #pragma mark - MMAudioScopeViewControllerDelegate
 - (void)showSettings:(id)sender

@@ -11,8 +11,12 @@
 #import "MyGLKViewController.h"
 #import "MMRootViewController+Mods.h"
 #import "MMRootViewController+Touches.h"
+#import "MMStepCounter.h"
+
 
 @interface MMRootViewController ()
+
+@property (nonatomic,strong)            MMStepCounter           *stepCounter;
 
 @end
 

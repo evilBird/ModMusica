@@ -28,6 +28,11 @@ typedef struct {
     float Color[4];
 } Vertex;
 
+typedef struct
+{
+    char *Name;
+    GLint Location;
+}Uniform;
 
 static NSString *const vertShader = SHADER_STRING
 (
@@ -135,7 +140,7 @@ static void init_indices(GLuint indices[])
 
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
-    GLuint _vertexBuffer;
+    GLuint _verticesVBO;
     Vertex Vertices[(NUM_POINTS * NUM_TABLES)];
     NSArray *kTables;
     BOOL kUpdating;
@@ -143,9 +148,13 @@ static void init_indices(GLuint indices[])
     float _zoom;
     float _scale;
     GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES - 1) * 6];
-    GLuint _indexBuffer;
+    GLuint _indicesVBO;
     GLfloat colors[((NUM_TABLES + 1) * 3)];
     int kClock;
+    GLuint _program;
+    Uniform* _uniformArray;
+    int _uniformArraySize;
+    GLuint _VAO;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -156,7 +165,14 @@ static void init_indices(GLuint indices[])
 
 @implementation MyGLKViewController
 
+
+
 #pragma mark - setup
+
+- (void)setupEffect
+{
+    self.effect = [[GLKBaseEffect alloc]init];
+}
 
 - (void)setupGL {
     
@@ -164,16 +180,18 @@ static void init_indices(GLuint indices[])
     _zoom = ZOOM_INIT;
     _scale = SCALE_MIN;
     _rotation = 0.0;
-    self.effect = [[GLKBaseEffect alloc]init];
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+    glGenBuffers(1, &_verticesVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     init_indices(Indices);
     
-    glGenBuffers(1, &_indexBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
+    glGenBuffers(1, &_indicesVBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 }
 
 - (void)setupPlayback
@@ -199,7 +217,16 @@ static void init_indices(GLuint indices[])
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
+    
+    // Enable face culling and depth test
+    glEnable( GL_DEPTH_TEST );
+    glEnable( GL_CULL_FACE  );
+    
+    // Set up the viewport
+    int width = view.bounds.size.width;
+    int height = view.bounds.size.height;
+    glViewport(0, 0, width, height);
 }
 
 - (void)setupViews
@@ -216,8 +243,8 @@ static void init_indices(GLuint indices[])
     
     [EAGLContext setCurrentContext:self.context];
     
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteBuffers(1, &_indexBuffer);
+    glDeleteBuffers(1, &_verticesVBO);
+    glDeleteBuffers(1, &_indicesVBO);
     self.effect = nil;
 }
 
@@ -238,6 +265,7 @@ static void init_indices(GLuint indices[])
     [self setupViews];
     [self setupPlayback];
     [self setupContext];
+    [self setupEffect];
     [self setupGL];
     // Do any additional setup after loading the view.
 }
@@ -428,8 +456,8 @@ static void init_indices(GLuint indices[])
     glClearColor(r, g, b, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
@@ -454,6 +482,110 @@ static void init_indices(GLuint indices[])
     [self updateVertexData];
     [self updateModelViewMatrix];
 
+}
+
+#pragma mark - Utils
+
+- (GLuint)compileShader:(NSString*)shaderName withType:(GLenum)shaderType
+{
+    // Load the shader in memory
+    NSString *shaderPath = [[NSBundle mainBundle] pathForResource:shaderName ofType:@"glsl"];
+    NSError *error;
+    NSString *shaderString = [NSString stringWithContentsOfFile:shaderPath encoding:NSUTF8StringEncoding error:&error];
+    if(!shaderString)
+    {
+        NSLog(@"Error loading shader: %@", error.localizedDescription);
+        exit(1);
+    }
+    
+    // Create the shader inside openGL
+    GLuint shaderHandle = glCreateShader(shaderType);
+    
+    // Give that shader the source code loaded in memory
+    const char *shaderStringUTF8 = [shaderString UTF8String];
+    int shaderStringLength = [shaderString length];
+    glShaderSource(shaderHandle, 1, &shaderStringUTF8, &shaderStringLength);
+    
+    // Compile the source code
+    glCompileShader(shaderHandle);
+    
+    // Get the error messages in case the compiling has failed
+    GLint compileSuccess;
+    glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &compileSuccess);
+    if (compileSuccess == GL_FALSE) {
+        GLint logLength;
+        glGetShaderiv(shaderHandle, GL_INFO_LOG_LENGTH, &logLength);
+        if(logLength > 0)
+        {
+            GLchar *log = (GLchar *)malloc(logLength);
+            glGetShaderInfoLog(shaderHandle, logLength, &logLength, log);
+            NSLog(@"Shader compile log:\n%s", log);
+            free(log);
+        }
+        exit(1);
+    }
+    
+    return shaderHandle;
+}
+
+-(void)createProgram
+{
+    // Compile both shaders
+    GLuint vertexShader = [self compileShader:VERTEX_SHADER withType:GL_VERTEX_SHADER];
+    GLuint fragmentShader = [self compileShader:FRAGMENT_SHADER withType:GL_FRAGMENT_SHADER];
+    
+    // Create the program in openGL, attach the shaders and link them
+    GLuint programHandle = glCreateProgram();
+    glAttachShader(programHandle, vertexShader);
+    glAttachShader(programHandle, fragmentShader);
+    glLinkProgram(programHandle);
+    
+    // Get the error message in case the linking has failed
+    GLint linkSuccess;
+    glGetProgramiv(programHandle, GL_LINK_STATUS, &linkSuccess);
+    if (linkSuccess == GL_FALSE)
+    {
+        GLint logLength;
+        glGetProgramiv(programHandle, GL_INFO_LOG_LENGTH, &logLength);
+        if(logLength > 0)
+        {
+            GLchar *log = (GLchar *)malloc(logLength);
+            glGetProgramInfoLog(programHandle, logLength, &logLength, log);
+            NSLog(@"Program link log:\n%s", log);
+            free(log);
+        }
+        exit(1);
+    }
+    
+    _program = programHandle;
+}
+
+-(void)getUniforms
+{
+    GLint maxUniformLength;
+    GLint numberOfUniforms;
+    char *uniformName;
+    
+    // Get the number of uniforms and the max length of their names
+    glGetProgramiv(_program, GL_ACTIVE_UNIFORMS, &numberOfUniforms);
+    glGetProgramiv(_program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformLength);
+    
+    _uniformArray = malloc(numberOfUniforms * sizeof(Uniform));
+    _uniformArraySize = numberOfUniforms;
+    
+    for(int i = 0; i < numberOfUniforms; i++)
+    {
+        GLint size;
+        GLenum type;
+        GLint location;
+        // Get the Uniform Info
+        uniformName = malloc(sizeof(char) * maxUniformLength);
+        glGetActiveUniform(_program, i, maxUniformLength, NULL, &size, &type, uniformName);
+        _uniformArray[i].Name = uniformName;
+        // Get the uniform location
+        location = glGetUniformLocation(_program, uniformName);
+        _uniformArray[i].Location = location;
+    }
 }
 
 /*
