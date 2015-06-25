@@ -532,6 +532,8 @@
 		F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EC01B22928100FEBE5F /* MMStepCounter.m */; };
 		F2DE9EC51B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EC41B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m */; };
 		F2DE9EC81B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EC71B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m */; };
+		F2E06AC91B3C876400D0B880 /* Brushed_Aluminum_Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E06AC71B3C876400D0B880 /* Brushed_Aluminum_Dark.png */; };
+		F2E06ACA1B3C876400D0B880 /* Brushed_Aluminum.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E06AC81B3C876400D0B880 /* Brushed_Aluminum.png */; };
 		F2EE00FF1A11A22100398C04 /* _markovanal.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF911A11A22000398C04 /* _markovanal.pd */; };
 		F2EE01001A11A22100398C04 /* a.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF921A11A22000398C04 /* a.txt */; };
 		F2EE01011A11A22100398C04 /* a_breath-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF931A11A22000398C04 /* a_breath-help.pd */; };
@@ -1501,6 +1503,8 @@
 		F2DE9EC41B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Layer.m"; sourceTree = "<group>"; };
 		F2DE9EC61B22BA9600FEBE5F /* MMAudioScopeViewController+Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Path.h"; sourceTree = "<group>"; };
 		F2DE9EC71B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Path.m"; sourceTree = "<group>"; };
+		F2E06AC71B3C876400D0B880 /* Brushed_Aluminum_Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brushed_Aluminum_Dark.png; sourceTree = "<group>"; };
+		F2E06AC81B3C876400D0B880 /* Brushed_Aluminum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brushed_Aluminum.png; sourceTree = "<group>"; };
 		F2EE00001A11A22000398C04 /* e_reverb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_reverb.pd; sourceTree = "<group>"; };
 		F2EE00011A11A22000398C04 /* e_scompress-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "e_scompress-help.pd"; sourceTree = "<group>"; };
 		F2EE00021A11A22000398C04 /* e_scompress.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_scompress.pd; sourceTree = "<group>"; };
@@ -2127,6 +2131,8 @@
 				F2B2AB5B19FF1739003042D6 /* Images.xcassets */,
 				F2B2AB5D19FF1739003042D6 /* LaunchScreen.xib */,
 				F2B2AB4E19FF1739003042D6 /* Supporting Files */,
+				F2E06AC71B3C876400D0B880 /* Brushed_Aluminum_Dark.png */,
+				F2E06AC81B3C876400D0B880 /* Brushed_Aluminum.png */,
 			);
 			path = ModMusica;
 			sourceTree = "<group>";
@@ -3398,6 +3404,7 @@
 				F2B2AF1319FF27BE003042D6 /* modMusicPatchOld.pd in Resources */,
 				F2B2B0AC19FF281F003042D6 /* 2-Sad1.txt in Resources */,
 				F2B2B15519FF281F003042D6 /* conga3.wav in Resources */,
+				F2E06ACA1B3C876400D0B880 /* Brushed_Aluminum.png in Resources */,
 				F2B2AF1419FF27BE003042D6 /* other1.aif in Resources */,
 				F2EE01E51A11A22100398C04 /* s_chip-help.pd in Resources */,
 				F2B2B13619FF281F003042D6 /* interact2~.pd in Resources */,
@@ -3734,6 +3741,7 @@
 				F2B2AF3619FF27BE003042D6 /* Snare.wav in Resources */,
 				F2B2B0D219FF281F003042D6 /* african-pe-lo.wav in Resources */,
 				F2B2B17719FF281F003042D6 /* list-drip.pd in Resources */,
+				F2E06AC91B3C876400D0B880 /* Brushed_Aluminum_Dark.png in Resources */,
 				F22C3E171A06E29900A18E0C /* modmusica_2.pd in Resources */,
 				F2B2AEE919FF27BE003042D6 /* mm_ceiling2~.pd in Resources */,
 				F2B2AEEA19FF27BE003042D6 /* mm_compressor.pd in Resources */,

@@ -131,9 +131,15 @@ void update_vertices(Vertex vertices[], float samples[], int numTables, int samp
             vertex.Position[1] = (GLfloat)y;
             vertex.Position[2] = (GLfloat)z;
             
-            vertex.Color[0] = normalizedSample;
-            vertex.Color[1] = normalizedSample;
-            vertex.Color[2] = normalizedSample;
+            float normalizer = sqrtf(x * x + y * y + z * z);
+            
+            vertex.Normal[0] = (GLfloat)(x/normalizer);
+            vertex.Normal[1] = (GLfloat)(y/normalizer);
+            vertex.Normal[2] = (GLfloat)(z/normalizer);
+            
+            vertex.Color[0] = 0.5;//normalizedSample;
+            vertex.Color[1] = 0.5;//normalizedSample;
+            vertex.Color[2] = 0.5;//normalizedSample;
             
             vertex.Color[3] = 1.0;
             

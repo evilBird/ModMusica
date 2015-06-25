@@ -23,7 +23,7 @@
 
 #define SAMPLES_PER_TABLE           100
 #define VERTICES_PER_SAMPLE         100
-#define NUM_TABLES                  8
+#define NUM_TABLES                  4
 
 #define SAMPLE_SCALAR               0.9
 #define SAMPLE_UPDATES_PER_SEC      10.0
@@ -62,6 +62,7 @@ static NSString *kUpdateScopes = @"updateScopes";
 
 typedef struct {
     float Position[3];
+    float Normal[3];
     float Color[4];
 } Vertex;
 

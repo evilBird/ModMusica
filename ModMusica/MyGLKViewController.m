@@ -32,6 +32,7 @@
 
 @property (strong, nonatomic)   EAGLContext         *context;
 @property (strong, nonatomic)   GLKBaseEffect       *effect;
+@property (strong, nonatomic)   GLKSkyboxEffect     *skybox;
 @property (strong, nonatomic)   NSArray             *tables;
 @property (strong, nonatomic)   NSTimer             *labelUpdateTimer;
 
@@ -123,15 +124,20 @@
     
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
+    
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
+    
+    // Normals
+    glEnableVertexAttribArray(GLKVertexAttribNormal);
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, Normal)); // for model, normals, and texture
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
     
     [self.effect prepareToDraw];
     
-    glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
 }
 
 
@@ -192,9 +198,27 @@
     modelViewMatrix = [self updateRotationMatrix:modelViewMatrix];
     modelViewMatrix = [self updateScaleMatrix:modelViewMatrix];
     self.effect.transform.modelviewMatrix = modelViewMatrix;
+    self.skybox.transform.modelviewMatrix = modelViewMatrix;
 }
 
 #pragma mark - setup
+
+- (void)setupSkyboxEffect
+{
+    NSString *cubemapTexturePath        = [[NSBundle mainBundle] pathForResource:@"Brushed_Aluminum" ofType:@"png"];
+    GLKTextureInfo *cubemapTextureInfo  = [GLKTextureLoader cubeMapWithContentsOfFile:cubemapTexturePath options:nil error:nil];
+    
+    self.skybox                     = [[GLKSkyboxEffect alloc] init];
+    
+    self.skybox.center              = GLKVector3Make(0.0f, 0.0f, 0.0f);
+    self.skybox.textureCubeMap.name = cubemapTextureInfo.name;
+    self.skybox.textureCubeMap.enabled = TRUE;
+    
+    self.skybox.xSize               = 20.0;
+    self.skybox.ySize               = 20.0;
+    self.skybox.zSize               = 20.0;
+    self.skybox.label               = @"Skybox";
+}
 
 - (void)setupGL {
     
@@ -212,12 +236,28 @@
 }
 
 
-- (void)setupEffect
+- (void)setupBaseEffect
 {
     self.effect = [[GLKBaseEffect alloc]init];
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 100.0);
     self.effect.transform.projectionMatrix = projectionMatrix;
+    
+    self.effect.light0.enabled  = GL_TRUE;
+    
+    GLfloat ambientColor    = 0.70f;
+    GLfloat alpha = 1.0f;
+    self.effect.light0.ambientColor = GLKVector4Make(ambientColor, ambientColor, ambientColor, alpha);
+    
+    GLfloat diffuseColor    = 1.0f;
+    self.effect.light0.diffuseColor = GLKVector4Make(diffuseColor, diffuseColor, diffuseColor, alpha);
+    
+    // Spotlight
+    GLfloat specularColor   = 1.00f;
+    self.effect.light0.specularColor    = GLKVector4Make(specularColor, specularColor, specularColor, alpha);
+    self.effect.light0.position         = GLKVector4Make(5.0f, 0.0f, 0.0f, 0.0f);
+    self.effect.light0.spotDirection    = GLKVector3Make(-1.0f, 0.0f, -1.0f);
+    self.effect.light0.spotCutoff       = 40.0; // 40° spread total.
 }
 
 - (void)setupContext
@@ -232,7 +272,7 @@
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat16;
+    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     view.drawableMultisample = GLKViewDrawableMultisample4X;
     view.delegate = self;
@@ -332,8 +372,9 @@
     [self setupIvars];
     [self setupSampleTables];
     [self setupContext];
-    [self setupEffect];
+    [self setupBaseEffect];
     [self setupGL];
+    //[self setupSkyboxEffect];
     [self playbackEnded:nil];
     // Do any additional setup after loading the view.
 }
