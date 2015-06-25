@@ -8,10 +8,7 @@
 
 #ifndef ModMusica_MyGLKFunctions_h
 #define ModMusica_MyGLKFunctions_h
-#import <Foundation/Foundation.h>
-#import <GLKit/GLKit.h>
 #import "MyGLKDefs.h"
-#import "PdBase.h"
 
 void make_mesh_indices(GLuint indices[], int x, int y)
 {

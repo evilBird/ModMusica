@@ -16,4 +16,6 @@
 - (void)showTempoInfo:(NSString *)tempoInfo;
 - (void)updateLabelText;
 - (void)updateLabelColors;
+- (void)handleLabelUpdateTimer:(id)sender;
+
 @end

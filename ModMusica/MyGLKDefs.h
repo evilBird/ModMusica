@@ -9,25 +9,39 @@
 #ifndef ModMusica_MyGLKDefs_h
 #define ModMusica_MyGLKDefs_h
 
-#define SAMPLES_PER_TABLE 100
-#define NUM_TABLES 8
-#define VERTICES_PER_SAMPLE 100
-#define SAMPLE_RATE 44100
-#define BLOCK_SIZE 64
-#define TICKS 64
-#define TABLE_SIZE 2048
-#define SCALE_COEFF 0.5
-#define SCALE_MIN 0.1
-#define SCALE_MAX 20.0
-#define ZOOM_INIT -8.0
-#define ZOOM_DIFF 0.1
-#define MAX_ZOOM 1
-#define SAMPLE_SCALAR 0.9
-#define ROTATION 10.0
-#define DEBUG_GL 0
+#import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
+#import "PdBase.h"
+
 #define STRINGIZE(x) #x
 #define STRINGIZE2(x) STRINGIZE(x)
 #define SHADER_STRING(text) @ STRINGIZE2(text)
+
+#define SAMPLE_RATE                 44100
+#define BLOCK_SIZE                  64
+#define TICKS                       64
+
+#define SAMPLES_PER_TABLE           128
+#define VERTICES_PER_SAMPLE         100
+#define NUM_TABLES                  8
+
+#define SAMPLE_SCALAR               0.9
+#define SAMPLE_UPDATES_PER_SEC      20.0
+
+#define MIN_SCALE                   0.1
+#define MAX_SCALE                   20.0
+#define D_SCALE                     0.5
+
+#define MIN_ZOOM                   -8.0
+#define MAX_ZOOM                    0.1
+#define D_ZOOM                      0.1
+
+#define INIT_ROTATION_X            -90.0
+
+#define INIT_ROTATION_Y              0.0
+#define D_ROTATION_Y                10.0
+
+#define DEBUG_GL 0
 
 static NSString *kTableName = @"scopeArray";
 static NSString *kBassTable = @"bassScope";

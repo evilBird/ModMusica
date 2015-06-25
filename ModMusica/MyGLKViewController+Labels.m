@@ -14,6 +14,12 @@
 
 static NSTimer *infoLabelTimer;
 
+- (void)handleLabelUpdateTimer:(id)sender
+{
+    NSTimer *timer = sender;
+    [timer invalidate];
+}
+
 - (void)handleInfoLabelTimer:(id)sender
 {
     [self hideLabelsAnimated:YES];
