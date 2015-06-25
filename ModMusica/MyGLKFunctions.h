@@ -98,7 +98,9 @@ void update_vertices(Vertex vertices[], float samples[], int numTables, int samp
 #endif
     int numCols = numTables * verticesPerSample;
     int numSamples = numTables * samplesPerTable;
+    
     for (int i = 0; i < numCols; i++) {
+        
         int myIdx = i/verticesPerSample;
         
         for (int j = 0; j < samplesPerTable; j++) {
@@ -119,10 +121,8 @@ void update_vertices(Vertex vertices[], float samples[], int numTables, int samp
             
             double rads = (double)((double)j * ((2.0 * M_PI)/(double)(samplesPerTable - 1)));
             double x = cos(rads) + cos(rads) * fabs(weightedSample);
+            double y = (double)i/(double)(numCols - 1.0) * 2.0 - 1.0;
             double z = sin(rads) + sin(rads) * fabs(weightedSample);
-            
-            double color = (double)i/(double)(numCols - 1.0);
-            double y = color * 2.0 - 1.0;
             
             GLfloat normalizedSample = (GLfloat)((weightedSample * 2.0) + 1.0);
 
@@ -130,10 +130,13 @@ void update_vertices(Vertex vertices[], float samples[], int numTables, int samp
             vertex.Position[0] = (GLfloat)x;
             vertex.Position[1] = (GLfloat)y;
             vertex.Position[2] = (GLfloat)z;
-            vertex.Color[0] = (GLfloat)(color * normalizedSample);
-            vertex.Color[1] = (GLfloat)normalizedSample;
-            vertex.Color[2] = (GLfloat)((1.0 - color) * normalizedSample);
+            
+            vertex.Color[0] = normalizedSample;
+            vertex.Color[1] = normalizedSample;
+            vertex.Color[2] = normalizedSample;
+            
             vertex.Color[3] = 1.0;
+            
             vertices[vertexIdx] = vertex;
 #if DEBUG_GL
             NSLog(@"\ni = %d, j = %d, vertexIdx = %d, sampleIdx = %d, sample = %.2f, neighborIdx = %d, neighbor = %.2f, neighbor wt = %.2f, weighted sample = %.2f, x = %.2f, y = %.2f, z = %.2f",i,j,vertexIdx,sampleIdx,sample,neighborIdx,neighbor,neighbor_wt,weightedSample,x,y,z);

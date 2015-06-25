@@ -21,12 +21,12 @@
 #define BLOCK_SIZE                  64
 #define TICKS                       64
 
-#define SAMPLES_PER_TABLE           128
+#define SAMPLES_PER_TABLE           100
 #define VERTICES_PER_SAMPLE         100
 #define NUM_TABLES                  8
 
 #define SAMPLE_SCALAR               0.9
-#define SAMPLE_UPDATES_PER_SEC      20.0
+#define SAMPLE_UPDATES_PER_SEC      10.0
 
 #define MIN_SCALE                   0.1
 #define MAX_SCALE                   20.0

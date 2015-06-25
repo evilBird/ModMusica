@@ -285,7 +285,7 @@
 
 - (NSTimeInterval)minimumSampleUpdateInterval
 {
-    return 1.0/SAMPLE_UPDATES_PER_SEC;
+    return 1.0/self.framesPerSecond;
 }
 
 
