@@ -92,12 +92,11 @@
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
+    //view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
+    //view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     view.drawableMultisample = GLKViewDrawableMultisample4X;
     view.delegate = self;
-    self.preferredFramesPerSecond = 10;
     
     // Enable face culling and depth test
     glEnable(GL_DEPTH_TEST);
@@ -212,7 +211,7 @@
     [self showLabelsAnimated:YES];
     kUpdating = NO;
     [self setupIvars];
-    self.paused = YES;
+    //self.paused = YES;
 }
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
@@ -252,7 +251,7 @@
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     _rotation += 10 * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(-90), 1, 0, 0);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0.0, 1, 0.0);
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0.1, 1, 0.1);
     static double coeff;
     
     if (!coeff) {
@@ -305,7 +304,7 @@
 #pragma mark - GLKViewControllerDelegate
 
 - (void)update {
-    
+
     [self updateVertexData];
     [self updateModelViewMatrix];
 

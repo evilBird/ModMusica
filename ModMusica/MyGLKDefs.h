@@ -10,8 +10,8 @@
 #define ModMusica_MyGLKDefs_h
 
 #define SAMPLES_PER_TABLE 100
-#define NUM_TABLES 4
-#define VERTICES_PER_SAMPLE 2
+#define NUM_TABLES 8
+#define VERTICES_PER_SAMPLE 50
 #define SAMPLE_RATE 44100
 #define BLOCK_SIZE 64
 #define TICKS 64
