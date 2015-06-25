@@ -25,57 +25,42 @@ void make_mesh_indices(GLuint indices[], int x, int y)
     int anchorIdx = 0;
     int vertexIdx = 0;
     
-    for (int i = 0; i<numRows; i++) {
+    for (int i = 0; i<numCols; i++) {
         
-        for (int j = 0; j<numCols; j++) {
+        for (int j = 0; j<numRows; j++) {
             
-            anchorIdx = ((j * x) + i);
+            anchorIdx = ((i * x) + j);
+            
+            vertexIdx = anchorIdx + 1;
+            indices[meshIdx] = (GLuint)vertexIdx;
+            meshIdx++;
             
             vertexIdx = anchorIdx;
-            
             indices[meshIdx] = (GLuint)vertexIdx;
             meshIdx++;
-            //vertexIdx++;
-            vertexIdx = anchorIdx + 1;
             
-            indices[meshIdx] = (GLuint)vertexIdx;
-            meshIdx++;
-            //vertexIdx+=x;
             vertexIdx = anchorIdx + x;
             indices[meshIdx] = (GLuint)vertexIdx;
             meshIdx++;
-            /*
-            vertexIdx = anchorIdx + 1;
             
+            vertexIdx = anchorIdx + x;
             indices[meshIdx] = (GLuint)vertexIdx;
             meshIdx++;
-            //vertexIdx+=(x + 1);
+            
             vertexIdx = anchorIdx + x + 1;
             indices[meshIdx] = (GLuint)vertexIdx;
             meshIdx++;
-            //vertexIdx--;
-            vertexIdx = anchorIdx + x;
+            
+            vertexIdx = anchorIdx + 1;
             indices[meshIdx] = (GLuint)vertexIdx;
             meshIdx++;
-             */
         }
-        
-        for (int j = 0; j<numCols; j++) {
-            int idx = (numCols - 1 - j);
-            indices[meshIdx] = (GLuint)((idx * x) + (i + 1));
-            meshIdx++;
-            indices[meshIdx] = (GLuint)(((idx + 1) * x) + (i + 1));
-            meshIdx++;
-            indices[meshIdx] = (GLuint)(((idx + 1) * x) + i);
-            meshIdx++;
-        }
-
     }
 }
 
 void get_samples(NSArray *tables, float samples[], int samplesPerTable, int wrap)
 {
-    [PdBase sendBangToReceiver:@"updateScopes"];
+    [PdBase sendBangToReceiver:kUpdateScopes];
     
     for (int i = 0; i < tables.count; i++) {
         NSString *table = tables[i];
@@ -85,7 +70,7 @@ void get_samples(NSArray *tables, float samples[], int samplesPerTable, int wrap
         float stepSize = (float)tableSize/(float)(samplesPerTable - 1);
         int sampleIdx = 0;
         for (int j = 0; j < samplesPerTable; j++) {
-            int tableIdx = round((double)(j * stepSize));
+            int tableIdx = (j * stepSize);
             float sample = temp[tableIdx];
             if (sample!=sample) {
                 sample = 0.0;
@@ -101,62 +86,45 @@ void get_samples(NSArray *tables, float samples[], int samplesPerTable, int wrap
     }
 }
 
-void update_vertices_with_samples(Vertex vertices[],float samples[], int numSamples, int numTables, int numVertices)
+void update_vertices(Vertex vertices[], float samples[], int numTables, int samplesPerTable, int verticesPerSample)
 {
-    int verticesPerSample = numVertices/numSamples;
-    int samplesPerTable = numSamples/numTables;
-    int verticesPerTable = numVertices/numTables;
-    
-    for (int i = 0; i < numVertices; i ++) {
+#if DEBUG_GL
+    NSLog(@"\n*****************************************\n");
+#endif
+    int numCols = numTables * verticesPerSample;
+    for (int i = 0; i < numCols; i++) {
         
-        int sampleArrayIndex = i/verticesPerSample;
-        int sampleTableIndex = sampleArrayIndex%samplesPerTable;
-        int tableIdx = i/(samplesPerTable * verticesPerSample);
-        int vertexIdx = i/samplesPerTable;
-        float sample = samples[sampleArrayIndex];
-        double distance = (double)vertexIdx/(double)(verticesPerTable);
-        double w1 = 1.0 - distance;
-        double w2 = distance;
-        
-        if (samplesPerTable > 1){
+        for (int j = 0; j < samplesPerTable; j++) {
             
-            sample = samples[sampleArrayIndex];
-            int neighborIdx;
-            if (tableIdx < (numTables - 1)) {
-                neighborIdx = sampleArrayIndex + samplesPerTable;
-            }else{
-                neighborIdx = sampleArrayIndex - samplesPerTable;
-            }
+            int myIdx = i/verticesPerSample;
+            int sampleIdx = myIdx * samplesPerTable + j;
+            double sample = (double)samples[sampleIdx];
+            double rads = (double)((double)j * ((2.0 * M_PI)/(double)(samplesPerTable - 1)));
+            double x = cos(rads) + cos(rads) * fabs(sample);
+            double z = sin(rads) + sin(rads) * fabs(sample);
+            GLfloat normalizedSample = (GLfloat)((sample * 2.0) + 1.0);
             
-            float neighbor = samples[neighborIdx];
-            sample = (sample * w1 + neighbor * w2);
+            int vertexIdx = i * samplesPerTable + j;
+            double color = (double)i/(double)(numCols - 1.0);
+            double y = color * 2.0 - 1.0;
             
+            Vertex vertex;
+            vertex.Position[0] = (GLfloat)x;
+            vertex.Position[1] = (GLfloat)y;
+            vertex.Position[2] = (GLfloat)z;
+            vertex.Color[0] = color;
+            vertex.Color[1] = normalizedSample;
+            vertex.Color[2] = normalizedSample;
+            vertex.Color[3] = 1.0;
+            vertices[vertexIdx] = vertex;
+#if DEBUG_GL
+            NSLog(@"\ni = %d, j = %d, vertex = %d, color = %.2f, x = %.2f, y = %.2f, z = %.2f",i,j,vertexIdx,color,x,y,z);
+#endif
         }
-        
-        GLfloat samp = (GLfloat)sample;
-        if (samp!=samp) {
-            samp = 0.0;
-        }
-        
-        GLfloat normSample = (GLfloat)((samp + 1.0)/2.0);
-        
-        double rads = (GLfloat)((float)sampleTableIndex * ((2.0 * M_PI)/(float)(samplesPerTable - 1)));
-        
-        GLfloat x = cos(rads) + cos(rads) * fabs(sample);
-        
-        GLfloat y = (GLfloat)((float)vertexIdx/(float)(numTables * verticesPerTable) * 2.0 - 1.0);
-        //GLfloat y = (GLfloat)(((float)(tableIdx + w2)/(float)(numTables - 1.0) * 2.0) - 1.0);
-        
-        GLfloat z = sin(rads) + sin(rads) * fabs(sample);
-        
-        vertices[i].Position[0] = x;
-        vertices[i].Position[1] = y;
-        vertices[i].Position[2] = z;
-        vertices[i].Color[0] = normSample;
-        vertices[i].Color[1] = normSample;
-        vertices[i].Color[2] = normSample;
-        vertices[i].Color[3] = 1.0;
     }
+#if DEBUG_GL
+    NSLog(@"\n++++++++++++++++++++++++++++++++\n\n");
+#endif
 }
 
 GLfloat wrap_float(GLfloat myFloat, GLfloat min, GLfloat max)

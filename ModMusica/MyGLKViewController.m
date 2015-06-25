@@ -7,85 +7,26 @@
 //
 
 #import "MyGLKViewController.h"
-#import "MMScopeDataSource.h"
 #import "MMPlaybackController.h"
 #import "MyGLKViewController+Labels.h"
-#import "OpenGLHelper.h"
 #import "MyGLKFunctions.h"
-
-#define STRINGIZE(x) #x
-#define STRINGIZE2(x) STRINGIZE(x)
-#define SHADER_STRING(text) @ STRINGIZE2(text)
-
-#define USE_SHADERS 0
-
-NSString *const kFragmentShader = SHADER_STRING
-(
- 
- void main( void )
-{
-    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-}
- 
-);
-
-NSString *const kVertexShader = SHADER_STRING
-(
- 
- uniform mediump mat4 ModelViewProjectionMatrix;
- attribute mediump vec3 Position;
- 
- void main( void )
-{
-    gl_Position = ModelViewProjectionMatrix * vec4(Position, 1.0);
-}
- 
-);
-
-
-#define NUM_POINTS 100
-#define NUM_TABLES 8
-#define VERTICES_PER_TABLE 1
-#define SAMPLE_RATE 44100
-#define BLOCK_SIZE 64
-#define TICKS 64
-#define TABLE_SIZE 2048
-#define SCALE_COEFF 0.05
-#define SCALE_MIN 0.1
-#define SCALE_MAX 10.0
-#define ZOOM_INIT -3.5
-#define VERTEX_SHADER @"vertex"
-#define FRAGMENT_SHADER @"fragment"
-
-typedef struct
-{
-    char *Name;
-    GLint Location;
-}Uniform;
-
 
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
     GLuint _verticesVBO;
-    Vertex Vertices[(NUM_POINTS * NUM_TABLES * VERTICES_PER_TABLE)];
+    GLuint _indicesVBO;
+    
+    Vertex Vertices[(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE)];
+    GLuint Indices[(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 1) * 6];
+    float samples[(SAMPLES_PER_TABLE * NUM_TABLES)];
+    GLfloat colors[((NUM_TABLES + 1) * 3)];
+    
+    int kClock;
     NSArray *kTables;
     BOOL kUpdating;
     float _rotation;
     float _zoom;
     float _scale;
-
-    GLuint Indices[(NUM_POINTS-1) * ((NUM_TABLES * VERTICES_PER_TABLE) - 1) * 6];
-
-    float samples[(NUM_POINTS * NUM_TABLES)];
-    GLuint _indicesVBO;
-    GLfloat colors[((NUM_TABLES + 1) * 3)];
-    int kClock;
-    GLuint _program;
-    Uniform* _uniformArray;
-    int _uniformArraySize;
-    GLuint _VAO;
-    GLKMatrix4 _projectionMatrix;
-    GLKMatrix4 _modelViewMatrix;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -100,12 +41,11 @@ typedef struct
 
 #pragma mark - setup
 
-- (void)setupShaders
+- (void)setupIvars
 {
-#if USE_SHADERS
-    [self createProgram];
-    [self getUniforms];
-#endif
+    _zoom = ZOOM_INIT;
+    _scale = SCALE_MIN;
+    _rotation = 0.0;
 }
 
 - (void)setupEffect
@@ -116,16 +56,12 @@ typedef struct
 - (void)setupGL {
     
     [EAGLContext setCurrentContext:self.context];
-    
-    _zoom = ZOOM_INIT;
-    _scale = SCALE_MIN;
-    _rotation = 0.0;
 
     glGenBuffers(1, &_verticesVBO);
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     
-    make_mesh_indices(Indices, NUM_POINTS, (NUM_TABLES * VERTICES_PER_TABLE));
+    make_mesh_indices(Indices, SAMPLES_PER_TABLE, (NUM_TABLES * VERTICES_PER_SAMPLE));
     
     glGenBuffers(1, &_indicesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
@@ -138,6 +74,7 @@ typedef struct
     self.playbackController.delegate = self;
     
     NSArray *allTables = @[kSynthTable,kBassTable,kDrumTable,kSamplerTable,kDrumTable,kSynthTable,kSamplerTable,kBassTable];
+    
     NSRange indexRange;
     indexRange.location = 0;
     indexRange.length = NUM_TABLES;
@@ -159,6 +96,8 @@ typedef struct
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     view.drawableMultisample = GLKViewDrawableMultisample4X;
+    view.delegate = self;
+    self.preferredFramesPerSecond = 10;
     
     // Enable face culling and depth test
     glEnable(GL_DEPTH_TEST);
@@ -183,17 +122,6 @@ typedef struct
     glDeleteBuffers(1, &_verticesVBO);
     glDeleteBuffers(1, &_indicesVBO);
     
-    if (_program) {
-        glDeleteProgram(_program);
-        _program = 0;
-    }
-    
-    for (int i = 0; i < _uniformArraySize; i++) {
-        free(_uniformArray[i].Name);
-    }
-    
-    free(_uniformArray);
-    
     self.effect = nil;
 }
 
@@ -214,19 +142,13 @@ typedef struct
     [self setupViews];
     [self setupPlayback];
     [self setupContext];
+    [self setupIvars];
     [self setupEffect];
-    [self setupShaders];
     [self setupGL];
     [self playbackEnded:nil];
     // Do any additional setup after loading the view.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self showLabelsAnimated:YES];
-
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -289,6 +211,7 @@ typedef struct
     [self updateLabelText];
     [self showLabelsAnimated:YES];
     kUpdating = NO;
+    [self setupIvars];
     self.paused = YES;
 }
 
@@ -311,24 +234,17 @@ typedef struct
 
 - (void)updateVertexData
 {
-    int samplesPerTable = NUM_POINTS;
-    int numTables = NUM_TABLES;
-    int numVertices = NUM_POINTS * NUM_TABLES * VERTICES_PER_TABLE;
-    int numSamples = NUM_POINTS * NUM_TABLES;
-    
-    get_samples(kTables, samples,samplesPerTable,1);
-    update_vertices_with_samples(Vertices, samples, numSamples, numTables, numVertices);
+    get_samples(kTables, samples,SAMPLES_PER_TABLE,1);
+    update_vertices(Vertices, samples, NUM_TABLES, SAMPLES_PER_TABLE, VERTICES_PER_SAMPLE);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
 }
 
 - (void)updateModelViewMatrix
 {
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 0.1f, 100.0f);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 20.0);
     self.effect.transform.projectionMatrix = projectionMatrix;
-    
-    
-    _zoom -= 0.1 * self.timeSinceLastUpdate;
+    _zoom += 0.01 * self.timeSinceLastUpdate;
     if (_zoom < -0.5) {
         _zoom = ZOOM_INIT;
     }
@@ -360,6 +276,7 @@ typedef struct
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
     int colorIdx = (NUM_TABLES-1) * 3;
+    
     GLfloat r = colors[colorIdx];
     colorIdx++;
     GLfloat g = colors[colorIdx];
@@ -374,7 +291,6 @@ typedef struct
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
@@ -390,113 +306,11 @@ typedef struct
 
 - (void)update {
     
-    if (!kUpdating) {
-        return;
-    }
-    
     [self updateVertexData];
     [self updateModelViewMatrix];
 
 }
 
-#pragma mark - Utils
-
-- (GLuint)compileShader:(NSString*)shaderName withType:(GLenum)shaderType
-{
-    // Load the shader in memory
-    NSString *shaderPath = [[NSBundle mainBundle] pathForResource:shaderName ofType:@"glsl"];
-    NSError *error;
-    NSString *shaderString = [NSString stringWithContentsOfFile:shaderPath encoding:NSUTF8StringEncoding error:&error];
-    
-    if(!shaderString)
-    {
-        NSLog(@"Error loading shader: %@", error.localizedDescription);
-        exit(1);
-    }
-    
-    return [self compileShaderString:shaderString withType:shaderType];
-}
-
-- (GLuint)compileShaderString:(NSString *)shaderString  withType:(GLenum)shaderType
-{
-    GLuint shaderHandle = glCreateShader(shaderType);
-    const char * shaderStringUTF8 = [shaderString UTF8String];
-    int shaderStringLength = (int)[shaderString length];
-    glShaderSource(shaderHandle, 1, &shaderStringUTF8, &shaderStringLength);
-    glCompileShader(shaderHandle);
-    
-    GLint compileSuccess;
-    glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &compileSuccess);
-    if (compileSuccess == GL_FALSE) {
-        GLchar messages[256];
-        glGetShaderInfoLog(shaderHandle, sizeof(messages), 0, &messages[0]);
-        NSString *messageString = [NSString stringWithUTF8String:messages];
-        NSLog(@"%@", messageString);
-        exit(1);
-    }
-    
-    return shaderHandle;
-}
-
--(void)createProgram
-{
-    // Compile both shaders
-    GLuint vertexShader = [self compileShaderString:kVertexShader withType:GL_VERTEX_SHADER];
-    GLuint fragmentShader = [self compileShaderString:kFragmentShader withType:GL_FRAGMENT_SHADER];
-    
-    // Create the program in openGL, attach the shaders and link them
-    GLuint programHandle = glCreateProgram();
-    glAttachShader(programHandle, vertexShader);
-    glAttachShader(programHandle, fragmentShader);
-    glLinkProgram(programHandle);
-    
-    // Get the error message in case the linking has failed
-    GLint linkSuccess;
-    glGetProgramiv(programHandle, GL_LINK_STATUS, &linkSuccess);
-    if (linkSuccess == GL_FALSE)
-    {
-        GLint logLength;
-        glGetProgramiv(programHandle, GL_INFO_LOG_LENGTH, &logLength);
-        if(logLength > 0)
-        {
-            GLchar *log = (GLchar *)malloc(logLength);
-            glGetProgramInfoLog(programHandle, logLength, &logLength, log);
-            NSLog(@"Program link log:\n%s", log);
-            free(log);
-        }
-        exit(1);
-    }
-    
-    _program = programHandle;
-}
-
--(void)getUniforms
-{
-    GLint maxUniformLength;
-    GLint numberOfUniforms;
-    char *uniformName;
-    
-    // Get the number of uniforms and the max length of their names
-    glGetProgramiv(_program, GL_ACTIVE_UNIFORMS, &numberOfUniforms);
-    glGetProgramiv(_program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxUniformLength);
-    
-    _uniformArray = malloc(numberOfUniforms * sizeof(Uniform));
-    _uniformArraySize = numberOfUniforms;
-    
-    for(int i = 0; i < numberOfUniforms; i++)
-    {
-        GLint size;
-        GLenum type;
-        GLint location;
-        // Get the Uniform Info
-        uniformName = malloc(sizeof(char) * maxUniformLength);
-        glGetActiveUniform(_program, i, maxUniformLength, NULL, &size, &type, uniformName);
-        _uniformArray[i].Name = uniformName;
-        // Get the uniform location
-        location = glGetUniformLocation(_program, uniformName);
-        _uniformArray[i].Location = location;
-    }
-}
 
 /*
 #pragma mark - Navigation
