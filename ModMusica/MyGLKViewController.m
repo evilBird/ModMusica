@@ -241,17 +241,17 @@
 - (void)updateModelViewMatrix
 {
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 20.0);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 100.0);
     self.effect.transform.projectionMatrix = projectionMatrix;
-    _zoom += 0.01 * self.timeSinceLastUpdate;
-    if (_zoom < -0.5) {
+    _zoom += ZOOM_DIFF * self.timeSinceLastUpdate;
+    if (_zoom > MAX_ZOOM) {
         _zoom = ZOOM_INIT;
     }
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
-    _rotation += 10 * self.timeSinceLastUpdate;
+    _rotation += ROTATION * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(-90), 1, 0, 0);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0.1, 1, 0.1);
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0.001, 1, 0.001);
     static double coeff;
     
     if (!coeff) {

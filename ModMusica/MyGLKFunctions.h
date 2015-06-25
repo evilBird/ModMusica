@@ -84,7 +84,7 @@ void get_samples(NSArray *tables, float samples[], int samplesPerTable, int wrap
             }
             
             sampleIdx = ((i * samplesPerTable) + j);
-            samples[sampleIdx] = sample;
+            samples[sampleIdx] = sample * SAMPLE_SCALAR;
         }
         if (wrap) {
             samples[(i * samplesPerTable)] = samples[sampleIdx];

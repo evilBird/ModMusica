@@ -31,6 +31,7 @@
     mm.delegate = self;
     mm.datasource = self;
     [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
+    [(MyGLKViewController *)self.paneViewController setCurrentModName:@"mario"];
     // Do any additional setup after loading the view.
 }
 
