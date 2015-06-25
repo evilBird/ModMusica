@@ -17,7 +17,6 @@
 #define STRINGIZE2(x) STRINGIZE(x)
 #define SHADER_STRING(text) @ STRINGIZE2(text)
 
-#define TORUS 0
 #define USE_SHADERS 0
 
 NSString *const kFragmentShader = SHADER_STRING
@@ -46,6 +45,7 @@ NSString *const kVertexShader = SHADER_STRING
 
 #define NUM_POINTS 100
 #define NUM_TABLES 8
+#define VERTICES_PER_TABLE 1
 #define SAMPLE_RATE 44100
 #define BLOCK_SIZE 64
 #define TICKS 64
@@ -67,17 +67,14 @@ typedef struct
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
     GLuint _verticesVBO;
-    Vertex Vertices[(NUM_POINTS * NUM_TABLES)];
+    Vertex Vertices[(NUM_POINTS * NUM_TABLES * VERTICES_PER_TABLE)];
     NSArray *kTables;
     BOOL kUpdating;
     float _rotation;
     float _zoom;
     float _scale;
-#if TORUS
-    GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES) * 6];
-#else
-    GLuint Indices[(NUM_POINTS-1) * (NUM_TABLES - 1) * 6];
-#endif
+
+    GLuint Indices[(NUM_POINTS-1) * ((NUM_TABLES * VERTICES_PER_TABLE) - 1) * 6];
 
     float samples[(NUM_POINTS * NUM_TABLES)];
     GLuint _indicesVBO;
@@ -128,7 +125,7 @@ typedef struct
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     
-    make_mesh_indices(Indices, NUM_POINTS, NUM_TABLES);
+    make_mesh_indices(Indices, NUM_POINTS, (NUM_TABLES * VERTICES_PER_TABLE));
     
     glGenBuffers(1, &_indicesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
@@ -172,7 +169,7 @@ typedef struct
 - (void)setupViews
 {
     [self randomizeColors];
-    self.currentModName = @"Mario";
+    self.currentModName = @"";
     [self setupLabels];
     [self updateLabelText];
 }
@@ -314,64 +311,13 @@ typedef struct
 
 - (void)updateVertexData
 {
-    int maxIdx = self.timeSinceLastUpdate * SAMPLE_RATE;
+    int samplesPerTable = NUM_POINTS;
+    int numTables = NUM_TABLES;
+    int numVertices = NUM_POINTS * NUM_TABLES * VERTICES_PER_TABLE;
+    int numSamples = NUM_POINTS * NUM_TABLES;
     
-    if (maxIdx >= TABLE_SIZE) {
-        maxIdx = (TABLE_SIZE - 1);
-    }
-    
-    [PdBase sendBangToReceiver:@"updateScopes"];
-    __block int idx = 0;
-    for (int i = 0; i < NUM_TABLES; i++) {
-        NSString *kTable = kTables[i];
-        GLfloat y = (GLfloat)(((float)i/(float)(NUM_TABLES - 1.0) * 2.0) - 1.0);
-        [MMScopeDataSource sampleArray:NUM_POINTS maxIndex:maxIdx fromTable:kTable completion:^(float data[], int n) {
-            if (data != NULL) {
-                for (int j = 0; j < NUM_POINTS; j ++) {
-                    idx = (int)((i * NUM_POINTS) + j);
-                    Vertex v = Vertices[idx];
-                    float sample = data[j];
-                    GLfloat d = (GLfloat)sample;
-                    if (d!=d) {
-                        d = 0.0;
-                    }
-                    
-                    GLfloat normSample = ((d + 1)/2.0);
-#if TORUS
-                    double rads = (GLfloat)((float)j * ((2.0 * M_PI)/(float)(NUM_POINTS)));
-#else
-                    double rads = (GLfloat)((float)j * ((2.0 * M_PI)/(float)(NUM_POINTS-1)));
-#endif
-
-                    
-                    GLfloat x = cos(rads) + cos(rads) * fabs(sample);
-                    GLfloat z = sin(rads) + sin(rads) * fabs(sample);
-                    
-                    v.Position[0] = x;
-                    v.Position[1] = y;
-                    v.Position[2] = z;
-                    
-                    int colorIdx = i * 3;
-                    GLfloat c = colors[colorIdx];
-
-                    v.Color[0] = (c * normSample);
-                    colorIdx++;
-                    c = colors[colorIdx];
-                    v.Color[1] = (c * normSample);
-                    colorIdx++;
-                    c = colors[colorIdx];
-                    v.Color[2] = (c * normSample);
-                    v.Color[3] = 1.0;
-                    Vertices[idx] = v;
-                }
-            }
-        }];
-        
-    }
-    
-#if !TORUS
-    //Vertices[idx] = Vertices[0];
-#endif
+    get_samples(kTables, samples,samplesPerTable,1);
+    update_vertices_with_samples(Vertices, samples, numSamples, numTables, numVertices);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
 }
 
@@ -390,7 +336,7 @@ typedef struct
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     _rotation += 10 * self.timeSinceLastUpdate;
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(-90), 1, 0, 0);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0.5, 1, 0.5);
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation), 0.0, 1, 0.0);
     static double coeff;
     
     if (!coeff) {

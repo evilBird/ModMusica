@@ -22,38 +22,58 @@ void make_mesh_indices(GLuint indices[], int x, int y)
     int numRows = (x - 1);
     int numCols = (y - 1);
     int meshIdx = 0;
+    int anchorIdx = 0;
     int vertexIdx = 0;
     
-    for (int i = 0; i<numCols; i++) {
+    for (int i = 0; i<numRows; i++) {
         
-        for (int j = 0; j<numRows; j++) {
+        for (int j = 0; j<numCols; j++) {
             
-            vertexIdx = ((i * x) + j);
-
-            indices[meshIdx] = (GLuint)vertexIdx;
-            meshIdx++;
-            vertexIdx++;
-            indices[meshIdx] = (GLuint)vertexIdx;
-            meshIdx++;
-            vertexIdx+=x;
-            indices[meshIdx] = (GLuint)vertexIdx;
-            meshIdx++;
+            anchorIdx = ((j * x) + i);
             
-            vertexIdx = ((i * x) + j);
+            vertexIdx = anchorIdx;
             
             indices[meshIdx] = (GLuint)vertexIdx;
             meshIdx++;
-            vertexIdx+=(x + 1);
+            //vertexIdx++;
+            vertexIdx = anchorIdx + 1;
+            
             indices[meshIdx] = (GLuint)vertexIdx;
             meshIdx++;
-            vertexIdx--;
+            //vertexIdx+=x;
+            vertexIdx = anchorIdx + x;
             indices[meshIdx] = (GLuint)vertexIdx;
+            meshIdx++;
+            /*
+            vertexIdx = anchorIdx + 1;
+            
+            indices[meshIdx] = (GLuint)vertexIdx;
+            meshIdx++;
+            //vertexIdx+=(x + 1);
+            vertexIdx = anchorIdx + x + 1;
+            indices[meshIdx] = (GLuint)vertexIdx;
+            meshIdx++;
+            //vertexIdx--;
+            vertexIdx = anchorIdx + x;
+            indices[meshIdx] = (GLuint)vertexIdx;
+            meshIdx++;
+             */
+        }
+        
+        for (int j = 0; j<numCols; j++) {
+            int idx = (numCols - 1 - j);
+            indices[meshIdx] = (GLuint)((idx * x) + (i + 1));
+            meshIdx++;
+            indices[meshIdx] = (GLuint)(((idx + 1) * x) + (i + 1));
+            meshIdx++;
+            indices[meshIdx] = (GLuint)(((idx + 1) * x) + i);
             meshIdx++;
         }
+
     }
 }
 
-void get_samples(NSArray *tables, float samples[], int samplesPerTable)
+void get_samples(NSArray *tables, float samples[], int samplesPerTable, int wrap)
 {
     [PdBase sendBangToReceiver:@"updateScopes"];
     
@@ -63,41 +83,70 @@ void get_samples(NSArray *tables, float samples[], int samplesPerTable)
         float *temp = malloc(sizeof(float)*tableSize);
         [PdBase copyArrayNamed:table withOffset:0 toArray:temp count:tableSize];
         float stepSize = (float)tableSize/(float)(samplesPerTable - 1);
-        for (int j = 0; j < tableSize; j++) {
+        int sampleIdx = 0;
+        for (int j = 0; j < samplesPerTable; j++) {
             int tableIdx = round((double)(j * stepSize));
             float sample = temp[tableIdx];
             if (sample!=sample) {
                 sample = 0.0;
             }
-            int sampleIdx = ((i * samplesPerTable) + j);
+            sampleIdx = ((i * samplesPerTable) + j);
             samples[sampleIdx] = sample;
+        }
+        if (wrap) {
+            samples[(i * samplesPerTable)] = samples[sampleIdx];
         }
         
         free(temp);
     }
 }
 
-void update_vertices_with_samples(Vertex vertices[],float samples[],int numVertices, int numSamples)
+void update_vertices_with_samples(Vertex vertices[],float samples[], int numSamples, int numTables, int numVertices)
 {
     int verticesPerSample = numVertices/numSamples;
+    int samplesPerTable = numSamples/numTables;
+    int verticesPerTable = numVertices/numTables;
     
     for (int i = 0; i < numVertices; i ++) {
         
-        int sampleIdx = i/verticesPerSample;
-        int tableIdx = i/numSamples;
+        int sampleArrayIndex = i/verticesPerSample;
+        int sampleTableIndex = sampleArrayIndex%samplesPerTable;
+        int tableIdx = i/(samplesPerTable * verticesPerSample);
+        int vertexIdx = i/samplesPerTable;
+        float sample = samples[sampleArrayIndex];
+        double distance = (double)vertexIdx/(double)(verticesPerTable);
+        double w1 = 1.0 - distance;
+        double w2 = distance;
         
-        float sample = samples[sampleIdx];
+        if (samplesPerTable > 1){
+            
+            sample = samples[sampleArrayIndex];
+            int neighborIdx;
+            if (tableIdx < (numTables - 1)) {
+                neighborIdx = sampleArrayIndex + samplesPerTable;
+            }else{
+                neighborIdx = sampleArrayIndex - samplesPerTable;
+            }
+            
+            float neighbor = samples[neighborIdx];
+            sample = (sample * w1 + neighbor * w2);
+            
+        }
         
         GLfloat samp = (GLfloat)sample;
         if (samp!=samp) {
             samp = 0.0;
         }
+        
         GLfloat normSample = (GLfloat)((samp + 1.0)/2.0);
         
-        double rads = (GLfloat)((float)sampleIdx * ((2.0 * M_PI)/(float)(numSamples-1)));
+        double rads = (GLfloat)((float)sampleTableIndex * ((2.0 * M_PI)/(float)(samplesPerTable - 1)));
         
         GLfloat x = cos(rads) + cos(rads) * fabs(sample);
-        GLfloat y = (GLfloat)(((float)tableIdx/(float)(verticesPerSample - 1.0) * 2.0) - 1.0);
+        
+        GLfloat y = (GLfloat)((float)vertexIdx/(float)(numTables * verticesPerTable) * 2.0 - 1.0);
+        //GLfloat y = (GLfloat)(((float)(tableIdx + w2)/(float)(numTables - 1.0) * 2.0) - 1.0);
+        
         GLfloat z = sin(rads) + sin(rads) * fabs(sample);
         
         vertices[i].Position[0] = x;
