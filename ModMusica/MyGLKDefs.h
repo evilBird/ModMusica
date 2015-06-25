@@ -22,10 +22,10 @@
 #define TICKS                       64
 
 #define SAMPLES_PER_TABLE           100
-#define VERTICES_PER_SAMPLE         100
-#define NUM_TABLES                  4
+#define VERTICES_PER_SAMPLE         50
+#define NUM_TABLES                  8
 
-#define SAMPLE_SCALAR               0.9
+#define SAMPLE_SCALAR               1.1
 #define SAMPLE_UPDATES_PER_SEC      10.0
 
 #define MIN_SCALE                   0.1
@@ -64,6 +64,9 @@ typedef struct {
     float Position[3];
     float Normal[3];
     float Color[4];
+    float TexCoord[2];
+    GLuint Neighbors[12];
+    int numNeighbors;
 } Vertex;
 
 typedef struct {

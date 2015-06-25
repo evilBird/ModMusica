@@ -125,19 +125,9 @@
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
     
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
-    
-    // Normals
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, Normal)); // for model, normals, and texture
-    
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
-    
     [self.effect prepareToDraw];
     
-    glDrawElements(GL_TRIANGLE_STRIP, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
 }
 
 
@@ -156,7 +146,9 @@
 - (void)updateVertexData
 {
     get_samples(self.tables, Samples,SAMPLES_PER_TABLE,1);
-    update_vertices(Vertices, Samples, NUM_TABLES, SAMPLES_PER_TABLE, VERTICES_PER_SAMPLE);
+    _updateVertices(Vertices, Samples, NUM_TABLES, SAMPLES_PER_TABLE, VERTICES_PER_SAMPLE);
+    int numVertices = [self numVertices];
+    _updateVertexNormals(Vertices, numVertices);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     self.lastSampleUpdate = [NSDate date];
 }
@@ -203,23 +195,6 @@
 
 #pragma mark - setup
 
-- (void)setupSkyboxEffect
-{
-    NSString *cubemapTexturePath        = [[NSBundle mainBundle] pathForResource:@"Brushed_Aluminum" ofType:@"png"];
-    GLKTextureInfo *cubemapTextureInfo  = [GLKTextureLoader cubeMapWithContentsOfFile:cubemapTexturePath options:nil error:nil];
-    
-    self.skybox                     = [[GLKSkyboxEffect alloc] init];
-    
-    self.skybox.center              = GLKVector3Make(0.0f, 0.0f, 0.0f);
-    self.skybox.textureCubeMap.name = cubemapTextureInfo.name;
-    self.skybox.textureCubeMap.enabled = TRUE;
-    
-    self.skybox.xSize               = 20.0;
-    self.skybox.ySize               = 20.0;
-    self.skybox.zSize               = 20.0;
-    self.skybox.label               = @"Skybox";
-}
-
 - (void)setupGL {
     
     [EAGLContext setCurrentContext:self.context];
@@ -229,24 +204,52 @@
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     
     make_mesh_indices(Indices, SAMPLES_PER_TABLE, (NUM_TABLES * VERTICES_PER_SAMPLE));
+    init_vertices(Vertices,(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE));
+    assign_vertex_neighbors(Vertices, Indices, [self numIndices]);
+    _updateVertexNormals(Vertices, [self numVertices]);
     
     glGenBuffers(1, &_indicesVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indicesVBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
+    
+    //Position
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
+    
+    // Normals
+    glEnableVertexAttribArray(GLKVertexAttribNormal);
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, Normal)); // for model, normals, and texture
+    
+    // Color
+    glEnableVertexAttribArray(GLKVertexAttribColor);
+    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
 }
 
-
-- (void)setupBaseEffect
+- (void)setupBaseEffectTexture
 {
-    self.effect = [[GLKBaseEffect alloc]init];
-    float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 100.0);
-    self.effect.transform.projectionMatrix = projectionMatrix;
     
+    NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithBool:YES],
+                              GLKTextureLoaderOriginBottomLeft,
+                              nil];
+    
+    NSError * error;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"tile_floor" ofType:@"png"];
+    GLKTextureInfo * info = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
+    
+    if (info == nil) {
+        NSLog(@"Error loading file: %@", [error localizedDescription]);
+    }
+    
+
+}
+
+- (void)setupBaseEffectLighting
+{
     self.effect.light0.enabled  = GL_TRUE;
     
     GLfloat ambientColor    = 0.70f;
-    GLfloat alpha = 1.0f;
+    GLfloat alpha = 0.7f;
     self.effect.light0.ambientColor = GLKVector4Make(ambientColor, ambientColor, ambientColor, alpha);
     
     GLfloat diffuseColor    = 1.0f;
@@ -257,7 +260,15 @@
     self.effect.light0.specularColor    = GLKVector4Make(specularColor, specularColor, specularColor, alpha);
     self.effect.light0.position         = GLKVector4Make(5.0f, 0.0f, 0.0f, 0.0f);
     self.effect.light0.spotDirection    = GLKVector3Make(-1.0f, 0.0f, -1.0f);
-    self.effect.light0.spotCutoff       = 40.0; // 40° spread total.
+    self.effect.light0.spotCutoff       = 20.0; // 40° spread total.
+}
+
+- (void)setupBaseEffect
+{
+    self.effect = [[GLKBaseEffect alloc]init];
+    float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 100.0);
+    self.effect.transform.projectionMatrix = projectionMatrix;
 }
 
 - (void)setupContext
@@ -328,6 +339,17 @@
     return 1.0/self.framesPerSecond;
 }
 
+- (int)numIndices
+{
+    int numIndices = (SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 1) * 6;
+    return numIndices;
+}
+
+- (int)numVertices
+{
+    int numVertices = SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE;
+    return numVertices;
+}
 
 #pragma mark - MMPlaybackControllerDelegate
 
@@ -373,8 +395,9 @@
     [self setupSampleTables];
     [self setupContext];
     [self setupBaseEffect];
+    [self setupBaseEffectLighting];
     [self setupGL];
-    //[self setupSkyboxEffect];
+
     [self playbackEnded:nil];
     // Do any additional setup after loading the view.
 }

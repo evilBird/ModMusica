@@ -91,7 +91,155 @@ void get_samples(NSArray *tables, float samples[], int samplesPerTable, int wrap
     }
 }
 
-void update_vertices(Vertex vertices[], float samples[], int numTables, int samplesPerTable, int verticesPerSample)
+Vertex _newVertex()
+{
+    Vertex vertex;
+    vertex.Position[0] = 0.0;
+    vertex.Position[1] = 0.0;
+    vertex.Position[2] = 0.0;
+    vertex.Normal[0] = 0.0;
+    vertex.Normal[1] = 0.0;
+    vertex.Normal[2] = 0.0;
+    vertex.Color[0] = 0.0;
+    vertex.Color[1] = 0.0;
+    vertex.Color[2] = 0.0;
+    vertex.Color[3] = 1.0;
+    vertex.TexCoord[0] = 0.0;
+    vertex.TexCoord[1] = 0.0;
+    
+    for (int i = 0; i < 12; i ++) {
+        vertex.Neighbors[i] = 0;
+    }
+    vertex.numNeighbors = 0;
+    
+    return vertex;
+}
+
+void init_vertices(Vertex vertices[], int numVertices)
+{
+    for (int i = 0; i < numVertices; i ++) {
+        vertices[i] = _newVertex();
+    }
+}
+
+void assign_vertex_neighbors(Vertex vertices[],GLuint indices[],int numIndices)
+{
+    int numTriangles = numIndices/3;
+    
+    for (int i = 0; i<numTriangles;i++) {
+        
+        int outerIdx = (i * 3);
+        
+        for (int j = 0; j < 3; j++) {
+            int innerIdx = outerIdx + j;
+            GLuint vertexIdx = indices[innerIdx];
+            int numNeighbors = vertices[vertexIdx].numNeighbors;
+            int neighbor1,neighbor2;
+            GLuint n1,n2;
+            switch (j) {
+                case 0:
+                    neighbor1 = innerIdx+1;
+                    neighbor2 = innerIdx+2;
+                    break;
+                case 1:
+                    neighbor1 = innerIdx-1;
+                    neighbor2 = innerIdx+1;
+                    break;
+                case 2:
+                    neighbor1 = innerIdx-2;
+                    neighbor2 = innerIdx-1;
+                    break;
+                default:
+                    break;
+            }
+            
+            n1 = indices[neighbor1];
+            n2 = indices[neighbor2];
+            
+            vertices[vertexIdx].Neighbors[numNeighbors] = n1;
+            numNeighbors++;
+            vertices[vertexIdx].Neighbors[numNeighbors] = n2;
+            numNeighbors++;
+            
+            vertices[vertexIdx].numNeighbors = numNeighbors;
+        }
+    }
+}
+
+void vert2pos(Vertex vertex,GLfloat result[])
+{
+    result[0] = vertex.Position[0];
+    result[1] = vertex.Position[1];
+    result[2] = vertex.Position[2];
+}
+
+void subtract_pos(GLfloat pos1[], GLfloat pos2[], GLfloat result[])
+{
+    result[0] = pos1[0] - pos2[0];
+    result[1] = pos1[1] - pos2[1];
+    result[2] = pos2[2] - pos2[2];
+}
+
+void calculate_normal(Vertex vertex1, Vertex vertex2, Vertex vertex3, GLfloat result[])
+{
+    GLfloat p1[3],p2[3],p3[3];
+    vert2pos(vertex1, p1);
+    vert2pos(vertex2, p2);
+    vert2pos(vertex3, p3);
+    
+    GLfloat v1[3],v2[3];
+    subtract_pos(p2, p1, v1);
+    subtract_pos(p3, p1, v2);
+    
+    result[0] = v1[1] * v2[2] - v1[2] * v2[1];
+    result[1] = v1[1] * v2[1] - v1[0] * v2[2];
+    result[2] = v1[0] * v2[1] - v1[1] * v2[0];
+    
+    //result[0]/=1.0;
+    //result[1]/=1.0;
+    //result[2]/=1.0;
+}
+
+
+void calculate_normal_at_index(Vertex vertices[],int idx)
+{
+    Vertex vertex1,vertex2,vertex3;
+    GLuint index = (GLuint)idx;
+    vertex1 = vertices[index];
+    if (vertex1.numNeighbors < 2 || vertex1.numNeighbors > 12) {
+        vertex1.numNeighbors = 0;
+        return;
+    }
+    
+    GLfloat normalSum[3] = {0,0,0};
+    
+    int numTriangles = vertex1.numNeighbors/2;
+    
+    for (int i = 0; i < numTriangles; i++) {
+        GLuint neighborIdx = (GLuint)(i*2);
+        vertex2 = vertices[vertex1.Neighbors[neighborIdx]];
+        neighborIdx++;
+        vertex3 = vertices[vertex1.Neighbors[neighborIdx]];
+        GLfloat currentNormal[3];
+        calculate_normal(vertex1, vertex2, vertex3, currentNormal);
+        normalSum[0]+=currentNormal[0];
+        normalSum[1]+=currentNormal[1];
+        normalSum[2]+=currentNormal[2];
+    }
+    
+    vertex1.Normal[0] = normalSum[0]/(float)(numTriangles);
+    vertex1.Normal[1] = normalSum[1]/(float)(numTriangles);
+    vertex1.Normal[2] = normalSum[2]/(float)(numTriangles);
+}
+
+void _updateVertexNormals(Vertex vertices[],int numVertices)
+{
+    for (int i = 0; i < numVertices; i++) {
+        calculate_normal_at_index(vertices, i);
+    }
+}
+
+void _updateVertices(Vertex vertices[], float samples[], int numTables, int samplesPerTable, int verticesPerSample)
 {
 #if DEBUG_GL
     NSLog(@"\n*****************************************\n");
@@ -126,24 +274,25 @@ void update_vertices(Vertex vertices[], float samples[], int numTables, int samp
             
             GLfloat normalizedSample = (GLfloat)((weightedSample * 2.0) + 1.0);
 
-            Vertex vertex;
-            vertex.Position[0] = (GLfloat)x;
-            vertex.Position[1] = (GLfloat)y;
-            vertex.Position[2] = (GLfloat)z;
+            vertices[vertexIdx].Position[0] = (GLfloat)x;
+            vertices[vertexIdx].Position[1] = (GLfloat)y;
+            vertices[vertexIdx].Position[2] = (GLfloat)z;
             
-            float normalizer = sqrtf(x * x + y * y + z * z);
+            vertices[vertexIdx].Color[0] = normalizedSample + (arc4random_uniform(200) - 100) * 0.0001;
+            vertices[vertexIdx].Color[1] = normalizedSample + (arc4random_uniform(200) - 100) * 0.0001;
+            vertices[vertexIdx].Color[2] = normalizedSample + (arc4random_uniform(200) - 100) * 0.0001;
+            vertices[vertexIdx].Color[3] = 1.0;
             
-            vertex.Normal[0] = (GLfloat)(x/normalizer);
-            vertex.Normal[1] = (GLfloat)(y/normalizer);
-            vertex.Normal[2] = (GLfloat)(z/normalizer);
+            double dir = 1.0;
+            if (normalizedSample < 0) {
+                dir = -1.0;
+            }
+            vertices[vertexIdx].Normal[0] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];// * dir;
+            //vertices[vertexIdx].Normal[1] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[1];
+            vertices[vertexIdx].Normal[2] = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];// * dir;
             
-            vertex.Color[0] = 0.5;//normalizedSample;
-            vertex.Color[1] = 0.5;//normalizedSample;
-            vertex.Color[2] = 0.5;//normalizedSample;
             
-            vertex.Color[3] = 1.0;
             
-            vertices[vertexIdx] = vertex;
 #if DEBUG_GL
             NSLog(@"\ni = %d, j = %d, vertexIdx = %d, sampleIdx = %d, sample = %.2f, neighborIdx = %d, neighbor = %.2f, neighbor wt = %.2f, weighted sample = %.2f, x = %.2f, y = %.2f, z = %.2f",i,j,vertexIdx,sampleIdx,sample,neighborIdx,neighbor,neighbor_wt,weightedSample,x,y,z);
 #endif
@@ -153,6 +302,7 @@ void update_vertices(Vertex vertices[], float samples[], int numTables, int samp
     NSLog(@"\n++++++++++++++++++++++++++++++++\n\n");
 #endif
 }
+
 
 GLfloat wrap_float(GLfloat myFloat, GLfloat min, GLfloat max)
 {
