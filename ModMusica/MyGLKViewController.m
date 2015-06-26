@@ -18,7 +18,7 @@
     GLuint      _indicesVBO;
     
     Vertex      Vertices        [(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE)];
-    GLuint      Indices         [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 0) * 6];
+    GLuint      Indices         [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE)) * 6];
     float       Samples         [(SAMPLES_PER_TABLE * NUM_TABLES)];
     GLfloat     Colors          [3];
     
@@ -344,12 +344,12 @@
 
 - (NSTimeInterval)minimumSampleUpdateInterval
 {
-    return 1.0/self.framesPerSecond/2.0;
+    return 1.0/self.framesPerSecond;
 }
 
 - (int)numIndices
 {
-    int numIndices = (SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 0) * 6;
+    int numIndices = (SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE)) * 6;
     return numIndices;
 }
 
