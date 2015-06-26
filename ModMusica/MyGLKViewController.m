@@ -62,9 +62,9 @@
 
 - (void)randomizeColors
 {
-    _randomRGB(Colors,3);
+    _randomRGB(Colors,1);
     self.mainColor = [UIColor colorWithRed:Colors[0] green:Colors[1] blue:Colors[2] alpha:1.0];
-    _setMainVertexColor(Colors[0],Colors[1],Colors[2]);
+    _setMainVertexColor(Colors);
     [self updateLabelColors];
 }
 

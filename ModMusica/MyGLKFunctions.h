@@ -286,13 +286,15 @@ void _updateVertexNormals(Vertex vertices[],int numVertices)
 }
 
 static int calls = 0;
-static GLfloat cols[3];
+static BOOL newCols = NO;
+GLfloat cols[3];
 
-void _setMainVertexColor(GLfloat r, GLfloat g, GLfloat b)
+void _setMainVertexColor(GLfloat color[])
 {
-    cols[0] = r;
-    cols[1] = g;
-    cols[2] = b;
+    cols[0] = color[0];
+    cols[1] = color[1];
+    cols[2] = color[2];
+    calls = 0;
 }
 
 void _updateVertices(Vertex vertices[], float samples[], int numTables, int samplesPerTable, int verticesPerSample)
@@ -302,26 +304,20 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
 #endif
     int numCols = numTables * verticesPerSample;
     int numSamples = numTables * samplesPerTable;
-    BOOL newCols = NO;
-    //GLfloat cols[3];
     
-    if ((calls%FRAMES_PER_RANDOM) == 0) {
+    if ((calls%2400) == 0) {
         newCols = YES;
-        cols[0] = (GLfloat)(arc4random_uniform(100) * 0.01);
-        cols[1] = (GLfloat)(arc4random_uniform(100) * 0.01);
-        cols[2] = (GLfloat)(arc4random_uniform(100) * 0.01);
     }
-    
     calls++;
 
     for (int i = 0; i < numCols; i++) {
         
         int myIdx = i/verticesPerSample;
-        
+        GLfloat myCols[3];
         if (newCols) {
-            cols[0] = _jitterFloat(cols[0],0.2,0.0,1.0);
-            cols[1] = _jitterFloat(cols[1],0.2,0.0,1.0);
-            cols[2] = _jitterFloat(cols[2],0.2,0.0,1.0);
+            myCols[0] = _jitterFloat(cols[0],0.2,0.0,1.0);
+            myCols[1] = _jitterFloat(cols[1],0.2,0.0,1.0);
+            myCols[2] = _jitterFloat(cols[2],0.2,0.0,1.0);
         }
         
         for (int j = 0; j < samplesPerTable; j++) {
@@ -352,9 +348,9 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
             vertices[vertexIdx].Position[2] = (GLfloat)z;
 
             if (newCols) {
-                vertices[vertexIdx].Color[0] = (GLfloat)(normalizedSample * cols[0]);
-                vertices[vertexIdx].Color[1] = (GLfloat)(normalizedSample * cols[1]);
-                vertices[vertexIdx].Color[2] = (GLfloat)(normalizedSample * cols[2]);
+                vertices[vertexIdx].Color[0] = (GLfloat)(normalizedSample * myCols[0]);
+                vertices[vertexIdx].Color[1] = (GLfloat)(normalizedSample * myCols[1]);
+                vertices[vertexIdx].Color[2] = (GLfloat)(normalizedSample * myCols[2]);
                 vertices[vertexIdx].Color[3] = 1.0;
             }
 
