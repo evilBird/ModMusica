@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7448860C9C22B3A8F984B53E"
+               BlueprintIdentifier = "64B26544D3579DC0A33C03F2"
                BuildableName = "libPods-ModMusica-MSDynamicsDrawerViewController.a"
                BlueprintName = "Pods-ModMusica-MSDynamicsDrawerViewController"
                ReferencedContainer = "container:Pods.xcodeproj">

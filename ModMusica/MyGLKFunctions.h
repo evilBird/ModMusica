@@ -11,6 +11,51 @@
 
 #import "MyGLKDefs.h"
 
+GLfloat _wrapFloat(GLfloat myFloat, GLfloat min, GLfloat max)
+{
+    if (myFloat > max) {
+        return max;
+    }else if (myFloat < min){
+        return min;
+    }
+    return myFloat;
+}
+
+GLfloat _clampFloat(GLfloat myFloat, GLfloat min, GLfloat max)
+{
+    if (myFloat > max) {
+        return max;
+    }else if (myFloat < min){
+        return min;
+    }
+    return myFloat;
+}
+
+GLfloat _jitterFloat(GLfloat myFloat, GLfloat jitter, GLfloat min, GLfloat max)
+{
+    u_int32_t base;
+    double direction;
+    if (arc4random_uniform(2)) {
+        base = (u_int32_t)(((myFloat - min) * jitter) * 1000.0);
+        direction = -1.0;
+    }else{
+        base = (u_int32_t)(((max - myFloat) * jitter) * 1000.0);
+        direction = 1.0;
+    }
+    
+    GLfloat diff = (GLfloat)((arc4random_uniform(base)) * 0.001 * direction);
+    myFloat+=diff;
+    
+    return myFloat;
+}
+
+void _randomRGB(GLfloat rgb[], int n)
+{
+    for (int i = 0; i < (n*3); i ++) {
+        rgb[i] = (GLfloat)(arc4random_uniform(1000) * 0.001);
+    }
+}
+
 void _makeMeshIndices(GLuint indices[], int x, int y)
 {
     if (x < 2|| y < 2) {
@@ -80,8 +125,6 @@ void _getSamples(NSArray *tables, float samples[], int samplesPerTable, int wrap
             if (sample > 1.0) {
                 sample = 1.0;
             }
-            
-            //sample *= sample;
             
             sampleIdx = ((i * samplesPerTable) + j);
             samples[sampleIdx] = sample * SAMPLE_SCALAR;
@@ -243,7 +286,14 @@ void _updateVertexNormals(Vertex vertices[],int numVertices)
 }
 
 static int calls = 0;
+static GLfloat cols[3];
 
+void _setMainVertexColor(GLfloat r, GLfloat g, GLfloat b)
+{
+    cols[0] = r;
+    cols[1] = g;
+    cols[2] = b;
+}
 
 void _updateVertices(Vertex vertices[], float samples[], int numTables, int samplesPerTable, int verticesPerSample)
 {
@@ -253,22 +303,26 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
     int numCols = numTables * verticesPerSample;
     int numSamples = numTables * samplesPerTable;
     BOOL newCols = NO;
-    if ((calls%2400) == 0) {
+    //GLfloat cols[3];
+    
+    if ((calls%FRAMES_PER_RANDOM) == 0) {
         newCols = YES;
+        cols[0] = (GLfloat)(arc4random_uniform(100) * 0.01);
+        cols[1] = (GLfloat)(arc4random_uniform(100) * 0.01);
+        cols[2] = (GLfloat)(arc4random_uniform(100) * 0.01);
     }
+    
     calls++;
 
     for (int i = 0; i < numCols; i++) {
         
         int myIdx = i/verticesPerSample;
-        GLfloat cols[3];
-
+        
         if (newCols) {
-            cols[0] = (GLfloat)(arc4random_uniform(100) * 0.01);
-            cols[1] = (GLfloat)(arc4random_uniform(100) * 0.01);
-            cols[2] = (GLfloat)(arc4random_uniform(100) * 0.01);
+            cols[0] = _jitterFloat(cols[0],0.2,0.0,1.0);
+            cols[1] = _jitterFloat(cols[1],0.2,0.0,1.0);
+            cols[2] = _jitterFloat(cols[2],0.2,0.0,1.0);
         }
-
         
         for (int j = 0; j < samplesPerTable; j++) {
             int sampleIdx = myIdx * samplesPerTable + j;
@@ -296,7 +350,7 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
             vertices[vertexIdx].Position[0] = (GLfloat)x;
             vertices[vertexIdx].Position[1] = (GLfloat)y;
             vertices[vertexIdx].Position[2] = (GLfloat)z;
-            
+
             if (newCols) {
                 vertices[vertexIdx].Color[0] = (GLfloat)(normalizedSample * cols[0]);
                 vertices[vertexIdx].Color[1] = (GLfloat)(normalizedSample * cols[1]);
@@ -304,16 +358,18 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
                 vertices[vertexIdx].Color[3] = 1.0;
             }
 
+
+#if USE_NORMALS
             
             double dir = 1.0;
             if (weightedSample < 0) {
                 dir = -1.0;
             }
-            vertices[vertexIdx].Normal[0] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];// * dir;
+            
+            vertices[vertexIdx].Normal[0] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];
             vertices[vertexIdx].Normal[1] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[1];
-            vertices[vertexIdx].Normal[2] = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];// * dir;
-            
-            
+            vertices[vertexIdx].Normal[2] = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];
+#endif
             
 #if DEBUG_GL
             NSLog(@"\ni = %d, j = %d, vertexIdx = %d, sampleIdx = %d, sample = %.2f, neighborIdx = %d, neighbor = %.2f, neighbor wt = %.2f, weighted sample = %.2f, x = %.2f, y = %.2f, z = %.2f",i,j,vertexIdx,sampleIdx,sample,neighborIdx,neighbor,neighbor_wt,weightedSample,x,y,z);
@@ -325,48 +381,5 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
 #endif
 }
 
-
-GLfloat _wrapFloat(GLfloat myFloat, GLfloat min, GLfloat max)
-{
-    if (myFloat > max) {
-        return max;
-    }else if (myFloat < min){
-        return min;
-    }
-    return myFloat;
-}
-
-GLfloat _clampFloat(GLfloat myFloat, GLfloat min, GLfloat max)
-{
-    if (myFloat > max) {
-        return max;
-    }else if (myFloat < min){
-        return min;
-    }
-    return myFloat;
-}
-
-GLfloat _jitterFloat(GLfloat myFloat, GLfloat percent)
-{
-    GLfloat jit = (GLfloat)((arc4random_uniform(200) - 100) * percent * 0.01);
-    return _clampFloat((myFloat + jit),0.0,1.0);
-}
-
-void _jitterRgb(GLfloat rgb[], GLfloat result[], GLfloat jitter, int table)
-{
-    int tableIndex = table * 3;
-    for (int i = 0; i<3; i++) {
-        int idx = (tableIndex + i);
-        GLfloat component = rgb[idx];
-        result[i] = _jitterFloat(component, jitter);
-    }
-}
-
-void _randomRgb(GLfloat rgb[], int n)
-{
-    for (int i = 0; i < (n*3); i ++) {
-        rgb[i] = (GLfloat)(arc4random_uniform(1000) * 0.001);
-    }
-}
 
 #endif

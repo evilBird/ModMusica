@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "33CB1A98C1064355F89F74A1"
+               BlueprintIdentifier = "9EFA8A4AF65DA2E62FFB460A"
                BuildableName = "libPods-ModMusica-GPUImage.a"
                BlueprintName = "Pods-ModMusica-GPUImage"
                ReferencedContainer = "container:Pods.xcodeproj">

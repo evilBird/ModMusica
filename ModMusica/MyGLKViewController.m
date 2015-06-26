@@ -12,7 +12,6 @@
 #import "MyGLKFunctions.h"
 #import <CoreMotion/CoreMotion.h>
 
-
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
     GLuint      _verticesVBO;
@@ -21,7 +20,7 @@
     Vertex      Vertices        [(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE)];
     GLuint      Indices         [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 0) * 6];
     float       Samples         [(SAMPLES_PER_TABLE * NUM_TABLES)];
-    GLfloat     Colors          [((NUM_TABLES + 1) * 3)];
+    GLfloat     Colors          [3];
     
     float       _rotation_y;
     float       _zoom;
@@ -63,7 +62,9 @@
 
 - (void)randomizeColors
 {
-    _randomRgb(Colors,(NUM_TABLES+1));
+    _randomRGB(Colors,3);
+    self.mainColor = [UIColor colorWithRed:Colors[0] green:Colors[1] blue:Colors[2] alpha:1.0];
+    _setMainVertexColor(Colors[0],Colors[1],Colors[2]);
     [self updateLabelColors];
 }
 
@@ -116,17 +117,7 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
-    int colorIdx = (NUM_TABLES-1) * 3;
-    
-    GLfloat r = Colors[colorIdx];
-    colorIdx++;
-    GLfloat g = Colors[colorIdx];
-    colorIdx++;
-    GLfloat b = Colors[colorIdx];
-    
-    self.mainColor = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
-    
-    glClearColor(r, g, b, 1.0);
+    glClearColor(Colors[0], Colors[1], Colors[2], 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
@@ -170,8 +161,6 @@
         _d_zoom *= -1.0;
     }
     
-    //_zoom += _d_zoom * self.timeSinceLastUpdate;
-    
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
     
@@ -186,53 +175,6 @@
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1, _scale, 1);
     modelViewMatrix = [self updateMotionManager:modelViewMatrix];
     self.effect.transform.modelviewMatrix = modelViewMatrix;
-}
-
-- (void)updateModelViewMatrix
-{
-    self.effect.transform.projectionMatrix = [self defaultProjectionMatrix];
-    
-    GLKMatrix4 modelViewMatrix;
-    //modelViewMatrix = self.effect.transform.modelviewMatrix;
-    modelViewMatrix = [self defaultModelViewMatrix];
-    //modelViewMatrix = [self updateMotionManager:modelViewMatrix];
-    modelViewMatrix = [self updateTranslationMatrix:modelViewMatrix];
-    modelViewMatrix = [self updateRotationMatrix:modelViewMatrix];
-    modelViewMatrix = [self updateScaleMatrix:modelViewMatrix];
-    self.effect.transform.modelviewMatrix = modelViewMatrix;
-}
-
-- (GLKMatrix4)updateTranslationMatrix:(GLKMatrix4)matrix
-{
-    if (_zoom >= MAX_ZOOM || _zoom <= MIN_ZOOM) {
-        _d_zoom *= -1.0;
-    }
-    
-    _zoom += _d_zoom * self.timeSinceLastUpdate;
-    matrix = GLKMatrix4Translate(matrix, 0.0, 0.0, _zoom);
-    
-    return matrix;
-}
-
-- (GLKMatrix4)updateRotationMatrix:(GLKMatrix4)matrix
-{
-    matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
-    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
-    matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(_rotation_y), 0.01, 1, 0.01);
-    
-    return matrix;
-}
-
-- (GLKMatrix4)updateScaleMatrix:(GLKMatrix4)matrix
-{
-    if (_scale >= MAX_SCALE || _scale <= MIN_SCALE) {
-        _d_scale *= -1.0;
-    }
-    
-    _scale += _d_scale * self.timeSinceLastUpdate;
-    
-    matrix = GLKMatrix4Scale(matrix, 1, _scale, 1);
-    return matrix;
 }
 
 - (GLKMatrix4)updateMotionManager:(GLKMatrix4)baseModelViewMatrix
@@ -253,8 +195,8 @@
             [attitude multiplyByInverseOfAttitude:self.referenceFrame];
         }
         
-        GLfloat pitchAngle  = 1.0 * attitude.pitch;
-        GLfloat rollAngle   = 1.0 * attitude.roll;
+        GLfloat pitchAngle  = 2.0 * attitude.pitch;
+        GLfloat rollAngle   = 2.0 * attitude.roll;
         
         GLKMatrix4 rollMatrix   = GLKMatrix4MakeYRotation(rollAngle);
         GLKMatrix4 pitchMatrix  = GLKMatrix4MakeXRotation(pitchAngle);
@@ -305,6 +247,30 @@
     // Color
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
+#if USE_NORMALS
+    // Normals
+    glEnableVertexAttribArray(GLKVertexAttribNormal);
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, Normal)); // for model, normals, and texture
+#endif
+}
+
+- (void)setupBaseEffectLighting
+{
+    self.effect.light0.enabled  = GL_TRUE;
+    
+    GLfloat ambientColor    = 0.70f;
+    GLfloat alpha = 0.7f;
+    self.effect.light0.ambientColor = GLKVector4Make(ambientColor, ambientColor, ambientColor, alpha);
+    
+    GLfloat diffuseColor    = 1.0f;
+    self.effect.light0.diffuseColor = GLKVector4Make(diffuseColor, diffuseColor, diffuseColor, alpha);
+    
+    // Spotlight
+    GLfloat specularColor   = 1.00f;
+    self.effect.light0.specularColor    = GLKVector4Make(specularColor, specularColor, specularColor, alpha);
+    self.effect.light0.position         = GLKVector4Make(5.0f, 0.0f, 0.0f, 0.0f);
+    self.effect.light0.spotDirection    = GLKVector3Make(-1.0f, 0.0f, -1.0f);
+    self.effect.light0.spotCutoff       = 20.0; // 40° spread total.
 }
 
 - (void)setupBaseEffect

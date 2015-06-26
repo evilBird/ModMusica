@@ -25,7 +25,7 @@
 #define VERTICES_PER_SAMPLE         10
 #define NUM_TABLES                  8
 
-#define SAMPLE_SCALAR               2.0
+#define SAMPLE_SCALAR               1.5
 #define SAMPLE_UPDATES_PER_SEC      10.0
 
 #define MIN_SCALE                   2.0
@@ -41,7 +41,10 @@
 #define INIT_ROTATION_Y              0.0
 #define D_ROTATION_Y                10.0
 
+#define FRAMES_PER_RANDOM           2400
+
 #define DEBUG_GL 0
+#define USE_NORMALS 0
 
 static NSString *kTableName = @"scopeArray";
 static NSString *kBassTable = @"bassScope";
