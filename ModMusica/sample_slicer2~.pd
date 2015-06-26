@@ -20,7 +20,7 @@
 #X obj 398 202 r \$0-stopSampling;
 #X msg 423 265 stop;
 #X obj 421 359 \$0;
-#X msg 372 733 0 \, 0 3500;
+#X msg 372 733 0 \, 0 3000;
 #X obj 262 269 r \$0-stopSampling;
 #X obj 316 634 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -31,7 +31,7 @@
 #X obj 367 896 *~;
 #X obj 407 849 vline~;
 #X obj 291 467 s \$0-duration;
-#X msg 528 811 1 30 \, 0 30 3470;
+#X msg 528 811 1 30 \, 0 30 2970;
 #X msg 566 732 addcomma;
 #X obj 550 653 r \$0-duration;
 #X obj 551 679 t f b b b b;
@@ -62,7 +62,7 @@
 #X obj 600 94 s \$0-clear;
 #X obj 564 67 t b b;
 #X floatatom 156 428 5 0 0 0 - - -;
-#X obj 976 -10 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 961 -15 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 307 881 addcomma;
 #X obj 232 327 t f f;
@@ -153,7 +153,7 @@
 #X obj 310 107 s \$0-readList;
 #X obj 236 49 t b f;
 #X obj 41 8 r \$0-readList;
-#X msg -23 36 0 3500;
+#X msg -23 36 0 3000;
 #X obj -23 -19 list prepend set;
 #X obj -23 6 list trim;
 #X obj 198 218 pack 0 f;
@@ -190,22 +190,22 @@
 #X connect 32 0 17 0;
 #X connect 32 1 19 0;
 #X restore 238 736 pd reverse;
-#X obj 393 705 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 393 705 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X msg 327 854 set \$1;
 #X obj 133 824 list prepend set;
 #X obj 133 848 list trim;
-#X msg 132 875 add2 0 3500;
+#X msg 132 875 add2 0 3000;
 #X obj 295 831 t b b f;
 #X obj 1078 71 s \$0-toDirection;
 #X obj 372 659 r \$0-toDirection;
 #X obj 1077 44 == 0;
-#X obj 998 5 random 8;
+#X obj 962 15 random 8;
 #X obj 1055 197 + 1;
 #X obj 1053 267 s \$0-pow;
 #X obj 1105 201 loadbang;
 #X msg 1106 224 1;
-#X obj 1055 172 random 2;
+#X obj 1042 133 random 2;
 #X obj 422 757 r \$0-sliceRead;
 #X obj 491 841 r \$0-sliceEnv;
 #X obj 386 816 s~ \$0-tableOut;
@@ -513,7 +513,7 @@ slice;
 #X floatatom 810 109 5 0 0 0 - - -;
 #X obj 978 43 f;
 #X obj 900 218 t b f;
-#X obj 1077 18 random 2;
+#X obj 1053 19 random 2;
 #X msg 421 381 \; \$1-sampler normalize 0.5;
 #X connect 1 0 3 0;
 #X connect 1 0 45 0;
@@ -574,6 +574,8 @@ slice;
 #X connect 58 0 74 0;
 #X connect 58 1 57 0;
 #X connect 60 0 94 0;
+#X connect 60 0 99 0;
+#X connect 60 0 151 0;
 #X connect 61 0 21 0;
 #X connect 62 0 9 0;
 #X connect 62 1 68 0;
@@ -632,9 +634,7 @@ slice;
 #X connect 103 4 50 0;
 #X connect 103 4 144 0;
 #X connect 103 5 51 0;
-#X connect 103 6 94 0;
-#X connect 103 6 99 0;
-#X connect 103 6 151 0;
+#X connect 103 6 60 0;
 #X connect 103 7 52 0;
 #X connect 103 8 104 0;
 #X connect 105 0 113 0;

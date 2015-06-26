@@ -83,7 +83,7 @@
 #X obj 700 849 - 50;
 #X obj 1276 -80 table \$0-sampler-0;
 #X obj 1278 -48 table \$0-sampler-1;
-#X msg 1219 483 read -resize rasta21.aif 1269-sampler-2;
+#X msg 1219 483 read -resize rasta21.aif 1927-sampler-2;
 #X obj 1239 170 list split 1;
 #X obj 1238 204 list prepend set read -resize;
 #X obj 1218 416 list append;
@@ -98,9 +98,9 @@
 #N canvas 630 134 810 515 samples 0;
 #X obj 59 72 r \$0-sampleID;
 #X obj 58 100 route 0 1 2;
-#X msg 58 127 set 1269-sampler-0;
-#X msg 76 147 set 1269-sampler-1;
-#X msg 99 169 set 1269-sampler-2;
+#X msg 58 127 set 1927-sampler-0;
+#X msg 76 147 set 1927-sampler-1;
+#X msg 99 169 set 1927-sampler-2;
 #X obj 197 64 r \$0-sampleLength;
 #X obj 197 93 route 0 1 2;
 #X obj 347 91 route 0 1 2;
@@ -110,10 +110,10 @@
 #X obj 63 243 outlet;
 #X obj 207 252 outlet;
 #X obj 383 246 outlet;
-#X msg 196 119 72320;
+#X msg 196 119 0;
 #X msg 211 143 110282;
 #X msg 229 166 150528;
-#X msg 349 116 4;
+#X msg 349 116 2;
 #X msg 364 140 2;
 #X msg 388 166 6;
 #X connect 0 0 1 0;
@@ -566,6 +566,7 @@
 #X connect 5 0 1 1;
 #X connect 6 0 4 0;
 #X restore 890 196 pd db;
+#X obj 137 -69 t b;
 #X connect 0 0 114 0;
 #X connect 2 0 130 0;
 #X connect 3 0 11 0;
@@ -697,7 +698,7 @@
 #X connect 114 0 16 0;
 #X connect 114 1 12 0;
 #X connect 114 2 62 0;
-#X connect 115 0 73 0;
+#X connect 115 0 144 0;
 #X connect 115 1 117 0;
 #X connect 116 0 132 0;
 #X connect 118 0 99 1;
@@ -724,3 +725,4 @@
 #X connect 140 0 135 0;
 #X connect 141 0 134 0;
 #X connect 143 0 52 0;
+#X connect 144 0 73 0;

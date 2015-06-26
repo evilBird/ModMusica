@@ -74,12 +74,15 @@ static NSTimer *infoLabelTimer;
         return;
     }
     
-    [UIView animateWithDuration:5.0 animations:^{
-        self.titleLabel.alpha = 0.0;
-        self.infoLabel.alpha = 0.0;
-        self.nowPlayingLabel.alpha = 0.0;
-        self.hamburgerButton.alpha = 0.0;
-    }];
+    [UIView animateWithDuration:10.0
+                          delay:0.0
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         self.titleLabel.alpha = 0.0;
+                         self.infoLabel.alpha = 0.0;
+                         self.nowPlayingLabel.alpha = 0.0;
+                         self.hamburgerButton.alpha = 0.0;
+                     } completion:nil];
 }
 
 - (void)showLabelsAnimated:(BOOL)animated
