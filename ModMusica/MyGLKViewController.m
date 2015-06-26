@@ -21,7 +21,7 @@
     Vertex      Vertices        [(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE)];
     GLuint      Indices         [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 0) * 6];
     float       Samples         [(SAMPLES_PER_TABLE * NUM_TABLES)];
-    GLfloat     Colors          [((NUM_TABLES + 1) * 3)];
+    GLfloat     Colors          [3];
     
     float       _rotation_y;
     float       _zoom;
@@ -63,7 +63,9 @@
 
 - (void)randomizeColors
 {
-    _randomRgb(Colors,(NUM_TABLES+1));
+    _randomRgb(Colors,1);
+    _setMainVertexColor(Colors);
+    self.mainColor = [UIColor colorWithRed:Colors[0] green:Colors[1] blue:Colors[2] alpha:1];
     [self updateLabelColors];
 }
 
@@ -116,15 +118,11 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
-    int colorIdx = (NUM_TABLES-1) * 3;
+    GLfloat r = Colors[0];
+    GLfloat g = Colors[1];
+    GLfloat b = Colors[2];
     
-    GLfloat r = Colors[colorIdx];
-    colorIdx++;
-    GLfloat g = Colors[colorIdx];
-    colorIdx++;
-    GLfloat b = Colors[colorIdx];
-    
-    self.mainColor = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+    //self.mainColor = [UIColor colorWithRed:r green:g blue:b alpha:1.0];
     
     glClearColor(r, g, b, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
