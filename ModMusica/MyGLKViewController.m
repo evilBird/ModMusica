@@ -169,7 +169,7 @@
     
     _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
     matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
-    matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(_rotation_y), 0.001, 1, 0.001);
+    matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(_rotation_y), 0.01, 1, 0.01);
     return matrix;
 }
 
@@ -258,8 +258,8 @@
     // Spotlight
     GLfloat specularColor   = 1.00f;
     self.effect.light0.specularColor    = GLKVector4Make(specularColor, specularColor, specularColor, alpha);
-    self.effect.light0.position         = GLKVector4Make(5.0f, 0.0f, 0.0f, 0.0f);
-    self.effect.light0.spotDirection    = GLKVector3Make(-1.0f, 0.0f, -1.0f);
+    self.effect.light0.position         = GLKVector4Make(0.1f, 0.1f, 1.0f, 0.0f);
+    self.effect.light0.spotDirection    = GLKVector3Make(0.1f, 1.0f, 0.0f);
     self.effect.light0.spotCutoff       = 20.0; // 40° spread total.
 }
 
@@ -355,6 +355,7 @@
 
 - (void)playbackBegan:(id)sender
 {
+    [self setupIvars];
     [self randomizeColors];
     [self updateLabelText];
     [self hideLabelsAnimated:YES];
@@ -395,7 +396,7 @@
     [self setupSampleTables];
     [self setupContext];
     [self setupBaseEffect];
-    [self setupBaseEffectLighting];
+    //[self setupBaseEffectLighting];
     [self setupGL];
 
     [self playbackEnded:nil];

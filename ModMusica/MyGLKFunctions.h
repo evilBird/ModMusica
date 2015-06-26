@@ -239,6 +239,9 @@ void _updateVertexNormals(Vertex vertices[],int numVertices)
     }
 }
 
+static int calls = 0;
+
+
 void _updateVertices(Vertex vertices[], float samples[], int numTables, int samplesPerTable, int verticesPerSample)
 {
 #if DEBUG_GL
@@ -246,10 +249,23 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
 #endif
     int numCols = numTables * verticesPerSample;
     int numSamples = numTables * samplesPerTable;
-    
+    BOOL newCols = NO;
+    if ((calls%2400) == 0) {
+        newCols = YES;
+    }
+    calls++;
+
     for (int i = 0; i < numCols; i++) {
         
         int myIdx = i/verticesPerSample;
+        GLfloat cols[3];
+
+        if (newCols) {
+            cols[0] = (GLfloat)(arc4random_uniform(100) * 0.01);
+            cols[1] = (GLfloat)(arc4random_uniform(100) * 0.01);
+            cols[2] = (GLfloat)(arc4random_uniform(100) * 0.01);
+        }
+
         
         for (int j = 0; j < samplesPerTable; j++) {
             int sampleIdx = myIdx * samplesPerTable + j;
@@ -278,17 +294,20 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
             vertices[vertexIdx].Position[1] = (GLfloat)y;
             vertices[vertexIdx].Position[2] = (GLfloat)z;
             
-            vertices[vertexIdx].Color[0] = normalizedSample + (arc4random_uniform(200) - 100) * 0.0001;
-            vertices[vertexIdx].Color[1] = normalizedSample + (arc4random_uniform(200) - 100) * 0.0001;
-            vertices[vertexIdx].Color[2] = normalizedSample + (arc4random_uniform(200) - 100) * 0.0001;
-            vertices[vertexIdx].Color[3] = 1.0;
+            if (newCols) {
+                vertices[vertexIdx].Color[0] = (GLfloat)(normalizedSample * cols[0]);
+                vertices[vertexIdx].Color[1] = (GLfloat)(normalizedSample * cols[1]);
+                vertices[vertexIdx].Color[2] = (GLfloat)(normalizedSample * cols[2]);
+                vertices[vertexIdx].Color[3] = 1.0;
+            }
+
             
             double dir = 1.0;
-            if (normalizedSample < 0) {
+            if (weightedSample < 0) {
                 dir = -1.0;
             }
             vertices[vertexIdx].Normal[0] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];// * dir;
-            //vertices[vertexIdx].Normal[1] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[1];
+            vertices[vertexIdx].Normal[1] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[1];
             vertices[vertexIdx].Normal[2] = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];// * dir;
             
             

@@ -22,7 +22,7 @@
 #define TICKS                       64
 
 #define SAMPLES_PER_TABLE           100
-#define VERTICES_PER_SAMPLE         50
+#define VERTICES_PER_SAMPLE         10
 #define NUM_TABLES                  8
 
 #define SAMPLE_SCALAR               1.1
