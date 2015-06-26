@@ -10,6 +10,8 @@
 #import "MMPlaybackController.h"
 #import "MyGLKViewController+Labels.h"
 #import "MyGLKFunctions.h"
+#import <CoreMotion/CoreMotion.h>
+
 
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
@@ -28,6 +30,9 @@
     float       _d_rotation_y;
     float       _d_scale;
     float       _d_zoom;
+    
+    CMMotionManager *_motionMgr;
+
 }
 
 @property (strong, nonatomic)   EAGLContext         *context;
@@ -38,6 +43,8 @@
 
 @property (nonatomic,strong)    NSDate              *lastSampleUpdate;
 @property (nonatomic,readonly)  NSTimeInterval      timeSinceLastSampleUpdate;
+
+@property (nonatomic, strong)   CMAttitude          *referenceFrame;
 
 @property (nonatomic)           double              tempo;
 @property (nonatomic)           double              clock;
@@ -56,7 +63,7 @@
 
 - (void)randomizeColors
 {
-    random_rgb(Colors,(NUM_TABLES+1));
+    _randomRgb(Colors,(NUM_TABLES+1));
     [self updateLabelColors];
 }
 
@@ -130,22 +137,20 @@
     glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]),GL_UNSIGNED_INT, 0);
 }
 
-
+#pragma mark - Update Methods
 #pragma mark - GLKViewControllerDelegate
 
 - (void)update {
-
+    
     if ([self timeSinceLastSampleUpdate] > [self minimumSampleUpdateInterval]) {
         [self updateVertexData];
     }
     [self updateModelViewMatrix];
 }
 
-#pragma mark - Update Methods
-
 - (void)updateVertexData
 {
-    get_samples(self.tables, Samples,SAMPLES_PER_TABLE,1);
+    _getSamples(self.tables, Samples,SAMPLES_PER_TABLE,1);
     _updateVertices(Vertices, Samples, NUM_TABLES, SAMPLES_PER_TABLE, VERTICES_PER_SAMPLE);
     int numVertices = [self numVertices];
     _updateVertexNormals(Vertices, numVertices);
@@ -160,7 +165,6 @@
     }
     
     _zoom += _d_zoom * self.timeSinceLastUpdate;
-    
     return GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
 }
 
@@ -184,16 +188,63 @@
     return matrix;
 }
 
+- (GLKMatrix4)updateMotionManager:(GLKMatrix4)baseModelViewMatrix
+{
+    if ([_motionMgr isDeviceMotionAvailable])
+    {
+        CMDeviceMotion *motion = [_motionMgr deviceMotion];
+        
+        CMAttitude *attitude = motion.attitude;
+        
+        if (!self.referenceFrame)
+        {
+            NSLog(@"reference frame is nil...setting it to the current attitude.");
+            self.referenceFrame = motion.attitude;
+        }
+        else
+        {
+            [attitude multiplyByInverseOfAttitude:self.referenceFrame];
+        }
+        
+        GLfloat pitchAngle  = 1.0 * attitude.pitch;
+        GLfloat rollAngle   = 1.0 * attitude.roll;
+        
+        GLKMatrix4 rollMatrix   = GLKMatrix4MakeYRotation(rollAngle);
+        GLKMatrix4 pitchMatrix  = GLKMatrix4MakeXRotation(pitchAngle);
+        
+        GLKMatrix4 modelViewMatrix = rollMatrix;
+        modelViewMatrix = GLKMatrix4Multiply(modelViewMatrix, pitchMatrix);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        return modelViewMatrix;
+    }
+    
+    return baseModelViewMatrix;
+}
+
 - (void)updateModelViewMatrix
 {
     GLKMatrix4 modelViewMatrix = [self getUpdatedTranslationMatrix];
     modelViewMatrix = [self updateRotationMatrix:modelViewMatrix];
-    modelViewMatrix = [self updateScaleMatrix:modelViewMatrix];
-    self.effect.transform.modelviewMatrix = modelViewMatrix;
-    self.skybox.transform.modelviewMatrix = modelViewMatrix;
+    modelViewMatrix = [self updateMotionManager:modelViewMatrix];
+    self.effect.transform.modelviewMatrix = [self updateScaleMatrix:modelViewMatrix];
 }
 
 #pragma mark - setup
+
+- (void)setupMotionManager
+{
+    //
+    // Set-up Core Motion
+    //
+    
+    _motionMgr = [[CMMotionManager alloc] init];
+    if ([_motionMgr isDeviceMotionAvailable])
+    {
+        [_motionMgr startDeviceMotionUpdates];
+    }
+    
+    self.referenceFrame = nil;
+}
 
 - (void)setupGL {
     
@@ -203,9 +254,9 @@
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     
-    make_mesh_indices(Indices, SAMPLES_PER_TABLE, (NUM_TABLES * VERTICES_PER_SAMPLE));
-    init_vertices(Vertices,(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE));
-    assign_vertex_neighbors(Vertices, Indices, [self numIndices]);
+    _makeMeshIndices(Indices, SAMPLES_PER_TABLE, (NUM_TABLES * VERTICES_PER_SAMPLE));
+    _initVertices(Vertices,(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE));
+    _assignVertexNeighbors(Vertices, Indices, [self numIndices]);
     _updateVertexNormals(Vertices, [self numVertices]);
     
     glGenBuffers(1, &_indicesVBO);
@@ -216,51 +267,9 @@
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Position));
     
-    // Normals
-    glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, Normal)); // for model, normals, and texture
-    
     // Color
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, Color));
-}
-
-- (void)setupBaseEffectTexture
-{
-    
-    NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithBool:YES],
-                              GLKTextureLoaderOriginBottomLeft,
-                              nil];
-    
-    NSError * error;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"tile_floor" ofType:@"png"];
-    GLKTextureInfo * info = [GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
-    
-    if (info == nil) {
-        NSLog(@"Error loading file: %@", [error localizedDescription]);
-    }
-    
-
-}
-
-- (void)setupBaseEffectLighting
-{
-    self.effect.light0.enabled  = GL_TRUE;
-    
-    GLfloat ambientColor    = 0.70f;
-    GLfloat alpha = 0.7f;
-    self.effect.light0.ambientColor = GLKVector4Make(ambientColor, ambientColor, ambientColor, alpha);
-    
-    GLfloat diffuseColor    = 1.0f;
-    self.effect.light0.diffuseColor = GLKVector4Make(diffuseColor, diffuseColor, diffuseColor, alpha);
-    
-    // Spotlight
-    GLfloat specularColor   = 1.00f;
-    self.effect.light0.specularColor    = GLKVector4Make(specularColor, specularColor, specularColor, alpha);
-    self.effect.light0.position         = GLKVector4Make(0.1f, 0.1f, 1.0f, 0.0f);
-    self.effect.light0.spotDirection    = GLKVector3Make(0.1f, 1.0f, 0.0f);
-    self.effect.light0.spotCutoff       = 20.0; // 40° spread total.
 }
 
 - (void)setupBaseEffect
@@ -336,7 +345,7 @@
 
 - (NSTimeInterval)minimumSampleUpdateInterval
 {
-    return 1.0/self.framesPerSecond;
+    return 1.0/self.framesPerSecond/2.0;
 }
 
 - (int)numIndices
@@ -355,6 +364,7 @@
 
 - (void)playbackBegan:(id)sender
 {
+    [self resetReferenceFrame:nil];
     [self setupIvars];
     [self randomizeColors];
     [self updateLabelText];
@@ -363,6 +373,7 @@
 
 - (void)playbackEnded:(id)sender
 {
+    [self resetReferenceFrame:nil];
     [self updateLabelText];
     [self showLabelsAnimated:YES];
     [self setupIvars];
@@ -385,6 +396,16 @@
     }
 }
 
+#pragma mark - Reference Frame
+
+- (void)resetReferenceFrame:(id)sender
+{
+    if ([_motionMgr isDeviceMotionActive])
+    {
+        self.referenceFrame = [[_motionMgr deviceMotion] attitude];
+    }
+}
+
 #pragma mark - ViewController Life cycle
 
 - (void)viewDidLoad {
@@ -396,8 +417,8 @@
     [self setupSampleTables];
     [self setupContext];
     [self setupBaseEffect];
-    //[self setupBaseEffectLighting];
     [self setupGL];
+    [self setupMotionManager];
 
     [self playbackEnded:nil];
     // Do any additional setup after loading the view.
@@ -429,6 +450,8 @@
     
     self.effect = nil;
 }
+
+
 
 /*
 #pragma mark - Navigation

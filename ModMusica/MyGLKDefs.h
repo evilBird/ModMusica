@@ -25,15 +25,15 @@
 #define VERTICES_PER_SAMPLE         10
 #define NUM_TABLES                  8
 
-#define SAMPLE_SCALAR               1.1
+#define SAMPLE_SCALAR               1.6
 #define SAMPLE_UPDATES_PER_SEC      10.0
 
-#define MIN_SCALE                   0.1
+#define MIN_SCALE                   4.0
 #define MAX_SCALE                   20.0
 #define D_SCALE                     0.5
 
-#define MIN_ZOOM                   -8.0
-#define MAX_ZOOM                    0.1
+#define MIN_ZOOM                   -4.0
+#define MAX_ZOOM                   -0.1
 #define D_ZOOM                      0.1
 
 #define INIT_ROTATION_X            -90.0

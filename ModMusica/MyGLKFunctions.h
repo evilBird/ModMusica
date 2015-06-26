@@ -8,9 +8,10 @@
 
 #ifndef ModMusica_MyGLKFunctions_h
 #define ModMusica_MyGLKFunctions_h
+
 #import "MyGLKDefs.h"
 
-void make_mesh_indices(GLuint indices[], int x, int y)
+void _makeMeshIndices(GLuint indices[], int x, int y)
 {
     if (x < 2|| y < 2) {
         return;
@@ -55,7 +56,7 @@ void make_mesh_indices(GLuint indices[], int x, int y)
     }
 }
 
-void get_samples(NSArray *tables, float samples[], int samplesPerTable, int wrap)
+void _getSamples(NSArray *tables, float samples[], int samplesPerTable, int wrap)
 {
     [PdBase sendBangToReceiver:kUpdateScopes];
     
@@ -115,14 +116,14 @@ Vertex _newVertex()
     return vertex;
 }
 
-void init_vertices(Vertex vertices[], int numVertices)
+void _initVertices(Vertex vertices[], int numVertices)
 {
     for (int i = 0; i < numVertices; i ++) {
         vertices[i] = _newVertex();
     }
 }
 
-void assign_vertex_neighbors(Vertex vertices[],GLuint indices[],int numIndices)
+void _assignVertexNeighbors(Vertex vertices[],GLuint indices[],int numIndices)
 {
     int numTriangles = numIndices/3;
     
@@ -166,30 +167,30 @@ void assign_vertex_neighbors(Vertex vertices[],GLuint indices[],int numIndices)
     }
 }
 
-void vert2pos(Vertex vertex,GLfloat result[])
+void _vert2pos(Vertex vertex,GLfloat result[])
 {
     result[0] = vertex.Position[0];
     result[1] = vertex.Position[1];
     result[2] = vertex.Position[2];
 }
 
-void subtract_pos(GLfloat pos1[], GLfloat pos2[], GLfloat result[])
+void _subtractPos(GLfloat pos1[], GLfloat pos2[], GLfloat result[])
 {
     result[0] = pos1[0] - pos2[0];
     result[1] = pos1[1] - pos2[1];
     result[2] = pos2[2] - pos2[2];
 }
 
-void calculate_normal(Vertex vertex1, Vertex vertex2, Vertex vertex3, GLfloat result[])
+void _calculateNormal(Vertex vertex1, Vertex vertex2, Vertex vertex3, GLfloat result[])
 {
     GLfloat p1[3],p2[3],p3[3];
-    vert2pos(vertex1, p1);
-    vert2pos(vertex2, p2);
-    vert2pos(vertex3, p3);
+    _vert2pos(vertex1, p1);
+    _vert2pos(vertex2, p2);
+    _vert2pos(vertex3, p3);
     
     GLfloat v1[3],v2[3];
-    subtract_pos(p2, p1, v1);
-    subtract_pos(p3, p1, v2);
+    _subtractPos(p2, p1, v1);
+    _subtractPos(p3, p1, v2);
     
     result[0] = v1[1] * v2[2] - v1[2] * v2[1];
     result[1] = v1[1] * v2[1] - v1[0] * v2[2];
@@ -201,7 +202,7 @@ void calculate_normal(Vertex vertex1, Vertex vertex2, Vertex vertex3, GLfloat re
 }
 
 
-void calculate_normal_at_index(Vertex vertices[],int idx)
+void _calculateNormalAtIndex(Vertex vertices[],int idx)
 {
     Vertex vertex1,vertex2,vertex3;
     GLuint index = (GLuint)idx;
@@ -221,7 +222,7 @@ void calculate_normal_at_index(Vertex vertices[],int idx)
         neighborIdx++;
         vertex3 = vertices[vertex1.Neighbors[neighborIdx]];
         GLfloat currentNormal[3];
-        calculate_normal(vertex1, vertex2, vertex3, currentNormal);
+        _calculateNormal(vertex1, vertex2, vertex3, currentNormal);
         normalSum[0]+=currentNormal[0];
         normalSum[1]+=currentNormal[1];
         normalSum[2]+=currentNormal[2];
@@ -235,7 +236,7 @@ void calculate_normal_at_index(Vertex vertices[],int idx)
 void _updateVertexNormals(Vertex vertices[],int numVertices)
 {
     for (int i = 0; i < numVertices; i++) {
-        calculate_normal_at_index(vertices, i);
+        _calculateNormalAtIndex(vertices, i);
     }
 }
 
@@ -323,7 +324,7 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
 }
 
 
-GLfloat wrap_float(GLfloat myFloat, GLfloat min, GLfloat max)
+GLfloat _wrapFloat(GLfloat myFloat, GLfloat min, GLfloat max)
 {
     if (myFloat > max) {
         return max;
@@ -333,7 +334,7 @@ GLfloat wrap_float(GLfloat myFloat, GLfloat min, GLfloat max)
     return myFloat;
 }
 
-GLfloat clamp_float(GLfloat myFloat, GLfloat min, GLfloat max)
+GLfloat _clampFloat(GLfloat myFloat, GLfloat min, GLfloat max)
 {
     if (myFloat > max) {
         return max;
@@ -343,23 +344,23 @@ GLfloat clamp_float(GLfloat myFloat, GLfloat min, GLfloat max)
     return myFloat;
 }
 
-GLfloat jitter_float(GLfloat myFloat, GLfloat percent)
+GLfloat _jitterFloat(GLfloat myFloat, GLfloat percent)
 {
     GLfloat jit = (GLfloat)((arc4random_uniform(200) - 100) * percent * 0.01);
-    return clamp_float((myFloat + jit),0.0,1.0);
+    return _clampFloat((myFloat + jit),0.0,1.0);
 }
 
-void jitter_rgb(GLfloat rgb[], GLfloat result[], GLfloat jitter, int table)
+void _jitterRgb(GLfloat rgb[], GLfloat result[], GLfloat jitter, int table)
 {
     int tableIndex = table * 3;
     for (int i = 0; i<3; i++) {
         int idx = (tableIndex + i);
         GLfloat component = rgb[idx];
-        result[i] = jitter_float(component, jitter);
+        result[i] = _jitterFloat(component, jitter);
     }
 }
 
-void random_rgb(GLfloat rgb[], int n)
+void _randomRgb(GLfloat rgb[], int n)
 {
     for (int i = 0; i < (n*3); i ++) {
         rgb[i] = (GLfloat)(arc4random_uniform(1000) * 0.001);
