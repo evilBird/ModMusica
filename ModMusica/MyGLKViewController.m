@@ -155,6 +155,7 @@
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 20.0f);
     self.effect.transform.projectionMatrix = projectionMatrix;
+    
     _zoom += _d_zoom * self.timeSinceLastUpdate;
 
     if (_zoom < MIN_ZOOM || _zoom > MAX_ZOOM) {
@@ -162,12 +163,14 @@
     }
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
+    
     _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
     
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation_y), 0, 1, 0);
     
     _scale += _d_scale * self.timeSinceLastUpdate;
+    
     if (_scale < MIN_SCALE || _scale < MAX_SCALE) {
         _d_scale *= -1.0;
     }
@@ -254,25 +257,6 @@
 #endif
 }
 
-- (void)setupBaseEffectLighting
-{
-    self.effect.light0.enabled  = GL_TRUE;
-    
-    GLfloat ambientColor    = 0.70f;
-    GLfloat alpha = 0.7f;
-    self.effect.light0.ambientColor = GLKVector4Make(ambientColor, ambientColor, ambientColor, alpha);
-    
-    GLfloat diffuseColor    = 1.0f;
-    self.effect.light0.diffuseColor = GLKVector4Make(diffuseColor, diffuseColor, diffuseColor, alpha);
-    
-    // Spotlight
-    GLfloat specularColor   = 1.00f;
-    self.effect.light0.specularColor    = GLKVector4Make(specularColor, specularColor, specularColor, alpha);
-    self.effect.light0.position         = GLKVector4Make(5.0f, 0.0f, 0.0f, 0.0f);
-    self.effect.light0.spotDirection    = GLKVector3Make(-1.0f, 0.0f, -1.0f);
-    self.effect.light0.spotCutoff       = 20.0; // 40° spread total.
-}
-
 - (void)setupBaseEffect
 {
     self.effect = [[GLKBaseEffect alloc]init];
@@ -344,7 +328,7 @@
 
 - (NSTimeInterval)minimumSampleUpdateInterval
 {
-    return 1.0/self.framesPerSecond;
+    return 1.0/self.framesPerSecond/2.0;
 }
 
 - (int)numIndices
