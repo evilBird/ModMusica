@@ -9,6 +9,7 @@
 #import "MyGLKViewController.h"
 #import "MMPlaybackController.h"
 #import "MyGLKViewController+Labels.h"
+#import "MyGLKViewController+Button.h"
 #import "MyGLKFunctions.h"
 #import <CoreMotion/CoreMotion.h>
 
@@ -66,6 +67,7 @@
     self.mainColor = [UIColor colorWithRed:Colors[0] green:Colors[1] blue:Colors[2] alpha:1.0];
     _setMainVertexColor(Colors);
     [self updateLabelColors];
+    [self updateHamburgerButtonColor];
 }
 
 #pragma mark - Property accessors
@@ -315,6 +317,7 @@
     [self randomizeColors];
     [self setupLabels];
     [self updateLabelText];
+    [self setupHamburgerButton];
 }
 
 - (void)setupPlayback

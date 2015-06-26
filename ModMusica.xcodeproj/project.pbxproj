@@ -923,6 +923,7 @@
 		F2EEFF8F1A11A0D300398C04 /* modmusica_3.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF8E1A11A0D300398C04 /* modmusica_3.pd */; };
 		F2F0FE941B34D27B00B00A21 /* MyGLKViewController+Labels.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F0FE931B34D27B00B00A21 /* MyGLKViewController+Labels.m */; };
 		F2F676AB1B2B900400CA79A9 /* MyGLKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */; };
+		F2FC4FE71B3DEDD6000CE7EB /* MyGLKViewController+Button.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */; };
 		F2FD2BC01B2A84F100974562 /* MMAudioScopeViewController+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FD2BBF1B2A84F100974562 /* MMAudioScopeViewController+Random.m */; };
 		F2FD2BC31B2A891000974562 /* MMAudioScopeViewController+Depth.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FD2BC21B2A891000974562 /* MMAudioScopeViewController+Depth.m */; };
 		F2FD2BC61B2A899600974562 /* MMScopeDepthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FD2BC51B2A899600974562 /* MMScopeDepthManager.m */; };
@@ -1898,6 +1899,8 @@
 		F2F0FE931B34D27B00B00A21 /* MyGLKViewController+Labels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MyGLKViewController+Labels.m"; sourceTree = "<group>"; };
 		F2F676A91B2B900400CA79A9 /* MyGLKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGLKViewController.h; sourceTree = "<group>"; };
 		F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGLKViewController.m; sourceTree = "<group>"; };
+		F2FC4FE51B3DEDD6000CE7EB /* MyGLKViewController+Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyGLKViewController+Button.h"; sourceTree = "<group>"; };
+		F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MyGLKViewController+Button.m"; sourceTree = "<group>"; };
 		F2FD2BBE1B2A84F100974562 /* MMAudioScopeViewController+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Random.h"; sourceTree = "<group>"; };
 		F2FD2BBF1B2A84F100974562 /* MMAudioScopeViewController+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Random.m"; sourceTree = "<group>"; };
 		F2FD2BC11B2A891000974562 /* MMAudioScopeViewController+Depth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Depth.h"; sourceTree = "<group>"; };
@@ -2122,6 +2125,8 @@
 				F2DE10691B3B588600A7CDD0 /* MyGLKFunctions.h */,
 				F2F676A91B2B900400CA79A9 /* MyGLKViewController.h */,
 				F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */,
+				F2FC4FE51B3DEDD6000CE7EB /* MyGLKViewController+Button.h */,
+				F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */,
 				F2F0FE921B34D27B00B00A21 /* MyGLKViewController+Labels.h */,
 				F2F0FE931B34D27B00B00A21 /* MyGLKViewController+Labels.m */,
 				F2399C781B3267D20062B5E6 /* MyGLKViewController+Touch.h */,
@@ -4268,6 +4273,7 @@
 				F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */,
 				F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */,
 				F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */,
+				F2FC4FE71B3DEDD6000CE7EB /* MyGLKViewController+Button.m in Sources */,
 				F2DE9EC81B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m in Sources */,
 				F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */,
 				F2F676AB1B2B900400CA79A9 /* MyGLKViewController.m in Sources */,

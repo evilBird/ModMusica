@@ -8,7 +8,7 @@
 
 #import "MMRootViewController.h"
 #import "MMModuleViewController.h"
-@interface MMRootViewController (Mods)<MMModuleViewControllerDatasource,MMModuleViewControllerDelegate,MSDynamicsDrawerViewControllerDelegate>
+@interface MMRootViewController (Mods)<MMModuleViewControllerDatasource,MMModuleViewControllerDelegate,MSDynamicsDrawerViewControllerDelegate,MyGLKViewControllerDelegate>
 
 #pragma mark - MMModuleViewControllerDatasource
 - (NSArray *)modulesForModuleView:(id)sender;
@@ -22,5 +22,9 @@
 #pragma mark - MSDynamicsViewControllerDelegate
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction;
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction;
+
+#pragma mark - MyGLKViewControllerDelegate
+
+- (void)openCloseDrawer:(id)sender;
 
 @end

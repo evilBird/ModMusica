@@ -35,7 +35,7 @@ static NSTimer *infoLabelTimer;
         [self showLabelsAnimated:NO];
     }
     
-    infoLabelTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
+    infoLabelTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
                                                       target:self
                                                     selector:@selector(handleInfoLabelTimer:)
                                                     userInfo:nil
@@ -70,6 +70,7 @@ static NSTimer *infoLabelTimer;
         self.titleLabel.alpha = 0.0;
         self.infoLabel.alpha = 0.0;
         self.nowPlayingLabel.alpha = 0.0;
+        self.hamburgerButton.alpha = 0.0;
         return;
     }
     
@@ -77,6 +78,7 @@ static NSTimer *infoLabelTimer;
         self.titleLabel.alpha = 0.0;
         self.infoLabel.alpha = 0.0;
         self.nowPlayingLabel.alpha = 0.0;
+        self.hamburgerButton.alpha = 0.0;
     }];
 }
 
@@ -86,6 +88,7 @@ static NSTimer *infoLabelTimer;
         self.titleLabel.alpha = 1.0;
         self.infoLabel.alpha = 1.0;
         self.nowPlayingLabel.alpha = 1.0;
+        self.hamburgerButton.alpha = 1.0;
         return;
     }
     
@@ -93,6 +96,7 @@ static NSTimer *infoLabelTimer;
         self.titleLabel.alpha = 1.0;
         self.infoLabel.alpha = 1.0;
         self.nowPlayingLabel.alpha = 1.0;
+        self.hamburgerButton.alpha = 1.0;
     }];
 }
 

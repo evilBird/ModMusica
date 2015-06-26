@@ -62,4 +62,14 @@
     }
 }
 
+#pragma mark - MyGLKViewControllerDelegate
+- (void)openCloseDrawer:(id)sender
+{
+    if (self.paneState == MSDynamicsDrawerPaneStateClosed) {
+        [self setPaneState:MSDynamicsDrawerPaneStateOpen inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:nil];
+    }else{
+        [self setPaneState:MSDynamicsDrawerPaneStateClosed inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:nil];
+    }
+}
+
 @end

@@ -14,7 +14,7 @@
 #import "MMStepCounter.h"
 
 
-@interface MMRootViewController ()
+@interface MMRootViewController () 
 
 @property (nonatomic,strong)            MMStepCounter           *stepCounter;
 
@@ -32,6 +32,7 @@
     mm.datasource = self;
     [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
     [(MyGLKViewController *)self.paneViewController setCurrentModName:@"mario"];
+    [(MyGLKViewController *)self.paneViewController setGlkDelegate:self];
     // Do any additional setup after loading the view.
 }
 
@@ -39,6 +40,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (MyGLKViewController *)getGLKViewController
 {
