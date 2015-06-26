@@ -23,11 +23,11 @@ void _makeMeshIndices(GLuint indices[], int x, int y)
     int anchorIdx = 0;
     int vertexIdx = 0;
     
-    for (int i = 0; i<numCols; i++) {
+    for (int i = 0; i<y; i++) {
         
         for (int j = 0; j<numRows; j++) {
             
-            anchorIdx = ((i * x) + j);
+            anchorIdx = ((i%numCols * x) + j);
             
             vertexIdx = anchorIdx + 1;
             indices[meshIdx] = (GLuint)vertexIdx;
@@ -80,6 +80,8 @@ void _getSamples(NSArray *tables, float samples[], int samplesPerTable, int wrap
             if (sample > 1.0) {
                 sample = 1.0;
             }
+            
+            //sample *= sample;
             
             sampleIdx = ((i * samplesPerTable) + j);
             samples[sampleIdx] = sample * SAMPLE_SCALAR;

@@ -19,7 +19,7 @@
     GLuint      _indicesVBO;
     
     Vertex      Vertices        [(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE)];
-    GLuint      Indices         [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 1) * 6];
+    GLuint      Indices         [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 0) * 6];
     float       Samples         [(SAMPLES_PER_TABLE * NUM_TABLES)];
     GLfloat     Colors          [((NUM_TABLES + 1) * 3)];
     
@@ -142,10 +142,11 @@
 
 - (void)update {
     
-    if ([self timeSinceLastSampleUpdate] > [self minimumSampleUpdateInterval]) {
+    if (self.isPlaying) {
         [self updateVertexData];
     }
-    [self updateModelViewMatrix];
+    
+    [self updatePerspective];
 }
 
 - (void)updateVertexData
@@ -158,22 +159,67 @@
     self.lastSampleUpdate = [NSDate date];
 }
 
-- (GLKMatrix4)getUpdatedTranslationMatrix
+- (void)updatePerspective
+{
+    float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 20.0f);
+    self.effect.transform.projectionMatrix = projectionMatrix;
+    _zoom += _d_zoom * self.timeSinceLastUpdate;
+
+    if (_zoom < MIN_ZOOM || _zoom > MAX_ZOOM) {
+        _d_zoom *= -1.0;
+    }
+    
+    //_zoom += _d_zoom * self.timeSinceLastUpdate;
+    
+    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
+    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
+    
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
+    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation_y), 0, 1, 0);
+    
+    _scale += _d_scale * self.timeSinceLastUpdate;
+    if (_scale < MIN_SCALE || _scale < MAX_SCALE) {
+        _d_scale *= -1.0;
+    }
+    
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1, _scale, 1);
+    modelViewMatrix = [self updateMotionManager:modelViewMatrix];
+    self.effect.transform.modelviewMatrix = modelViewMatrix;
+}
+
+- (void)updateModelViewMatrix
+{
+    self.effect.transform.projectionMatrix = [self defaultProjectionMatrix];
+    
+    GLKMatrix4 modelViewMatrix;
+    //modelViewMatrix = self.effect.transform.modelviewMatrix;
+    modelViewMatrix = [self defaultModelViewMatrix];
+    //modelViewMatrix = [self updateMotionManager:modelViewMatrix];
+    modelViewMatrix = [self updateTranslationMatrix:modelViewMatrix];
+    modelViewMatrix = [self updateRotationMatrix:modelViewMatrix];
+    modelViewMatrix = [self updateScaleMatrix:modelViewMatrix];
+    self.effect.transform.modelviewMatrix = modelViewMatrix;
+}
+
+- (GLKMatrix4)updateTranslationMatrix:(GLKMatrix4)matrix
 {
     if (_zoom >= MAX_ZOOM || _zoom <= MIN_ZOOM) {
         _d_zoom *= -1.0;
     }
     
     _zoom += _d_zoom * self.timeSinceLastUpdate;
-    return GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
+    matrix = GLKMatrix4Translate(matrix, 0.0, 0.0, _zoom);
+    
+    return matrix;
 }
 
 - (GLKMatrix4)updateRotationMatrix:(GLKMatrix4)matrix
 {
-    
-    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
     matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
+    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
     matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(_rotation_y), 0.01, 1, 0.01);
+    
     return matrix;
 }
 
@@ -184,6 +230,7 @@
     }
     
     _scale += _d_scale * self.timeSinceLastUpdate;
+    
     matrix = GLKMatrix4Scale(matrix, 1, _scale, 1);
     return matrix;
 }
@@ -221,22 +268,10 @@
     return baseModelViewMatrix;
 }
 
-- (void)updateModelViewMatrix
-{
-    GLKMatrix4 modelViewMatrix = [self getUpdatedTranslationMatrix];
-    modelViewMatrix = [self updateRotationMatrix:modelViewMatrix];
-    modelViewMatrix = [self updateMotionManager:modelViewMatrix];
-    self.effect.transform.modelviewMatrix = [self updateScaleMatrix:modelViewMatrix];
-}
-
 #pragma mark - setup
 
 - (void)setupMotionManager
 {
-    //
-    // Set-up Core Motion
-    //
-    
     _motionMgr = [[CMMotionManager alloc] init];
     if ([_motionMgr isDeviceMotionAvailable])
     {
@@ -275,9 +310,8 @@
 - (void)setupBaseEffect
 {
     self.effect = [[GLKBaseEffect alloc]init];
-    float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 100.0);
-    self.effect.transform.projectionMatrix = projectionMatrix;
+    self.effect.transform.projectionMatrix = [self defaultProjectionMatrix];
+    self.effect.transform.modelviewMatrix = [self defaultModelViewMatrix];
 }
 
 - (void)setupContext
@@ -300,7 +334,6 @@
     // Enable face culling and depth test
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-    
 }
 
 - (void)setupSampleTables
@@ -350,7 +383,7 @@
 
 - (int)numIndices
 {
-    int numIndices = (SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 1) * 6;
+    int numIndices = (SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE) - 0) * 6;
     return numIndices;
 }
 
@@ -360,22 +393,37 @@
     return numVertices;
 }
 
+- (GLKMatrix4)defaultModelViewMatrix
+{
+    GLKMatrix4 matrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
+    matrix = GLKMatrix4Rotate(matrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
+    return matrix;
+}
+
+- (GLKMatrix4)defaultProjectionMatrix
+{
+    float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 100.0);
+    return projectionMatrix;
+}
+
 #pragma mark - MMPlaybackControllerDelegate
 
 - (void)playbackBegan:(id)sender
 {
-    [self resetReferenceFrame:nil];
-    [self setupIvars];
     [self randomizeColors];
     [self updateLabelText];
     [self hideLabelsAnimated:YES];
+    self.paused = NO;
+    [self resetReferenceFrame:nil];
+    [self setupIvars];
 }
 
 - (void)playbackEnded:(id)sender
 {
-    [self resetReferenceFrame:nil];
     [self updateLabelText];
     [self showLabelsAnimated:YES];
+    [self resetReferenceFrame:nil];
     [self setupIvars];
 }
 
@@ -418,8 +466,8 @@
     [self setupContext];
     [self setupBaseEffect];
     [self setupGL];
+    [self updateVertexData];
     [self setupMotionManager];
-
     [self playbackEnded:nil];
     // Do any additional setup after loading the view.
 }
