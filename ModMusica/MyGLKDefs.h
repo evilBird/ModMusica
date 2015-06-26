@@ -41,7 +41,10 @@
 #define INIT_ROTATION_Y              0.0
 #define D_ROTATION_Y                10.0
 
+#define FRAMES_PER_RANDOM           2400
+
 #define DEBUG_GL 0
+#define USE_NORMALS 0
 
 static NSString *kTableName = @"scopeArray";
 static NSString *kBassTable = @"bassScope";

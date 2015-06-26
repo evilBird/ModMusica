@@ -11,6 +11,26 @@
 
 #import "MyGLKDefs.h"
 
+GLfloat _wrapFloat(GLfloat myFloat, GLfloat min, GLfloat max)
+{
+    if (myFloat > max) {
+        return max;
+    }else if (myFloat < min){
+        return min;
+    }
+    return myFloat;
+}
+
+GLfloat _clampFloat(GLfloat myFloat, GLfloat min, GLfloat max)
+{
+    if (myFloat > max) {
+        return max;
+    }else if (myFloat < min){
+        return min;
+    }
+    return myFloat;
+}
+
 GLfloat _jitterFloat(GLfloat myFloat, GLfloat jitter, GLfloat min, GLfloat max)
 {
     u_int32_t base;
@@ -27,6 +47,13 @@ GLfloat _jitterFloat(GLfloat myFloat, GLfloat jitter, GLfloat min, GLfloat max)
     myFloat+=diff;
     
     return myFloat;
+}
+
+void _randomRGB(GLfloat rgb[], int n)
+{
+    for (int i = 0; i < (n*3); i ++) {
+        rgb[i] = (GLfloat)(arc4random_uniform(1000) * 0.001);
+    }
 }
 
 void _makeMeshIndices(GLuint indices[], int x, int y)
@@ -98,8 +125,6 @@ void _getSamples(NSArray *tables, float samples[], int samplesPerTable, int wrap
             if (sample > 1.0) {
                 sample = 1.0;
             }
-            
-            //sample *= sample;
             
             sampleIdx = ((i * samplesPerTable) + j);
             samples[sampleIdx] = sample * SAMPLE_SCALAR;
@@ -289,13 +314,12 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
         
         int myIdx = i/verticesPerSample;
         GLfloat myCols[3];
-
         if (newCols) {
-            myCols[0] = _jitterFloat(cols[0], 0.15, 0.0, 1.0);
-            myCols[1] = _jitterFloat(cols[1], 0.15, 0.0, 1.0);
-            myCols[2] = _jitterFloat(cols[2], 0.15, 0.0, 1.0);
+            myCols[0] = _jitterFloat(cols[0],0.2,0.0,1.0);
+            myCols[1] = _jitterFloat(cols[1],0.2,0.0,1.0);
+            myCols[2] = _jitterFloat(cols[2],0.2,0.0,1.0);
         }
-
+        
         for (int j = 0; j < samplesPerTable; j++) {
             int sampleIdx = myIdx * samplesPerTable + j;
             int vertexIdx = i * samplesPerTable + j;
@@ -322,7 +346,7 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
             vertices[vertexIdx].Position[0] = (GLfloat)x;
             vertices[vertexIdx].Position[1] = (GLfloat)y;
             vertices[vertexIdx].Position[2] = (GLfloat)z;
-            
+
             if (newCols) {
                 vertices[vertexIdx].Color[0] = (GLfloat)(normalizedSample * myCols[0]);
                 vertices[vertexIdx].Color[1] = (GLfloat)(normalizedSample * myCols[1]);
@@ -330,16 +354,18 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
                 vertices[vertexIdx].Color[3] = 1.0;
             }
 
+
+#if USE_NORMALS
             
             double dir = 1.0;
             if (weightedSample < 0) {
                 dir = -1.0;
             }
-            vertices[vertexIdx].Normal[0] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];// * dir;
+            
+            vertices[vertexIdx].Normal[0] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];
             vertices[vertexIdx].Normal[1] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[1];
-            vertices[vertexIdx].Normal[2] = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];// * dir;
-            
-            
+            vertices[vertexIdx].Normal[2] = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];
+#endif
             
 #if DEBUG_GL
             NSLog(@"\ni = %d, j = %d, vertexIdx = %d, sampleIdx = %d, sample = %.2f, neighborIdx = %d, neighbor = %.2f, neighbor wt = %.2f, weighted sample = %.2f, x = %.2f, y = %.2f, z = %.2f",i,j,vertexIdx,sampleIdx,sample,neighborIdx,neighbor,neighbor_wt,weightedSample,x,y,z);
@@ -351,32 +377,5 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
 #endif
 }
 
-
-GLfloat _wrapFloat(GLfloat myFloat, GLfloat min, GLfloat max)
-{
-    if (myFloat > max) {
-        return max;
-    }else if (myFloat < min){
-        return min;
-    }
-    return myFloat;
-}
-
-GLfloat _clampFloat(GLfloat myFloat, GLfloat min, GLfloat max)
-{
-    if (myFloat > max) {
-        return max;
-    }else if (myFloat < min){
-        return min;
-    }
-    return myFloat;
-}
-
-void _randomRgb(GLfloat rgb[], int n)
-{
-    for (int i = 0; i < (n*3); i ++) {
-        rgb[i] = (GLfloat)(arc4random_uniform(1000) * 0.001);
-    }
-}
 
 #endif
