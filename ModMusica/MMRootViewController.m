@@ -14,7 +14,7 @@
 #import "MMStepCounter.h"
 
 
-@interface MMRootViewController () 
+@interface MMRootViewController () <MMStepCounterDelegate>
 
 @property (nonatomic,strong)            MMStepCounter           *stepCounter;
 
@@ -45,6 +45,30 @@
 - (MyGLKViewController *)getGLKViewController
 {
     return (MyGLKViewController *)(self.paneViewController);
+}
+
+#pragma mark GLKViewControllerDelegate
+
+- (void)glkViewController:(id)sender playbackChanged:(BOOL)playing
+{
+    if (playing) {
+        self.stepCounter = [[MMStepCounter alloc]init];
+        self.stepCounter.delegate = self;
+        [self.stepCounter startUpdates];
+    }else{
+        [self.stepCounter endUpdates];
+        self.stepCounter = nil;
+    }
+}
+
+#pragma mark MMStepCounterDelegate
+
+- (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
+{
+    if (![self getGLKViewController].playbackController.lockTempo) {
+        [PdBase  sendFloat:stepsPerMinute toReceiver:@"manualSetTempo"];
+        [[self getGLKViewController]playback:sender detectedUserTempo:stepsPerMinute];
+    }
 }
 
 

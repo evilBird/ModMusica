@@ -32,6 +32,8 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 @property (nonatomic,strong)                NSString                *patternName;
 @property                                   void                    *patch;
 @property (nonatomic,getter=isPlaying)      BOOL                    playing;
+@property (nonatomic)                       BOOL                    shuffleMods;
+@property (nonatomic)                       BOOL                    lockTempo;
 
 - (void)startPlayback;
 - (void)stopPlayback;

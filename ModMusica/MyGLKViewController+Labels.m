@@ -35,7 +35,7 @@ static NSTimer *infoLabelTimer;
         [self showLabelsAnimated:NO];
     }
     
-    infoLabelTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
+    infoLabelTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
                                                       target:self
                                                     selector:@selector(handleInfoLabelTimer:)
                                                     userInfo:nil
@@ -74,7 +74,7 @@ static NSTimer *infoLabelTimer;
         return;
     }
     
-    [UIView animateWithDuration:10.0
+    [UIView animateWithDuration:7.0
                           delay:0.0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{

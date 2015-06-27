@@ -13,6 +13,7 @@
 @protocol MyGLKViewControllerDelegate <NSObject>
 
 - (void)openCloseDrawer:(id)sender;
+- (void)glkViewController:(id)sender playbackChanged:(BOOL)playing;
 
 @end
 
@@ -33,5 +34,7 @@
 
 - (void)showDetails;
 - (void)randomizeColors;
+
+- (void)playback:(id)sender detectedUserTempo:(double)tempo;
 
 @end

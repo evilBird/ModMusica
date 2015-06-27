@@ -122,6 +122,34 @@
                                     <outlet property="titleLabel" destination="q90-WQ-K1c" id="hU5-pA-FA3"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ModuleSwitchCellId" id="UQc-PS-G97" customClass="MMModuleSwitchCellView">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UQc-PS-G97" id="dLZ-Cg-ggb">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mod Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzb-uz-5Ye">
+                                            <rect key="frame" x="8" y="15" width="79.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3HQ-cZ-PLX">
+                                            <rect key="frame" x="451" y="10" width="51" height="31"/>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="gzb-uz-5Ye" secondAttribute="centerY" id="4uj-6L-hmk"/>
+                                        <constraint firstItem="3HQ-cZ-PLX" firstAttribute="trailing" secondItem="dLZ-Cg-ggb" secondAttribute="leading" constant="500" id="Eoa-lZ-KO1"/>
+                                        <constraint firstAttribute="centerY" secondItem="3HQ-cZ-PLX" secondAttribute="centerY" id="VAK-eU-8I4"/>
+                                        <constraint firstItem="gzb-uz-5Ye" firstAttribute="leading" secondItem="dLZ-Cg-ggb" secondAttribute="leading" constant="8" id="riK-YC-MAg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="actionSwitch" destination="3HQ-cZ-PLX" id="GgQ-TD-aSy"/>
+                                    <outlet property="buttonTrailingEdgeConstraint" destination="Eoa-lZ-KO1" id="4ui-Y7-ksI"/>
+                                    <outlet property="titleLabel" destination="gzb-uz-5Ye" id="ca9-l3-ju6"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="sbf-4p-okO" id="BTz-lH-tFD"/>

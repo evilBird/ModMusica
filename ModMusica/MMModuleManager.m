@@ -15,7 +15,7 @@
 
 + (NSArray *)modNames
 {
-     return @[@"mario",@"fantasy",@"mega",@"menace",@"sad",@"new"];
+     return @[@"mario",@"fantasy",@"mega",@"menace",@"sad"];
 }
 
 + (NSArray *)mods

@@ -66,7 +66,7 @@ static NSInteger kTapCount;
         kTapCount++;
     }
     
-    if (kTapCount > 1) {
+    if (kTapCount > 1 && ![self getGLKViewController].playbackController.lockTempo) {
         [PdBase sendBangToReceiver:@"tapTempo"];
     }else if (kTapCount <= 1){
         [[self getGLKViewController]showDetails];

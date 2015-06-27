@@ -15,6 +15,8 @@
 
 #pragma mark - MMModuleViewControllerDelegate
 - (void)moduleView:(id)sender selectedModuleWithName:(NSString *)moduleName;
+- (void)moduleView:(id)sender shuffleDidChange:(int)shuffle;
+- (void)moduleView:(id)sender lockTempoDidChange:(int)lock;
 - (CGFloat)openDrawerWidth;
 - (UIColor *)currentTextColor;
 - (UIColor *)currentFillColor;

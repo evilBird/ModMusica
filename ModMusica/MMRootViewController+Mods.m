@@ -32,6 +32,16 @@
     }];
 }
 
+- (void)moduleView:(id)sender shuffleDidChange:(int)shuffle
+{
+    [self getGLKViewController].playbackController.shuffleMods = (BOOL)shuffle;
+}
+- (void)moduleView:(id)sender lockTempoDidChange:(int)lock
+{
+    [self getGLKViewController].playbackController.lockTempo = (BOOL)lock;
+    [PdBase sendFloat:(float)lock toReceiver:@"lockTempo"];
+}
+
 - (CGFloat)openDrawerWidth
 {
     return [self revealWidthForDirection:MSDynamicsDrawerDirectionLeft];

@@ -921,6 +921,7 @@
 		F2F0FE941B34D27B00B00A21 /* MyGLKViewController+Labels.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F0FE931B34D27B00B00A21 /* MyGLKViewController+Labels.m */; };
 		F2F676AB1B2B900400CA79A9 /* MyGLKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */; };
 		F2FC4FE71B3DEDD6000CE7EB /* MyGLKViewController+Button.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */; };
+		F2FC4FF31B3E19CB000CE7EB /* MMModuleSwitchCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FC4FF21B3E19CB000CE7EB /* MMModuleSwitchCellView.m */; };
 		F2FD2BC01B2A84F100974562 /* MMAudioScopeViewController+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FD2BBF1B2A84F100974562 /* MMAudioScopeViewController+Random.m */; };
 		F2FD2BC31B2A891000974562 /* MMAudioScopeViewController+Depth.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FD2BC21B2A891000974562 /* MMAudioScopeViewController+Depth.m */; };
 		F2FD2BC61B2A899600974562 /* MMScopeDepthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FD2BC51B2A899600974562 /* MMScopeDepthManager.m */; };
@@ -1894,6 +1895,8 @@
 		F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGLKViewController.m; sourceTree = "<group>"; };
 		F2FC4FE51B3DEDD6000CE7EB /* MyGLKViewController+Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyGLKViewController+Button.h"; sourceTree = "<group>"; };
 		F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MyGLKViewController+Button.m"; sourceTree = "<group>"; };
+		F2FC4FF11B3E19CB000CE7EB /* MMModuleSwitchCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleSwitchCellView.h; sourceTree = "<group>"; };
+		F2FC4FF21B3E19CB000CE7EB /* MMModuleSwitchCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleSwitchCellView.m; sourceTree = "<group>"; };
 		F2FD2BBE1B2A84F100974562 /* MMAudioScopeViewController+Random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Random.h"; sourceTree = "<group>"; };
 		F2FD2BBF1B2A84F100974562 /* MMAudioScopeViewController+Random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Random.m"; sourceTree = "<group>"; };
 		F2FD2BC11B2A891000974562 /* MMAudioScopeViewController+Depth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Depth.h"; sourceTree = "<group>"; };
@@ -2776,6 +2779,8 @@
 				F2575C111B2792EA00DE5571 /* MMModuleViewController.m */,
 				F2575C131B27930300DE5571 /* MMModuleCellView.h */,
 				F2575C141B27930300DE5571 /* MMModuleCellView.m */,
+				F2FC4FF11B3E19CB000CE7EB /* MMModuleSwitchCellView.h */,
+				F2FC4FF21B3E19CB000CE7EB /* MMModuleSwitchCellView.m */,
 				F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */,
 				F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */,
 			);
@@ -4239,6 +4244,7 @@
 				F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */,
 				F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */,
 				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
+				F2FC4FF31B3E19CB000CE7EB /* MMModuleSwitchCellView.m in Sources */,
 				F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */,
 				F2DE9EC51B22B86700FEBE5F /* MMAudioScopeViewController+Layer.m in Sources */,
 				F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */,

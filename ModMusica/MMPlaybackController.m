@@ -179,6 +179,18 @@ void bonk_tilde_setup(void);
 - (void)changeSectionMaybe
 {
     NSInteger rand = arc4random_uniform(100);
+    
+    if (self.shuffleMods) {
+        if (rand < 10) {
+            NSArray *mods = [MMModuleManager modNames];
+            NSUInteger idx = (NSUInteger)((int)arc4random_uniform(100)%(int)mods.count);
+            NSString *pattern = mods[idx];
+            self.patternName = pattern;
+            [self playPattern:pattern];
+            return;
+        }
+    }
+    
     if (rand > 55 && rand <= 90) {
         [self.patternLoader playNextSection];
     }else if (rand > 90){
@@ -221,7 +233,9 @@ void bonk_tilde_setup(void);
             [self changeSectionMaybe];
         }
     }else if ([source isEqualToString:@"detectedTempo"]){
-        [self.delegate playback:self detectedUserTempo:received];
+        if (!self.lockTempo) {
+            [self.delegate playback:self detectedUserTempo:received];
+        }
     }
 }
 
