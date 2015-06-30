@@ -21,8 +21,10 @@
     UIButton *saveButton = [UIButton new];
     saveButton.translatesAutoresizingMaskIntoConstraints = NO;
     saveButton.tag = 0;
+    saveButton.layer.cornerRadius = 2;
     [saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [saveButton setTitleColor:self.mainColor forState:UIControlStateNormal];
+    [saveButton setBackgroundColor:[self myMainColor]];
     [saveButton addTarget:self action:@selector(tapInControlButton:) forControlEvents:UIControlEventTouchUpInside];
     [tempControls addObject:saveButton];
     [self.controlsView addSubview:saveButton];
@@ -30,9 +32,11 @@
     UIButton *clearButton = [UIButton new];
     clearButton.translatesAutoresizingMaskIntoConstraints = NO;
     clearButton.tag = 1;
+    clearButton.layer.cornerRadius = 2;
     [clearButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(tapInControlButton:) forControlEvents:UIControlEventTouchUpInside];
-    [clearButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [clearButton setTitleColor:self.mainColor forState:UIControlStateNormal];
+    [clearButton setBackgroundColor:[self myMainColor]];
     
     [tempControls addObject:clearButton];
     [self.controlsView addSubview:clearButton];
@@ -42,10 +46,23 @@
     playButton.tag = 2;
     [playButton setTitle:@"Play" forState:UIControlStateNormal];
     [playButton setTitle:@"Stop" forState:UIControlStateSelected];
-    [playButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [playButton setTitleColor:self.mainColor forState:UIControlStateNormal];
+    [playButton setBackgroundColor:[self myMainColor]];
+    playButton.layer.cornerRadius = 2;
     [playButton addTarget:self action:@selector(tapInControlButton:) forControlEvents:UIControlEventTouchUpInside];
     [tempControls addObject:playButton];
     [self.controlsView addSubview:playButton];
+    
+    UIButton *closeButton = [UIButton new];
+    closeButton.translatesAutoresizingMaskIntoConstraints = NO;
+    closeButton.tag = 3;
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [closeButton setTitleColor:self.mainColor forState:UIControlStateNormal];
+    [closeButton setBackgroundColor:[self myMainColor]];
+    closeButton.layer.cornerRadius = 2;
+    [closeButton addTarget:self action:@selector(tapInControlButton:) forControlEvents:UIControlEventTouchUpInside];
+    [tempControls addObject:closeButton];
+    [self.controlsView addSubview:closeButton];
     
     self.controls = tempControls;
 }
@@ -57,7 +74,6 @@
     self.stepLabelsView.translatesAutoresizingMaskIntoConstraints = NO;
     self.stepLabelsView.backgroundColor = [UIColor clearColor];
     [self.containerView addSubview:self.stepLabelsView];
-    [self setupStepLabelsView];
 
     NSMutableArray *temp = [NSMutableArray array];
     
@@ -65,7 +81,7 @@
         UILabel *lab = [UILabel new];
         lab.translatesAutoresizingMaskIntoConstraints = NO;
         lab.textAlignment = NSTextAlignmentCenter;
-        lab.textColor = [UIColor blackColor];
+        lab.textColor = [self myMainColor];
         [self.stepLabelsView addSubview:lab];
         [temp addObject:lab];
     }
@@ -87,7 +103,7 @@
         UILabel *lab = [UILabel new];
         lab.translatesAutoresizingMaskIntoConstraints = NO;
         lab.textAlignment = NSTextAlignmentRight;
-        lab.textColor = [UIColor blackColor];
+        lab.textColor = [self myMainColor];
         [self.pitchLabelsView addSubview:lab];
         [temp addObject:lab];
     }
@@ -97,10 +113,10 @@
 
 - (void)setupContainerView
 {
-    self.stepLabelsView = [[UIView alloc]init];
-    self.stepLabelsView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.stepLabelsView.backgroundColor = [UIColor clearColor];
-    [self.containerView addSubview:self.stepLabelsView];
+    self.containerView = [[UIView alloc]init];
+    self.containerView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.containerView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.containerView];
 }
 
 - (void)setupPitchView
@@ -110,6 +126,15 @@
     self.pitchView.backgroundColor = [UIColor clearColor];
     
     [self.containerView addSubview:self.pitchView];
+}
+
+- (void)setupViews
+{
+    [self setupContainerView];
+    [self setupPitchLabelsView];
+    [self setupStepLabelsView];
+    [self setupControlsView];
+    [self setupPitchView];
 }
 
 @end

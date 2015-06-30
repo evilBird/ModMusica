@@ -28,7 +28,13 @@ static NSString *kTableName = @"notes";
     if (!self.currentPattern) {
         return nil;
     }
-    NSString *file = [self fileNameForPattern:self.currentPattern section:self.currentSection];
+    
+    NSInteger section = self.currentSection;
+    if (section < 0) {
+        section++;
+    }
+    
+    NSString *file = [self fileNameForPattern:self.currentPattern section:section];
     NSArray *header = [MMFileReader headerForFile:file];
     if (!header || !header.count) {
         return nil;
@@ -47,7 +53,12 @@ static NSString *kTableName = @"notes";
 
 - (NSArray *)patternData
 {
-    NSString *file = [self fileNameForPattern:self.currentPattern section:self.currentSection];
+    NSInteger section = self.currentSection;
+    if (section < 0) {
+        section++;
+    }
+    
+    NSString *file = [self fileNameForPattern:self.currentPattern section:section];
     NSArray *data = [MMFileReader readFile:file];
     return data;
 }
@@ -124,10 +135,16 @@ static NSString *kTableName = @"notes";
     NSArray *header = [MMFileReader headerForFile:pattern];
     
     [self handleHeader:header];
+    
     for (NSArray *table in noteTables) {
         [PdBase sendList:table toReceiver:kTableName];
     }
     return YES;
+}
+
+- (void)sendNotesToPd:(NSArray *)notes
+{
+    [PdBase sendList:notes toReceiver:kTableName];
 }
 
 - (void)handleHeader:(NSArray *)header

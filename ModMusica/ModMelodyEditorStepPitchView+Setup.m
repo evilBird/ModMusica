@@ -43,11 +43,11 @@
             button.translatesAutoresizingMaskIntoConstraints = NO;
             button.tag = (i * numSteps) + j;
             button.backgroundColor = [UIColor clearColor];
-            button.value = 0;
+            button.mainColor = [self.delegate myMainColor];
+            button.value = [self.delegate initialValueForSwitchWithTag:button.tag];
             button.layer.borderWidth = 0.5;
-            button.layer.borderColor = [UIColor blackColor].CGColor;
+            button.layer.borderColor = [self.delegate myMainColor].CGColor;
             button.layer.cornerRadius = 2.0;
-            button.mainColor = [self.delegate mainColor];
             button.userInteractionEnabled = NO;
             [button addTarget:self action:@selector(buttonValueChanged:) forControlEvents:UIControlEventValueChanged];
             if (button) {

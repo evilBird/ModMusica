@@ -12,7 +12,7 @@
 
 @property (nonatomic)               NSUInteger      value;
 @property (nonatomic,strong)        UIColor         *mainColor;
-@property (nonatomic)               CGFloat         width;
-@property (nonatomic)               CGFloat         height;
 
+- (NSUInteger)stepIndexForPatternLength:(NSUInteger)patternLength;
+- (void)setInitialValue:(NSUInteger)initValue;
 @end

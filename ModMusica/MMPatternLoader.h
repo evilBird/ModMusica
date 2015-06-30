@@ -17,7 +17,7 @@
 
 - (NSDictionary *)headerComponents;
 - (NSArray *)patternData;
-
+- (void)sendNotesToPd:(NSArray *)notes;
 - (void)setPattern:(NSString *)pattern;
 - (void)playNextSection;
 - (void)playPreviousSection;

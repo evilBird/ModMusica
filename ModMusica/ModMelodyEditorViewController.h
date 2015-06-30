@@ -13,6 +13,7 @@
 @interface ModMelodyEditorViewController : UIViewController <ModMelodyEditorStepPitchViewDelegate>
 
 @property (nonatomic,weak)              id<ModEditorDatasource>                     datasource;
+@property (nonatomic,weak)              id<ModMelodyEditorViewControllerDelegate>   delegate;
 @property (nonatomic,strong)            NSMutableArray                              *pitchLabels;
 @property (nonatomic,strong)            NSMutableArray                              *stepLabels;
 @property (nonatomic,strong)            NSMutableArray                              *controls;
@@ -22,7 +23,11 @@
 @property (nonatomic,strong)            UIView                                      *pitchLabelsView;
 @property (nonatomic,strong)            UIView                                      *stepLabelsView;
 @property (nonatomic,strong)            UIView                                      *controlsView;
+@property (nonatomic,strong)            UIColor                                     *mainColor;
 
-- (void)setupWithDatasource:(id<ModEditorDatasource>)datasource completion:(void(^)(void))completion;
+
+- (void)setupWithDelegate:(id<ModMelodyEditorViewControllerDelegate>)delegate
+               datasource:(id<ModEditorDatasource>)datasource
+               completion:(void(^)(void))completion;
 
 @end

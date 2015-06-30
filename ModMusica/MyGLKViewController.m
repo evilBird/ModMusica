@@ -87,7 +87,8 @@
     NSString *prevModName = _currentModName;
     _currentModName = currentModName;
     
-    if (![currentModName isEqualToString:prevModName]) {
+    if (!prevModName || ![currentModName isEqualToString:prevModName]) {
+        self.playbackController.patternName = currentModName;
         [self updateLabelText];
         [self showDetails];
     }
@@ -314,6 +315,8 @@
 {
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
+    self.playbackController.patternName = @"mario";
+    self.playbackController.patternLoader.currentPattern = @"mario";
     self.currentModName = @"mario";
 }
 

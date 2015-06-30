@@ -8,8 +8,11 @@
 
 #import "MMRootViewController.h"
 #import "ModEditorDefs.h"
+#import "MMModuleViewController.h"
 
-@interface MMRootViewController (Editor)<ModEditorDatasource>
+@interface MMRootViewController (Editor)<ModEditorDatasource,MMModuleViewControllerDelegate,ModMelodyEditorViewControllerDelegate>
+
+#pragma mrak - ModEditorDataSource
 
 - (NSUInteger)numSteps;
 - (NSUInteger)numMeasures;
@@ -17,7 +20,21 @@
 - (NSUInteger)divsPerBeat;
 - (MMPlaybackController *)playbackController;
 - (NSUInteger)numPitches;
+- (NSUInteger)currentVoiceIndex;
 - (NSUInteger)currentSection;
 - (NSString *)currentModName;
+- (NSArray *)patternData;
+- (void)updatePatternData:(NSArray *)patternData;
+
+#pragma mark - MMModuleViewControllerDelegate
+- (void)moduleViewEdit:(id)sender;
+
+#pragma mark - ModMelodyEditorViewControllerDelegate
+
+- (void)editor:(id)sender playbackChanged:(float)playback;
+- (void)editorDidSave:(id)sender;
+- (void)editorDidClear:(id)sender;
+- (void)editorDidRevertToSaved:(id)sender;
+- (void)editorShouldClose:(id)editor completion:(void(^)(void))completion;
 
 @end

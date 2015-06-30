@@ -23,7 +23,7 @@
 {
     if ([sender isKindOfClass:[ModMelodyEditorSwitch class]]) {
         ModMelodyEditorSwitch *button = sender;
-        NSLog(@"\nbutton with tag %@ has value %@\n",@(button.tag),@(button.value));
+        [self.delegate melodyEditor:self stepSwitch:sender valueDidChange:@(button.value)];
     }
 }
 

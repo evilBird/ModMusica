@@ -10,6 +10,7 @@
 #define ModMusica_ModEditorDefs_h
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MMPlaybackController.h"
 
 
@@ -18,7 +19,31 @@
 #define DEFAULT_PITCHES 25
 #define DEFAULT_STEPS 64
 
+#define HEADER_NUM_MEASURES @"measures"
+#define HEADER_DIVS_PER_BEAT @"divisions"
+#define HEADER_BEATS_PER_MEASURE @"beats"
+#define HEADER_SWING @"swing"
+#define HEADER_MAX_TEMPO @"maxTempo"
+#define HEADER_MIN_TEMPO @"minTempo"
 
+
+@protocol ModMelodyEditorViewControllerDelegate <NSObject>
+
+- (void)editor:(id)sender playbackChanged:(float)playback;
+- (void)editorDidSave:(id)sender;
+- (void)editorDidClear:(id)sender;
+- (void)editorDidRevertToSaved:(id)sender;
+- (void)editorShouldClose:(id)sender completion:(void(^)(void))completion;
+
+@end
+
+@protocol ModMelodyEditorStepPitchViewDelegate <NSObject>
+
+- (UIColor *) myMainColor;
+- (NSUInteger)initialValueForSwitchWithTag:(NSUInteger)tag;
+- (void) melodyEditor:(id)sender stepSwitch:(id)stepSwitch valueDidChange:(id)value;
+
+@end
 
 @protocol ModEditorDatasource <NSObject>
 
@@ -27,7 +52,9 @@
 - (NSUInteger)beatsPerMeasure;
 - (NSUInteger)divsPerBeat;
 - (NSUInteger)currentSection;
+- (NSArray *)patternData;
 - (MMPlaybackController *)playbackController;
+- (void)updatePatternData:(NSArray *)patternData;
 
 @optional
 

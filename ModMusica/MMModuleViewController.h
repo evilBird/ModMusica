@@ -10,12 +10,16 @@
 
 @protocol MMModuleViewControllerDelegate <NSObject>
 
+@optional
 - (void)moduleView:(id)sender selectedModuleWithName:(NSString *)moduleName;
 - (void)moduleView:(id)sender shuffleDidChange:(int)shuffle;
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock;
+
 - (CGFloat)openDrawerWidth;
 - (UIColor *)currentFillColor;
 - (UIColor *)currentTextColor;
+- (void)moduleViewEdit:(id)sender;
+
 
 @end
 

@@ -7,8 +7,30 @@
 //
 
 #import "MMRootViewController+Editor.h"
+#import "ModMelodyEditorViewController.h"
 
 @implementation MMRootViewController (Editor)
+
+#pragma mark - MMModuleViewControllerDelegate
+
+- (void)moduleViewEdit:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ModMelodyEditorViewController *editor = [storyboard instantiateViewControllerWithIdentifier:@"MMModEditorViewController"];
+    __weak MMRootViewController *weakself = self;
+    editor.mainColor = [self getGLKViewController].mainColor;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself playbackController].editing = YES;
+        [editor setupWithDelegate:weakself datasource:weakself completion:nil];
+    });
+    
+    [self presentViewController:editor
+                       animated:YES
+                     completion:nil];
+
+}
+
+#pragma mark - ModEditorDatasource
 
 - (MMPlaybackController *)playbackController
 {
@@ -17,30 +39,42 @@
 
 - (NSUInteger)numSteps
 {
-    NSDictionary *header = [[self playbackController].patternLoader headerComponents];
-    return 64;
-    
+    return [self numMeasures] * [self beatsPerMeasure] * [self divsPerBeat];
 }
+
 - (NSUInteger)numMeasures
 {
     NSDictionary *header = [[self playbackController].patternLoader headerComponents];
-    return 4;
+    if (!header || ![header.allKeys containsObject:HEADER_NUM_MEASURES]) {
+        return 0;
+    }
+    
+    return [header[HEADER_NUM_MEASURES]integerValue];
 }
+
 - (NSUInteger)beatsPerMeasure
 {
     NSDictionary *header = [[self playbackController].patternLoader headerComponents];
-    return 4;
+    if (!header || ![header.allKeys containsObject:HEADER_BEATS_PER_MEASURE]) {
+        return 0;
+    }
+    
+    return [header[HEADER_BEATS_PER_MEASURE]integerValue];
 }
+
 - (NSUInteger)divsPerBeat
 {
     NSDictionary *header = [[self playbackController].patternLoader headerComponents];
-    return 4;
+    if (!header || ![header.allKeys containsObject:HEADER_DIVS_PER_BEAT]) {
+        return 0;
+    }
+    
+    return [header[HEADER_DIVS_PER_BEAT]integerValue];
 }
 
 - (NSUInteger)numPitches
 {
-    NSDictionary *header = [[self playbackController].patternLoader headerComponents];
-    return 25;
+    return DEFAULT_PITCHES;
 }
 
 - (NSUInteger)currentSection
@@ -51,6 +85,60 @@
 - (NSString *)currentModName
 {
     return [self playbackController].patternLoader.currentPattern;
+}
+
+- (NSArray *)patternData
+{
+    return [[self playbackController].patternLoader patternData];
+}
+
+- (NSUInteger)currentVoiceIndex
+{
+    return 3;
+}
+
+- (void)updatePatternData:(NSArray *)patternData
+{
+    NSMutableArray *data = [NSMutableArray array];
+    [data addObject:@([self currentVoiceIndex])];
+    [data addObjectsFromArray:patternData];
+    [[self playbackController].patternLoader sendNotesToPd:data];
+}
+
+#pragma mark - ModMelodyEditorViewControllerDelegate
+
+- (void)editor:(id)sender playbackChanged:(float)playback
+{
+    if (playback) {
+        [self getGLKViewController].playing = YES;
+    }else{
+        [self getGLKViewController].playing = NO;
+    }
+}
+
+- (void)editorDidSave:(id)sender
+{
+    
+}
+
+- (void)editorDidClear:(id)sender
+{
+    
+}
+
+- (void)editorDidRevertToSaved:(id)sender
+{
+    
+}
+
+- (void)editorShouldClose:(id)editor completion:(void(^)(void))completion
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self playbackController].editing = NO;
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 @end

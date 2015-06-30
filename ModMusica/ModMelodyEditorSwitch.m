@@ -10,17 +10,36 @@
 
 @implementation ModMelodyEditorSwitch
 
+- (NSUInteger)stepIndexForPatternLength:(NSUInteger)patternLength
+{
+    int myTag = (int)self.tag;
+    int theLength = (int)patternLength;
+    int result = myTag%theLength;
+    
+    return (NSUInteger)result;
+}
+
+- (void)setInitialValue:(NSUInteger)initValue
+{
+    _value = initValue;
+    if (_value) {
+        self.backgroundColor = self.mainColor;
+    }else{
+        self.backgroundColor = [UIColor clearColor];
+    }
+}
+
 - (void)setValue:(NSUInteger)value
 {
     NSUInteger prevValue = _value;
     _value = value;
+    if (_value) {
+        self.backgroundColor = self.mainColor;
+    }else{
+        self.backgroundColor = [UIColor clearColor];
+    }
     if (value != prevValue) {
         [self sendActionsForControlEvents:UIControlEventValueChanged];
-        if (_value) {
-            self.backgroundColor = self.mainColor;
-        }else{
-            self.backgroundColor = [UIColor clearColor];
-        }
     }
 }
 

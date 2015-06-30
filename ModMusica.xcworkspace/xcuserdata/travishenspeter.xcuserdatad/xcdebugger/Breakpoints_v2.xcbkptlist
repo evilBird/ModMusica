@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MyGLKFunctions.h"
-            timestampString = "457339788.422033"
+            timestampString = "457039698.169861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "_calculateNormalAtIndex(Vertex vertices[],int idx)"
             landmarkType = "7">
          </BreakpointContent>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MMModEditorButton.m"
-            timestampString = "457327892.769194"
+            filePath = "ModMusica/MMPatternLoader.m"
+            timestampString = "457394064.101444"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "-setValue:"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "-headerComponents"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,157 +67,77 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MMModEditorButton.m"
-            timestampString = "457327893.563122"
+            filePath = "ModMusica/MMPatternLoader.m"
+            timestampString = "457394066.384254"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "-setValue:"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-headerComponents"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
+            filePath = "ModMusica/ModMelodyEditorViewController.m"
+            timestampString = "457400673.341158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-handlePinch:"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-melodyEditor:stepSwitch:valueDidChange:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
+            filePath = "ModMusica/ModMelodyEditorViewController.m"
+            timestampString = "457400673.341158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-handlePinch:"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-initialValueForSwitchWithTag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "-handlePinch:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
+            filePath = "ModMusica/ModMelodyEditorViewController.m"
+            timestampString = "457400171.605887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
             endingLineNumber = "50"
-            landmarkName = "-handlePinch:"
+            landmarkName = "-setupStepPitchTags"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
+            filePath = "ModMusica/ModMelodyEditorViewController.m"
+            timestampString = "457400862.0506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-handlePinch:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-handlePinch:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-handlePinch:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "-handlePinch:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ModMusica/MyGLKViewController+Touch.m"
-            timestampString = "457340454.409266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-touchesBegan:withEvent:"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-updatePatternWithTags:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -20,7 +20,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZ7-e6-65W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1007" y="-2054"/>
+            <point key="canvasLocation" x="1779" y="-376"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="wFa-tN-3Ha">
@@ -59,41 +59,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1J-KR-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1770" y="-1175"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="151-JR-I8s">
-            <objects>
-                <viewController id="Kry-L5-mqu" customClass="ViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OvZ-xR-SDn"/>
-                        <viewControllerLayoutGuide type="bottom" id="nSG-wG-iDf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="s3f-ao-O2Y">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zEr-gm-MKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1121" y="-322"/>
-        </scene>
-        <!--Audio Scope View Controller-->
-        <scene sceneID="4Oe-oq-HlN">
-            <objects>
-                <viewController storyboardIdentifier="AudioScopeViewController" id="53T-g1-cSR" customClass="MMAudioScopeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="V00-he-QxK"/>
-                        <viewControllerLayoutGuide type="bottom" id="5ib-go-B8T"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Z5X-ym-8Be">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lPj-bd-0K6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1144" y="429"/>
         </scene>
         <!--Module View Controller-->
         <scene sceneID="qqn-e2-Yzc">
@@ -168,6 +133,34 @@
                                     <outlet property="titleLabel" destination="gzb-uz-5Ye" id="ca9-l3-ju6"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ModuleEditCellId" id="Rg4-jj-ujx" userLabel="ModuleEditor" customClass="MMModuleEditCellView">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rg4-jj-ujx" id="aNZ-TM-2Cv">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Mod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpQ-JS-MVe">
+                                            <rect key="frame" x="8" y="15" width="63.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LS7-By-iOw">
+                                            <rect key="frame" x="478" y="14" width="22" height="22"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="zpQ-JS-MVe" secondAttribute="centerY" id="HWI-dB-Ao5"/>
+                                        <constraint firstItem="LS7-By-iOw" firstAttribute="trailing" secondItem="aNZ-TM-2Cv" secondAttribute="leading" constant="500" id="HzE-ZX-ej4"/>
+                                        <constraint firstAttribute="centerY" secondItem="LS7-By-iOw" secondAttribute="centerY" id="TVz-b5-9EL"/>
+                                        <constraint firstItem="zpQ-JS-MVe" firstAttribute="leading" secondItem="aNZ-TM-2Cv" secondAttribute="leading" constant="8" id="hF3-xH-hbx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="actionButton" destination="LS7-By-iOw" id="nbJ-eR-k8C"/>
+                                    <outlet property="buttonTrailingEdgeConstraint" destination="HzE-ZX-ej4" id="HLV-3I-4yi"/>
+                                    <outlet property="titleLabel" destination="zpQ-JS-MVe" id="jRe-9J-v87"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="sbf-4p-okO" id="BTz-lH-tFD"/>
@@ -177,6 +170,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEH-3R-O1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1007" y="-376"/>
         </scene>
     </scenes>
 </document>

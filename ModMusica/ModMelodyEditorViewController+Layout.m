@@ -79,57 +79,57 @@
 - (void)setupControlsConstraints
 {
     CGFloat padWidth = self.controlsView.bounds.size.width * 0.1;
-    CGFloat controlWidth = (self.controlsView.bounds.size.width - padWidth * 5)/4.0;
+    CGFloat numControls = (CGFloat)self.controls.count;
+    CGFloat controlWidth = (self.controlsView.bounds.size.width - padWidth * (numControls + 1))/numControls;
     CGFloat widthMultiplier = controlWidth/self.controlsView.bounds.size.width;
-    UIView *left = nil;
-    LayoutEdge leftEdge;
-    CGFloat leftOffset = 0;
     
-    for (NSUInteger i = 0; i < 4; i ++) {
+    UIView *view = nil;
+    LayoutEdge viewEdge;
+    LayoutEdge myEdge;
+    CGFloat offset = 0;
+    
+    UIView *right = nil;
+    LayoutEdge rightEdge = LayoutEdge_Right;
+    CGFloat rightOffset = 0;
+    
+    for (NSUInteger i = 0; i < self.controls.count; i ++) {
         UIView *control = self.controls[i];
         [self.view addConstraint:[control pinWidthProportionateToSuperview:widthMultiplier]];
         
         if (i == 0) {
-            left = self.controlsView;
-            leftEdge = LayoutEdge_Left;
-            leftOffset = padWidth;
+            view = self.controlsView;
+            viewEdge = LayoutEdge_Left;
+            myEdge = LayoutEdge_Left;
+            offset = padWidth;
         }else{
-            left = self.controls[i-1];
-            leftEdge = LayoutEdge_Right;
-            leftOffset = padWidth;
+            view = self.controls[i-1];
+            viewEdge = LayoutEdge_Right;
+            myEdge = LayoutEdge_Left;
+            offset = padWidth;
         }
         
-        if (i == 3) {
+        if (i == (self.controls.count - 1)) {
+            right = self.controlsView;
+            rightEdge = LayoutEdge_Right;
+            rightOffset = -padWidth;
+        }
+        
+
+        [self.view addConstraint:[control pinEdge:LayoutEdge_Top toEdge:LayoutEdge_Top ofView:self.controlsView withInset:10]];
+        [self.view addConstraint:[control pinEdge:LayoutEdge_Bottom toEdge:LayoutEdge_Bottom ofView:self.controlsView withInset:-10]];
+        [self.view addConstraint:[control pinWidthProportionateToSuperview:widthMultiplier]];
+        
+        
+        [self.view addConstraint:[control pinEdge:myEdge
+                                           toEdge:viewEdge
+                                           ofView:view
+                                        withInset:offset]];
+        if (right) {
             [self.view addConstraint:[control pinEdge:LayoutEdge_Right
-                                               toEdge:LayoutEdge_Right
-                                               ofView:self.controlsView
-                                            withInset:-padWidth]];
-            [self.view addConstraint:[control alignCenterYToSuperOffset:0]];
-            UIView *lab = self.controls.lastObject;
-            [self.view addConstraint:[lab pinEdge:LayoutEdge_Left
-                                           toEdge:LayoutEdge_Left
-                                           ofView:control
-                                        withInset:0]];
-            [self.view addConstraint:[lab pinEdge:LayoutEdge_Right
-                                           toEdge:LayoutEdge_Right
-                                           ofView:control
-                                        withInset:0]];
-            [self.view addConstraint:[lab pinEdge:LayoutEdge_Bottom
-                                           toEdge:LayoutEdge_Top
-                                           ofView:control
-                                        withInset:-4]];
-            [self.view addConstraint:[lab pinHeight:15.0]];
-            
-            
-        }else{
-            [self.view addConstraint:[control pinEdge:LayoutEdge_Top toEdge:LayoutEdge_Top ofView:self.controlsView withInset:10]];
-            [self.view addConstraint:[control pinEdge:LayoutEdge_Bottom toEdge:LayoutEdge_Bottom ofView:self.controlsView withInset:-10]];
+                                               toEdge:rightEdge
+                                               ofView:right
+                                            withInset:rightOffset]];
         }
-        
-        [self.view addConstraint:[control pinEdge:LayoutEdge_Left
-                                           toEdge:leftEdge
-                                           ofView:left
-                                        withInset:padWidth]];
         
     }
     

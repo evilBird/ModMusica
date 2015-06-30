@@ -164,6 +164,15 @@ void bonk_tilde_setup(void);
     self.patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
 }
 
+- (void)setPatternName:(NSString *)patternName
+{
+    NSString *oldPatternName = _patternName;
+    _patternName = patternName;
+    if (!oldPatternName || ![patternName isEqualToString:oldPatternName]) {
+        self.patternLoader.currentPattern = patternName;
+    }
+}
+
 - (void)playPattern:(NSString *)patternName
 {
     self.patternName = patternName;
@@ -178,6 +187,10 @@ void bonk_tilde_setup(void);
 
 - (void)changeSectionMaybe
 {
+    if (self.isEditing) {
+        return;
+    }
+    
     NSInteger rand = arc4random_uniform(100);
     
     if (self.shuffleMods) {

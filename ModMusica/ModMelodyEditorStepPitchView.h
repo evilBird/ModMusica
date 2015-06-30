@@ -11,16 +11,13 @@
 #import "ModEditorDefs.h"
 
 
-@protocol ModMelodyEditorStepPitchViewDelegate <NSObject>
-
-- (UIColor *)mainColor;
-
-@end
-
 @interface ModMelodyEditorStepPitchView : UIView
 
 - (void)configureWithDelegate:(id<ModMelodyEditorStepPitchViewDelegate>)delegate
                    datasource:(id<ModEditorDatasource>)datasource;
+
+- (void)buttonValueChanged:(id)sender;
+
 
 @property (nonatomic,weak)          id<ModMelodyEditorStepPitchViewDelegate>                delegate;
 @property (nonatomic,weak)          id<ModEditorDatasource>                                 datasource;
