@@ -23,6 +23,35 @@ static NSString *kTableName = @"notes";
 
 #pragma mark - Public
 
+- (NSDictionary *)headerComponents
+{
+    if (!self.currentPattern) {
+        return nil;
+    }
+    NSString *file = [self fileNameForPattern:self.currentPattern section:self.currentSection];
+    NSArray *header = [MMFileReader headerForFile:file];
+    if (!header || !header.count) {
+        return nil;
+    }
+    
+    NSMutableDictionary *result = [NSMutableDictionary dictionary];
+    
+    for (NSString *headerLine in header) {
+        NSArray *components = [headerLine componentsSeparatedByString:@","];
+        NSString *receiver = components.firstObject;
+        result[receiver] = components[1];
+    }
+    
+    return [NSDictionary dictionaryWithDictionary:result];
+}
+
+- (NSArray *)patternData
+{
+    NSString *file = [self fileNameForPattern:self.currentPattern section:self.currentSection];
+    NSArray *data = [MMFileReader readFile:file];
+    return data;
+}
+
 - (void)setPattern:(NSString *)pattern
 {
     self.currentPattern = pattern;
@@ -91,7 +120,9 @@ static NSString *kTableName = @"notes";
     if (noteTables == nil) {
         return NO;
     }
+    
     NSArray *header = [MMFileReader headerForFile:pattern];
+    
     [self handleHeader:header];
     for (NSArray *table in noteTables) {
         [PdBase sendList:table toReceiver:kTableName];
@@ -107,6 +138,11 @@ static NSString *kTableName = @"notes";
         float value = [components[1]floatValue];
         [PdBase sendFloat:value toReceiver:receiver];
     }
+}
+
+- (NSString *)fileNameForPattern:(NSString *)patternName section:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"%@-%@.csv",@(section),patternName];
 }
 
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section

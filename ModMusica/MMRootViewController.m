@@ -11,29 +11,35 @@
 #import "MyGLKViewController.h"
 #import "MMRootViewController+Mods.h"
 #import "MMRootViewController+Touches.h"
+#import "MMRootViewController+Editor.h"
 #import "MMStepCounter.h"
 
 
 @interface MMRootViewController () <MMStepCounterDelegate>
 
 @property (nonatomic,strong)            MMStepCounter           *stepCounter;
+@property (nonatomic,strong)            MyGLKViewController     *myGLKViewController;
 
 @end
 
 @implementation MMRootViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.delegate = self;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    self.paneViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyGLKViewController"];
+    self.myGLKViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyGLKViewController"];
+    self.myGLKViewController.currentModName = @"mario";
+    self.myGLKViewController.glkDelegate = self;
+    self.paneViewController = self.myGLKViewController;
+    
     MMModuleViewController *mm =[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"];
     mm.delegate = self;
     mm.datasource = self;
-    [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
-    [(MyGLKViewController *)self.paneViewController setCurrentModName:@"mario"];
-    [(MyGLKViewController *)self.paneViewController setGlkDelegate:self];
     
+    [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
     
     // Do any additional setup after loading the view.
 }
@@ -47,7 +53,7 @@
 
 - (MyGLKViewController *)getGLKViewController
 {
-    return (MyGLKViewController *)(self.paneViewController);
+    return self.myGLKViewController;
 }
 
 #pragma mark GLKViewControllerDelegate
@@ -68,6 +74,10 @@
 
 - (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
 {
+    if (self.paneViewController != self.myGLKViewController) {
+        return;
+    }
+    
     if (![self getGLKViewController].playbackController.lockTempo) {
         [PdBase  sendFloat:stepsPerMinute toReceiver:@"manualSetTempo"];
         [[self getGLKViewController]playback:sender detectedUserTempo:stepsPerMinute];

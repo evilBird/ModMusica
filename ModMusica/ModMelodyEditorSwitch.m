@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 birdSound. All rights reserved.
 //
 
-#import "MMModEditorButton.h"
+#import "ModMelodyEditorSwitch.h"
 
-@implementation MMModEditorButton
+@implementation ModMelodyEditorSwitch
 
 - (void)setValue:(NSUInteger)value
 {

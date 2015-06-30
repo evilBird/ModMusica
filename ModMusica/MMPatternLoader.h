@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "MMPatternLoader.h"
+#import "MMFileReader.h"
 
 @interface MMPatternLoader : NSObject
 
 @property (nonatomic,strong)NSString *currentPattern;
 @property (nonatomic)NSInteger currentSection;
+
+- (NSDictionary *)headerComponents;
+- (NSArray *)patternData;
 
 - (void)setPattern:(NSString *)pattern;
 - (void)playNextSection;

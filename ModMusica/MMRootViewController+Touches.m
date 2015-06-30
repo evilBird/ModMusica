@@ -19,6 +19,9 @@ static NSInteger kTapCount;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (self.paneViewController != [self getGLKViewController]) {
+        return;
+    }
     
     if (self.paneState == MSDynamicsDrawerPaneStateOpen || self.paneState == MSDynamicsDrawerPaneStateOpenWide) {
         kStartDate = nil;
@@ -85,6 +88,7 @@ static NSInteger kTapCount;
     kStartDate = nil;
     NSLog(@"\npress lasted %@ seconds\n",@(touchDuration));
     MyGLKViewController *glk = [self getGLKViewController];
+    
     if (glk.isPlaying) {
         glk.playing = NO;
     }else{

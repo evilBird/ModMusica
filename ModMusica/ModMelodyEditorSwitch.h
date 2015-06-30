@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMModEditorButton : UIControl
+@interface ModMelodyEditorSwitch : UIControl
 
-@property (nonatomic)               NSUInteger       value;
+@property (nonatomic)               NSUInteger      value;
 @property (nonatomic,strong)        UIColor         *mainColor;
 @property (nonatomic)               CGFloat         width;
 @property (nonatomic)               CGFloat         height;
-
 
 @end

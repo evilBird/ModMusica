@@ -19,6 +19,7 @@
 }
 
 #pragma mark - MMModuleViewControllerDelegate
+
 - (void)moduleView:(id)sender selectedModuleWithName:(NSString *)moduleName
 {
     __weak MMRootViewController *weakself = self;
@@ -36,6 +37,7 @@
 {
     [self getGLKViewController].playbackController.shuffleMods = (BOOL)shuffle;
 }
+
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock
 {
     [self getGLKViewController].playbackController.lockTempo = (BOOL)lock;
@@ -60,14 +62,14 @@
 #pragma mark - MSDynamicsDrawerViewControllerDelegate
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {
-    if (paneState == MSDynamicsDrawerPaneStateClosed) {
+    if (paneState == MSDynamicsDrawerPaneStateClosed && self.paneViewController == [self getGLKViewController]) {
         [[self getGLKViewController] showDetails];
     }
 }
 
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {
-    if (paneState == MSDynamicsDrawerPaneStateClosed) {
+    if (paneState == MSDynamicsDrawerPaneStateClosed && self.paneViewController == [self getGLKViewController]) {
         [[self getGLKViewController] showDetails];
     }
 }

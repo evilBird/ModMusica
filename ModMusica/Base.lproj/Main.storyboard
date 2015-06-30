@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Mod Editor View Controller-->
+        <!--Mod Melody Editor View Controller-->
         <scene sceneID="5WS-8q-JWx">
             <objects>
-                <viewController storyboardIdentifier="MMModEditorViewController" id="KEx-RR-kh3" customClass="MMModEditorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MMModEditorViewController" id="KEx-RR-kh3" customClass="ModMelodyEditorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hAx-Sy-hZ5"/>
                         <viewControllerLayoutGuide type="bottom" id="1Gx-UC-FNC"/>
