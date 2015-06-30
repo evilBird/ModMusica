@@ -22,15 +22,19 @@
 #define TICKS                       64
 
 #define SAMPLES_PER_TABLE           100
-#define VERTICES_PER_SAMPLE         10
+#define VERTICES_PER_SAMPLE         20
 #define NUM_TABLES                  8
 
-#define SAMPLE_SCALAR               1.5
+#define DRAWING_SCALE_X             2.0
+#define DRAWING_SCALE_Y             4.0
+#define DRAWING_SCALE_Z             2.0
+
+#define SAMPLE_SCALAR               0.88
 #define SAMPLE_UPDATES_PER_SEC      10.0
 
 #define MIN_SCALE                   2.0
 #define MAX_SCALE                   20.0
-#define D_SCALE                     0.1
+#define D_SCALE                     0.0
 
 #define MIN_ZOOM                   -4.0
 #define MAX_ZOOM                   -1.1

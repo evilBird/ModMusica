@@ -33,8 +33,11 @@
     [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
     [(MyGLKViewController *)self.paneViewController setCurrentModName:@"mario"];
     [(MyGLKViewController *)self.paneViewController setGlkDelegate:self];
+    
+    
     // Do any additional setup after loading the view.
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

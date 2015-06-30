@@ -10,6 +10,10 @@
 #import "MyGLKViewController+Labels.h"
 #import "UIColor+HBVHarmonies.h"
 
+@interface MyGLKViewController ()
+
+@end
+
 @implementation MyGLKViewController (Labels)
 
 static NSTimer *infoLabelTimer;

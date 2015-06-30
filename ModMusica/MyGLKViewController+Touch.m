@@ -8,6 +8,8 @@
 
 #import "MyGLKViewController+Touch.h"
 #import "PdBase.h"
+#import "MyGLKDefs.h"
+
 
 @implementation MyGLKViewController (Touch)
 
@@ -15,18 +17,64 @@ static NSDate   *kStartDate;
 static NSTimer  *kPressTimer;
 static NSDate   *kLastTap;
 static NSInteger kTapCount;
+static UIPinchGestureRecognizer *kPinch = nil;
+static bool lock = 0;
+
+- (void)handlePinch:(id)sender
+{
+    if (sender != kPinch) {
+        return;
+    }
+    
+    kStartDate = nil;
+    [kPressTimer invalidate];
+    
+    switch (kPinch.state) {
+        case UIGestureRecognizerStateBegan:
+            lock = 1;
+            _scale =  kPinch.scale;
+            //kPinch.scale
+            break;
+            case UIGestureRecognizerStateChanged:
+            lock = 1;
+            _scale = kPinch.scale;
+            break;
+            
+            case UIGestureRecognizerStateCancelled:
+            lock = 0;
+            
+            break;
+            
+            case UIGestureRecognizerStateRecognized:
+            lock = 0;
+            
+            break;
+            
+            case UIGestureRecognizerStateFailed:
+            lock = 0;
+            
+            break;
+            
+            case UIGestureRecognizerStatePossible:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    /*
-    if (self.paneState == MSDynamicsDrawerPaneStateOpen || self.paneState == MSDynamicsDrawerPaneStateOpenWide) {
-        kStartDate = nil;
-        return;
-        
+    if (!kPinch) {
+        //kPinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+        //[self.view addGestureRecognizer:kPinch];
+        //kPinch.enabled = YES;
     }
-    */
+    
+    
     kStartDate = [NSDate date];
-    kPressTimer = [NSTimer scheduledTimerWithTimeInterval:0.35
+    kPressTimer = [NSTimer scheduledTimerWithTimeInterval:0.45
                                                    target:self
                                                  selector:@selector(handlePress)
                                                  userInfo:nil
@@ -78,6 +126,10 @@ static NSInteger kTapCount;
 
 - (void)handlePress
 {
+    if (lock) {
+        return;
+    }
+    
     NSTimeInterval touchDuration = [[NSDate date]timeIntervalSinceDate:kStartDate];
     [kPressTimer invalidate];
     kPressTimer = nil;

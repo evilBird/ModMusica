@@ -11,7 +11,6 @@
 #import "MyGLKViewController+Labels.h"
 #import "MyGLKViewController+Button.h"
 #import "MyGLKFunctions.h"
-#import <CoreMotion/CoreMotion.h>
 
 @interface MyGLKViewController () <MMPlaybackDelegate>
 {
@@ -24,8 +23,7 @@
     GLfloat     Colors          [3];
     
     float       _rotation_y;
-    float       _zoom;
-    float       _scale;
+
     
     float       _d_rotation_y;
     float       _d_scale;
@@ -35,19 +33,11 @@
 
 }
 
-@property (strong, nonatomic)   EAGLContext         *context;
-@property (strong, nonatomic)   GLKBaseEffect       *effect;
-@property (strong, nonatomic)   GLKSkyboxEffect     *skybox;
+
 @property (strong, nonatomic)   NSArray             *tables;
 @property (strong, nonatomic)   NSTimer             *labelUpdateTimer;
 
 @property (nonatomic,strong)    NSDate              *lastSampleUpdate;
-@property (nonatomic,readonly)  NSTimeInterval      timeSinceLastSampleUpdate;
-
-@property (nonatomic, strong)   CMAttitude          *referenceFrame;
-
-@property (nonatomic)           double              tempo;
-@property (nonatomic)           double              clock;
 
 @end
 
@@ -290,7 +280,7 @@
 
 - (void)setupSampleTables
 {
-    NSArray *allTables = @[kSynthTable,kBassTable,kDrumTable,kSamplerTable,kDrumTable,kSynthTable,kSamplerTable,kBassTable];
+    NSArray *allTables = @[kSynthTable,kSynthTable,kSamplerTable,kSamplerTable,kBassTable,kBassTable,kDrumTable,kDrumTable];
     
     NSRange indexRange;
     indexRange.location = 0;

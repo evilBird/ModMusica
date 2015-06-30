@@ -9,6 +9,8 @@
 #import <GLKit/GLKit.h>
 #import "MMPlaybackController.h"
 #import "HamburgerButton.h"
+#import <CoreMotion/CoreMotion.h>
+
 
 @protocol MyGLKViewControllerDelegate <NSObject>
 
@@ -18,6 +20,10 @@
 @end
 
 @interface MyGLKViewController : GLKViewController
+{
+    float       _zoom;
+    float       _scale;
+}
 
 @property (nonatomic,getter=isPlaying)              BOOL                                    playing;
 
@@ -28,6 +34,12 @@
 @property (nonatomic,strong)                        HamburgerButton                         *hamburgerButton;
 
 @property (nonatomic,strong)                        UIColor                                 *mainColor;
+@property (strong, nonatomic)                       EAGLContext                             *context;
+@property (strong, nonatomic)                       GLKBaseEffect                           *effect;
+@property (nonatomic,readonly)                      NSTimeInterval                          timeSinceLastSampleUpdate;
+@property (nonatomic, strong)                       CMAttitude                              *referenceFrame;
+@property (nonatomic)                               double                                  tempo;
+@property (nonatomic)                               double                                  clock;
 
 @property (strong, nonatomic)                       MMPlaybackController                    *playbackController;
 @property (strong, nonatomic)                       id<MyGLKViewControllerDelegate>         glkDelegate;
