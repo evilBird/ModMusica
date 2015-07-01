@@ -16,14 +16,11 @@
 - (void)moduleViewEdit:(id)sender
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ModMelodyEditorViewController *editor = [storyboard instantiateViewControllerWithIdentifier:@"MMModEditorViewController"];
-    __weak MMRootViewController *weakself = self;
+    ModMelodyEditorViewController *editor = [storyboard instantiateViewControllerWithIdentifier:@"ModEditorRootViewController"];
     editor.mainColor = [self getGLKViewController].mainColor;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakself playbackController].editing = YES;
-        [editor setupWithDelegate:weakself datasource:weakself completion:nil];
-    });
-    
+    editor.datasource = self;
+    editor.delegate = self;
+    [self playbackController].editing = YES;
     [self presentViewController:editor
                        animated:YES
                      completion:nil];
@@ -92,19 +89,6 @@
     return [[self playbackController].patternLoader patternData];
 }
 
-- (NSUInteger)currentVoiceIndex
-{
-    return 3;
-}
-
-- (void)updatePatternData:(NSArray *)patternData
-{
-    NSMutableArray *data = [NSMutableArray array];
-    [data addObject:@([self currentVoiceIndex])];
-    [data addObjectsFromArray:patternData];
-    [[self playbackController].patternLoader sendNotesToPd:data];
-}
-
 #pragma mark - ModMelodyEditorViewControllerDelegate
 
 - (void)editor:(id)sender playbackChanged:(float)playback
@@ -114,6 +98,14 @@
     }else{
         [self getGLKViewController].playing = NO;
     }
+}
+
+- (void)updatePatternData:(NSArray *)patternData atVoiceIndex:(NSUInteger)voiceIndex
+{
+    NSMutableArray *data = [NSMutableArray array];
+    [data addObject:@(voiceIndex)];
+    [data addObjectsFromArray:patternData];
+    [[self playbackController].patternLoader sendNotesToPd:data];
 }
 
 - (void)editorDidSave:(id)sender

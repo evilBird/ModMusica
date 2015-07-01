@@ -13,7 +13,7 @@
 @interface ModMelodyEditorViewController : UIViewController <ModMelodyEditorStepPitchViewDelegate>
 
 @property (nonatomic,weak)              id<ModEditorDatasource>                     datasource;
-@property (nonatomic,weak)              id<ModMelodyEditorViewControllerDelegate>   delegate;
+@property (nonatomic,weak)              id<ModEditorViewControllerDelegate>         delegate;
 @property (nonatomic,strong)            NSMutableArray                              *pitchLabels;
 @property (nonatomic,strong)            NSMutableArray                              *stepLabels;
 @property (nonatomic,strong)            NSMutableArray                              *controls;
@@ -28,7 +28,7 @@
 
 - (void)loadDataForVoiceAtIndex:(NSUInteger)voiceIndex;
 
-- (void)setupWithDelegate:(id<ModMelodyEditorViewControllerDelegate>)delegate
+- (void)setupWithDelegate:(id<ModEditorViewControllerDelegate>)delegate
                datasource:(id<ModEditorDatasource>)datasource
                completion:(void(^)(void))completion;
 

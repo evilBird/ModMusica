@@ -31,7 +31,7 @@
 
 - (NSArray *)getSavedData
 {
-    return [self getSavedDataVoice:[self.datasource currentVoiceIndex]];
+    return [self getSavedDataVoice:[self.delegate currentVoiceIndex]];
 }
 
 - (NSArray *)getSavedDataVoice:(NSUInteger)voiceIndex
@@ -78,29 +78,29 @@
     self.stepPitchTags = [self stepPitchTagsWithData:data].mutableCopy;
 }
 
-- (NSInteger)switchIndexFromPitch:(NSUInteger)pitch step:(NSUInteger)step
+- (NSInteger)switchIndexFromPitch:(NSInteger)pitch step:(NSInteger)step
 {
-    if (pitch == 0) {
+    if (pitch <= 0) {
         return -1;
     }
     
-    NSUInteger offsetPitch = pitch - self.minPitch;
-    NSUInteger maxRow = [self.datasource numPitches] - 1;
-    NSUInteger reflectedPitch = maxRow - offsetPitch;
-    NSUInteger switchIndex = reflectedPitch * [self.datasource numSteps] + step;
+    NSInteger offsetPitch = pitch - self.minPitch;
+    NSInteger maxRow = [self.datasource numPitches] - 1;
+    NSInteger reflectedPitch = maxRow - offsetPitch;
+    NSInteger switchIndex = reflectedPitch * [self.datasource numSteps] + step;
     return switchIndex;
 }
 
-- (NSInteger)pitchFromSwitchIndex:(NSInteger)index step:(NSUInteger)step
+- (NSInteger)pitchFromSwitchIndex:(NSInteger)index step:(NSInteger)step
 {
     if (index < 0) {
         return 0;
     }
     
     NSInteger row = index/[self.datasource numSteps];
-    NSUInteger maxRow = [self.datasource numPitches] - 1;
-    NSUInteger reflectedRow = maxRow - row;
-    NSUInteger offsetPitch = reflectedRow + self.minPitch;
+    NSInteger maxRow = [self.datasource numPitches] - 1;
+    NSInteger reflectedRow = maxRow - row;
+    NSInteger offsetPitch = reflectedRow + self.minPitch;
 
     return offsetPitch;
 }
@@ -112,37 +112,42 @@
     NSMutableArray *temp = [NSMutableArray array];
     NSEnumerator *dataEnum = data.objectEnumerator;
     
-    for (NSUInteger i = 0; i < [self.datasource numSteps]; i++) {
+    for (NSInteger i = 0; i < [self.datasource numSteps]; i++) {
         NSNumber *data = [dataEnum nextObject];
         
         if (!data) {
-            temp[i] = @(-1);
+            temp[i] = [NSNumber numberWithInteger:-1];
         }else{
             NSInteger index = [self switchIndexFromPitch:data.integerValue step:i];
-            temp[i] = @(index);
+            temp[i] = [NSNumber numberWithInteger:index];
         }
     }
     
     return temp;
 }
 
-- (void)setupWithDelegate:(id<ModMelodyEditorViewControllerDelegate>)delegate
+- (void)setupWithDelegate:(id<ModEditorViewControllerDelegate>)delegate
                datasource:(id<ModEditorDatasource>)datasource
                completion:(void(^)(void))completion
 {
     self.datasource = datasource;
     self.delegate = delegate;
     if (self.datasource) {
-        __weak ModMelodyEditorViewController *weakself = self;
-        [self setupStepPitchTags];
-        dispatch_async(dispatch_get_main_queue(),^{
-            [weakself commonInitCompletion:^{
-                if (completion) {
-                    completion();
-                }
-            }];
-        });
+        [self commonInitCompletion:^{
+            [self setupStepPitchTags];
+            if (completion) {
+                completion();
+            }
+        }];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self setupStepPitchTags];
+    [self commonInitCompletion:^{
+    }];
 }
 
 - (void)commonInitCompletion:(void(^)(void))completion;
@@ -219,7 +224,7 @@
     }
     
     [self printNew:temp old:[self getSavedData]];
-    [self.datasource updatePatternData:temp];
+    [self.delegate updatePatternData:temp atVoiceIndex:[self.delegate currentVoiceIndex]];
 }
 
 - (void)printNew:(NSArray *)newData old:(NSArray *)oldData

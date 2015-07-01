@@ -137,7 +137,7 @@
 
 - (void)setupStepLabelConstraints
 {
-    CGFloat labWidth = (self.stepLabelsView.bounds.size.width - OUTERPADDING * 2.0)/DEFAULT_STEPS;
+    CGFloat labWidth = (self.stepLabelsView.bounds.size.width - OUTERPADDING * 2.0)/[self.datasource numSteps];
     CGFloat widthMultiplier = labWidth/self.stepLabelsView.bounds.size.width;
     UIView *left = nil;
     LayoutEdge leftEdge;
@@ -157,7 +157,7 @@
             leftOffset = 0;
         }
         
-        if (i == (DEFAULT_STEPS - 1)) {
+        if (i == ([self.datasource numSteps] - 1)) {
             right = self.stepLabelsView;
             rightEdge = LayoutEdge_Right;
             rightOffset = -OUTERPADDING;

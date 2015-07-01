@@ -10,7 +10,7 @@
 #import "ModEditorDefs.h"
 #import "MMModuleViewController.h"
 
-@interface MMRootViewController (Editor)<ModEditorDatasource,MMModuleViewControllerDelegate,ModMelodyEditorViewControllerDelegate>
+@interface MMRootViewController (Editor)<ModEditorDatasource,MMModuleViewControllerDelegate,ModEditorViewControllerDelegate>
 
 #pragma mrak - ModEditorDataSource
 
