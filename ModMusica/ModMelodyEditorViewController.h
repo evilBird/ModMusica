@@ -26,6 +26,8 @@
 @property (nonatomic,strong)            UIColor                                     *mainColor;
 
 
+- (void)loadDataForVoiceAtIndex:(NSUInteger)voiceIndex;
+
 - (void)setupWithDelegate:(id<ModMelodyEditorViewControllerDelegate>)delegate
                datasource:(id<ModEditorDatasource>)datasource
                completion:(void(^)(void))completion;

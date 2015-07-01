@@ -34,6 +34,7 @@
 - (void)editorDidClear:(id)sender;
 - (void)editorDidRevertToSaved:(id)sender;
 - (void)editorShouldClose:(id)sender completion:(void(^)(void))completion;
+- (NSUInteger)currentVoiceIndex;
 
 @end
 

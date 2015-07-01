@@ -24,47 +24,106 @@
 
 @implementation ModMelodyEditorViewController
 
-- (void)setupStepPitchTags
+- (void)loadDataForVoiceAtIndex:(NSUInteger)voiceIndex
+{
+    [self setupStepPitchTags:[self getSavedDataVoice:voiceIndex]];
+}
+
+- (NSArray *)getSavedData
+{
+    return [self getSavedDataVoice:[self.datasource currentVoiceIndex]];
+}
+
+- (NSArray *)getSavedDataVoice:(NSUInteger)voiceIndex
 {
     if (!self.datasource) {
-        return;
+        return nil;
     }
     
-    NSMutableArray *temp = [NSMutableArray array];
     NSArray *allData = [self.datasource patternData];
     if (!allData) {
-        return;
+        return nil;
     }
     
-    NSMutableArray *rawData = [allData[[self.datasource currentVoiceIndex]]mutableCopy];
+    NSMutableArray *rawData = [allData[voiceIndex]mutableCopy];
     [rawData removeObjectAtIndex:0];
-    
     NSArray *data = [NSArray arrayWithArray:rawData];
+    
+    return data;
+}
+
+- (NSUInteger)maxPitchInData:(NSArray *)data
+{
+    NSNumber *max = [data valueForKeyPath:@"@max.self"];
+    return max.unsignedIntegerValue;
+}
+
+- (NSUInteger)minPitchInData:(NSArray *)data
+{
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self > 0"];
     NSArray *filteredData = [data filteredArrayUsingPredicate:pred];
-    
     NSNumber *min = [filteredData valueForKeyPath:@"@min.self"];
-    self.minPitch = min.unsignedIntegerValue;
-    NSNumber *max = [data valueForKeyPath:@"@max.self"];
-    self.maxPitch = max.unsignedIntegerValue;
+    return min.unsignedIntegerValue;
+}
+
+- (void)setupStepPitchTags
+{
+    [self setupStepPitchTags:[self getSavedData]];
+}
+
+- (void)setupStepPitchTags:(NSArray *)data
+{
+    self.minPitch = [self minPitchInData:data];
+    self.maxPitch = [self maxPitchInData:data];
+    self.stepPitchTags = [self stepPitchTagsWithData:data].mutableCopy;
+}
+
+- (NSInteger)switchIndexFromPitch:(NSUInteger)pitch step:(NSUInteger)step
+{
+    if (pitch == 0) {
+        return -1;
+    }
     
+    NSUInteger offsetPitch = pitch - self.minPitch;
+    NSUInteger maxRow = [self.datasource numPitches] - 1;
+    NSUInteger reflectedPitch = maxRow - offsetPitch;
+    NSUInteger switchIndex = reflectedPitch * [self.datasource numSteps] + step;
+    return switchIndex;
+}
+
+- (NSInteger)pitchFromSwitchIndex:(NSInteger)index step:(NSUInteger)step
+{
+    if (index < 0) {
+        return 0;
+    }
+    
+    NSInteger row = index/[self.datasource numSteps];
+    NSUInteger maxRow = [self.datasource numPitches] - 1;
+    NSUInteger reflectedRow = maxRow - row;
+    NSUInteger offsetPitch = reflectedRow + self.minPitch;
+
+    return offsetPitch;
+}
+
+- (NSArray *)stepPitchTagsWithData:(NSArray *)data
+{
     NSAssert(data.count == [self.datasource numSteps], @"num steps %@ doesn't match pattern length %@",@(data.count),@([self.datasource numSteps]));
     
+    NSMutableArray *temp = [NSMutableArray array];
     NSEnumerator *dataEnum = data.objectEnumerator;
     
     for (NSUInteger i = 0; i < [self.datasource numSteps]; i++) {
         NSNumber *data = [dataEnum nextObject];
-        if (!data || !data.integerValue) {
+        
+        if (!data) {
             temp[i] = @(-1);
         }else{
-            NSUInteger pitch = [self.datasource numPitches] - 1 - ((data.unsignedIntegerValue - self.minPitch)%[self.datasource numPitches]);
-            
-            NSUInteger tag = pitch * [self.datasource numSteps] + i;
-            temp[i] = @(tag);
+            NSInteger index = [self switchIndexFromPitch:data.integerValue step:i];
+            temp[i] = @(index);
         }
     }
     
-    self.stepPitchTags = temp;
+    return temp;
 }
 
 - (void)setupWithDelegate:(id<ModMelodyEditorViewControllerDelegate>)delegate
@@ -151,19 +210,30 @@
 - (void)updatePatternWithTags:(NSArray *)tags
 {
     NSMutableArray *temp = [NSMutableArray array];
-    __block NSUInteger i = 0;
+    NSUInteger i = 0;
     for (NSNumber *aTag in tags.mutableCopy) {
         NSInteger tagVal = aTag.integerValue;
-        NSUInteger dataVal = [self.datasource numPitches] - 1 - (NSUInteger)((int)tagVal%((int)[self.datasource numPitches]));
-        NSUInteger newPitch = self.minPitch + dataVal;
+        NSUInteger newPitch = [self pitchFromSwitchIndex:tagVal step:i];
         [temp addObject:@(newPitch)];
         i++;
     }
     
+    [self printNew:temp old:[self getSavedData]];
     [self.datasource updatePatternData:temp];
 }
 
-
+- (void)printNew:(NSArray *)newData old:(NSArray *)oldData
+{
+    NSMutableString *log = [[NSMutableString alloc]initWithString:@"\nPRINT DATA\n"];
+    NSEnumerator *newDataEnumerator = newData.objectEnumerator;
+    for (NSNumber *oldPitch in oldData) {
+        NSNumber *newPitch = [newDataEnumerator nextObject];
+        NSString *appendToLog = [NSString stringWithFormat:@"\n%@ -> %@",oldPitch,newPitch];
+        [log appendString:appendToLog];
+    }
+    
+    NSLog(@"%@\n",log);
+}
 
 /*
 #pragma mark - Navigation
