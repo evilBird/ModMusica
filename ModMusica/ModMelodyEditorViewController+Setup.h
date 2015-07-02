@@ -10,7 +10,5 @@
 
 @interface ModMelodyEditorViewController (Setup)
 
-- (void)setupViews;
-
 
 @end

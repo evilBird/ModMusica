@@ -18,12 +18,13 @@
 
 - (void)buttonValueChanged:(id)sender;
 
-
 @property (nonatomic,weak)          id<ModMelodyEditorStepPitchViewDelegate>                delegate;
 @property (nonatomic,weak)          id<ModEditorDatasource>                                 datasource;
 
 @property (nonatomic)               NSUInteger                                              activeSwitchTag;
 @property (nonatomic,strong)        NSMutableArray                                          *switches;
 @property (nonatomic,strong)        NSMutableArray                                          *switchesConstraints;
+@property (nonatomic,strong)        NSMutableArray                                          *pitchLabels;
+@property (nonatomic,strong)        NSMutableArray                                          *stepLabels;
 
 @end

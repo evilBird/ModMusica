@@ -10,26 +10,23 @@
 #import "ModMelodyEditorStepPitchView.h"
 #import "ModEditorDefs.h"
 
-@interface ModMelodyEditorViewController : UIViewController <ModMelodyEditorStepPitchViewDelegate>
+@interface ModMelodyEditorViewController : UIViewController
 
-@property (nonatomic,weak)              id<ModEditorDatasource>                     datasource;
-@property (nonatomic,weak)              id<ModEditorViewControllerDelegate>         delegate;
-@property (nonatomic,strong)            NSMutableArray                              *pitchLabels;
-@property (nonatomic,strong)            NSMutableArray                              *stepLabels;
-@property (nonatomic,strong)            NSMutableArray                              *controls;
+@property (nonatomic,weak)                                  id<ModEditorDatasource>                     datasource;
+@property (nonatomic,weak)                                  id<ModEditorViewControllerDelegate>         delegate;
 
-@property (nonatomic,strong)            ModMelodyEditorStepPitchView                *pitchView;
-@property (nonatomic,strong)            UIView                                      *containerView;
-@property (nonatomic,strong)            UIView                                      *pitchLabelsView;
-@property (nonatomic,strong)            UIView                                      *stepLabelsView;
-@property (nonatomic,strong)            UIView                                      *controlsView;
-@property (nonatomic,strong)            UIColor                                     *mainColor;
+@property (strong, nonatomic) IBOutlet                      ModMelodyEditorStepPitchView                *pitchView;
+@property (strong, nonatomic) IBOutletCollection(UIButton)  NSArray                                     *buttons;
 
 
-- (void)loadDataForVoiceAtIndex:(NSUInteger)voiceIndex;
+@property (nonatomic,strong)                                UIColor                                     *mainColor;
+@property (nonatomic,readonly)                              NSArray                                     *editedData;
 
-- (void)setupWithDelegate:(id<ModEditorViewControllerDelegate>)delegate
-               datasource:(id<ModEditorDatasource>)datasource
-               completion:(void(^)(void))completion;
+//Contains the tag of the currently selected pitch in each step, if there is one, else value is -1.
+@property (nonatomic)                                       NSUInteger                                  minPitch;
+@property (nonatomic)                                       NSUInteger                                  maxPitch;
+@property (nonatomic,strong)                                NSMutableArray                              *stepPitchTags;
+
+- (void)stepPitchTagsDidChange;
 
 @end

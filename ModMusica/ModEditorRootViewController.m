@@ -90,7 +90,6 @@
 - (void)editorDidRevertToSaved:(id)sender
 {
     ModMelodyEditorViewController *editor = sender;
-    [editor loadDataForVoiceAtIndex:self.currentVoice];
 }
 
 - (void)editorShouldClose:(id)sender completion:(void(^)(void))completion

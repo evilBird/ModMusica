@@ -37,6 +37,9 @@
 		F25B8F951A043B3D006E801D /* 4-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8E1A043B3D006E801D /* 4-mega.csv */; };
 		F25B8F961A043B3D006E801D /* 5-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8F1A043B3D006E801D /* 5-mega.csv */; };
 		F25B8F971A043B3D006E801D /* 6-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F901A043B3D006E801D /* 6-mega.csv */; };
+		F274729C1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m in Sources */ = {isa = PBXBuildFile; fileRef = F274729B1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m */; };
+		F274729F1B44FF320033C58F /* ModMelodyEditorViewController+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = F274729E1B44FF320033C58F /* ModMelodyEditorViewController+Data.m */; };
+		F27472A21B4500100033C58F /* ModMelodyEditorViewController+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F27472A11B4500100033C58F /* ModMelodyEditorViewController+Util.m */; };
 		F280FA831A365D3100FE0550 /* 1-jb.csv in Resources */ = {isa = PBXBuildFile; fileRef = F280FA821A365D3100FE0550 /* 1-jb.csv */; };
 		F29386801A36A373008F0EDF /* 0-ohn.csv in Resources */ = {isa = PBXBuildFile; fileRef = F293867E1A36A373008F0EDF /* 0-ohn.csv */; };
 		F29386861A36C74C008F0EDF /* 2-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29386841A36C74C008F0EDF /* 2-gs.csv */; };
@@ -999,6 +1002,12 @@
 		F25B8F8E1A043B3D006E801D /* 4-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-mega.csv"; sourceTree = "<group>"; };
 		F25B8F8F1A043B3D006E801D /* 5-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5-mega.csv"; sourceTree = "<group>"; };
 		F25B8F901A043B3D006E801D /* 6-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "6-mega.csv"; sourceTree = "<group>"; };
+		F274729A1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Switches.h"; sourceTree = "<group>"; };
+		F274729B1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Switches.m"; sourceTree = "<group>"; };
+		F274729D1B44FF320033C58F /* ModMelodyEditorViewController+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Data.h"; sourceTree = "<group>"; };
+		F274729E1B44FF320033C58F /* ModMelodyEditorViewController+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Data.m"; sourceTree = "<group>"; };
+		F27472A01B4500100033C58F /* ModMelodyEditorViewController+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Util.h"; sourceTree = "<group>"; };
+		F27472A11B4500100033C58F /* ModMelodyEditorViewController+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Util.m"; sourceTree = "<group>"; };
 		F280FA821A365D3100FE0550 /* 1-jb.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-jb.csv"; sourceTree = "<group>"; };
 		F293867E1A36A373008F0EDF /* 0-ohn.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-ohn.csv"; sourceTree = "<group>"; };
 		F29386841A36C74C008F0EDF /* 2-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-gs.csv"; sourceTree = "<group>"; };
@@ -1988,6 +1997,12 @@
 				F21CD4C41B4332BF00AAE260 /* ModEditorRootViewController.m */,
 				F2CC5FCC1B42075500D56988 /* ModMelodyEditorViewController.h */,
 				F2CC5FCD1B42075500D56988 /* ModMelodyEditorViewController.m */,
+				F27472A01B4500100033C58F /* ModMelodyEditorViewController+Util.h */,
+				F27472A11B4500100033C58F /* ModMelodyEditorViewController+Util.m */,
+				F274729D1B44FF320033C58F /* ModMelodyEditorViewController+Data.h */,
+				F274729E1B44FF320033C58F /* ModMelodyEditorViewController+Data.m */,
+				F274729A1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.h */,
+				F274729B1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m */,
 				F21CD4B31B4326F800AAE260 /* ModMelodyEditorViewController+Controls.h */,
 				F21CD4B41B4326F800AAE260 /* ModMelodyEditorViewController+Controls.m */,
 				F21CD4B01B43214600AAE260 /* ModMelodyEditorViewController+Setup.h */,
@@ -4322,6 +4337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F274729C1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m in Sources */,
 				F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */,
 				F2FD2BC61B2A899600974562 /* MMScopeDepthManager.m in Sources */,
 				F21CD4B51B4326F800AAE260 /* ModMelodyEditorViewController+Controls.m in Sources */,
@@ -4375,8 +4391,10 @@
 				F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */,
 				F2575C181B27975100DE5571 /* ViewController+Module.m in Sources */,
 				F2B2AF4319FF27BE003042D6 /* vexp_fun.c in Sources */,
+				F274729F1B44FF320033C58F /* ModMelodyEditorViewController+Data.m in Sources */,
 				F2CC5FCE1B42075500D56988 /* ModMelodyEditorViewController.m in Sources */,
 				F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */,
+				F27472A21B4500100033C58F /* ModMelodyEditorViewController+Util.m in Sources */,
 				F2B2B17119FF281F003042D6 /* helmholtz~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

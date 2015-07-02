@@ -14,20 +14,24 @@
 {
     CGPoint point = [touches.allObjects.lastObject locationInView:self];
     CGFloat buttonWidth,buttonHeight;
-    buttonWidth = (self.bounds.size.width - ((OUTERPADDING- INNERPADDING) * 2.0))/(CGFloat)([self.datasource numSteps]);
-    buttonHeight = (self.bounds.size.height - ((OUTERPADDING - INNERPADDING) * 2.0))/(CGFloat)([self.datasource numPitches]);
+    UILabel *pitchLabel = self.pitchLabels.firstObject;
+    UILabel *stepLabel = self.stepLabels.firstObject;
     
-    CGFloat minX = (OUTERPADDING - INNERPADDING);
-    CGFloat minY = (OUTERPADDING - INNERPADDING);
-    CGFloat maxX = (self.bounds.size.width - (OUTERPADDING - INNERPADDING));
-    CGFloat maxY = (self.bounds.size.height - (OUTERPADDING - INNERPADDING));
+    CGFloat minX = pitchLabel.bounds.size.width;
+    CGFloat minY = stepLabel.bounds.size.height;
+    CGFloat maxX = (self.bounds.size.width - minX);
+    CGFloat maxY = (self.bounds.size.height - minY);
+    CGFloat activeWidth = self.bounds.size.width - (minX * 2.0);
+    CGFloat activeHeight = self.bounds.size.height - (minY * 2.0);
+    buttonWidth = activeWidth/(CGFloat)([self.datasource numSteps]);
+    buttonHeight = activeHeight/(CGFloat)([self.datasource numPitches]);
     
     if (point.x < minX || point.x > maxX || point.y < minY || point.y > maxY) {
         return;
     }
     
-    point.x-=((OUTERPADDING - INNERPADDING) * 2.0);
-    point.y-=((OUTERPADDING - INNERPADDING) * 2.0);
+    point.x-=(minX * 2.0);
+    point.y-=(minY * 2.0);
     
     double step = round(point.x/buttonWidth);
     double pitch = round(point.y/buttonHeight);

@@ -168,6 +168,25 @@
     return constraint;
 }
 
+- (NSLayoutConstraint *)pinWidthInProportion:(CGFloat)proportion toWidthOfView:(UIView *)view
+{
+    if (!view) {
+        return nil;
+    }
+    
+    NSLayoutConstraint *constraint = nil;
+    constraint = [NSLayoutConstraint constraintWithItem:self
+                                              attribute:NSLayoutAttributeWidth
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:view
+                                              attribute:NSLayoutAttributeWidth
+                                             multiplier:proportion
+                                               constant:0.0];
+    
+    return constraint;
+    
+}
+
 - (NSLayoutConstraint *)pinWidthProportionateToSuperview:(CGFloat)proportion
 {
     if (!self.superview) {
@@ -202,6 +221,23 @@
     return constraint;
 }
 
+- (NSLayoutConstraint *)pinHeightEqualToView:(UIView *)view
+{
+    if (!view) {
+        return nil;
+    }
+    
+    NSLayoutConstraint *constraint = nil;
+    constraint = [NSLayoutConstraint constraintWithItem:self
+                                              attribute:NSLayoutAttributeHeight
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:view
+                                              attribute:NSLayoutAttributeHeight
+                                             multiplier:1.0
+                                               constant:0.0];
+    return constraint;
+}
+
 - (NSLayoutConstraint *)pinEdge:(LayoutEdge)edge toSuperviewEdge:(LayoutEdge)superviewEdge
 {
     NSLayoutConstraint *constraint = nil;
@@ -217,6 +253,34 @@
                                               attribute:[UIView edgeAttribute:superviewEdge]
                                              multiplier:1.0
                                                constant:0.0];
+    
+    return constraint;
+}
+
+- (NSLayoutConstraint *)pinMinWidth:(CGFloat)minWidth
+{
+    NSLayoutConstraint *constraint = nil;
+    constraint = [NSLayoutConstraint constraintWithItem:self
+                                              attribute:NSLayoutAttributeWidth
+                                              relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                 toItem:nil
+                                              attribute:NSLayoutAttributeNotAnAttribute
+                                             multiplier:1.0
+                                               constant:minWidth];
+    
+    return constraint;
+}
+
+- (NSLayoutConstraint *)pinMaxWidth:(CGFloat)maxWidth
+{
+    NSLayoutConstraint *constraint = nil;
+    constraint = [NSLayoutConstraint constraintWithItem:self
+                                              attribute:NSLayoutAttributeWidth
+                                              relatedBy:NSLayoutRelationLessThanOrEqual
+                                                 toItem:nil
+                                              attribute:NSLayoutAttributeNotAnAttribute
+                                             multiplier:1.0
+                                               constant:maxWidth];
     
     return constraint;
 }

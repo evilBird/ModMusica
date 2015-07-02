@@ -43,6 +43,9 @@
 
 - (UIColor *)myMainColor;
 - (NSUInteger)initialValueForSwitchWithTag:(NSUInteger)tag;
+- (NSString *)textForStepLabelAtIndex:(NSUInteger)index;
+- (NSString *)textForPitchLabelAtIndex:(NSUInteger)index;
+- (double)fontScaleForStepLabelAtIndex:(NSUInteger)index;
 - (void)melodyEditor:(id)sender stepSwitch:(id)stepSwitch valueDidChange:(id)value;
 
 @end

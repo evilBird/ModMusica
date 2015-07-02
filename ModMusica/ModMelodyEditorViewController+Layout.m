@@ -11,7 +11,7 @@
 
 
 @implementation ModMelodyEditorViewController (Layout)
-
+/*
 - (void)configureConstraints
 {
     [self.view addConstraint:[self.pitchLabelsView pinEdge:LayoutEdge_Left
@@ -73,7 +73,6 @@
     [self setupControlsConstraints];
     
     [self.view layoutIfNeeded];
-    
 }
 
 - (void)setupControlsConstraints
@@ -260,5 +259,5 @@
         
     }
 }
-
+*/
 @end

@@ -10,6 +10,6 @@
 
 @interface ModMelodyEditorStepPitchView (Layout)
 
-- (void)configureConstraints;
+//- (void)configureConstraints;
 
 @end

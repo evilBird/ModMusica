@@ -8,7 +8,6 @@
 
 #import "ModMelodyEditorStepPitchView.h"
 #import "ModMelodyEditorSwitch.h"
-#import "ModMelodyEditorStepPitchView+Layout.h"
 #import "ModMelodyEditorStepPitchView+Touches.h"
 #import "ModMelodyEditorStepPitchView+Setup.h"
 
@@ -27,13 +26,12 @@
     }
 }
 
-
 - (void)configureWithDelegate:(id<ModMelodyEditorStepPitchViewDelegate>)delegate datasource:(id<ModEditorDatasource>)datasource
 {
     self.delegate = delegate;
     self.datasource = datasource;
     [self setupSwitches];
-    [self configureConstraints];
+    [self layoutIfNeeded];
 }
 
 /*

@@ -36,11 +36,19 @@ typedef NS_ENUM(NSInteger, LayoutAxis)
 
 - (NSLayoutConstraint *)pinWidth:(CGFloat)width;
 
+- (NSLayoutConstraint *)pinMinWidth:(CGFloat)minWidth;
+
+- (NSLayoutConstraint *)pinMaxWidth:(CGFloat)maxWidth;
+
 - (NSLayoutConstraint *)pinHeightProportionateToSuperview:(CGFloat)proportion;
 
 - (NSLayoutConstraint *)pinWidthProportionateToSuperview:(CGFloat)proportion;
 
+- (NSLayoutConstraint *)pinWidthInProportion:(CGFloat)proportion toWidthOfView:(UIView *)view;
+
 - (NSLayoutConstraint *)pinWidthEqualToView:(UIView *)view;
+
+- (NSLayoutConstraint *)pinHeightEqualToView:(UIView *)view;
 
 - (NSLayoutConstraint *)pinEdge:(LayoutEdge)edge toSuperviewEdge:(LayoutEdge)superviewEdge;
 

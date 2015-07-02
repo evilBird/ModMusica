@@ -10,6 +10,7 @@
 
 @interface ModMelodyEditorViewController (Controls)
 
-- (void)tapInControlButton:(id)sender;
+- (IBAction)tapInButton:(id)sender;
+- (void)updateButtonColors;
 
 @end
