@@ -99,7 +99,7 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     if (section == 0) {
         return self.modules.count;
     }else{
-        return 3;
+        return 2;
     }
 }
 

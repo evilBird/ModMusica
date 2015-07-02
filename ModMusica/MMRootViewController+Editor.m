@@ -23,7 +23,9 @@
     [self playbackController].editing = YES;
     [self presentViewController:editor
                        animated:YES
-                     completion:nil];
+                     completion:^{
+                         [self getGLKViewController].paused = YES;
+                     }];
 
 }
 
@@ -127,6 +129,7 @@
 {
     [self dismissViewControllerAnimated:YES completion:^{
         [self playbackController].editing = NO;
+        [self getGLKViewController].paused = NO;
         if (completion) {
             completion();
         }
