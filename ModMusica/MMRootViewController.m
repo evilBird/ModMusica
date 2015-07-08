@@ -14,6 +14,8 @@
 #import "MMStepCounter.h"
 #import "MMLongPressGestureRecognizer.h"
 #import "MMTapGestureRecognizer.h"
+#import "MMPurchaseManager.h"
+#import "MMPinchGestureRecognizer.h"
 
 @interface MMRootViewController () <MMStepCounterDelegate>
 
@@ -21,6 +23,7 @@
 @property (nonatomic,strong)            MyGLKViewController                 *myGLKViewController;
 @property (nonatomic,strong)            MMLongPressGestureRecognizer        *longPress;
 @property (nonatomic,strong)            MMTapGestureRecognizer              *tap;
+@property (nonatomic,strong)            MMPinchGestureRecognizer            *pinch;
 
 @end
 
@@ -36,8 +39,10 @@
     self.myGLKViewController.glkDelegate = self;
     self.longPress = [[MMLongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPress:)];
     self.tap = [[MMTapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+    self.pinch = [[MMPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
     [self.myGLKViewController.view addGestureRecognizer:self.tap];
     [self.myGLKViewController.view addGestureRecognizer:self.longPress];
+    [self.myGLKViewController.view addGestureRecognizer:self.pinch];
     self.paneViewController = self.myGLKViewController;
     
     MMModuleViewController *mm =[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"];
@@ -53,6 +58,41 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)handlePinch:(id)sender
+{
+    MMPinchGestureRecognizer *pinch = sender;
+    CGFloat scale = pinch.scale;
+    CGFloat velocity = pinch.velocity;
+    
+    static CGFloat initalScale;
+    static CGFloat previousScale;
+    static CGFloat initialVelocity;
+    static CGFloat previousVelocity;
+    static CGPoint initialLoc;
+    static CGPoint previousLoc;
+    
+    CGFloat deltaScale;
+    CGFloat deltaVelocity;
+    
+    
+    switch (pinch.state) {
+        case UIGestureRecognizerStateBegan:
+            initalScale = scale;
+            initialVelocity = velocity;
+            
+            break;
+        default:
+            
+            break;
+    }
+    deltaScale = scale - initalScale;
+    deltaVelocity = velocity - initialVelocity;
+    NSLog(@"ds = %@, dv = %@",@(deltaScale),@(deltaVelocity));
+    previousScale = scale;
+    previousVelocity = velocity;
+    [[self getGLKViewController]changeScale:deltaScale];
 }
 
 - (void)handleTap:(id)sender

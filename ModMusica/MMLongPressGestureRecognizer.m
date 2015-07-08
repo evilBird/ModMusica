@@ -7,6 +7,7 @@
 //
 
 #import "MMLongPressGestureRecognizer.h"
+#import "MMPinchGestureRecognizer.h"
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
 @interface MMLongPressGestureRecognizer () <UIGestureRecognizerDelegate>
@@ -43,7 +44,8 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (touches.count != 1) {
+    if (touches.count > 1) {
+        self.state = UIGestureRecognizerStateFailed;
         return;
     }
     self.touchesAreHappening = YES;
@@ -59,6 +61,15 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (touches.count > 1) {
+        if (self.touchTimer && self.touchTimer.isValid) {
+            [self.touchTimer invalidate];
+            self.touchTimer = nil;
+        }
+        self.state = UIGestureRecognizerStateFailed;
+        return;
+    }
+    
     self.touchesAreHappening = YES;
     if (self.touchTimer && self.touchTimer.isValid) {
         self.state = UIGestureRecognizerStatePossible;
@@ -69,6 +80,15 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (touches.count > 1) {
+        if (self.touchTimer && self.touchTimer.isValid) {
+            [self.touchTimer invalidate];
+            self.touchTimer = nil;
+        }
+        self.state = UIGestureRecognizerStateFailed;
+        return;
+    }
+    
     self.touchesAreHappening = YES;
     if (self.touchTimer && self.touchTimer.isValid) {
         self.state = UIGestureRecognizerStatePossible;

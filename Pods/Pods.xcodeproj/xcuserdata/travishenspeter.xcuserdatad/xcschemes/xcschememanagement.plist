@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-ModMusica-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ModMusica-GPUImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>12E72DA802912C022B90D62F</key>
+		<key>2ED5303D157C31B40D0D63FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>64B26544D3579DC0A33C03F2</key>
+		<key>5206E729198C484EAE0B7125</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9EFA8A4AF65DA2E62FFB460A</key>
+		<key>C6463BBF0B4FAC1E77E4A4E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F245F97F49A2AB69B37B6A8F</key>
+		<key>C76E4526F103141A558B7C54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6E8AE5887FBA981826312FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

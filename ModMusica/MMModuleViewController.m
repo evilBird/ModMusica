@@ -12,6 +12,7 @@
 #import "UIView+Layout.h"
 #import "UIColor+HBVHarmonies.h"
 #import "MMModuleEditCellView.h"
+#import "MMModuleManager.h"
 
 static NSString *kModuleCellId = @"ModuleCellId";
 static NSString *kModuleSwitchCellId = @"ModuleSwitchCellId";
@@ -53,8 +54,8 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     UIButton *button = sender;
     if (button.tag < self.modules.count) {
         NSDictionary *mod = self.modules[button.tag];
-        NSString *modName = mod[@"title"];
-        [self.delegate moduleView:self selectedModuleWithName:modName];
+        NSString *modName = mod[kProductTitleKey];
+        [self.delegate moduleView:self tappedButton:button selectedModuleWithName:modName];
     }
 }
 
@@ -72,8 +73,16 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
 - (void)setDatasource:(id<MMModuleViewControllerDatasource>)datasource
 {
     _datasource = datasource;
-    self.modules = [_datasource modulesForModuleView:self];
     [self.tableView reloadData];
+}
+
+- (NSArray *)modules
+{
+    if (!self.datasource) {
+        return nil;
+    }
+    
+    return [self.datasource modulesForModuleView:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,9 +116,9 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     
     MMModuleCellView *c = (MMModuleCellView *)cell;
     NSDictionary *mod = self.modules[indexPath.row];
-    c.titleLabel.text = mod[@"title"];
+    c.titleLabel.text = mod[kProductTitleKey];
     c.titleLabel.textColor = textColor;
-    NSNumber *purchased = mod[@"purchased"];
+    NSNumber *purchased = mod[kProductPurchasedKey];
     c.actionButton.tag = indexPath.row;
     c.actionButton.layer.cornerRadius = 4;
     c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
@@ -117,10 +126,12 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     [c.actionButton setTitleColor:[fillColor jitterWithPercent:5] forState:UIControlStateNormal];
     [c.actionButton setBackgroundColor:[textColor jitterWithPercent:5]];
     [c.actionButton addTarget:self action:@selector(tapInCellButton:) forControlEvents:UIControlEventTouchUpInside];
+    [c.actionButton setTintColor:[UIColor clearColor]];
     
     if (purchased.integerValue) {
         [c.actionButton setTitle:NSLocalizedString(@"PLAY", nil) forState:UIControlStateNormal];
     }else{
+        [c.actionButton setTitle:mod[kProductFormattedPriceKey] forState:UIControlStateSelected];
         [c.actionButton setTitle:NSLocalizedString(@"GET", nil) forState:UIControlStateNormal];
     }
     

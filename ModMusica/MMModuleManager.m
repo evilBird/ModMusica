@@ -8,9 +8,9 @@
 
 #import "MMModuleManager.h"
 #import "NSUserDefaults+Mods.h"
+#import "MMPurchaseManager.h"
 
-#define kTitle @"title"
-#define kPurchased @"purchased"
+
 
 @implementation MMModuleManager
 
@@ -31,31 +31,51 @@
 
 + (NSArray *)availableMods
 {
-    //TODO: Check app store for available mods
     NSArray *purchased = [MMModuleManager purchasedMods];
-    NSArray *names = @[@"mario",@"fantasy",@"mega",@"menace",@"sad"];
-
-    NSMutableArray *temp = [NSMutableArray arrayWithCapacity:names.count];
-    for (NSString *modName in names) {
-        NSMutableDictionary *mod = [NSMutableDictionary dictionary];
-        mod[kTitle] = modName;
-        if ([MMModuleManager getMod:modName fromArray:purchased]) {
-            mod[kPurchased] = @(1);
-        }else{
-            mod[kPurchased] = @(0);
+    NSMutableArray *products = [[MMPurchaseManager sharedInstance]products].allObjects.mutableCopy;
+    NSMutableSet *available = [[NSMutableSet alloc]init];
+    NSMutableSet *names = [[NSMutableSet alloc]init];
+    
+    for (SKProduct *product in products) {
+        NSString *name = product.localizedTitle;
+        if (![names containsObject:name]) {
+            NSNumber *price = product.price;
+            NSString *description = product.description;
+            NSMutableDictionary *mod = [NSMutableDictionary dictionary];
+            mod[kProductTitleKey] = name;
+            mod[kProductPriceKey] = price;
+            mod[kProductDescriptionKey] = description;
+            
+            NSString *formattedString = nil;
+            if (price.integerValue == 0) {
+                formattedString = @"FREE";
+            }else{
+                NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+                [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+                [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+                [numberFormatter setLocale:product.priceLocale];
+                formattedString = [numberFormatter stringFromNumber:product.price];
+            }
+            
+            mod[kProductFormattedPriceKey] = formattedString;
+            if ([MMModuleManager getMod:name fromArray:purchased]) {
+                mod[kProductPurchasedKey] = @(1);
+            }else{
+                mod[kProductPurchasedKey] = @(0);
+            }
+            
+            [available addObject:mod];
         }
         
-        [temp addObject:mod];
+        [names addObject:name];
     }
     
+    return [NSArray arrayWithArray:available.allObjects];
     
-    return [NSArray arrayWithArray:temp];
 }
 
 + (void)purchaseMod:(NSString *)modName completion:(void(^)(BOOL success))completion
 {
-
-    
     if (!modName || !modName.length) {
         if (completion) {
             completion(NO);
@@ -72,20 +92,33 @@
         return;
     }
     
-    //TODO: IAP
-    BOOL successful = YES;
-    NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
-    if (successful) {
-        purchasedMod[kPurchased] = @(1);
-    }else{
-        purchasedMod[kPurchased] = @(0);
-    }
     
-    [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
-    if (completion) {
-        completion(successful);
-    }
+    [[MMPurchaseManager sharedInstance]buyProduct:modName completion:^(id product, NSError *error) {
+        
+        NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
+        
+        if (!error) {
+            
+            
+            purchasedMod[kProductPurchasedKey] = @(1);
+            
+            [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
+            
+            if (completion) {
+                completion(YES);
+            }
+        }else{
+            
+            
+            purchasedMod[kProductPurchasedKey] = @(0);
+            if (completion) {
+                completion(NO);
+            }
+        }
+    }];
 }
+
+
 
 + (NSArray *)namesForMods:(NSArray *)mods
 {
@@ -95,7 +128,7 @@
     
     NSMutableArray *temp = [NSMutableArray array];
     for (NSDictionary *aMod in mods) {
-        NSString *name = aMod[kTitle];
+        NSString *name = aMod[kProductTitleKey];
         [temp addObject:name];
     }
     
@@ -105,7 +138,7 @@
 
 + (NSDictionary *)getMod:(NSString *)modName fromArray:(NSArray *)mods
 {
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K MATCHES[cd] %@",kTitle,modName];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K MATCHES[cd] %@",kProductTitleKey,modName];
     NSArray *filtered = [mods filteredArrayUsingPredicate:pred];
     return filtered.firstObject;
 }

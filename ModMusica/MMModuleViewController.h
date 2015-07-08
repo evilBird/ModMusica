@@ -11,7 +11,8 @@
 @protocol MMModuleViewControllerDelegate <NSObject>
 
 @optional
-- (void)moduleView:(id)sender selectedModuleWithName:(NSString *)moduleName;
+
+- (void)moduleView:(id)sender tappedButton:(id)button selectedModuleWithName:(NSString *)moduleName;
 - (void)moduleView:(id)sender shuffleDidChange:(int)shuffle;
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock;
 
@@ -32,6 +33,6 @@
 
 @property (nonatomic,weak)      id<MMModuleViewControllerDelegate>      delegate;
 @property (nonatomic,weak)      id<MMModuleViewControllerDatasource>    datasource;
-@property (nonatomic,strong)    NSArray                                 *modules;
+@property (nonatomic,readonly)  NSArray                                 *modules;
 
 @end

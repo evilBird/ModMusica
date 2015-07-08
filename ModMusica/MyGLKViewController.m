@@ -45,13 +45,13 @@
 
 #pragma mark - Public Methods
 
-
+- (void)changeScale:(CGFloat)deltaScale
+{
+    _scale = deltaScale;
+}
 
 - (void)showDetails {
-    /*
-    NSString *tempoInfo = [NSString stringWithFormat:@"%.f beats/min",self.tempo];
-    [self showTempoInfo:tempoInfo];
-     */
+
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showLabelsAnimated:) object:nil];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabelsAnimated:) object:nil];
     [self showLabelsAnimated:YES];
@@ -173,7 +173,7 @@
         _d_scale *= -1.0;
     }
     
-    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, 1, _scale, 1);
+    modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, _scale, _scale, _scale);
     modelViewMatrix = [self updateMotionManager:modelViewMatrix];
     self.effect.transform.modelviewMatrix = modelViewMatrix;
 }
@@ -390,15 +390,9 @@
 - (void)playback:(id)sender detectedUserTempo:(double)tempo {
     
     self.tempo = tempo;
-    //NSString *tempoInfo = [NSString stringWithFormat:@"%.f beats per minute\ntap to set tempo",tempo];
     [self updateLabelText];
     [self showDetails];
-    //[self showTempoInfo:tempoInfo];
-    /*
-    if (!self.labelUpdateTimer.isValid) {
-        [self showTempoInfo:tempoInfo];
-    }
-     */
+
 }
 
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName

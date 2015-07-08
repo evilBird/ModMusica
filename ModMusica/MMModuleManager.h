@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#define kProductTitleKey @"com.birdSound.modmusica.sk.title"
+#define kProductPurchasedKey @"com.birdSound.modmusica.sk.purchased"
+#define kProductPriceKey @"com.birdSound.modmusica.sk.price"
+#define kProductDescriptionKey @"com.birdSound.modmusica.sk.description"
+#define kProductFormattedPriceKey @"com.birdSound.modmusica.sk.formatted.price"
+
 @interface MMModuleManager : NSObject
 
 + (NSArray *)availableMods;

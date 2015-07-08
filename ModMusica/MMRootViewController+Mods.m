@@ -38,16 +38,23 @@
 
 #pragma mark - MMModuleViewControllerDelegate
 
-- (void)moduleView:(id)sender selectedModuleWithName:(NSString *)moduleName
+- (void)moduleView:(id)sender tappedButton:(id)button selectedModuleWithName:(NSString *)moduleName
 {
     __weak MMRootViewController *weakself = self;
     if (![MMModuleManager getMod:moduleName fromArray:[MMModuleManager purchasedMods]]) {
-        [MMModuleManager purchaseMod:moduleName completion:^(BOOL success) {
-            if (success) {
-                [[(MMModuleViewController *)sender tableView] reloadData];
-                [weakself setCurrentMod:moduleName];
-            }
-        }];
+        
+        UIButton *myButton = button;
+        if (!myButton.isSelected) {
+            myButton.selected = YES;
+            return;
+        }else{
+            [MMModuleManager purchaseMod:moduleName completion:^(BOOL success) {
+                if (success) {
+                    [[(MMModuleViewController *)sender tableView] reloadData];
+                    [weakself setCurrentMod:moduleName];
+                }
+            }];
+        }
         
         return;
     }

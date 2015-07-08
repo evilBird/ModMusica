@@ -8,6 +8,7 @@ target 'ModMusica' do
     pod 'libpd', '~> 0.7'
     pod 'GPUImage'
     pod 'MSDynamicsDrawerViewController', '~> 1.5.1'
+    pod 'AFNetworking'
 
 end
 

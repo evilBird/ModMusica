@@ -47,5 +47,6 @@
 - (void)showDetails;
 - (void)randomizeColors;
 - (void)playback:(id)sender detectedUserTempo:(double)tempo;
+- (void)changeScale:(CGFloat)deltaScale;
 
 @end

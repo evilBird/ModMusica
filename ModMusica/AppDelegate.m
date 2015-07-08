@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <PdAudioController.h>
 #import "MMPlaybackController.h"
+#import "MMPurchaseManager.h"
 
 #define SAMPLE_RATE 44100
 #define TICKS_PER_BUFFER 64
@@ -25,6 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[MMPurchaseManager sharedInstance]getProductsCompletion:nil];
     [[UIApplication sharedApplication]setIdleTimerDisabled:YES];
     self.audioController = [[PdAudioController alloc]init];
     [self.audioController configurePlaybackWithSampleRate:SAMPLE_RATE numberChannels:2 inputEnabled:YES mixingEnabled:YES];
@@ -61,6 +63,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     self.audioController.active = YES;
+    [[MMPurchaseManager sharedInstance]getProductsCompletion:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

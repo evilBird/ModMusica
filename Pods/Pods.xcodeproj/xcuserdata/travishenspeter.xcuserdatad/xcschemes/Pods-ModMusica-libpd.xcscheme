@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F245F97F49A2AB69B37B6A8F"
+               BlueprintIdentifier = "5206E729198C484EAE0B7125"
                BuildableName = "libPods-ModMusica-libpd.a"
                BlueprintName = "Pods-ModMusica-libpd"
                ReferencedContainer = "container:Pods.xcodeproj">
