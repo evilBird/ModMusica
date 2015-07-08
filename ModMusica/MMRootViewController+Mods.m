@@ -31,7 +31,7 @@
     
     [self setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:NO completion:^{
         [[weakself getGLKViewController].playbackController playPattern:moduleName];
-        [weakself getGLKViewController].currentModName = moduleName;
+        //[weakself getGLKViewController].currentModName = moduleName;
         [[weakself getGLKViewController]randomizeColors];
         if (![weakself getGLKViewController].isPlaying) {
             [weakself getGLKViewController].playing = YES;

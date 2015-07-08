@@ -45,15 +45,25 @@
 
 #pragma mark - Public Methods
 
+
+
 - (void)showDetails {
-    
+    /*
     NSString *tempoInfo = [NSString stringWithFormat:@"%.f beats/min",self.tempo];
     [self showTempoInfo:tempoInfo];
+     */
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showLabelsAnimated:) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabelsAnimated:) object:nil];
+    [self showLabelsAnimated:YES];
+    __weak MyGLKViewController *weakself = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakself hideLabelsAnimated:YES];
+    });
 }
 
 - (void)randomizeColors
 {
-    _randomRGBInRange(Colors, 0.1, 0.5, 1);
+    _randomRGBInRange(Colors, 0.1, 0.6, 1);
     self.mainColor = [UIColor colorWithRed:Colors[0] green:Colors[1] blue:Colors[2] alpha:1.0];
     _setMainVertexColor(Colors);
     [self updateLabelColors];
@@ -84,8 +94,9 @@
 
 - (void)setCurrentModName:(NSString *)currentModName
 {
-    NSString *prevModName = _currentModName;
     _currentModName = currentModName;
+    [self updateLabelText];
+    [self showDetails];
 }
 
 #pragma mark - Private Methods
@@ -319,7 +330,7 @@
 
 - (NSTimeInterval)minimumSampleUpdateInterval
 {
-    return 1.0/self.framesPerSecond/2.0;
+    return 1.0/self.framesPerSecond/4.0;
 }
 
 - (int)numIndices
@@ -379,10 +390,15 @@
 - (void)playback:(id)sender detectedUserTempo:(double)tempo {
     
     self.tempo = tempo;
-    NSString *tempoInfo = [NSString stringWithFormat:@"%.f beats/min",tempo];
+    //NSString *tempoInfo = [NSString stringWithFormat:@"%.f beats per minute\ntap to set tempo",tempo];
+    [self updateLabelText];
+    [self showDetails];
+    //[self showTempoInfo:tempoInfo];
+    /*
     if (!self.labelUpdateTimer.isValid) {
         [self showTempoInfo:tempoInfo];
     }
+     */
 }
 
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName

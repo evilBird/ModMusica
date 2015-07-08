@@ -33,31 +33,48 @@ static NSTimer *infoLabelTimer;
 
 - (void)showTempoInfo:(NSString *)tempoInfo
 {
+    /*
     self.infoLabel.text = tempoInfo;
     if (infoLabelTimer.isValid) {
         [infoLabelTimer invalidate];
+        infoLabelTimer = nil;
     }else{
         [self showLabelsAnimated:NO];
     }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(handleInfoLabelTimer:) object:nil];
     
     infoLabelTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
                                                       target:self
                                                     selector:@selector(handleInfoLabelTimer:)
                                                     userInfo:nil
                                                      repeats:NO];
+     */
 }
 
 - (void)updateLabelText
 {
-    NSString *nowPlayingString = [NSString stringWithFormat:@"Now playing: %@",self.currentModName];
-    self.nowPlayingLabel.text = nowPlayingString;
+    
     self.titleLabel.text = @"ModMusica";
+    self.nowPlayingLabel.text = [NSString stringWithFormat:@"playing %@",self.currentModName];
+    
     if (self.isPlaying) {
-        self.infoLabel.text = @"Press and hold to stop";
+        if (self.tempo > 0) {
+            self.infoLabel.numberOfLines = 4;
+            self.infoLabel.text = [NSString stringWithFormat:@"%.f beats per minute\ntap to set tempo",self.tempo];
+        }else{
+            self.infoLabel.text = @"Press and hold to stop";
+        }
     }else{
         self.infoLabel.text = @"Press and hold to start";
     }
 
+    
+    [self.titleLabel sizeToFit];
+    [self.nowPlayingLabel sizeToFit];
+    [self.infoLabel sizeToFit];
+    [self.view layoutIfNeeded];
+    [self.view setNeedsDisplay];
+    
 }
 
 - (void)updateLabelColors
@@ -79,7 +96,7 @@ static NSTimer *infoLabelTimer;
         return;
     }
     
-    [UIView animateWithDuration:7.0
+    [UIView animateWithDuration:5.0
                           delay:0.0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
@@ -136,23 +153,23 @@ static NSTimer *infoLabelTimer;
 {
     self.titleLabel = [UILabel new];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.titleLabel.text = @"ModMusica";
+    self.titleLabel.text = @"";
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:[UIFont labelFontSize]*1.8];
     [self.view addSubview:self.titleLabel];
     
     self.nowPlayingLabel = [UILabel new];
     self.nowPlayingLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.nowPlayingLabel.text = @"Now playing: Mario";
+    self.nowPlayingLabel.text = @"";
     self.nowPlayingLabel.textAlignment = NSTextAlignmentCenter;
-    self.nowPlayingLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:[UIFont smallSystemFontSize]];
+    self.nowPlayingLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:[UIFont labelFontSize]*0.8];
     [self.view addSubview:self.nowPlayingLabel];
     
     self.infoLabel = [UILabel new];
     self.infoLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.infoLabel.text = @"Press and hold to start";
+    self.infoLabel.text = @"";
     self.infoLabel.textAlignment = NSTextAlignmentCenter;
-    self.infoLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:[UIFont smallSystemFontSize]];
+    self.infoLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:[UIFont labelFontSize]*0.6];
     [self.view addSubview:self.infoLabel];
     
     [self setupLabelConstraints];

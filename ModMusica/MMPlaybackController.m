@@ -185,6 +185,7 @@ void bonk_tilde_setup(void);
     self.patternLoader.currentPattern = patternName;
     self.patternLoader.currentSection = -1;
     [self.patternLoader playSection:0];
+    [self.delegate playback:self didLoadModuleName:patternName];
     
     if (!self.isPlaying) {
         [self startPlayback];

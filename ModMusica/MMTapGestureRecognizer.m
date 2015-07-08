@@ -57,7 +57,7 @@ static void * XXContext = &XXContext;
         if (value.integerValue == 3) {
             if (self.prevDate) {
                 NSTimeInterval time = [now timeIntervalSinceDate:self.prevDate];
-                if (time > 2.0) {
+                if (time > 5.0) {
                     self.taps = 0;
                 }
             }

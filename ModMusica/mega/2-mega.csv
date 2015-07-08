@@ -1,9 +1,9 @@
 measures,8,,,,,
 beats,4,,,,,
 divisions,2,,,,,
-minTempo,100,,,,,
-maxTempo,160,,,,,
-swing,0,,,,,
+minTempo,1,,,,,
+maxTempo,300,,,,,
+swing,1,,,,,
 5,68,72,99,100,,90
 0,0,0,0,,,90
 0,0,0,0,80,,90
