@@ -13,6 +13,7 @@
 #define kProductPriceKey @"com.birdSound.modmusica.sk.price"
 #define kProductDescriptionKey @"com.birdSound.modmusica.sk.description"
 #define kProductFormattedPriceKey @"com.birdSound.modmusica.sk.formatted.price"
+#define kProductContentPathKey @"com.birdSound.modmusica.sk.content.path"
 
 @interface MMModuleManager : NSObject
 

@@ -99,8 +99,10 @@
         
         if (!error) {
             
-            
+            NSURL *contentURL = product;
+            NSString *contentPath = contentURL.path;
             purchasedMod[kProductPurchasedKey] = @(1);
+            purchasedMod[kProductContentPathKey] = contentPath;
             
             [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
             

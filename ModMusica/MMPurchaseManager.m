@@ -176,25 +176,93 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
     });
 }
 
+- (NSURL *)urlForProductId:(NSString *)productId
+{
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *folderPath = [documentsPath stringByAppendingPathComponent:productId];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:folderPath]) {
+        [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    
+    NSString *bundlePath = [folderPath stringByAppendingPathComponent:@"bundle"];
+    return [NSURL fileURLWithPath:bundlePath];
+}
+
 #pragma mark - SKPaymentTransactionObserver
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads
+{
+    for (SKDownload *download in downloads) {
+        BOOL finished;
+        id content = nil;
+        NSError *error = nil;
+        switch (download.downloadState) {
+            case SKDownloadStateCancelled:
+            {
+                finished = YES;
+                error = [MMPurchaseManager transactionError:@"The download was cancelled"];
+                [queue finishTransaction:download.transaction];
+            }
+                break;
+            case SKDownloadStateFailed:
+            {
+                finished = YES;
+                error = download.transaction.error;
+                [queue finishTransaction:download.transaction];
+            }
+                break;
+                
+            case SKDownloadStateFinished:
+            {
+                finished = YES;
+                NSURL *contentURL = download.contentURL;
+                NSURL *copyToURL = [self urlForProductId:download.transaction.payment.productIdentifier];
+                [[NSFileManager defaultManager] copyItemAtURL:contentURL toURL:copyToURL error:&error];
+                
+                if (!error) {
+                    content = copyToURL.path;
+                }
+                
+                [queue finishTransaction:download.transaction];
+            }
+                break;
+                
+                default:
+            {
+                finished = NO;
+            }
+                break;
+        }
+        
+        if (finished) {
+            ProductPurchaseHandler purchaseHandler = [self getPurchaseHandlerForProductId:download.transaction.payment.productIdentifier];
+            if (purchaseHandler) {
+                purchaseHandler(content,error);
+                [self removePurchasehandlerForProductId:download.transaction.payment.productIdentifier];
+            }
+        }
+        
+    }
+}
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction *transaction in transactions) {
-        id product = transaction.downloads;
+        id product = nil;
         BOOL finished;
         NSError *error = nil;
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
-                [queue finishTransaction:transaction];
-                finished = YES;
+                [queue startDownloads:transaction.downloads];
+                finished = NO;
                 break;
                 case SKPaymentTransactionStatePurchasing:
                 finished = NO;
                 break;
                 case SKPaymentTransactionStateRestored:
-                [queue finishTransaction:transaction];
-                finished = YES;
+                [queue startDownloads:transaction.downloads];
+                finished = NO;
                 break;
                 case SKPaymentTransactionStateDeferred:
                 error = [MMPurchaseManager transactionError:@"Transaction was cancelled"];
