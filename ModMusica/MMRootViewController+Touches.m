@@ -11,7 +11,7 @@
 #import "MyGLKViewController.h"
 
 @implementation MMRootViewController (Touches)
-
+/*
 static NSDate   *kStartDate;
 static NSTimer  *kPressTimer;
 static NSDate   *kLastTap;
@@ -95,5 +95,5 @@ static NSInteger kTapCount;
         glk.playing = YES;
     }
 }
-
+*/
 @end

@@ -60,6 +60,12 @@ void bonk_tilde_setup(void);
     return self;
 }
 
+- (void)setTempoLocked:(BOOL)tempoLocked
+{
+    _tempoLocked = tempoLocked;
+    [PdBase sendFloat:(float)tempoLocked toReceiver:@"lockTempo"];
+}
+
 - (void)startPlayback
 {
     if (!self.patternName) {
@@ -185,15 +191,16 @@ void bonk_tilde_setup(void);
     }
 }
 
+- (void)tapTempo
+{
+    [PdBase sendBangToReceiver:@"tapTempo"];
+}
+
 - (void)changeSectionMaybe
 {
-    if (self.isEditing) {
-        return;
-    }
-    
     NSInteger rand = arc4random_uniform(100);
     
-    if (self.shuffleMods) {
+    if (self.isShuffled) {
         if (rand < 10) {
             NSArray *mods = [MMModuleManager modNames];
             NSUInteger idx = (NSUInteger)((int)arc4random_uniform(100)%(int)mods.count);
@@ -246,7 +253,7 @@ void bonk_tilde_setup(void);
             [self changeSectionMaybe];
         }
     }else if ([source isEqualToString:@"detectedTempo"]){
-        if (!self.lockTempo) {
+        if (!self.isTempoLocked) {
             [self.delegate playback:self detectedUserTempo:received];
         }
     }

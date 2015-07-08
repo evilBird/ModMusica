@@ -12,7 +12,7 @@
 
 
 @implementation MyGLKViewController (Touch)
-
+/*
 static NSDate   *kStartDate;
 static NSTimer  *kPressTimer;
 static NSDate   *kLastTap;
@@ -141,4 +141,5 @@ static bool lock = 0;
         self.playing = YES;
     }
 }
+ */
 @end

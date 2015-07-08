@@ -187,6 +187,24 @@
     
 }
 
+- (NSLayoutConstraint *)pinHeightInProportion:(CGFloat)proportion toHeightOfView:(UIView *)view
+{
+    if (!view) {
+        return nil;
+    }
+    
+    NSLayoutConstraint *constraint = nil;
+    constraint = [NSLayoutConstraint constraintWithItem:self
+                                              attribute:NSLayoutAttributeHeight
+                                              relatedBy:NSLayoutRelationEqual
+                                                 toItem:view
+                                              attribute:NSLayoutAttributeHeight
+                                             multiplier:proportion
+                                               constant:0.0];
+    
+    return constraint;
+}
+
 - (NSLayoutConstraint *)pinWidthProportionateToSuperview:(CGFloat)proportion
 {
     if (!self.superview) {

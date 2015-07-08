@@ -26,18 +26,18 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 
 @interface MMPlaybackController : NSObject
 
-@property (nonatomic,weak)                  id<MMPlaybackDelegate>  delegate;
-@property (nonatomic,strong)                PdDispatcher            *dispatcher;
-@property (nonatomic,strong)                MMPatternLoader         *patternLoader;
-@property (nonatomic,strong)                NSString                *patternName;
-@property                                   void                    *patch;
-@property (nonatomic,getter=isPlaying)      BOOL                    playing;
-@property (nonatomic)                       BOOL                    shuffleMods;
-@property (nonatomic)                       BOOL                    lockTempo;
-@property (nonatomic,getter=isEditing)      BOOL                    editing;
+@property (nonatomic,weak)                      id<MMPlaybackDelegate>  delegate;
+@property (nonatomic,strong)                    PdDispatcher            *dispatcher;
+@property (nonatomic,strong)                    MMPatternLoader         *patternLoader;
+@property (nonatomic,strong)                    NSString                *patternName;
+@property                                       void                    *patch;
+@property (nonatomic,getter=isPlaying)          BOOL                    playing;
+@property (nonatomic,getter=isShuffled)         BOOL                    shuffleMods;
+@property (nonatomic, getter=isTempoLocked)     BOOL                    tempoLocked;
 
 - (void)startPlayback;
 - (void)stopPlayback;
 - (void)playPattern:(NSString *)patternName;
+- (void)tapTempo;
 
 @end

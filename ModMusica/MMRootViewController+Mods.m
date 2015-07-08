@@ -18,11 +18,17 @@
     return [MMModuleManager mods];
 }
 
+- (BOOL)modsAreShuffled:(id)sender
+{
+    return [self getGLKViewController].playbackController.isShuffled;
+}
+
 #pragma mark - MMModuleViewControllerDelegate
 
 - (void)moduleView:(id)sender selectedModuleWithName:(NSString *)moduleName
 {
     __weak MMRootViewController *weakself = self;
+    
     [self setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:NO completion:^{
         [[weakself getGLKViewController].playbackController playPattern:moduleName];
         [weakself getGLKViewController].currentModName = moduleName;
@@ -40,7 +46,7 @@
 
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock
 {
-    [self getGLKViewController].playbackController.lockTempo = (BOOL)lock;
+    [self getGLKViewController].playbackController.tempoLocked = (BOOL)lock;
     [PdBase sendFloat:(float)lock toReceiver:@"lockTempo"];
 }
 
@@ -57,31 +63,6 @@
 - (UIColor *)currentTextColor
 {
     return [[self currentFillColor]complement];
-}
-
-#pragma mark - MSDynamicsDrawerViewControllerDelegate
-- (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
-{
-    if (paneState == MSDynamicsDrawerPaneStateClosed && self.paneViewController == [self getGLKViewController]) {
-        [[self getGLKViewController] showDetails];
-    }
-}
-
-- (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
-{
-    if (paneState == MSDynamicsDrawerPaneStateClosed && self.paneViewController == [self getGLKViewController]) {
-        [[self getGLKViewController] showDetails];
-    }
-}
-
-#pragma mark - MyGLKViewControllerDelegate
-- (void)openCloseDrawer:(id)sender
-{
-    if (self.paneState == MSDynamicsDrawerPaneStateClosed) {
-        [self setPaneState:MSDynamicsDrawerPaneStateOpen inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:nil];
-    }else{
-        [self setPaneState:MSDynamicsDrawerPaneStateClosed inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:nil];
-    }
 }
 
 @end

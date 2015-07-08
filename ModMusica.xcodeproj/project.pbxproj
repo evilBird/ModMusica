@@ -10,18 +10,9 @@
 		521F96ADB97CBCE51F347099 /* libPods-ModMusica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C766045950CFEDBA070D14FE /* libPods-ModMusica.a */; };
 		F2162CE91A0876FF0016C544 /* mm_bsosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE71A0876FF0016C544 /* mm_bsosc~.pd */; };
 		F2162CEA1A0876FF0016C544 /* mm_sosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE81A0876FF0016C544 /* mm_sosc~.pd */; };
-		F21CD4AF1B43212D00AAE260 /* ModMelodyEditorViewController+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4AE1B43212D00AAE260 /* ModMelodyEditorViewController+Layout.m */; };
-		F21CD4B21B43214600AAE260 /* ModMelodyEditorViewController+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4B11B43214600AAE260 /* ModMelodyEditorViewController+Setup.m */; };
-		F21CD4B51B4326F800AAE260 /* ModMelodyEditorViewController+Controls.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4B41B4326F800AAE260 /* ModMelodyEditorViewController+Controls.m */; };
-		F21CD4B81B432AFB00AAE260 /* ModMelodyEditorStepPitchView+Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4B71B432AFB00AAE260 /* ModMelodyEditorStepPitchView+Touches.m */; };
-		F21CD4BC1B432DDC00AAE260 /* ModMelodyEditorStepPitchView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4BB1B432DDC00AAE260 /* ModMelodyEditorStepPitchView+Layout.m */; };
-		F21CD4BF1B432E4600AAE260 /* ModMelodyEditorStepPitchView+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4BE1B432E4600AAE260 /* ModMelodyEditorStepPitchView+Setup.m */; };
-		F21CD4C51B4332BF00AAE260 /* ModEditorRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4C41B4332BF00AAE260 /* ModEditorRootViewController.m */; };
-		F21CD4C81B43331500AAE260 /* MMRootViewController+Editor.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4C71B43331500AAE260 /* MMRootViewController+Editor.m */; };
 		F21CD4CD1B43390800AAE260 /* MMModuleEditCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4CC1B43390800AAE260 /* MMModuleEditCellView.m */; };
 		F22C3E171A06E29900A18E0C /* modmusica_2.pd in Resources */ = {isa = PBXBuildFile; fileRef = F22C3E161A06E29900A18E0C /* modmusica_2.pd */; };
 		F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F235E6711A33DD0100F67F8E /* BSDKaleidoscopeFilter.m */; };
-		F2399C7A1B3267D20062B5E6 /* MyGLKViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = F2399C791B3267D20062B5E6 /* MyGLKViewController+Touch.m */; };
 		F246EF131A0197AC00357005 /* mm_asr~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F246EF121A0197AC00357005 /* mm_asr~.pd */; };
 		F246EF151A01A86400357005 /* modmusica_1.pd in Resources */ = {isa = PBXBuildFile; fileRef = F246EF141A01A86400357005 /* modmusica_1.pd */; };
 		F24A3E9E1A0058300074471B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24A3E9D1A0058300074471B /* AudioToolbox.framework */; };
@@ -29,7 +20,6 @@
 		F251C3371A005D7F00C8EE78 /* mm_test_sig.pd in Resources */ = {isa = PBXBuildFile; fileRef = F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */; };
 		F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2575C111B2792EA00DE5571 /* MMModuleViewController.m */; };
 		F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2575C141B27930300DE5571 /* MMModuleCellView.m */; };
-		F2575C181B27975100DE5571 /* ViewController+Module.m in Sources */ = {isa = PBXBuildFile; fileRef = F2575C171B27975100DE5571 /* ViewController+Module.m */; };
 		F25B8F911A043B3D006E801D /* 0-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8A1A043B3D006E801D /* 0-mega.csv */; };
 		F25B8F921A043B3D006E801D /* 1-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8B1A043B3D006E801D /* 1-mega.csv */; };
 		F25B8F931A043B3D006E801D /* 2-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8C1A043B3D006E801D /* 2-mega.csv */; };
@@ -37,10 +27,12 @@
 		F25B8F951A043B3D006E801D /* 4-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8E1A043B3D006E801D /* 4-mega.csv */; };
 		F25B8F961A043B3D006E801D /* 5-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8F1A043B3D006E801D /* 5-mega.csv */; };
 		F25B8F971A043B3D006E801D /* 6-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F901A043B3D006E801D /* 6-mega.csv */; };
-		F274729C1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m in Sources */ = {isa = PBXBuildFile; fileRef = F274729B1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m */; };
-		F274729F1B44FF320033C58F /* ModMelodyEditorViewController+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = F274729E1B44FF320033C58F /* ModMelodyEditorViewController+Data.m */; };
-		F27472A21B4500100033C58F /* ModMelodyEditorViewController+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F27472A11B4500100033C58F /* ModMelodyEditorViewController+Util.m */; };
+		F26A69BB1B4B802E002F0736 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26A69BA1B4B802E002F0736 /* StoreKit.framework */; };
 		F280FA831A365D3100FE0550 /* 1-jb.csv in Resources */ = {isa = PBXBuildFile; fileRef = F280FA821A365D3100FE0550 /* 1-jb.csv */; };
+		F2917A001B4CBD4B0048591D /* MMLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F29179FF1B4CBD4B0048591D /* MMLongPressGestureRecognizer.m */; };
+		F2917A031B4CC67B0048591D /* MMTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2917A021B4CC67B0048591D /* MMTapGestureRecognizer.m */; };
+		F2917A051B4CCCA30048591D /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2917A041B4CCCA30048591D /* LaunchImage.png */; };
+		F2917A081B4CCF6F0048591D /* MMRootViewController+Drawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2917A071B4CCF6F0048591D /* MMRootViewController+Drawer.m */; };
 		F29386801A36A373008F0EDF /* 0-ohn.csv in Resources */ = {isa = PBXBuildFile; fileRef = F293867E1A36A373008F0EDF /* 0-ohn.csv */; };
 		F29386861A36C74C008F0EDF /* 2-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29386841A36C74C008F0EDF /* 2-gs.csv */; };
 		F29386871A36C74C008F0EDF /* 3-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29386851A36C74C008F0EDF /* 3-gs.csv */; };
@@ -80,7 +72,6 @@
 		F2A68BB71B26B54C00FA13F5 /* complex_sub.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BAB1B26B54C00FA13F5 /* complex_sub.mmb.pd */; };
 		F2A68BB81B26B54C00FA13F5 /* complex_sub.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BAC1B26B54C00FA13F5 /* complex_sub.mmb~.pd */; };
 		F2A68BB91B26B54C00FA13F5 /* number.mmb~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BAD1B26B54C00FA13F5 /* number.mmb~.pd */; };
-		F2A68BD21B2773AE00FA13F5 /* ViewController+Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A68BD11B2773AE00FA13F5 /* ViewController+Touch.m */; };
 		F2AD7F3A1A47EF0400840ABC /* mm_fx.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F361A47EF0400840ABC /* mm_fx.pd */; };
 		F2AD7F3B1A47EF0400840ABC /* mm_randomness.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F371A47EF0400840ABC /* mm_randomness.pd */; };
 		F2AD7F3C1A47EF0400840ABC /* mm_drums.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F381A47EF0400840ABC /* mm_drums.pd */; };
@@ -88,7 +79,6 @@
 		F2AD7F3F1A47FC8100840ABC /* mm_reverb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2AD7F3E1A47FC8100840ABC /* mm_reverb.pd */; };
 		F2B2AB5119FF1739003042D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5019FF1739003042D6 /* main.m */; };
 		F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5319FF1739003042D6 /* AppDelegate.m */; };
-		F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AB5619FF1739003042D6 /* ViewController.m */; };
 		F2B2AB5A19FF1739003042D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AB5819FF1739003042D6 /* Main.storyboard */; };
 		F2B2AB5C19FF1739003042D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AB5B19FF1739003042D6 /* Images.xcassets */; };
 		F2B2AB5F19FF1739003042D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AB5D19FF1739003042D6 /* LaunchScreen.xib */; };
@@ -509,9 +499,6 @@
 		F2B2B1AE19FF2B0D003042D6 /* list-dripslow.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */; };
 		F2B2B1BE19FF4D87003042D6 /* modmusica.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BC19FF4D87003042D6 /* modmusica.pd */; };
 		F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BD19FF4D87003042D6 /* scope.pd */; };
-		F2CC5FCE1B42075500D56988 /* ModMelodyEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CC5FCD1B42075500D56988 /* ModMelodyEditorViewController.m */; };
-		F2CC5FD11B42077D00D56988 /* ModMelodyEditorSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CC5FD01B42077D00D56988 /* ModMelodyEditorSwitch.m */; };
-		F2CC5FD41B4221FA00D56988 /* ModMelodyEditorStepPitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CC5FD31B4221FA00D56988 /* ModMelodyEditorStepPitchView.m */; };
 		F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */; };
 		F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA91B291A6100AA7708 /* HamburgerButton.m */; };
 		F2D06FB51B29386500AA7708 /* 0-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB01B29386500AA7708 /* 0-sad.csv */; };
@@ -520,7 +507,6 @@
 		F2D06FB81B29386500AA7708 /* 3-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB31B29386500AA7708 /* 3-sad.csv */; };
 		F2D06FB91B29386500AA7708 /* 4-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB41B29386500AA7708 /* 4-sad.csv */; };
 		F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */; };
-		F2D3DFAC1B3A178D000AA933 /* MMRootViewController+Touches.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAB1B3A178D000AA933 /* MMRootViewController+Touches.m */; };
 		F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */; };
 		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
 		F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564361B2CD177008D9C76 /* 0-new.csv */; };
@@ -958,30 +944,11 @@
 		C766045950CFEDBA070D14FE /* libPods-ModMusica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModMusica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2162CE71A0876FF0016C544 /* mm_bsosc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_bsosc~.pd"; sourceTree = "<group>"; };
 		F2162CE81A0876FF0016C544 /* mm_sosc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_sosc~.pd"; sourceTree = "<group>"; };
-		F21CD4AD1B43212D00AAE260 /* ModMelodyEditorViewController+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Layout.h"; sourceTree = "<group>"; };
-		F21CD4AE1B43212D00AAE260 /* ModMelodyEditorViewController+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Layout.m"; sourceTree = "<group>"; };
-		F21CD4B01B43214600AAE260 /* ModMelodyEditorViewController+Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Setup.h"; sourceTree = "<group>"; };
-		F21CD4B11B43214600AAE260 /* ModMelodyEditorViewController+Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Setup.m"; sourceTree = "<group>"; };
-		F21CD4B31B4326F800AAE260 /* ModMelodyEditorViewController+Controls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Controls.h"; sourceTree = "<group>"; };
-		F21CD4B41B4326F800AAE260 /* ModMelodyEditorViewController+Controls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Controls.m"; sourceTree = "<group>"; };
-		F21CD4B61B432AFB00AAE260 /* ModMelodyEditorStepPitchView+Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorStepPitchView+Touches.h"; sourceTree = "<group>"; };
-		F21CD4B71B432AFB00AAE260 /* ModMelodyEditorStepPitchView+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorStepPitchView+Touches.m"; sourceTree = "<group>"; };
-		F21CD4B91B432C0500AAE260 /* ModEditorDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModEditorDefs.h; sourceTree = "<group>"; };
-		F21CD4BA1B432DDC00AAE260 /* ModMelodyEditorStepPitchView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorStepPitchView+Layout.h"; sourceTree = "<group>"; };
-		F21CD4BB1B432DDC00AAE260 /* ModMelodyEditorStepPitchView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorStepPitchView+Layout.m"; sourceTree = "<group>"; };
-		F21CD4BD1B432E4600AAE260 /* ModMelodyEditorStepPitchView+Setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorStepPitchView+Setup.h"; sourceTree = "<group>"; };
-		F21CD4BE1B432E4600AAE260 /* ModMelodyEditorStepPitchView+Setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorStepPitchView+Setup.m"; sourceTree = "<group>"; };
-		F21CD4C31B4332BF00AAE260 /* ModEditorRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModEditorRootViewController.h; sourceTree = "<group>"; };
-		F21CD4C41B4332BF00AAE260 /* ModEditorRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModEditorRootViewController.m; sourceTree = "<group>"; };
-		F21CD4C61B43331500AAE260 /* MMRootViewController+Editor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Editor.h"; sourceTree = "<group>"; };
-		F21CD4C71B43331500AAE260 /* MMRootViewController+Editor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Editor.m"; sourceTree = "<group>"; };
 		F21CD4CB1B43390800AAE260 /* MMModuleEditCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleEditCellView.h; sourceTree = "<group>"; };
 		F21CD4CC1B43390800AAE260 /* MMModuleEditCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleEditCellView.m; sourceTree = "<group>"; };
 		F22C3E161A06E29900A18E0C /* modmusica_2.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_2.pd; sourceTree = "<group>"; };
 		F235E6711A33DD0100F67F8E /* BSDKaleidoscopeFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDKaleidoscopeFilter.m; sourceTree = "<group>"; };
 		F235E6721A33DD0100F67F8E /* BSDKaleidoscopeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDKaleidoscopeFilter.h; sourceTree = "<group>"; };
-		F2399C781B3267D20062B5E6 /* MyGLKViewController+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MyGLKViewController+Touch.h"; sourceTree = "<group>"; };
-		F2399C791B3267D20062B5E6 /* MyGLKViewController+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MyGLKViewController+Touch.m"; sourceTree = "<group>"; };
 		F246EF121A0197AC00357005 /* mm_asr~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_asr~.pd"; sourceTree = "<group>"; };
 		F246EF141A01A86400357005 /* modmusica_1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_1.pd; sourceTree = "<group>"; };
 		F24A3E9C1A0058300074471B /* ModMusica.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ModMusica.entitlements; sourceTree = "<group>"; };
@@ -993,8 +960,6 @@
 		F2575C111B2792EA00DE5571 /* MMModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleViewController.m; sourceTree = "<group>"; };
 		F2575C131B27930300DE5571 /* MMModuleCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleCellView.h; sourceTree = "<group>"; };
 		F2575C141B27930300DE5571 /* MMModuleCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleCellView.m; sourceTree = "<group>"; };
-		F2575C161B27975100DE5571 /* ViewController+Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+Module.h"; sourceTree = "<group>"; };
-		F2575C171B27975100DE5571 /* ViewController+Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+Module.m"; sourceTree = "<group>"; };
 		F25B8F8A1A043B3D006E801D /* 0-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-mega.csv"; sourceTree = "<group>"; };
 		F25B8F8B1A043B3D006E801D /* 1-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-mega.csv"; sourceTree = "<group>"; };
 		F25B8F8C1A043B3D006E801D /* 2-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-mega.csv"; sourceTree = "<group>"; };
@@ -1002,13 +967,15 @@
 		F25B8F8E1A043B3D006E801D /* 4-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-mega.csv"; sourceTree = "<group>"; };
 		F25B8F8F1A043B3D006E801D /* 5-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5-mega.csv"; sourceTree = "<group>"; };
 		F25B8F901A043B3D006E801D /* 6-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "6-mega.csv"; sourceTree = "<group>"; };
-		F274729A1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Switches.h"; sourceTree = "<group>"; };
-		F274729B1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Switches.m"; sourceTree = "<group>"; };
-		F274729D1B44FF320033C58F /* ModMelodyEditorViewController+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Data.h"; sourceTree = "<group>"; };
-		F274729E1B44FF320033C58F /* ModMelodyEditorViewController+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Data.m"; sourceTree = "<group>"; };
-		F27472A01B4500100033C58F /* ModMelodyEditorViewController+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModMelodyEditorViewController+Util.h"; sourceTree = "<group>"; };
-		F27472A11B4500100033C58F /* ModMelodyEditorViewController+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ModMelodyEditorViewController+Util.m"; sourceTree = "<group>"; };
+		F26A69BA1B4B802E002F0736 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F280FA821A365D3100FE0550 /* 1-jb.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-jb.csv"; sourceTree = "<group>"; };
+		F29179FE1B4CBD4B0048591D /* MMLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		F29179FF1B4CBD4B0048591D /* MMLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		F2917A011B4CC67B0048591D /* MMTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTapGestureRecognizer.h; sourceTree = "<group>"; };
+		F2917A021B4CC67B0048591D /* MMTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTapGestureRecognizer.m; sourceTree = "<group>"; };
+		F2917A041B4CCCA30048591D /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage.png; sourceTree = "<group>"; };
+		F2917A061B4CCF6F0048591D /* MMRootViewController+Drawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Drawer.h"; sourceTree = "<group>"; };
+		F2917A071B4CCF6F0048591D /* MMRootViewController+Drawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Drawer.m"; sourceTree = "<group>"; };
 		F293867E1A36A373008F0EDF /* 0-ohn.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-ohn.csv"; sourceTree = "<group>"; };
 		F29386841A36C74C008F0EDF /* 2-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-gs.csv"; sourceTree = "<group>"; };
 		F29386851A36C74C008F0EDF /* 3-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-gs.csv"; sourceTree = "<group>"; };
@@ -1050,8 +1017,6 @@
 		F2A68BAB1B26B54C00FA13F5 /* complex_sub.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_sub.mmb.pd; sourceTree = "<group>"; };
 		F2A68BAC1B26B54C00FA13F5 /* complex_sub.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "complex_sub.mmb~.pd"; sourceTree = "<group>"; };
 		F2A68BAD1B26B54C00FA13F5 /* number.mmb~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "number.mmb~.pd"; sourceTree = "<group>"; };
-		F2A68BD01B2773AE00FA13F5 /* ViewController+Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+Touch.h"; sourceTree = "<group>"; };
-		F2A68BD11B2773AE00FA13F5 /* ViewController+Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+Touch.m"; sourceTree = "<group>"; };
 		F2AD7F361A47EF0400840ABC /* mm_fx.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_fx.pd; sourceTree = "<group>"; };
 		F2AD7F371A47EF0400840ABC /* mm_randomness.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_randomness.pd; sourceTree = "<group>"; };
 		F2AD7F381A47EF0400840ABC /* mm_drums.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_drums.pd; sourceTree = "<group>"; };
@@ -1062,8 +1027,6 @@
 		F2B2AB5019FF1739003042D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F2B2AB5219FF1739003042D6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F2B2AB5319FF1739003042D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F2B2AB5519FF1739003042D6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F2B2AB5619FF1739003042D6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F2B2AB5919FF1739003042D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2B2AB5B19FF1739003042D6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F2B2AB5E19FF1739003042D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -1489,12 +1452,6 @@
 		F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-dripslow.pd"; sourceTree = "<group>"; };
 		F2B2B1BC19FF4D87003042D6 /* modmusica.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica.pd; sourceTree = "<group>"; };
 		F2B2B1BD19FF4D87003042D6 /* scope.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scope.pd; sourceTree = "<group>"; };
-		F2CC5FCC1B42075500D56988 /* ModMelodyEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModMelodyEditorViewController.h; sourceTree = "<group>"; };
-		F2CC5FCD1B42075500D56988 /* ModMelodyEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModMelodyEditorViewController.m; sourceTree = "<group>"; };
-		F2CC5FCF1B42077D00D56988 /* ModMelodyEditorSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModMelodyEditorSwitch.h; sourceTree = "<group>"; };
-		F2CC5FD01B42077D00D56988 /* ModMelodyEditorSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModMelodyEditorSwitch.m; sourceTree = "<group>"; };
-		F2CC5FD21B4221FA00D56988 /* ModMelodyEditorStepPitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModMelodyEditorStepPitchView.h; sourceTree = "<group>"; };
-		F2CC5FD31B4221FA00D56988 /* ModMelodyEditorStepPitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModMelodyEditorStepPitchView.m; sourceTree = "<group>"; };
 		F2D06FA21B290B0C00AA7708 /* MMAudioScopeViewController+Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMAudioScopeViewController+Label.h"; sourceTree = "<group>"; };
 		F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Label.m"; sourceTree = "<group>"; };
 		F2D06FA81B291A6100AA7708 /* HamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerButton.h; sourceTree = "<group>"; };
@@ -1506,8 +1463,6 @@
 		F2D06FB41B29386500AA7708 /* 4-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-sad.csv"; sourceTree = "<group>"; };
 		F2D3DFA71B3A10A8000AA933 /* MMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRootViewController.h; sourceTree = "<group>"; };
 		F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRootViewController.m; sourceTree = "<group>"; };
-		F2D3DFAA1B3A178D000AA933 /* MMRootViewController+Touches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Touches.h"; sourceTree = "<group>"; };
-		F2D3DFAB1B3A178D000AA933 /* MMRootViewController+Touches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Touches.m"; sourceTree = "<group>"; };
 		F2D3DFAD1B3A1859000AA933 /* MMRootViewController+Mods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Mods.h"; sourceTree = "<group>"; };
 		F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Mods.m"; sourceTree = "<group>"; };
 		F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleManager.h; sourceTree = "<group>"; };
@@ -1956,6 +1911,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F26A69BB1B4B802E002F0736 /* StoreKit.framework in Frameworks */,
 				521F96ADB97CBCE51F347099 /* libPods-ModMusica.a in Frameworks */,
 				F24A3E9E1A0058300074471B /* AudioToolbox.framework in Frameworks */,
 			);
@@ -1983,44 +1939,11 @@
 		A8D00E89E66249B2177C0FBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F26A69BA1B4B802E002F0736 /* StoreKit.framework */,
 				F24A3E9D1A0058300074471B /* AudioToolbox.framework */,
 				C766045950CFEDBA070D14FE /* libPods-ModMusica.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F21CD4AC1B4320BA00AAE260 /* ModEditor */ = {
-			isa = PBXGroup;
-			children = (
-				F21CD4B91B432C0500AAE260 /* ModEditorDefs.h */,
-				F21CD4C31B4332BF00AAE260 /* ModEditorRootViewController.h */,
-				F21CD4C41B4332BF00AAE260 /* ModEditorRootViewController.m */,
-				F2CC5FCC1B42075500D56988 /* ModMelodyEditorViewController.h */,
-				F2CC5FCD1B42075500D56988 /* ModMelodyEditorViewController.m */,
-				F27472A01B4500100033C58F /* ModMelodyEditorViewController+Util.h */,
-				F27472A11B4500100033C58F /* ModMelodyEditorViewController+Util.m */,
-				F274729D1B44FF320033C58F /* ModMelodyEditorViewController+Data.h */,
-				F274729E1B44FF320033C58F /* ModMelodyEditorViewController+Data.m */,
-				F274729A1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.h */,
-				F274729B1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m */,
-				F21CD4B31B4326F800AAE260 /* ModMelodyEditorViewController+Controls.h */,
-				F21CD4B41B4326F800AAE260 /* ModMelodyEditorViewController+Controls.m */,
-				F21CD4B01B43214600AAE260 /* ModMelodyEditorViewController+Setup.h */,
-				F21CD4B11B43214600AAE260 /* ModMelodyEditorViewController+Setup.m */,
-				F21CD4AD1B43212D00AAE260 /* ModMelodyEditorViewController+Layout.h */,
-				F21CD4AE1B43212D00AAE260 /* ModMelodyEditorViewController+Layout.m */,
-				F2CC5FD21B4221FA00D56988 /* ModMelodyEditorStepPitchView.h */,
-				F2CC5FD31B4221FA00D56988 /* ModMelodyEditorStepPitchView.m */,
-				F21CD4BD1B432E4600AAE260 /* ModMelodyEditorStepPitchView+Setup.h */,
-				F21CD4BE1B432E4600AAE260 /* ModMelodyEditorStepPitchView+Setup.m */,
-				F21CD4BA1B432DDC00AAE260 /* ModMelodyEditorStepPitchView+Layout.h */,
-				F21CD4BB1B432DDC00AAE260 /* ModMelodyEditorStepPitchView+Layout.m */,
-				F21CD4B61B432AFB00AAE260 /* ModMelodyEditorStepPitchView+Touches.h */,
-				F21CD4B71B432AFB00AAE260 /* ModMelodyEditorStepPitchView+Touches.m */,
-				F2CC5FCF1B42077D00D56988 /* ModMelodyEditorSwitch.h */,
-				F2CC5FD01B42077D00D56988 /* ModMelodyEditorSwitch.m */,
-			);
-			name = ModEditor;
 			sourceTree = "<group>";
 		};
 		F21CD4C91B4336BD00AAE260 /* MyGLK */ = {
@@ -2034,8 +1957,6 @@
 				F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */,
 				F2F0FE921B34D27B00B00A21 /* MyGLKViewController+Labels.h */,
 				F2F0FE931B34D27B00B00A21 /* MyGLKViewController+Labels.m */,
-				F2399C781B3267D20062B5E6 /* MyGLKViewController+Touch.h */,
-				F2399C791B3267D20062B5E6 /* MyGLKViewController+Touch.m */,
 			);
 			name = MyGLK;
 			sourceTree = "<group>";
@@ -2045,12 +1966,14 @@
 			children = (
 				F2D3DFA71B3A10A8000AA933 /* MMRootViewController.h */,
 				F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */,
-				F21CD4C61B43331500AAE260 /* MMRootViewController+Editor.h */,
-				F21CD4C71B43331500AAE260 /* MMRootViewController+Editor.m */,
-				F2D3DFAA1B3A178D000AA933 /* MMRootViewController+Touches.h */,
-				F2D3DFAB1B3A178D000AA933 /* MMRootViewController+Touches.m */,
 				F2D3DFAD1B3A1859000AA933 /* MMRootViewController+Mods.h */,
 				F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */,
+				F2917A061B4CCF6F0048591D /* MMRootViewController+Drawer.h */,
+				F2917A071B4CCF6F0048591D /* MMRootViewController+Drawer.m */,
+				F29179FE1B4CBD4B0048591D /* MMLongPressGestureRecognizer.h */,
+				F29179FF1B4CBD4B0048591D /* MMLongPressGestureRecognizer.m */,
+				F2917A011B4CC67B0048591D /* MMTapGestureRecognizer.h */,
+				F2917A021B4CC67B0048591D /* MMTapGestureRecognizer.m */,
 			);
 			name = Root;
 			sourceTree = "<group>";
@@ -2218,11 +2141,9 @@
 				F2B2AB7D19FF273F003042D6 /* Pd */,
 				F2DE9E941B222A0E00FEBE5F /* Categories */,
 				F2AD7F351A47EEA100840ABC /* MM */,
-				F2D06FAE1B2933ED00AA7708 /* ViewController */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
 				F21CD4CA1B4336CD00AAE260 /* Root */,
-				F21CD4AC1B4320BA00AAE260 /* ModEditor */,
 				F21CD4C91B4336BD00AAE260 /* MyGLK */,
 				F246EF141A01A86400357005 /* modmusica_1.pd */,
 				F2B2AB5819FF1739003042D6 /* Main.storyboard */,
@@ -2230,6 +2151,7 @@
 				F2B2AB5D19FF1739003042D6 /* LaunchScreen.xib */,
 				F2B2AB4E19FF1739003042D6 /* Supporting Files */,
 				F2E06AC71B3C876400D0B880 /* Brushed_Aluminum_Dark.png */,
+				F2917A041B4CCCA30048591D /* LaunchImage.png */,
 				F2E06AC81B3C876400D0B880 /* Brushed_Aluminum.png */,
 				F2E06ACB1B3C948A00D0B880 /* tile_floor.png */,
 			);
@@ -2888,19 +2810,6 @@
 			name = MMModuleTable;
 			sourceTree = "<group>";
 		};
-		F2D06FAE1B2933ED00AA7708 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				F2B2AB5519FF1739003042D6 /* ViewController.h */,
-				F2B2AB5619FF1739003042D6 /* ViewController.m */,
-				F2575C161B27975100DE5571 /* ViewController+Module.h */,
-				F2575C171B27975100DE5571 /* ViewController+Module.m */,
-				F2A68BD01B2773AE00FA13F5 /* ViewController+Touch.h */,
-				F2A68BD11B2773AE00FA13F5 /* ViewController+Touch.m */,
-			);
-			name = ViewController;
-			sourceTree = "<group>";
-		};
 		F2D06FAF1B29386500AA7708 /* sad */ = {
 			isa = PBXGroup;
 			children = (
@@ -3381,6 +3290,9 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = MB536HH275;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.InterAppAudio = {
 								enabled = 1;
 							};
@@ -3878,6 +3790,7 @@
 				F2EE017C1A11A22100398C04 /* e_vocoder.pd in Resources */,
 				F2DE9EB31B2245DD00FEBE5F /* mm_blsine~.pd in Resources */,
 				F2B2B16019FF281F003042D6 /* ctr.pd in Resources */,
+				F2917A051B4CCCA30048591D /* LaunchImage.png in Resources */,
 				F29B436C1A327AE5006AD07F /* 1-gs.csv in Resources */,
 				F2EE01081A11A22100398C04 /* c_adsrj-help.pd in Resources */,
 				F2EE010A1A11A22100398C04 /* c_bangx-help.pd in Resources */,
@@ -4337,15 +4250,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F274729C1B44FDE40033C58F /* ModMelodyEditorViewController+Switches.m in Sources */,
 				F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */,
 				F2FD2BC61B2A899600974562 /* MMScopeDepthManager.m in Sources */,
-				F21CD4B51B4326F800AAE260 /* ModMelodyEditorViewController+Controls.m in Sources */,
 				F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */,
 				F2FD2BC31B2A891000974562 /* MMAudioScopeViewController+Depth.m in Sources */,
-				F21CD4B21B43214600AAE260 /* ModMelodyEditorViewController+Setup.m in Sources */,
 				F2EE019E1A11A22100398C04 /* HBVOperation.m in Sources */,
-				F2B2AB5719FF1739003042D6 /* ViewController.m in Sources */,
 				F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */,
 				F24A86BB1A0074D000875B66 /* UIColor+HBVHarmonies.m in Sources */,
 				F2FC4FF31B3E19CB000CE7EB /* MMModuleSwitchCellView.m in Sources */,
@@ -4358,43 +4267,31 @@
 				F2B2B0F519FF281F003042D6 /* makefile in Sources */,
 				F21CD4CD1B43390800AAE260 /* MMModuleEditCellView.m in Sources */,
 				F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */,
-				F21CD4C51B4332BF00AAE260 /* ModEditorRootViewController.m in Sources */,
 				F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */,
-				F2399C7A1B3267D20062B5E6 /* MyGLKViewController+Touch.m in Sources */,
-				F21CD4C81B43331500AAE260 /* MMRootViewController+Editor.m in Sources */,
-				F21CD4AF1B43212D00AAE260 /* ModMelodyEditorViewController+Layout.m in Sources */,
-				F2CC5FD11B42077D00D56988 /* ModMelodyEditorSwitch.m in Sources */,
 				F2B2B17019FF281F003042D6 /* Helmholtz.cpp in Sources */,
 				F2DE9EA51B22370D00FEBE5F /* KaleidoscopeViewController.m in Sources */,
 				F2B2B0F319FF281F003042D6 /* bonk~.c in Sources */,
 				F2B2AB5419FF1739003042D6 /* AppDelegate.m in Sources */,
 				F2FD2BC01B2A84F100974562 /* MMAudioScopeViewController+Random.m in Sources */,
-				F2A68BD21B2773AE00FA13F5 /* ViewController+Touch.m in Sources */,
 				F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */,
-				F21CD4B81B432AFB00AAE260 /* ModMelodyEditorStepPitchView+Touches.m in Sources */,
+				F2917A031B4CC67B0048591D /* MMTapGestureRecognizer.m in Sources */,
 				F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */,
 				F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */,
 				F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */,
 				F2FC4FE71B3DEDD6000CE7EB /* MyGLKViewController+Button.m in Sources */,
 				F2DE9EC81B22BA9600FEBE5F /* MMAudioScopeViewController+Path.m in Sources */,
-				F21CD4BF1B432E4600AAE260 /* ModMelodyEditorStepPitchView+Setup.m in Sources */,
 				F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */,
 				F2F676AB1B2B900400CA79A9 /* MyGLKViewController.m in Sources */,
-				F2D3DFAC1B3A178D000AA933 /* MMRootViewController+Touches.m in Sources */,
 				F2DE9EA81B22407600FEBE5F /* MMScopeDataSource.m in Sources */,
 				F2F0FE941B34D27B00B00A21 /* MyGLKViewController+Labels.m in Sources */,
 				F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */,
-				F21CD4BC1B432DDC00AAE260 /* ModMelodyEditorStepPitchView+Layout.m in Sources */,
 				F2B2AF4419FF27BE003042D6 /* vexp_if.c in Sources */,
+				F2917A001B4CBD4B0048591D /* MMLongPressGestureRecognizer.m in Sources */,
+				F2917A081B4CCF6F0048591D /* MMRootViewController+Drawer.m in Sources */,
 				F2B2AB5119FF1739003042D6 /* main.m in Sources */,
-				F2CC5FD41B4221FA00D56988 /* ModMelodyEditorStepPitchView.m in Sources */,
 				F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */,
-				F2575C181B27975100DE5571 /* ViewController+Module.m in Sources */,
 				F2B2AF4319FF27BE003042D6 /* vexp_fun.c in Sources */,
-				F274729F1B44FF320033C58F /* ModMelodyEditorViewController+Data.m in Sources */,
-				F2CC5FCE1B42075500D56988 /* ModMelodyEditorViewController.m in Sources */,
 				F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */,
-				F27472A21B4500100033C58F /* ModMelodyEditorViewController+Util.m in Sources */,
 				F2B2B17119FF281F003042D6 /* helmholtz~.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4521,7 +4418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ModMusica/ModMusica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ModMusica/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4554,7 +4451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ModMusica/ModMusica.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = ModMusica/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -51,11 +51,6 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
 - (void)tapInCellButton:(id)sender
 {
     UIButton *button = sender;
-    if (button.tag == 111) {
-        [self.delegate moduleViewEdit:self];
-        return;
-    }
-    
     if (button.tag < self.modules.count) {
         NSDictionary *mod = self.modules[button.tag];
         NSString *modName = mod[@"title"];
@@ -66,9 +61,10 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
 - (void)handleActionSwitch:(id)sender
 {
     UISwitch *mySwitch = (UISwitch *)sender;
-    if (mySwitch.tag == 0) {
+    if (mySwitch.tag == self.modules.count) {
         [self.delegate moduleView:self shuffleDidChange:(int)mySwitch.isOn];
-    }else if (mySwitch.tag == 1){
+        [self.tableView reloadData];
+    }else if (mySwitch.tag == 0){
         [self.delegate moduleView:self lockTempoDidChange:(int)mySwitch.isOn];
     }
 }
@@ -97,100 +93,93 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (section == 0) {
-        return self.modules.count;
+        return (self.modules.count + 1);
     }else{
-        return 2;
+        return 1;
     }
 }
+
+- (void)configureModCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UIColor *fillColor = [self.delegate currentFillColor];
+    UIColor *textColor = [self.delegate currentTextColor];
+    
+    MMModuleCellView *c = (MMModuleCellView *)cell;
+    NSDictionary *mod = self.modules[indexPath.row];
+    c.titleLabel.text = mod[@"title"];
+    NSNumber *purchased = mod[@"purchased"];
+    c.actionButton.tag = indexPath.row;
+    c.actionButton.layer.cornerRadius = 4;
+    c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
+    c.contentView.backgroundColor = [fillColor jitterWithPercent:5];
+    [c.actionButton setTitleColor:[fillColor jitterWithPercent:5] forState:UIControlStateNormal];
+    [c.actionButton setBackgroundColor:[textColor jitterWithPercent:5]];
+    [c.actionButton addTarget:self action:@selector(tapInCellButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    if (purchased.integerValue) {
+        [c.actionButton setTitle:NSLocalizedString(@"PLAY", nil) forState:UIControlStateNormal];
+    }else{
+        [c.actionButton setTitle:NSLocalizedString(@"GET", nil) forState:UIControlStateNormal];
+    }
+    
+    if ([self.datasource modsAreShuffled:self]) {
+        c.actionButton.enabled = NO;
+    }else{
+        c.actionButton.enabled = YES;
+    }
+    
+    [c.contentView layoutIfNeeded];
+}
+
+- (void)configureSwitchCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    UIColor *fillColor = [self.delegate currentFillColor];
+    UIColor *textColor = [self.delegate currentTextColor];
+    
+    MMModuleSwitchCellView *c = (MMModuleSwitchCellView *)cell;
+    c.actionSwitch.tag = indexPath.row;
+    c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
+    c.contentView.backgroundColor = [fillColor jitterWithPercent:5];
+    
+    [c.actionSwitch setTintColor:[textColor jitterWithPercent:5]];
+    [c.actionSwitch setOnTintColor:[textColor jitterWithPercent:5]];
+    c.titleLabel.textColor = textColor;
+    [c.actionSwitch addTarget:self action:@selector(handleActionSwitch:) forControlEvents:UIControlEventValueChanged];
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = nil;
+    UIColor *fillColor = [self.delegate currentFillColor];
+    UIColor *textColor = [self.delegate currentTextColor];
     
+    tableView.backgroundView.backgroundColor = fillColor;
+    tableView.backgroundColor = fillColor;
+    
+    self.sectionHeaderLabel1.textColor = textColor;
+    self.sectionHeaderView1.backgroundColor = fillColor;
+    self.sectionHeaderLabel2.textColor = textColor;
+    self.sectionHeaderView2.backgroundColor = fillColor;
+
     if (indexPath.section == 0) {
         
-        cell = [tableView dequeueReusableCellWithIdentifier:kModuleCellId forIndexPath:indexPath];
-        
-        MMModuleCellView *c = (MMModuleCellView *)cell;
-        NSDictionary *mod = self.modules[indexPath.row];
-        c.titleLabel.text = mod[@"title"];
-        NSNumber *purchased = mod[@"purchased"];
-        c.actionButton.tag = indexPath.row;
-        c.actionButton.layer.cornerRadius = 4;
-        c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
-        UIColor *fillColor = [self.delegate currentFillColor];
-        UIColor *textColor = [self.delegate currentTextColor];
-        
-        c.contentView.backgroundColor = [fillColor jitterWithPercent:5];
-        
-        tableView.backgroundView.backgroundColor = fillColor;
-        
-        [c.actionButton setTitleColor:[fillColor jitterWithPercent:5] forState:UIControlStateNormal];
-        
-        [c.actionButton setBackgroundColor:[textColor jitterWithPercent:5]];
-        
-        c.titleLabel.textColor = textColor;
-        self.sectionHeaderLabel1.textColor = [textColor jitterWithPercent:5];
-        self.sectionHeaderView1.backgroundColor = [fillColor jitterWithPercent:5];
-        tableView.backgroundColor = [fillColor jitterWithPercent:5];
-        
-        [c.actionButton addTarget:self action:@selector(tapInCellButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        if (purchased.integerValue) {
-            [c.actionButton setTitle:NSLocalizedString(@"PLAY", nil) forState:UIControlStateNormal];
+        if (indexPath.row < self.modules.count) {
+            cell = [tableView dequeueReusableCellWithIdentifier:kModuleCellId forIndexPath:indexPath];
+            [self configureModCell:cell atIndexPath:indexPath];
         }else{
-            [c.actionButton setTitle:NSLocalizedString(@"GET", nil) forState:UIControlStateNormal];
+            cell = [tableView dequeueReusableCellWithIdentifier:kModuleSwitchCellId forIndexPath:indexPath];
+            [self configureSwitchCell:cell atIndexPath:indexPath];
+            [(MMModuleSwitchCellView *)cell titleLabel].text = @"shuffle";
         }
-        // Configure the cell...
-        [c.contentView layoutIfNeeded];
 
     }else if (indexPath.section == 1){
-        
-        UIColor *fillColor = [self.delegate currentFillColor];
-        UIColor *textColor = [self.delegate currentTextColor];
-        
-        if (indexPath.row < 2) {
-            cell = [tableView dequeueReusableCellWithIdentifier:kModuleSwitchCellId forIndexPath:indexPath];
-            MMModuleSwitchCellView *c = (MMModuleSwitchCellView *)cell;
-            if (indexPath.row == 0){
-                c.titleLabel.text = @"Shuffle mods";
-            }else{
-                c.titleLabel.text = @"Lock tempo";
-            }
-            
-            c.actionSwitch.tag = indexPath.row;
-            c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
-            
-            c.contentView.backgroundColor = [fillColor jitterWithPercent:5];
-            
-            tableView.backgroundView.backgroundColor = fillColor;
-            [c.actionSwitch setTintColor:[textColor jitterWithPercent:5]];
-            
-            c.titleLabel.textColor = textColor;
-            self.sectionHeaderLabel2.textColor = [textColor jitterWithPercent:5];
-            self.sectionHeaderView2.backgroundColor = [fillColor jitterWithPercent:5];
-            tableView.backgroundColor = [fillColor jitterWithPercent:5];
-            
-            [c.actionSwitch addTarget:self action:@selector(handleActionSwitch:) forControlEvents:UIControlEventValueChanged];
-            
-        }else if (indexPath.row == 2){
-            
-            cell = [tableView dequeueReusableCellWithIdentifier:kModuleEditCellId forIndexPath:indexPath];
-            MMModuleEditCellView *c = (MMModuleEditCellView *)cell;
-            c.titleLabel.text = @"Edit mod";
-            c.actionButton.tag = 111;
-            c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
-            [c.actionButton setTitleColor:[fillColor jitterWithPercent:5] forState:UIControlStateNormal];
-            [c.actionButton setTintColor:[textColor jitterWithPercent:5]];
-            c.titleLabel.textColor = textColor;
-            
-            [c.actionButton addTarget:self action:@selector(tapInCellButton:) forControlEvents:UIControlEventTouchUpInside];
-            c.contentView.backgroundColor = [fillColor jitterWithPercent:5];
 
-        }
-    
+        cell = [tableView dequeueReusableCellWithIdentifier:kModuleSwitchCellId forIndexPath:indexPath];
+        [self configureSwitchCell:cell atIndexPath:indexPath];
+        [(MMModuleSwitchCellView *)cell titleLabel].text = @"lock";
     }
-    
     
     return cell;
 }
@@ -205,14 +194,14 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
         titleLabel.textColor = [self.delegate currentTextColor];
         titleLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]*1.3];
     if (section == 0) {
-        titleLabel.text = NSLocalizedString(@"Mods",nil);
+        titleLabel.text = NSLocalizedString(@"mods",nil);
         self.sectionHeaderLabel1 = titleLabel;
         self.sectionHeaderView1 = header;
 
     }else if (section == 1){
         self.sectionHeaderLabel2 = titleLabel;
         self.sectionHeaderView2 = header;
-        titleLabel.text = NSLocalizedString(@"Options",nil);
+        titleLabel.text = NSLocalizedString(@"tempo",nil);
 
     }
         [header addSubview:titleLabel];

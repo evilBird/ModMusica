@@ -18,14 +18,13 @@
 - (CGFloat)openDrawerWidth;
 - (UIColor *)currentFillColor;
 - (UIColor *)currentTextColor;
-- (void)moduleViewEdit:(id)sender;
-
 
 @end
 
 @protocol MMModuleViewControllerDatasource <NSObject>
 
 - (NSArray *)modulesForModuleView:(id)sender;
+- (BOOL)modsAreShuffled:(id)sender;
 
 @end
 

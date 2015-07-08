@@ -71,6 +71,18 @@ void _randomRGB(GLfloat rgb[], int n)
     }
 }
 
+void _randomRGBInRange(GLfloat rgb[], GLfloat min, GLfloat max,int n)
+{
+    GLfloat range = max - min;
+    uint32_t upperBound = (uint32_t)(range * 1000);
+    
+    for (int i = 0; i < (n*3); i ++) {
+        GLfloat random = (GLfloat)(arc4random_uniform(upperBound));
+        
+        rgb[i] = (GLfloat)(random * 0.001);
+    }
+}
+
 void _makeMeshIndices(GLuint indices[], int x, int y)
 {
     if (x < 2|| y < 2) {
@@ -319,7 +331,6 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
 #endif
     int numCols = numTables * verticesPerSample;
     int numSamples = numTables * samplesPerTable;
-    int numVertices = numTables * samplesPerTable * verticesPerSample;
     
     if ((calls%2400) == 0) {
         newCols = YES;

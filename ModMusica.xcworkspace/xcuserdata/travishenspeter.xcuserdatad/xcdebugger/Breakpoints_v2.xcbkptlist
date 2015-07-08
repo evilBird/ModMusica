@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MyGLKFunctions.h"
-            timestampString = "457039698.169861"
+            timestampString = "458022934.881545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
-            landmarkName = "_calculateNormalAtIndex(Vertex vertices[],int idx)"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "_calculateNormal(Vertex vertex1, Vertex vertex2, Vertex vertex3, GLfloat result[])"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -75,22 +75,6 @@
             endingLineNumber = "27"
             landmarkName = "-headerComponents"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ModMusica/MMRootViewController.m"
-            timestampString = "457511451.144031"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "@implementation MMRootViewController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
