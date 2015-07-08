@@ -21,6 +21,7 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 - (void)playbackBegan:(id)sender;
 - (void)playbackEnded:(id)sender;
 - (void)playback:(id)sender detectedUserTempo:(double)tempo;
+- (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName;
 
 @end
 

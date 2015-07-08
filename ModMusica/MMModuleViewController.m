@@ -108,6 +108,7 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     MMModuleCellView *c = (MMModuleCellView *)cell;
     NSDictionary *mod = self.modules[indexPath.row];
     c.titleLabel.text = mod[@"title"];
+    c.titleLabel.textColor = textColor;
     NSNumber *purchased = mod[@"purchased"];
     c.actionButton.tag = indexPath.row;
     c.actionButton.layer.cornerRadius = 4;

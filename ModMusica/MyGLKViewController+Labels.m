@@ -100,12 +100,15 @@ static NSTimer *infoLabelTimer;
         return;
     }
     
-    [UIView animateWithDuration:0.5 animations:^{
-        self.titleLabel.alpha = 1.0;
-        self.infoLabel.alpha = 1.0;
-        self.nowPlayingLabel.alpha = 1.0;
-        self.hamburgerButton.alpha = 1.0;
-    }];
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         self.titleLabel.alpha = 1.0;
+                         self.infoLabel.alpha = 1.0;
+                         self.nowPlayingLabel.alpha = 1.0;
+                         self.hamburgerButton.alpha = 1.0;
+                     } completion:nil];
 }
 
 - (void)setupLabelConstraints

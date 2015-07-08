@@ -86,12 +86,6 @@
 {
     NSString *prevModName = _currentModName;
     _currentModName = currentModName;
-    
-    if (!prevModName || ![currentModName isEqualToString:prevModName]) {
-        self.playbackController.patternName = currentModName;
-        [self updateLabelText];
-        [self showDetails];
-    }
 }
 
 #pragma mark - Private Methods
@@ -309,6 +303,7 @@
     [self setupLabels];
     [self updateLabelText];
     [self setupHamburgerButton];
+    [self updateLabelColors];
 }
 
 - (void)setupPlayback
@@ -388,6 +383,13 @@
     if (!self.labelUpdateTimer.isValid) {
         [self showTempoInfo:tempoInfo];
     }
+}
+
+- (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
+{
+    self.currentModName = moduleName;
+    [self updateLabelText];
+    [self showDetails];
 }
 
 #pragma mark - Reference Frame
