@@ -195,7 +195,7 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
         titleLabel.textColor = [self.delegate currentTextColor];
         titleLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]*1.3];
     if (section == 0) {
-        titleLabel.text = NSLocalizedString(@"mods",nil);
+        titleLabel.text = NSLocalizedString(@"music",nil);
         self.sectionHeaderLabel1 = titleLabel;
         self.sectionHeaderView1 = header;
 

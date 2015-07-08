@@ -28,8 +28,7 @@
 
 - (void)viewDidLoad {
     
-    [super viewDidLoad];
-    
+    [super viewDidLoad];    
     self.delegate = self;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.myGLKViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyGLKViewController"];

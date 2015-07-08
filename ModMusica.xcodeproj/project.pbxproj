@@ -10,6 +10,7 @@
 		521F96ADB97CBCE51F347099 /* libPods-ModMusica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C766045950CFEDBA070D14FE /* libPods-ModMusica.a */; };
 		F2162CE91A0876FF0016C544 /* mm_bsosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE71A0876FF0016C544 /* mm_bsosc~.pd */; };
 		F2162CEA1A0876FF0016C544 /* mm_sosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE81A0876FF0016C544 /* mm_sosc~.pd */; };
+		F218FF1C1B4DA48D000CB182 /* NSUserDefaults+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F218FF1B1B4DA48D000CB182 /* NSUserDefaults+Mods.m */; };
 		F21CD4CD1B43390800AAE260 /* MMModuleEditCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4CC1B43390800AAE260 /* MMModuleEditCellView.m */; };
 		F22C3E171A06E29900A18E0C /* modmusica_2.pd in Resources */ = {isa = PBXBuildFile; fileRef = F22C3E161A06E29900A18E0C /* modmusica_2.pd */; };
 		F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F235E6711A33DD0100F67F8E /* BSDKaleidoscopeFilter.m */; };
@@ -944,6 +945,8 @@
 		C766045950CFEDBA070D14FE /* libPods-ModMusica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ModMusica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2162CE71A0876FF0016C544 /* mm_bsosc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_bsosc~.pd"; sourceTree = "<group>"; };
 		F2162CE81A0876FF0016C544 /* mm_sosc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_sosc~.pd"; sourceTree = "<group>"; };
+		F218FF1A1B4DA48D000CB182 /* NSUserDefaults+Mods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Mods.h"; sourceTree = "<group>"; };
+		F218FF1B1B4DA48D000CB182 /* NSUserDefaults+Mods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Mods.m"; sourceTree = "<group>"; };
 		F21CD4CB1B43390800AAE260 /* MMModuleEditCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleEditCellView.h; sourceTree = "<group>"; };
 		F21CD4CC1B43390800AAE260 /* MMModuleEditCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleEditCellView.m; sourceTree = "<group>"; };
 		F22C3E161A06E29900A18E0C /* modmusica_2.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_2.pd; sourceTree = "<group>"; };
@@ -2143,6 +2146,8 @@
 				F2AD7F351A47EEA100840ABC /* MM */,
 				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
 				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
+				F218FF1A1B4DA48D000CB182 /* NSUserDefaults+Mods.h */,
+				F218FF1B1B4DA48D000CB182 /* NSUserDefaults+Mods.m */,
 				F21CD4CA1B4336CD00AAE260 /* Root */,
 				F21CD4C91B4336BD00AAE260 /* MyGLK */,
 				F246EF141A01A86400357005 /* modmusica_1.pd */,
@@ -4252,6 +4257,7 @@
 			files = (
 				F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */,
 				F2FD2BC61B2A899600974562 /* MMScopeDepthManager.m in Sources */,
+				F218FF1C1B4DA48D000CB182 /* NSUserDefaults+Mods.m in Sources */,
 				F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */,
 				F2FD2BC31B2A891000974562 /* MMAudioScopeViewController+Depth.m in Sources */,
 				F2EE019E1A11A22100398C04 /* HBVOperation.m in Sources */,

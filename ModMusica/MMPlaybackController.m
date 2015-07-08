@@ -114,7 +114,7 @@ void bonk_tilde_setup(void);
 - (void)commonInit
 {
     self.patternLoader = [[MMPatternLoader alloc]init];
-    self.patterns = [MMModuleManager modNames];
+    self.patterns = [MMModuleManager purchasedMods];
     kIdx = -1;
     kPrev = 0;
     [self initalizePd];
@@ -203,7 +203,7 @@ void bonk_tilde_setup(void);
     
     if (self.isShuffled) {
         if (rand < 10) {
-            NSArray *mods = [MMModuleManager modNames];
+            NSArray *mods = [MMModuleManager purchasedModNames];
             NSUInteger idx = (NSUInteger)((int)arc4random_uniform(100)%(int)mods.count);
             NSString *pattern = mods[idx];
             self.patternName = pattern;

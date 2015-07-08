@@ -10,8 +10,12 @@
 
 @interface MMModuleManager : NSObject
 
-+ (NSArray *)modNames;
++ (NSArray *)availableMods;
++ (NSArray *)purchasedMods;
++ (NSArray *)availableModNames;
++ (NSArray *)purchasedModNames;
++ (NSDictionary *)getMod:(NSString *)modName fromArray:(NSArray *)mods;
 
-+ (NSArray *)mods;
++ (void)purchaseMod:(NSString *)modName completion:(void(^)(BOOL success))completion;
 
 @end
