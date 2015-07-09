@@ -10,6 +10,8 @@
 
 @interface MMRootViewController (Drawer)<MSDynamicsDrawerViewControllerDelegate,MyGLKViewControllerDelegate>
 
+- (void)setupDrawerDynamics;
+
 #pragma mark - MSDynamicsViewControllerDelegate
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction;
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction;

@@ -41,7 +41,7 @@
         CGFloat randomAlpha = arc4random_uniform(100) * 0.01 * coeff;
         CGColorRef col = layer.fillColor;
         UIColor *prevColor = [UIColor colorWithCGColor:col];
-        UIColor *adjustedColor = [prevColor adjustAlpha:randomAlpha];
+        UIColor *adjustedColor = [prevColor setAlpha:randomAlpha];
         layer.fillColor = adjustedColor.CGColor;
     }
 }

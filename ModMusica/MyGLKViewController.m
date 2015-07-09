@@ -162,7 +162,7 @@
     
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     
-    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate;
+    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate/4;
     
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation_y), 0, 1, 0);
@@ -322,8 +322,8 @@
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
     self.playbackController.patternName = @"mario";
-    self.playbackController.patternLoader.currentPattern = @"mario";
-    self.currentModName = @"mario";
+    //self.playbackController.patternLoader.currentPattern = @"mario";
+    //self.currentModName = @"mario";
 }
 
 #pragma mark - Helpers
@@ -398,8 +398,12 @@
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
 {
     self.currentModName = moduleName;
+    [self randomizeColors];
     [self updateLabelText];
     [self showDetails];
+    if (!self.playing) {
+        self.playing = YES;
+    }
 }
 
 #pragma mark - Reference Frame

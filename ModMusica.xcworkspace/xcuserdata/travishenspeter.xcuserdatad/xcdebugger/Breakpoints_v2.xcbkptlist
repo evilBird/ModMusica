@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MMPlaybackController.m"
-            timestampString = "458026676.025616"
+            timestampString = "458154275.781102"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
@@ -131,13 +131,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ModMusica/MMPatternLoader.m"
-            timestampString = "458104505.470832"
+            filePath = "ModMusica/MMPlaybackController.m"
+            timestampString = "458108838.071087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-loadPattern:"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-playPattern:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModMusica/MMPlaybackController.m"
+            timestampString = "458154275.781102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "-playPattern:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -148,12 +164,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ModMusica/MMPatternLoader.m"
-            timestampString = "458104506.616495"
+            timestampString = "458108702.665487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "-loadPattern:"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-playSection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModMusica/MMPatternLoader.m"
+            timestampString = "458108706.043379"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-playSection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ModMusica/MMPatternLoader.m"
+            timestampString = "458108784.277282"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "-loadPattern:section:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

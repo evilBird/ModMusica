@@ -32,7 +32,7 @@
 
 - (void)setMainColor:(UIColor *)mainColor
 {
-    _mainColor = [mainColor adjustAlpha:0.7];
+    _mainColor = [mainColor setAlpha:0.7];
     [self setNeedsDisplay];
 }
 

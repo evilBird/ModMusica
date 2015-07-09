@@ -24,16 +24,61 @@
     return [self getGLKViewController].playbackController.isShuffled;
 }
 
+- (NSArray *)moduleNamesForView:(id)sender
+{
+    NSArray *names = [MMModuleManager availableModNames];
+    NSArray *sorted = [names sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    return sorted;
+}
+
+- (NSDictionary *)modForName:(NSString *)modName
+{
+    return [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]];
+}
+
+- (BOOL)modIsPurchased:(NSString *)modName
+{
+    NSDictionary *mod = [MMModuleManager getMod:modName fromArray:[MMModuleManager purchasedMods]];
+    
+    if (mod) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)playbackIsActive
+{
+    return [self getGLKViewController].isPlaying;
+}
+
+- (NSString *)formattedPriceForMod:(NSString *)modName
+{
+    NSDictionary *mod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]];
+    if (!mod) {
+        return nil;
+    }
+    
+    return mod[kProductFormattedPriceKey];
+}
+
+- (NSString *)currentModName
+{
+    return [self getGLKViewController].playbackController.patternName;
+}
+
 - (void)setCurrentMod:(NSString *)moduleName
 {
+    if (!moduleName) {
+        return;
+    }
+    
+    [[self getGLKViewController].playbackController playPattern:moduleName];
     __weak MMRootViewController *weakself = self;
-    [self setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:NO completion:^{
-        [[weakself getGLKViewController].playbackController playPattern:moduleName];
-        [[weakself getGLKViewController]randomizeColors];
-        if (![weakself getGLKViewController].isPlaying) {
-            [weakself getGLKViewController].playing = YES;
-        }
-    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:YES completion:nil];
+    });
 }
 
 #pragma mark - MMModuleViewControllerDelegate
@@ -41,25 +86,34 @@
 - (void)moduleView:(id)sender tappedButton:(id)button selectedModuleWithName:(NSString *)moduleName
 {
     __weak MMRootViewController *weakself = self;
-    if (![MMModuleManager getMod:moduleName fromArray:[MMModuleManager purchasedMods]]) {
-        
-        UIButton *myButton = button;
-        if (!myButton.isSelected) {
-            myButton.selected = YES;
-            return;
-        }else{
-            [MMModuleManager purchaseMod:moduleName completion:^(BOOL success) {
-                if (success) {
-                    [[(MMModuleViewController *)sender tableView] reloadData];
-                    [weakself setCurrentMod:moduleName];
-                }
-            }];
-        }
-        
+    
+    NSDictionary *mod = [MMModuleManager getMod:moduleName fromArray:[MMModuleManager purchasedMods]];
+    if (mod) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[(MMModuleViewController *)sender tableView] reloadData];
+        });
+        [self setCurrentMod:moduleName];
         return;
     }
     
-    [self setCurrentMod:moduleName];
+    if (!mod) {
+        __block UIButton *myButton = button;
+        myButton.enabled = NO;
+        [MMModuleManager purchaseMod:moduleName completion:^(BOOL success) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    myButton.enabled = YES;
+                    [[(MMModuleViewController *)sender tableView] reloadData];
+                    [weakself setCurrentMod:moduleName];
+                }else{
+                    myButton.enabled = YES;
+                    [[(MMModuleViewController *)sender tableView] reloadData];
+                }
+            });
+        }];
+        
+    }
+    
 }
 
 - (void)moduleView:(id)sender shuffleDidChange:(int)shuffle

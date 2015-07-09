@@ -13,7 +13,7 @@
 #import "MMScopeDataSource.h"
 #import "MMModuleManager.h"
 
-static float kDrumVolume = 0.35;
+static float kDrumVolume = 0.4;
 static float kBassVolume = 0.3;
 static float kSynthVolume = 0.25;
 static float kSamplerVolume = 0.30;

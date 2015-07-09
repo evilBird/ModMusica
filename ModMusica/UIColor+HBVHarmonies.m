@@ -8,6 +8,14 @@
 
 #import "UIColor+HBVHarmonies.h"
 
+static void _getRGBA(UIColor *color, CGFloat rgba[])
+{
+    rgba[0] = CGColorGetComponents(color.CGColor)[0];
+    rgba[1] = CGColorGetComponents(color.CGColor)[1];
+    rgba[2] = CGColorGetComponents(color.CGColor)[2];
+    rgba[3] = CGColorGetComponents(color.CGColor)[3];
+}
+
 @implementation UIColor (HBVHarmonies)
 
 #pragma mark - Public methods
@@ -25,6 +33,13 @@
     
     result = [UIColor colorWithRed:newComponents[0] green:newComponents[1] blue:newComponents[2] alpha:1.0];
     return result;
+}
+
+- (UIColor *)setAlpha:(CGFloat)alpha
+{
+    CGFloat myComponents[4];
+    _getRGBA(self, myComponents);
+    return [UIColor colorWithRed:myComponents[0] green:myComponents[1] blue:myComponents[2] alpha:alpha];
 }
 
 - (UIColor *)complement
@@ -95,19 +110,27 @@
     return result;
 }
 
-- (UIColor *)adjustAlpha:(CGFloat)alpha
+- (UIColor *)blendWithColor:(UIColor *)color
 {
-    UIColor *result = nil;
-    CGFloat newComponents[4];
-    for (NSInteger index = 0; index < 3; index ++) {
-        CGFloat newComponent = CGColorGetComponents(self.CGColor)[index];
-        newComponents[index] = newComponent;
-    }
-    
-    newComponents[3] = alpha;
-    result = [UIColor colorWithRed:newComponents[0] green:newComponents[1] blue:newComponents[2] alpha:newComponents[3]];
-    return result;
+    return [self blendWithColor:color weight:0.5];
 }
+
+- (UIColor *)blendWithColor:(UIColor *)color weight:(CGFloat)weight
+{
+    CGFloat myComponents[4];
+    CGFloat theirComponents[4];
+    CGFloat blendedComponents[4];
+    _getRGBA(self, myComponents);
+    _getRGBA(color, theirComponents);
+    blendedComponents[0] = (myComponents[0] * (1.0 - weight) + theirComponents[0] * weight);
+    blendedComponents[1] = (myComponents[1] * (1.0 - weight) + theirComponents[1] * weight);
+    blendedComponents[2] = (myComponents[2] * (1.0 - weight) + theirComponents[2] * weight);
+    blendedComponents[3] = (myComponents[3] * (1.0 - weight) + theirComponents[3] * weight);
+    
+    return [UIColor colorWithRed:blendedComponents[0] green:blendedComponents[1] blue:blendedComponents[2] alpha:blendedComponents[3]];
+
+}
+
 
 #pragma mark - Private methods
 
@@ -124,25 +147,5 @@
     return result;
 }
 
-- (UIColor *)blendColor1:(UIColor *)color1 withColor2:(UIColor *)color2 usingExpression:(CGFloat*(^)(CGFloat color1[],CGFloat color2[]))expression
-{
-    CGFloat color1Components[4];
-    CGFloat color2Components[4];
-    
-    for (NSInteger i = 0; i < 4; i ++) {
-        color1Components[i] = CGColorGetComponents(color1.CGColor)[i];
-        color2Components[i] = CGColorGetComponents(color2.CGColor)[i];
-    }
-    
-    CGFloat newComponents[4];
-    for (NSInteger i = 0; i < 4; i++) {
-        newComponents[i] = expression(color1Components,color2Components)[i];
-    }
-    UIColor *result = nil;
-    
-    result = [UIColor colorWithRed:newComponents[0] green:newComponents[1] blue:newComponents[2] alpha:newComponents[3]];
-    
-    return result;
-}
 
 @end

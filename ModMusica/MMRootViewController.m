@@ -50,6 +50,7 @@
     mm.datasource = self;
     [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
     [self setPaneDragRevealEnabled:YES forDirection:MSDynamicsDrawerDirectionLeft];
+    [self setupDrawerDynamics];
     
     // Do any additional setup after loading the view.
 }

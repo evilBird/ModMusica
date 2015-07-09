@@ -25,7 +25,14 @@
 @protocol MMModuleViewControllerDatasource <NSObject>
 
 - (NSArray *)modulesForModuleView:(id)sender;
+- (NSArray *)moduleNamesForView:(id)sender;
+- (NSDictionary *)modForName:(NSString *)modName;
+- (NSString *)currentModName;
 - (BOOL)modsAreShuffled:(id)sender;
+- (BOOL)modIsPurchased:(NSString *)modName;
+- (BOOL)playbackIsActive;
+- (NSString *)formattedPriceForMod:(NSString *)modName;
+
 
 @end
 
@@ -34,5 +41,6 @@
 @property (nonatomic,weak)      id<MMModuleViewControllerDelegate>      delegate;
 @property (nonatomic,weak)      id<MMModuleViewControllerDatasource>    datasource;
 @property (nonatomic,readonly)  NSArray                                 *modules;
+@property (nonatomic,readonly)  NSArray                                 *modName;
 
 @end

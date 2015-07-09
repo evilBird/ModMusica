@@ -10,6 +10,14 @@
 
 @implementation MMRootViewController (Drawer)
 
+- (void)setupDrawerDynamics
+{
+    self.elasticity = 0.2;
+    self.gravityMagnitude = 20.0;
+    self.bounceElasticity = 0.1;
+    self.bounceMagnitude = 0.1;
+}
+
 #pragma mark - MSDynamicsDrawerViewControllerDelegate
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {

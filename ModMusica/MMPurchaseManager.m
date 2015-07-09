@@ -182,7 +182,7 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
     NSString *folderPath = [documentsPath stringByAppendingPathComponent:productId];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:folderPath]) {
-        [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:nil];
+        [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     
     NSString *bundlePath = [folderPath stringByAppendingPathComponent:@"bundle"];
