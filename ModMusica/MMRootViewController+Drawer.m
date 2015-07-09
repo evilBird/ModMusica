@@ -12,10 +12,10 @@
 
 - (void)setupDrawerDynamics
 {
-    self.elasticity = 0.2;
-    self.gravityMagnitude = 20.0;
-    self.bounceElasticity = 0.1;
-    self.bounceMagnitude = 0.1;
+    self.elasticity = 0;
+    self.gravityMagnitude = 10.0;
+    self.bounceElasticity = 0;
+    self.bounceMagnitude = 0;
 }
 
 #pragma mark - MSDynamicsDrawerViewControllerDelegate

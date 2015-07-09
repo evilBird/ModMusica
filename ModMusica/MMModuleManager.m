@@ -76,48 +76,52 @@
 
 + (void)purchaseMod:(NSString *)modName completion:(void(^)(BOOL success))completion
 {
+    if (!completion) {
+        return;
+    }
+    
     if (!modName || !modName.length) {
-        if (completion) {
-            completion(NO);
-        }
+        completion(NO);
         return;
     }
     
-    if (![MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]] || [MMModuleManager getMod:modName fromArray:[MMModuleManager purchasedMods]])
+    if (![MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]])
     {
-        if (completion) {
-            completion(NO);
-        }
-        
+        completion(NO);
         return;
     }
     
     
-    [[MMPurchaseManager sharedInstance]buyProduct:modName completion:^(id product, NSError *error) {
-        
-        NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
-        
-        if (!error) {
-            
-            NSString *contentPath = product;
-            //NSString *contentPath = contentURL.path;
-            NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"Contents"];
-            purchasedMod[kProductPurchasedKey] = @(1);
-            purchasedMod[kProductContentPathKey] = productContentPath;
-            
-            [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
-            
-            if (completion) {
-                completion(YES);
-            }
-        }else{
-            
-            
-            purchasedMod[kProductPurchasedKey] = @(0);
-            if (completion) {
-                completion(NO);
-            }
-        }
+    if ([MMModuleManager getMod:modName fromArray:[MMModuleManager purchasedMods]]) {
+        completion(YES);
+        return;
+    }
+    
+    
+    [[NSOperationQueue new]addOperationWithBlock:^{
+        [[MMPurchaseManager sharedInstance]buyProduct:modName completion:^(id product, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!error) {
+                    NSString *contentPath = product;
+                    NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
+                    NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"Contents"];
+                    purchasedMod[kProductPurchasedKey] = @(1);
+                    purchasedMod[kProductContentPathKey] = productContentPath;
+                    
+                    [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
+                    
+                    if (completion) {
+                        completion(YES);
+                    }
+                }else{
+                    
+                    if (completion) {
+                        completion(NO);
+                    }
+                }
+                
+            });
+        }];
     }];
 }
 

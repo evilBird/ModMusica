@@ -12,6 +12,8 @@ static NSString *kMarioProductId = @"com.birdSound.modmusica.mario";
 static NSString *kFantasyProductId = @"com.birdSound.modmusica.fantasy";
 static NSString *kMegaProductId = @"com.birdSound.modmusica.mega";
 static NSString *kMenaceProductId = @"com.birdSound.modmusica.menace";
+static NSString *kFunkProductId = @"com.birdSound.modmusica.funk";
+static NSString *kSadProductId = @"com.birdSound.modmusica.sad";
 
 typedef void (^ProductRequestResponseHandler) (NSArray *products, NSError *error);
 typedef void (^ProductPurchaseHandler) (id product, NSError *error);
@@ -96,7 +98,7 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
 
 - (SKProductsRequest *)productsRequest
 {
-    NSArray *productIds = @[kMarioProductId, kFantasyProductId, kMegaProductId, kMenaceProductId];
+    NSArray *productIds = @[kMarioProductId, kFantasyProductId, kMegaProductId, kMenaceProductId,kSadProductId,kFunkProductId];
     NSSet *identifiers = [NSSet setWithArray:productIds];
     SKProductsRequest *request = [[SKProductsRequest alloc]initWithProductIdentifiers:identifiers];
     request.delegate = self;
@@ -194,52 +196,50 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray *)downloads
 {
     for (SKDownload *download in downloads) {
-        BOOL finished;
-        id content = nil;
-        NSError *error = nil;
+        BOOL finished = NO;
+        NSString *contentPath = nil;
+        NSError *error = download.error;
         switch (download.downloadState) {
             case SKDownloadStateCancelled:
             {
                 finished = YES;
                 error = [MMPurchaseManager transactionError:@"The download was cancelled"];
-                [queue finishTransaction:download.transaction];
             }
                 break;
             case SKDownloadStateFailed:
             {
                 finished = YES;
-                error = download.transaction.error;
-                [queue finishTransaction:download.transaction];
             }
                 break;
                 
             case SKDownloadStateFinished:
             {
                 finished = YES;
-                NSURL *contentURL = download.contentURL;
-                NSURL *copyToURL = [self urlForProductId:download.transaction.payment.productIdentifier];
-                [[NSFileManager defaultManager] copyItemAtURL:contentURL toURL:copyToURL error:&error];
-                
-                if (!error) {
-                    content = copyToURL.path;
-                }
-                
-                [queue finishTransaction:download.transaction];
             }
                 break;
                 
                 default:
-            {
-                finished = NO;
-            }
                 break;
         }
         
-        if (finished) {
+        if (finished || error) {
+            
+            if (!error) {
+                NSURL *contentURL = download.contentURL;
+                NSURL *copyToURL = [self urlForProductId:download.transaction.payment.productIdentifier];
+                [[NSFileManager defaultManager] copyItemAtURL:contentURL toURL:copyToURL error:&error];
+                contentPath = copyToURL.path;
+            }
+            
             ProductPurchaseHandler purchaseHandler = [self getPurchaseHandlerForProductId:download.transaction.payment.productIdentifier];
+            
             if (purchaseHandler) {
-                purchaseHandler(content,error);
+                purchaseHandler(contentPath,error);
                 [self removePurchasehandlerForProductId:download.transaction.payment.productIdentifier];
+                [queue finishTransaction:download.transaction];
+            }else{
+                [queue finishTransaction:download.transaction];
+                break;
             }
         }
         
@@ -248,46 +248,50 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    for (SKPaymentTransaction *transaction in transactions) {
-        id product = nil;
-        BOOL finished;
-        NSError *error = nil;
+    for (SKPaymentTransaction *transaction in transactions)
+    {
+        
+        BOOL finished = NO;
+        NSError *error = transaction.error;
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchased:
-                [queue startDownloads:transaction.downloads];
-                finished = NO;
-                break;
-                case SKPaymentTransactionStatePurchasing:
-                finished = NO;
+            {
+                finished = YES;
+            }
                 break;
                 case SKPaymentTransactionStateRestored:
-                [queue startDownloads:transaction.downloads];
-                finished = NO;
-                break;
-                case SKPaymentTransactionStateDeferred:
-                error = [MMPurchaseManager transactionError:@"Transaction was cancelled"];
-                [queue finishTransaction:transaction];
+            {
                 finished = YES;
+            }
                 break;
                 case SKPaymentTransactionStateFailed:
-                [queue finishTransaction:transaction];
-                error = transaction.error;
+            {
                 finished = YES;
+            }
                 break;
             default:
-                [queue finishTransaction:transaction];
-                finished = YES;
-                error = [MMPurchaseManager transactionError:@"Unknown error with purchase"];
                 break;
         }
-        
 
-        if (finished) {
-            ProductPurchaseHandler purchaseHandler = [self getPurchaseHandlerForProductId:transaction.payment.productIdentifier];
-            if (purchaseHandler) {
-                purchaseHandler(product,error);
-                [self removePurchasehandlerForProductId:transaction.payment.productIdentifier];
+        if (finished || error) {
+            
+            if (!error) {
+                
+                [queue startDownloads:transaction.downloads];
+                
+            }else{
+                
+                ProductPurchaseHandler purchaseHandler = [self getPurchaseHandlerForProductId:transaction.payment.productIdentifier];
+                if (purchaseHandler) {
+                    purchaseHandler(nil,error);
+                    [self removePurchasehandlerForProductId:transaction.payment.productIdentifier];
+                    [queue finishTransaction:transaction];
+                }else{
+                    [queue finishTransaction:transaction];
+                    break;
+                }
             }
+            
         }
         
     }

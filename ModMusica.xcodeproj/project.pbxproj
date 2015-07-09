@@ -23,44 +23,14 @@
 		F251C3371A005D7F00C8EE78 /* mm_test_sig.pd in Resources */ = {isa = PBXBuildFile; fileRef = F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */; };
 		F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2575C111B2792EA00DE5571 /* MMModuleViewController.m */; };
 		F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2575C141B27930300DE5571 /* MMModuleCellView.m */; };
-		F25B8F911A043B3D006E801D /* 0-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8A1A043B3D006E801D /* 0-mega.csv */; };
-		F25B8F921A043B3D006E801D /* 1-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8B1A043B3D006E801D /* 1-mega.csv */; };
-		F25B8F931A043B3D006E801D /* 2-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8C1A043B3D006E801D /* 2-mega.csv */; };
-		F25B8F941A043B3D006E801D /* 3-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8D1A043B3D006E801D /* 3-mega.csv */; };
-		F25B8F951A043B3D006E801D /* 4-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8E1A043B3D006E801D /* 4-mega.csv */; };
-		F25B8F961A043B3D006E801D /* 5-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F8F1A043B3D006E801D /* 5-mega.csv */; };
-		F25B8F971A043B3D006E801D /* 6-mega.csv in Resources */ = {isa = PBXBuildFile; fileRef = F25B8F901A043B3D006E801D /* 6-mega.csv */; };
 		F26A69BB1B4B802E002F0736 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26A69BA1B4B802E002F0736 /* StoreKit.framework */; };
-		F280FA831A365D3100FE0550 /* 1-jb.csv in Resources */ = {isa = PBXBuildFile; fileRef = F280FA821A365D3100FE0550 /* 1-jb.csv */; };
 		F2917A001B4CBD4B0048591D /* MMLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F29179FF1B4CBD4B0048591D /* MMLongPressGestureRecognizer.m */; };
 		F2917A031B4CC67B0048591D /* MMTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2917A021B4CC67B0048591D /* MMTapGestureRecognizer.m */; };
 		F2917A051B4CCCA30048591D /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2917A041B4CCCA30048591D /* LaunchImage.png */; };
 		F2917A081B4CCF6F0048591D /* MMRootViewController+Drawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2917A071B4CCF6F0048591D /* MMRootViewController+Drawer.m */; };
-		F29386801A36A373008F0EDF /* 0-ohn.csv in Resources */ = {isa = PBXBuildFile; fileRef = F293867E1A36A373008F0EDF /* 0-ohn.csv */; };
-		F29386861A36C74C008F0EDF /* 2-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29386841A36C74C008F0EDF /* 2-gs.csv */; };
-		F29386871A36C74C008F0EDF /* 3-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29386851A36C74C008F0EDF /* 3-gs.csv */; };
 		F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */ = {isa = PBXBuildFile; fileRef = F298829B1A02BC78005F9B94 /* mm_pattern.pd */; };
 		F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F298829E1A02BE50005F9B94 /* MMFileReader.m */; };
-		F29882A31A02C027005F9B94 /* example_pattern.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882A21A02C027005F9B94 /* example_pattern.csv */; };
 		F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = F29882A51A02C854005F9B94 /* MMPatternLoader.m */; };
-		F29882AE1A02D022005F9B94 /* 0-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882A91A02D022005F9B94 /* 0-mario.csv */; };
-		F29882AF1A02D022005F9B94 /* 1-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AA1A02D022005F9B94 /* 1-mario.csv */; };
-		F29882B01A02D022005F9B94 /* 2-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AB1A02D022005F9B94 /* 2-mario.csv */; };
-		F29882B11A02D022005F9B94 /* 3-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AC1A02D022005F9B94 /* 3-mario.csv */; };
-		F29882B21A02D022005F9B94 /* 4-mario.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882AD1A02D022005F9B94 /* 4-mario.csv */; };
-		F29882B81A02E973005F9B94 /* 0-menace.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882B41A02E973005F9B94 /* 0-menace.csv */; };
-		F29882B91A02E973005F9B94 /* 1-menace.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882B51A02E973005F9B94 /* 1-menace.csv */; };
-		F29882BA1A02E973005F9B94 /* 2-menace.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882B61A02E973005F9B94 /* 2-menace.csv */; };
-		F29882BB1A02E973005F9B94 /* 3-menace.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882B71A02E973005F9B94 /* 3-menace.csv */; };
-		F29882C11A02F033005F9B94 /* 0-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882BF1A02F033005F9B94 /* 0-fantasy.csv */; };
-		F29882C21A02F033005F9B94 /* 1-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29882C01A02F033005F9B94 /* 1-fantasy.csv */; };
-		F29B436B1A327AE5006AD07F /* 0-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29B43691A327AE5006AD07F /* 0-gs.csv */; };
-		F29B436C1A327AE5006AD07F /* 1-gs.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29B436A1A327AE5006AD07F /* 1-gs.csv */; };
-		F29B43731A32B27A006AD07F /* 0-jb.csv in Resources */ = {isa = PBXBuildFile; fileRef = F29B43721A32B27A006AD07F /* 0-jb.csv */; };
-		F2A59D011A4793160000CDC1 /* 0-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59CFF1A4793160000CDC1 /* 0-als.csv */; };
-		F2A59D021A4793160000CDC1 /* 1-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D001A4793160000CDC1 /* 1-als.csv */; };
-		F2A59D051A479B440000CDC1 /* 2-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D031A479B440000CDC1 /* 2-als.csv */; };
-		F2A59D061A479B440000CDC1 /* 3-als.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2A59D041A479B440000CDC1 /* 3-als.csv */; };
 		F2A68B9E1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68B9D1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd */; };
 		F2A68BA01B26B10900FA13F5 /* bsd_biquad~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68B9F1B26B10900FA13F5 /* bsd_biquad~.pd */; };
 		F2A68BAE1B26B54C00FA13F5 /* complex_add.mmb.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2A68BA21B26B54C00FA13F5 /* complex_add.mmb.pd */; };
@@ -188,118 +158,6 @@
 		F2B2AF4419FF27BE003042D6 /* vexp_if.c in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AD5919FF27BE003042D6 /* vexp_if.c */; };
 		F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */ = {isa = PBXBuildFile; fileRef = F2B2AD5A19FF27BE003042D6 /* vexp.c */; };
 		F2B2AF4619FF27BE003042D6 /* vocalAppPatch.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD5C19FF27BE003042D6 /* vocalAppPatch.pd */; };
-		F2B2AF4719FF27BE003042D6 /* 0-Funk1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD5D19FF27BE003042D6 /* 0-Funk1.txt */; };
-		F2B2AF4819FF27BE003042D6 /* 0-Funk2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD5E19FF27BE003042D6 /* 0-Funk2.txt */; };
-		F2B2AF4919FF27BE003042D6 /* 0-Funk3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD5F19FF27BE003042D6 /* 0-Funk3.txt */; };
-		F2B2AF4A19FF27BE003042D6 /* 0-Funk4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6019FF27BE003042D6 /* 0-Funk4.txt */; };
-		F2B2AF4B19FF27BE003042D6 /* 0-Happy.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6119FF27BE003042D6 /* 0-Happy.txt */; };
-		F2B2AF4C19FF27BE003042D6 /* 0-Happy2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6219FF27BE003042D6 /* 0-Happy2.txt */; };
-		F2B2AF4D19FF27BE003042D6 /* 0-Happy3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6319FF27BE003042D6 /* 0-Happy3.txt */; };
-		F2B2AF4E19FF27BE003042D6 /* 0-Happy4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6419FF27BE003042D6 /* 0-Happy4.txt */; };
-		F2B2AF4F19FF27BE003042D6 /* 0-Happy5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6519FF27BE003042D6 /* 0-Happy5.txt */; };
-		F2B2AF5019FF27BE003042D6 /* 0-majesty1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6619FF27BE003042D6 /* 0-majesty1.txt */; };
-		F2B2AF5119FF27BE003042D6 /* 0-majesty2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6719FF27BE003042D6 /* 0-majesty2.txt */; };
-		F2B2AF5219FF27BE003042D6 /* 0-majesty3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6819FF27BE003042D6 /* 0-majesty3.txt */; };
-		F2B2AF5319FF27BE003042D6 /* 0-majesty4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6919FF27BE003042D6 /* 0-majesty4.txt */; };
-		F2B2AF5419FF27BE003042D6 /* 0-Mega1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6A19FF27BE003042D6 /* 0-Mega1.txt */; };
-		F2B2AF5519FF27BE003042D6 /* 0-Mega2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AD6B19FF27BE003042D6 /* 0-Mega2.txt */; };
-		F2B2B06C19FF281F003042D6 /* 0-Mega3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5619FF281D003042D6 /* 0-Mega3.txt */; };
-		F2B2B06D19FF281F003042D6 /* 0-Mega4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5719FF281D003042D6 /* 0-Mega4.txt */; };
-		F2B2B06E19FF281F003042D6 /* 0-Mega5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5819FF281D003042D6 /* 0-Mega5.txt */; };
-		F2B2B06F19FF281F003042D6 /* 0-Mega6.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5919FF281D003042D6 /* 0-Mega6.txt */; };
-		F2B2B07019FF281F003042D6 /* 0-Mega7.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5A19FF281D003042D6 /* 0-Mega7.txt */; };
-		F2B2B07119FF281F003042D6 /* 0-Menace1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5B19FF281D003042D6 /* 0-Menace1.txt */; };
-		F2B2B07219FF281F003042D6 /* 0-Menace2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5C19FF281D003042D6 /* 0-Menace2.txt */; };
-		F2B2B07319FF281F003042D6 /* 0-Menace4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5D19FF281D003042D6 /* 0-Menace4.txt */; };
-		F2B2B07419FF281F003042D6 /* 0-Sad1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5E19FF281D003042D6 /* 0-Sad1.txt */; };
-		F2B2B07519FF281F003042D6 /* 0-Sad2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF5F19FF281D003042D6 /* 0-Sad2.txt */; };
-		F2B2B07619FF281F003042D6 /* 0-Sad3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6019FF281D003042D6 /* 0-Sad3.txt */; };
-		F2B2B07719FF281F003042D6 /* 0-Sad4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6119FF281D003042D6 /* 0-Sad4.txt */; };
-		F2B2B07819FF281F003042D6 /* 0-Sad5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6219FF281D003042D6 /* 0-Sad5.txt */; };
-		F2B2B07919FF281F003042D6 /* 1-Funk1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6319FF281D003042D6 /* 1-Funk1.txt */; };
-		F2B2B07A19FF281F003042D6 /* 1-Funk2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6419FF281D003042D6 /* 1-Funk2.txt */; };
-		F2B2B07B19FF281F003042D6 /* 1-Funk3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6519FF281D003042D6 /* 1-Funk3.txt */; };
-		F2B2B07C19FF281F003042D6 /* 1-Funk4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6619FF281D003042D6 /* 1-Funk4.txt */; };
-		F2B2B07D19FF281F003042D6 /* 1-Happy.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6719FF281D003042D6 /* 1-Happy.txt */; };
-		F2B2B07E19FF281F003042D6 /* 1-Happy2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6819FF281D003042D6 /* 1-Happy2.txt */; };
-		F2B2B07F19FF281F003042D6 /* 1-Happy3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6919FF281D003042D6 /* 1-Happy3.txt */; };
-		F2B2B08019FF281F003042D6 /* 1-Happy4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6A19FF281D003042D6 /* 1-Happy4.txt */; };
-		F2B2B08119FF281F003042D6 /* 1-Happy5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6B19FF281D003042D6 /* 1-Happy5.txt */; };
-		F2B2B08219FF281F003042D6 /* 1-majesty1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6C19FF281D003042D6 /* 1-majesty1.txt */; };
-		F2B2B08319FF281F003042D6 /* 1-majesty2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6D19FF281D003042D6 /* 1-majesty2.txt */; };
-		F2B2B08419FF281F003042D6 /* 1-majesty3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6E19FF281D003042D6 /* 1-majesty3.txt */; };
-		F2B2B08519FF281F003042D6 /* 1-majesty4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF6F19FF281D003042D6 /* 1-majesty4.txt */; };
-		F2B2B08619FF281F003042D6 /* 1-Mega1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7019FF281D003042D6 /* 1-Mega1.txt */; };
-		F2B2B08719FF281F003042D6 /* 1-Mega2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7119FF281D003042D6 /* 1-Mega2.txt */; };
-		F2B2B08819FF281F003042D6 /* 1-Mega3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7219FF281D003042D6 /* 1-Mega3.txt */; };
-		F2B2B08919FF281F003042D6 /* 1-Mega4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7319FF281D003042D6 /* 1-Mega4.txt */; };
-		F2B2B08A19FF281F003042D6 /* 1-Mega5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7419FF281D003042D6 /* 1-Mega5.txt */; };
-		F2B2B08B19FF281F003042D6 /* 1-Mega6.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7519FF281D003042D6 /* 1-Mega6.txt */; };
-		F2B2B08C19FF281F003042D6 /* 1-Mega7.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7619FF281D003042D6 /* 1-Mega7.txt */; };
-		F2B2B08D19FF281F003042D6 /* 1-Menace1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7719FF281D003042D6 /* 1-Menace1.txt */; };
-		F2B2B08E19FF281F003042D6 /* 1-Menace2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7819FF281D003042D6 /* 1-Menace2.txt */; };
-		F2B2B08F19FF281F003042D6 /* 1-Menace4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7919FF281D003042D6 /* 1-Menace4.txt */; };
-		F2B2B09019FF281F003042D6 /* 1-Sad1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7A19FF281D003042D6 /* 1-Sad1.txt */; };
-		F2B2B09119FF281F003042D6 /* 1-Sad2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7B19FF281D003042D6 /* 1-Sad2.txt */; };
-		F2B2B09219FF281F003042D6 /* 1-Sad3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7C19FF281D003042D6 /* 1-Sad3.txt */; };
-		F2B2B09319FF281F003042D6 /* 1-Sad4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7D19FF281D003042D6 /* 1-Sad4.txt */; };
-		F2B2B09419FF281F003042D6 /* 1-Sad5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7E19FF281D003042D6 /* 1-Sad5.txt */; };
-		F2B2B09519FF281F003042D6 /* 2-Funk1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF7F19FF281D003042D6 /* 2-Funk1.txt */; };
-		F2B2B09619FF281F003042D6 /* 2-Funk2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8019FF281D003042D6 /* 2-Funk2.txt */; };
-		F2B2B09719FF281F003042D6 /* 2-Funk3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8119FF281D003042D6 /* 2-Funk3.txt */; };
-		F2B2B09819FF281F003042D6 /* 2-Funk4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8219FF281D003042D6 /* 2-Funk4.txt */; };
-		F2B2B09919FF281F003042D6 /* 2-Happy.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8319FF281D003042D6 /* 2-Happy.txt */; };
-		F2B2B09A19FF281F003042D6 /* 2-Happy2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8419FF281D003042D6 /* 2-Happy2.txt */; };
-		F2B2B09B19FF281F003042D6 /* 2-Happy3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8519FF281D003042D6 /* 2-Happy3.txt */; };
-		F2B2B09C19FF281F003042D6 /* 2-Happy4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8619FF281D003042D6 /* 2-Happy4.txt */; };
-		F2B2B09D19FF281F003042D6 /* 2-Happy5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8719FF281D003042D6 /* 2-Happy5.txt */; };
-		F2B2B09E19FF281F003042D6 /* 2-majesty1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8819FF281D003042D6 /* 2-majesty1.txt */; };
-		F2B2B09F19FF281F003042D6 /* 2-majesty2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8919FF281D003042D6 /* 2-majesty2.txt */; };
-		F2B2B0A019FF281F003042D6 /* 2-majesty3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8A19FF281D003042D6 /* 2-majesty3.txt */; };
-		F2B2B0A119FF281F003042D6 /* 2-majesty4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8B19FF281D003042D6 /* 2-majesty4.txt */; };
-		F2B2B0A219FF281F003042D6 /* 2-Mega1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8C19FF281D003042D6 /* 2-Mega1.txt */; };
-		F2B2B0A319FF281F003042D6 /* 2-Mega2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8D19FF281D003042D6 /* 2-Mega2.txt */; };
-		F2B2B0A419FF281F003042D6 /* 2-Mega3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8E19FF281D003042D6 /* 2-Mega3.txt */; };
-		F2B2B0A519FF281F003042D6 /* 2-Mega4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF8F19FF281D003042D6 /* 2-Mega4.txt */; };
-		F2B2B0A619FF281F003042D6 /* 2-Mega5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9019FF281D003042D6 /* 2-Mega5.txt */; };
-		F2B2B0A719FF281F003042D6 /* 2-Mega6.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9119FF281D003042D6 /* 2-Mega6.txt */; };
-		F2B2B0A819FF281F003042D6 /* 2-Mega7.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9219FF281D003042D6 /* 2-Mega7.txt */; };
-		F2B2B0A919FF281F003042D6 /* 2-Menace1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9319FF281D003042D6 /* 2-Menace1.txt */; };
-		F2B2B0AA19FF281F003042D6 /* 2-Menace2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9419FF281D003042D6 /* 2-Menace2.txt */; };
-		F2B2B0AB19FF281F003042D6 /* 2-Menace4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9519FF281E003042D6 /* 2-Menace4.txt */; };
-		F2B2B0AC19FF281F003042D6 /* 2-Sad1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9619FF281E003042D6 /* 2-Sad1.txt */; };
-		F2B2B0AD19FF281F003042D6 /* 2-Sad2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9719FF281E003042D6 /* 2-Sad2.txt */; };
-		F2B2B0AE19FF281F003042D6 /* 2-Sad3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9819FF281E003042D6 /* 2-Sad3.txt */; };
-		F2B2B0AF19FF281F003042D6 /* 2-Sad4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9919FF281E003042D6 /* 2-Sad4.txt */; };
-		F2B2B0B019FF281F003042D6 /* 2-Sad5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9A19FF281E003042D6 /* 2-Sad5.txt */; };
-		F2B2B0B119FF281F003042D6 /* 3-Funk1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9B19FF281E003042D6 /* 3-Funk1.txt */; };
-		F2B2B0B219FF281F003042D6 /* 3-Funk2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9C19FF281E003042D6 /* 3-Funk2.txt */; };
-		F2B2B0B319FF281F003042D6 /* 3-Funk3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9D19FF281E003042D6 /* 3-Funk3.txt */; };
-		F2B2B0B419FF281F003042D6 /* 3-Funk4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9E19FF281E003042D6 /* 3-Funk4.txt */; };
-		F2B2B0B519FF281F003042D6 /* 3-Happy.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AF9F19FF281E003042D6 /* 3-Happy.txt */; };
-		F2B2B0B619FF281F003042D6 /* 3-Happy2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA019FF281E003042D6 /* 3-Happy2.txt */; };
-		F2B2B0B719FF281F003042D6 /* 3-Happy3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA119FF281E003042D6 /* 3-Happy3.txt */; };
-		F2B2B0B819FF281F003042D6 /* 3-Happy4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA219FF281E003042D6 /* 3-Happy4.txt */; };
-		F2B2B0B919FF281F003042D6 /* 3-Happy5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA319FF281E003042D6 /* 3-Happy5.txt */; };
-		F2B2B0BA19FF281F003042D6 /* 3-majesty1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA419FF281E003042D6 /* 3-majesty1.txt */; };
-		F2B2B0BB19FF281F003042D6 /* 3-majesty2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA519FF281E003042D6 /* 3-majesty2.txt */; };
-		F2B2B0BC19FF281F003042D6 /* 3-majesty3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA619FF281E003042D6 /* 3-majesty3.txt */; };
-		F2B2B0BD19FF281F003042D6 /* 3-majesty4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA719FF281E003042D6 /* 3-majesty4.txt */; };
-		F2B2B0BE19FF281F003042D6 /* 3-Mega1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA819FF281E003042D6 /* 3-Mega1.txt */; };
-		F2B2B0BF19FF281F003042D6 /* 3-Mega2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFA919FF281E003042D6 /* 3-Mega2.txt */; };
-		F2B2B0C019FF281F003042D6 /* 3-Mega3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFAA19FF281E003042D6 /* 3-Mega3.txt */; };
-		F2B2B0C119FF281F003042D6 /* 3-Mega4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFAB19FF281E003042D6 /* 3-Mega4.txt */; };
-		F2B2B0C219FF281F003042D6 /* 3-Mega5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFAC19FF281E003042D6 /* 3-Mega5.txt */; };
-		F2B2B0C319FF281F003042D6 /* 3-Mega6.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFAD19FF281E003042D6 /* 3-Mega6.txt */; };
-		F2B2B0C419FF281F003042D6 /* 3-Mega7.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFAE19FF281E003042D6 /* 3-Mega7.txt */; };
-		F2B2B0C519FF281F003042D6 /* 3-Menace1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFAF19FF281E003042D6 /* 3-Menace1.txt */; };
-		F2B2B0C619FF281F003042D6 /* 3-Menace2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB019FF281E003042D6 /* 3-Menace2.txt */; };
-		F2B2B0C719FF281F003042D6 /* 3-Menace4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB119FF281E003042D6 /* 3-Menace4.txt */; };
-		F2B2B0C819FF281F003042D6 /* 3-Sad1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB219FF281E003042D6 /* 3-Sad1.txt */; };
-		F2B2B0C919FF281F003042D6 /* 3-Sad2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB319FF281E003042D6 /* 3-Sad2.txt */; };
-		F2B2B0CA19FF281F003042D6 /* 3-Sad3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB419FF281E003042D6 /* 3-Sad3.txt */; };
-		F2B2B0CB19FF281F003042D6 /* 3-Sad4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB519FF281E003042D6 /* 3-Sad4.txt */; };
-		F2B2B0CC19FF281F003042D6 /* 3-Sad5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB619FF281E003042D6 /* 3-Sad5.txt */; };
 		F2B2B0CD19FF281F003042D6 /* 808_FX4.aif in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB719FF281E003042D6 /* 808_FX4.aif */; };
 		F2B2B0CE19FF281F003042D6 /* 808_P2.aif in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB819FF281E003042D6 /* 808_P2.aif */; };
 		F2B2B0CF19FF281F003042D6 /* 808_P4.aif in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFB919FF281E003042D6 /* 808_P4.aif */; };
@@ -347,26 +205,6 @@
 		F2B2B0F919FF281F003042D6 /* Clap-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFE419FF281E003042D6 /* Clap-4.wav */; };
 		F2B2B0FA19FF281F003042D6 /* Clap-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFE519FF281E003042D6 /* Clap-5.wav */; };
 		F2B2B0FB19FF281F003042D6 /* Clap.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFE619FF281E003042D6 /* Clap.wav */; };
-		F2B2B0FC19FF281F003042D6 /* 0-test1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFE819FF281E003042D6 /* 0-test1.txt */; };
-		F2B2B0FD19FF281F003042D6 /* 0-test2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFE919FF281E003042D6 /* 0-test2.txt */; };
-		F2B2B0FE19FF281F003042D6 /* 0-test3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFEA19FF281E003042D6 /* 0-test3.txt */; };
-		F2B2B0FF19FF281F003042D6 /* 0-test4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFEB19FF281E003042D6 /* 0-test4.txt */; };
-		F2B2B10019FF281F003042D6 /* 0-test5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFEC19FF281E003042D6 /* 0-test5.txt */; };
-		F2B2B10119FF281F003042D6 /* 1-test1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFED19FF281E003042D6 /* 1-test1.txt */; };
-		F2B2B10219FF281F003042D6 /* 1-test2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFEE19FF281E003042D6 /* 1-test2.txt */; };
-		F2B2B10319FF281F003042D6 /* 1-test3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFEF19FF281E003042D6 /* 1-test3.txt */; };
-		F2B2B10419FF281F003042D6 /* 1-test4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF019FF281E003042D6 /* 1-test4.txt */; };
-		F2B2B10519FF281F003042D6 /* 1-test5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF119FF281E003042D6 /* 1-test5.txt */; };
-		F2B2B10619FF281F003042D6 /* 2-test1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF219FF281E003042D6 /* 2-test1.txt */; };
-		F2B2B10719FF281F003042D6 /* 2-test2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF319FF281E003042D6 /* 2-test2.txt */; };
-		F2B2B10819FF281F003042D6 /* 2-test3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF419FF281E003042D6 /* 2-test3.txt */; };
-		F2B2B10919FF281F003042D6 /* 2-test4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF519FF281E003042D6 /* 2-test4.txt */; };
-		F2B2B10A19FF281F003042D6 /* 2-test5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF619FF281E003042D6 /* 2-test5.txt */; };
-		F2B2B10B19FF281F003042D6 /* 3-test1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF719FF281E003042D6 /* 3-test1.txt */; };
-		F2B2B10C19FF281F003042D6 /* 3-test2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF819FF281E003042D6 /* 3-test2.txt */; };
-		F2B2B10D19FF281F003042D6 /* 3-test3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFF919FF281E003042D6 /* 3-test3.txt */; };
-		F2B2B10E19FF281F003042D6 /* 3-test4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFFA19FF281E003042D6 /* 3-test4.txt */; };
-		F2B2B10F19FF281F003042D6 /* 3-test5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFFB19FF281E003042D6 /* 3-test5.txt */; };
 		F2B2B11019FF281F003042D6 /* 4Track.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFFC19FF281E003042D6 /* 4Track.pd */; };
 		F2B2B11119FF281F003042D6 /* ah_60_2_60.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFFD19FF281E003042D6 /* ah_60_2_60.wav */; };
 		F2B2B11219FF281F003042D6 /* ah_60_4_60.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2B2AFFE19FF281E003042D6 /* ah_60_4_60.wav */; };
@@ -477,26 +315,6 @@
 		F2B2B17B19FF281F003042D6 /* list-len.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B06919FF281F003042D6 /* list-len.pd */; };
 		F2B2B17C19FF281F003042D6 /* list-map.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B06A19FF281F003042D6 /* list-map.pd */; };
 		F2B2B17D19FF281F003042D6 /* list-math.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B06B19FF281F003042D6 /* list-math.pd */; };
-		F2B2B18519FF2A8C003042D6 /* 0-Mario1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18119FF2A8C003042D6 /* 0-Mario1.txt */; };
-		F2B2B18619FF2A8C003042D6 /* 1-Mario1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18219FF2A8C003042D6 /* 1-Mario1.txt */; };
-		F2B2B18719FF2A8C003042D6 /* 2-Mario1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18319FF2A8C003042D6 /* 2-Mario1.txt */; };
-		F2B2B18819FF2A8C003042D6 /* 3-Mario1.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18419FF2A8C003042D6 /* 3-Mario1.txt */; };
-		F2B2B19919FF2ABD003042D6 /* 0-Mario2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18919FF2ABD003042D6 /* 0-Mario2.txt */; };
-		F2B2B19A19FF2ABD003042D6 /* 0-Mario3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18A19FF2ABD003042D6 /* 0-Mario3.txt */; };
-		F2B2B19B19FF2ABD003042D6 /* 0-Mario4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18B19FF2ABD003042D6 /* 0-Mario4.txt */; };
-		F2B2B19C19FF2ABD003042D6 /* 0-Mario5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18C19FF2ABD003042D6 /* 0-Mario5.txt */; };
-		F2B2B19D19FF2ABD003042D6 /* 1-Mario2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18D19FF2ABD003042D6 /* 1-Mario2.txt */; };
-		F2B2B19E19FF2ABD003042D6 /* 1-Mario3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18E19FF2ABD003042D6 /* 1-Mario3.txt */; };
-		F2B2B19F19FF2ABD003042D6 /* 1-Mario4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B18F19FF2ABD003042D6 /* 1-Mario4.txt */; };
-		F2B2B1A019FF2ABD003042D6 /* 1-Mario5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19019FF2ABD003042D6 /* 1-Mario5.txt */; };
-		F2B2B1A119FF2ABD003042D6 /* 2-Mario2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19119FF2ABD003042D6 /* 2-Mario2.txt */; };
-		F2B2B1A219FF2ABD003042D6 /* 2-Mario3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19219FF2ABD003042D6 /* 2-Mario3.txt */; };
-		F2B2B1A319FF2ABD003042D6 /* 2-Mario4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19319FF2ABD003042D6 /* 2-Mario4.txt */; };
-		F2B2B1A419FF2ABD003042D6 /* 2-Mario5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19419FF2ABD003042D6 /* 2-Mario5.txt */; };
-		F2B2B1A519FF2ABD003042D6 /* 3-Mario2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19519FF2ABD003042D6 /* 3-Mario2.txt */; };
-		F2B2B1A619FF2ABD003042D6 /* 3-Mario3.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19619FF2ABD003042D6 /* 3-Mario3.txt */; };
-		F2B2B1A719FF2ABD003042D6 /* 3-Mario4.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19719FF2ABD003042D6 /* 3-Mario4.txt */; };
-		F2B2B1A819FF2ABD003042D6 /* 3-Mario5.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B19819FF2ABD003042D6 /* 3-Mario5.txt */; };
 		F2B2B1AA19FF2ADC003042D6 /* er_contAvg.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1A919FF2ADC003042D6 /* er_contAvg.pd */; };
 		F2B2B1AC19FF2AF6003042D6 /* birdCountIn.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1AB19FF2AF6003042D6 /* birdCountIn.pd */; };
 		F2B2B1AE19FF2B0D003042D6 /* list-dripslow.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */; };
@@ -504,16 +322,9 @@
 		F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2B2B1BD19FF4D87003042D6 /* scope.pd */; };
 		F2D06FA41B290B0C00AA7708 /* MMAudioScopeViewController+Label.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */; };
 		F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA91B291A6100AA7708 /* HamburgerButton.m */; };
-		F2D06FB51B29386500AA7708 /* 0-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB01B29386500AA7708 /* 0-sad.csv */; };
-		F2D06FB61B29386500AA7708 /* 1-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB11B29386500AA7708 /* 1-sad.csv */; };
-		F2D06FB71B29386500AA7708 /* 2-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB21B29386500AA7708 /* 2-sad.csv */; };
-		F2D06FB81B29386500AA7708 /* 3-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB31B29386500AA7708 /* 3-sad.csv */; };
-		F2D06FB91B29386500AA7708 /* 4-sad.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D06FB41B29386500AA7708 /* 4-sad.csv */; };
 		F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */; };
 		F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */; };
 		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
-		F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564361B2CD177008D9C76 /* 0-new.csv */; };
-		F2D564391B2CD177008D9C76 /* 1-new.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2D564371B2CD177008D9C76 /* 1-new.csv */; };
 		F2DE9E971B222ACB00FEBE5F /* MMVisualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E961B222ACB00FEBE5F /* MMVisualViewController.m */; };
 		F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */; };
 		F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */; };
@@ -969,15 +780,7 @@
 		F2575C111B2792EA00DE5571 /* MMModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleViewController.m; sourceTree = "<group>"; };
 		F2575C131B27930300DE5571 /* MMModuleCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleCellView.h; sourceTree = "<group>"; };
 		F2575C141B27930300DE5571 /* MMModuleCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleCellView.m; sourceTree = "<group>"; };
-		F25B8F8A1A043B3D006E801D /* 0-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-mega.csv"; sourceTree = "<group>"; };
-		F25B8F8B1A043B3D006E801D /* 1-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-mega.csv"; sourceTree = "<group>"; };
-		F25B8F8C1A043B3D006E801D /* 2-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-mega.csv"; sourceTree = "<group>"; };
-		F25B8F8D1A043B3D006E801D /* 3-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-mega.csv"; sourceTree = "<group>"; };
-		F25B8F8E1A043B3D006E801D /* 4-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-mega.csv"; sourceTree = "<group>"; };
-		F25B8F8F1A043B3D006E801D /* 5-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "5-mega.csv"; sourceTree = "<group>"; };
-		F25B8F901A043B3D006E801D /* 6-mega.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "6-mega.csv"; sourceTree = "<group>"; };
 		F26A69BA1B4B802E002F0736 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		F280FA821A365D3100FE0550 /* 1-jb.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-jb.csv"; sourceTree = "<group>"; };
 		F29179FE1B4CBD4B0048591D /* MMLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLongPressGestureRecognizer.h; sourceTree = "<group>"; };
 		F29179FF1B4CBD4B0048591D /* MMLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLongPressGestureRecognizer.m; sourceTree = "<group>"; };
 		F2917A011B4CC67B0048591D /* MMTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTapGestureRecognizer.h; sourceTree = "<group>"; };
@@ -985,33 +788,11 @@
 		F2917A041B4CCCA30048591D /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage.png; sourceTree = "<group>"; };
 		F2917A061B4CCF6F0048591D /* MMRootViewController+Drawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Drawer.h"; sourceTree = "<group>"; };
 		F2917A071B4CCF6F0048591D /* MMRootViewController+Drawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Drawer.m"; sourceTree = "<group>"; };
-		F293867E1A36A373008F0EDF /* 0-ohn.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-ohn.csv"; sourceTree = "<group>"; };
-		F29386841A36C74C008F0EDF /* 2-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-gs.csv"; sourceTree = "<group>"; };
-		F29386851A36C74C008F0EDF /* 3-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-gs.csv"; sourceTree = "<group>"; };
 		F298829B1A02BC78005F9B94 /* mm_pattern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_pattern.pd; sourceTree = "<group>"; };
 		F298829D1A02BE50005F9B94 /* MMFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFileReader.h; sourceTree = "<group>"; };
 		F298829E1A02BE50005F9B94 /* MMFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMFileReader.m; sourceTree = "<group>"; };
-		F29882A21A02C027005F9B94 /* example_pattern.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example_pattern.csv; sourceTree = "<group>"; };
 		F29882A41A02C854005F9B94 /* MMPatternLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPatternLoader.h; sourceTree = "<group>"; };
 		F29882A51A02C854005F9B94 /* MMPatternLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPatternLoader.m; sourceTree = "<group>"; };
-		F29882A91A02D022005F9B94 /* 0-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-mario.csv"; sourceTree = "<group>"; };
-		F29882AA1A02D022005F9B94 /* 1-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-mario.csv"; sourceTree = "<group>"; };
-		F29882AB1A02D022005F9B94 /* 2-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-mario.csv"; sourceTree = "<group>"; };
-		F29882AC1A02D022005F9B94 /* 3-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-mario.csv"; sourceTree = "<group>"; };
-		F29882AD1A02D022005F9B94 /* 4-mario.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-mario.csv"; sourceTree = "<group>"; };
-		F29882B41A02E973005F9B94 /* 0-menace.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-menace.csv"; sourceTree = "<group>"; };
-		F29882B51A02E973005F9B94 /* 1-menace.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-menace.csv"; sourceTree = "<group>"; };
-		F29882B61A02E973005F9B94 /* 2-menace.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-menace.csv"; sourceTree = "<group>"; };
-		F29882B71A02E973005F9B94 /* 3-menace.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-menace.csv"; sourceTree = "<group>"; };
-		F29882BF1A02F033005F9B94 /* 0-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-fantasy.csv"; sourceTree = "<group>"; };
-		F29882C01A02F033005F9B94 /* 1-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-fantasy.csv"; sourceTree = "<group>"; };
-		F29B43691A327AE5006AD07F /* 0-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-gs.csv"; sourceTree = "<group>"; };
-		F29B436A1A327AE5006AD07F /* 1-gs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-gs.csv"; sourceTree = "<group>"; };
-		F29B43721A32B27A006AD07F /* 0-jb.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-jb.csv"; sourceTree = "<group>"; };
-		F2A59CFF1A4793160000CDC1 /* 0-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-als.csv"; sourceTree = "<group>"; };
-		F2A59D001A4793160000CDC1 /* 1-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-als.csv"; sourceTree = "<group>"; };
-		F2A59D031A479B440000CDC1 /* 2-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-als.csv"; sourceTree = "<group>"; };
-		F2A59D041A479B440000CDC1 /* 3-als.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-als.csv"; sourceTree = "<group>"; };
 		F2A68B9D1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bsd_filterCoefficients.pd; sourceTree = "<group>"; };
 		F2A68B9F1B26B10900FA13F5 /* bsd_biquad~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bsd_biquad~.pd"; sourceTree = "<group>"; };
 		F2A68BA21B26B54C00FA13F5 /* complex_add.mmb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_add.mmb.pd; sourceTree = "<group>"; };
@@ -1145,118 +926,6 @@
 		F2B2AD5A19FF27BE003042D6 /* vexp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vexp.c; sourceTree = "<group>"; };
 		F2B2AD5B19FF27BE003042D6 /* vexp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vexp.h; sourceTree = "<group>"; };
 		F2B2AD5C19FF27BE003042D6 /* vocalAppPatch.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vocalAppPatch.pd; sourceTree = "<group>"; };
-		F2B2AD5D19FF27BE003042D6 /* 0-Funk1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Funk1.txt"; sourceTree = "<group>"; };
-		F2B2AD5E19FF27BE003042D6 /* 0-Funk2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Funk2.txt"; sourceTree = "<group>"; };
-		F2B2AD5F19FF27BE003042D6 /* 0-Funk3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Funk3.txt"; sourceTree = "<group>"; };
-		F2B2AD6019FF27BE003042D6 /* 0-Funk4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Funk4.txt"; sourceTree = "<group>"; };
-		F2B2AD6119FF27BE003042D6 /* 0-Happy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Happy.txt"; sourceTree = "<group>"; };
-		F2B2AD6219FF27BE003042D6 /* 0-Happy2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Happy2.txt"; sourceTree = "<group>"; };
-		F2B2AD6319FF27BE003042D6 /* 0-Happy3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Happy3.txt"; sourceTree = "<group>"; };
-		F2B2AD6419FF27BE003042D6 /* 0-Happy4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Happy4.txt"; sourceTree = "<group>"; };
-		F2B2AD6519FF27BE003042D6 /* 0-Happy5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Happy5.txt"; sourceTree = "<group>"; };
-		F2B2AD6619FF27BE003042D6 /* 0-majesty1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-majesty1.txt"; sourceTree = "<group>"; };
-		F2B2AD6719FF27BE003042D6 /* 0-majesty2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-majesty2.txt"; sourceTree = "<group>"; };
-		F2B2AD6819FF27BE003042D6 /* 0-majesty3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-majesty3.txt"; sourceTree = "<group>"; };
-		F2B2AD6919FF27BE003042D6 /* 0-majesty4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-majesty4.txt"; sourceTree = "<group>"; };
-		F2B2AD6A19FF27BE003042D6 /* 0-Mega1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mega1.txt"; sourceTree = "<group>"; };
-		F2B2AD6B19FF27BE003042D6 /* 0-Mega2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mega2.txt"; sourceTree = "<group>"; };
-		F2B2AF5619FF281D003042D6 /* 0-Mega3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mega3.txt"; sourceTree = "<group>"; };
-		F2B2AF5719FF281D003042D6 /* 0-Mega4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mega4.txt"; sourceTree = "<group>"; };
-		F2B2AF5819FF281D003042D6 /* 0-Mega5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mega5.txt"; sourceTree = "<group>"; };
-		F2B2AF5919FF281D003042D6 /* 0-Mega6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mega6.txt"; sourceTree = "<group>"; };
-		F2B2AF5A19FF281D003042D6 /* 0-Mega7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mega7.txt"; sourceTree = "<group>"; };
-		F2B2AF5B19FF281D003042D6 /* 0-Menace1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Menace1.txt"; sourceTree = "<group>"; };
-		F2B2AF5C19FF281D003042D6 /* 0-Menace2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Menace2.txt"; sourceTree = "<group>"; };
-		F2B2AF5D19FF281D003042D6 /* 0-Menace4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Menace4.txt"; sourceTree = "<group>"; };
-		F2B2AF5E19FF281D003042D6 /* 0-Sad1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Sad1.txt"; sourceTree = "<group>"; };
-		F2B2AF5F19FF281D003042D6 /* 0-Sad2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Sad2.txt"; sourceTree = "<group>"; };
-		F2B2AF6019FF281D003042D6 /* 0-Sad3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Sad3.txt"; sourceTree = "<group>"; };
-		F2B2AF6119FF281D003042D6 /* 0-Sad4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Sad4.txt"; sourceTree = "<group>"; };
-		F2B2AF6219FF281D003042D6 /* 0-Sad5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Sad5.txt"; sourceTree = "<group>"; };
-		F2B2AF6319FF281D003042D6 /* 1-Funk1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Funk1.txt"; sourceTree = "<group>"; };
-		F2B2AF6419FF281D003042D6 /* 1-Funk2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Funk2.txt"; sourceTree = "<group>"; };
-		F2B2AF6519FF281D003042D6 /* 1-Funk3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Funk3.txt"; sourceTree = "<group>"; };
-		F2B2AF6619FF281D003042D6 /* 1-Funk4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Funk4.txt"; sourceTree = "<group>"; };
-		F2B2AF6719FF281D003042D6 /* 1-Happy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Happy.txt"; sourceTree = "<group>"; };
-		F2B2AF6819FF281D003042D6 /* 1-Happy2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Happy2.txt"; sourceTree = "<group>"; };
-		F2B2AF6919FF281D003042D6 /* 1-Happy3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Happy3.txt"; sourceTree = "<group>"; };
-		F2B2AF6A19FF281D003042D6 /* 1-Happy4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Happy4.txt"; sourceTree = "<group>"; };
-		F2B2AF6B19FF281D003042D6 /* 1-Happy5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Happy5.txt"; sourceTree = "<group>"; };
-		F2B2AF6C19FF281D003042D6 /* 1-majesty1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-majesty1.txt"; sourceTree = "<group>"; };
-		F2B2AF6D19FF281D003042D6 /* 1-majesty2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-majesty2.txt"; sourceTree = "<group>"; };
-		F2B2AF6E19FF281D003042D6 /* 1-majesty3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-majesty3.txt"; sourceTree = "<group>"; };
-		F2B2AF6F19FF281D003042D6 /* 1-majesty4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-majesty4.txt"; sourceTree = "<group>"; };
-		F2B2AF7019FF281D003042D6 /* 1-Mega1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mega1.txt"; sourceTree = "<group>"; };
-		F2B2AF7119FF281D003042D6 /* 1-Mega2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mega2.txt"; sourceTree = "<group>"; };
-		F2B2AF7219FF281D003042D6 /* 1-Mega3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mega3.txt"; sourceTree = "<group>"; };
-		F2B2AF7319FF281D003042D6 /* 1-Mega4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mega4.txt"; sourceTree = "<group>"; };
-		F2B2AF7419FF281D003042D6 /* 1-Mega5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mega5.txt"; sourceTree = "<group>"; };
-		F2B2AF7519FF281D003042D6 /* 1-Mega6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mega6.txt"; sourceTree = "<group>"; };
-		F2B2AF7619FF281D003042D6 /* 1-Mega7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mega7.txt"; sourceTree = "<group>"; };
-		F2B2AF7719FF281D003042D6 /* 1-Menace1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Menace1.txt"; sourceTree = "<group>"; };
-		F2B2AF7819FF281D003042D6 /* 1-Menace2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Menace2.txt"; sourceTree = "<group>"; };
-		F2B2AF7919FF281D003042D6 /* 1-Menace4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Menace4.txt"; sourceTree = "<group>"; };
-		F2B2AF7A19FF281D003042D6 /* 1-Sad1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Sad1.txt"; sourceTree = "<group>"; };
-		F2B2AF7B19FF281D003042D6 /* 1-Sad2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Sad2.txt"; sourceTree = "<group>"; };
-		F2B2AF7C19FF281D003042D6 /* 1-Sad3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Sad3.txt"; sourceTree = "<group>"; };
-		F2B2AF7D19FF281D003042D6 /* 1-Sad4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Sad4.txt"; sourceTree = "<group>"; };
-		F2B2AF7E19FF281D003042D6 /* 1-Sad5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Sad5.txt"; sourceTree = "<group>"; };
-		F2B2AF7F19FF281D003042D6 /* 2-Funk1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Funk1.txt"; sourceTree = "<group>"; };
-		F2B2AF8019FF281D003042D6 /* 2-Funk2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Funk2.txt"; sourceTree = "<group>"; };
-		F2B2AF8119FF281D003042D6 /* 2-Funk3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Funk3.txt"; sourceTree = "<group>"; };
-		F2B2AF8219FF281D003042D6 /* 2-Funk4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Funk4.txt"; sourceTree = "<group>"; };
-		F2B2AF8319FF281D003042D6 /* 2-Happy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Happy.txt"; sourceTree = "<group>"; };
-		F2B2AF8419FF281D003042D6 /* 2-Happy2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Happy2.txt"; sourceTree = "<group>"; };
-		F2B2AF8519FF281D003042D6 /* 2-Happy3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Happy3.txt"; sourceTree = "<group>"; };
-		F2B2AF8619FF281D003042D6 /* 2-Happy4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Happy4.txt"; sourceTree = "<group>"; };
-		F2B2AF8719FF281D003042D6 /* 2-Happy5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Happy5.txt"; sourceTree = "<group>"; };
-		F2B2AF8819FF281D003042D6 /* 2-majesty1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-majesty1.txt"; sourceTree = "<group>"; };
-		F2B2AF8919FF281D003042D6 /* 2-majesty2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-majesty2.txt"; sourceTree = "<group>"; };
-		F2B2AF8A19FF281D003042D6 /* 2-majesty3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-majesty3.txt"; sourceTree = "<group>"; };
-		F2B2AF8B19FF281D003042D6 /* 2-majesty4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-majesty4.txt"; sourceTree = "<group>"; };
-		F2B2AF8C19FF281D003042D6 /* 2-Mega1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mega1.txt"; sourceTree = "<group>"; };
-		F2B2AF8D19FF281D003042D6 /* 2-Mega2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mega2.txt"; sourceTree = "<group>"; };
-		F2B2AF8E19FF281D003042D6 /* 2-Mega3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mega3.txt"; sourceTree = "<group>"; };
-		F2B2AF8F19FF281D003042D6 /* 2-Mega4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mega4.txt"; sourceTree = "<group>"; };
-		F2B2AF9019FF281D003042D6 /* 2-Mega5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mega5.txt"; sourceTree = "<group>"; };
-		F2B2AF9119FF281D003042D6 /* 2-Mega6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mega6.txt"; sourceTree = "<group>"; };
-		F2B2AF9219FF281D003042D6 /* 2-Mega7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mega7.txt"; sourceTree = "<group>"; };
-		F2B2AF9319FF281D003042D6 /* 2-Menace1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Menace1.txt"; sourceTree = "<group>"; };
-		F2B2AF9419FF281D003042D6 /* 2-Menace2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Menace2.txt"; sourceTree = "<group>"; };
-		F2B2AF9519FF281E003042D6 /* 2-Menace4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Menace4.txt"; sourceTree = "<group>"; };
-		F2B2AF9619FF281E003042D6 /* 2-Sad1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Sad1.txt"; sourceTree = "<group>"; };
-		F2B2AF9719FF281E003042D6 /* 2-Sad2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Sad2.txt"; sourceTree = "<group>"; };
-		F2B2AF9819FF281E003042D6 /* 2-Sad3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Sad3.txt"; sourceTree = "<group>"; };
-		F2B2AF9919FF281E003042D6 /* 2-Sad4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Sad4.txt"; sourceTree = "<group>"; };
-		F2B2AF9A19FF281E003042D6 /* 2-Sad5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Sad5.txt"; sourceTree = "<group>"; };
-		F2B2AF9B19FF281E003042D6 /* 3-Funk1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Funk1.txt"; sourceTree = "<group>"; };
-		F2B2AF9C19FF281E003042D6 /* 3-Funk2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Funk2.txt"; sourceTree = "<group>"; };
-		F2B2AF9D19FF281E003042D6 /* 3-Funk3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Funk3.txt"; sourceTree = "<group>"; };
-		F2B2AF9E19FF281E003042D6 /* 3-Funk4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Funk4.txt"; sourceTree = "<group>"; };
-		F2B2AF9F19FF281E003042D6 /* 3-Happy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Happy.txt"; sourceTree = "<group>"; };
-		F2B2AFA019FF281E003042D6 /* 3-Happy2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Happy2.txt"; sourceTree = "<group>"; };
-		F2B2AFA119FF281E003042D6 /* 3-Happy3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Happy3.txt"; sourceTree = "<group>"; };
-		F2B2AFA219FF281E003042D6 /* 3-Happy4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Happy4.txt"; sourceTree = "<group>"; };
-		F2B2AFA319FF281E003042D6 /* 3-Happy5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Happy5.txt"; sourceTree = "<group>"; };
-		F2B2AFA419FF281E003042D6 /* 3-majesty1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-majesty1.txt"; sourceTree = "<group>"; };
-		F2B2AFA519FF281E003042D6 /* 3-majesty2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-majesty2.txt"; sourceTree = "<group>"; };
-		F2B2AFA619FF281E003042D6 /* 3-majesty3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-majesty3.txt"; sourceTree = "<group>"; };
-		F2B2AFA719FF281E003042D6 /* 3-majesty4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-majesty4.txt"; sourceTree = "<group>"; };
-		F2B2AFA819FF281E003042D6 /* 3-Mega1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mega1.txt"; sourceTree = "<group>"; };
-		F2B2AFA919FF281E003042D6 /* 3-Mega2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mega2.txt"; sourceTree = "<group>"; };
-		F2B2AFAA19FF281E003042D6 /* 3-Mega3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mega3.txt"; sourceTree = "<group>"; };
-		F2B2AFAB19FF281E003042D6 /* 3-Mega4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mega4.txt"; sourceTree = "<group>"; };
-		F2B2AFAC19FF281E003042D6 /* 3-Mega5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mega5.txt"; sourceTree = "<group>"; };
-		F2B2AFAD19FF281E003042D6 /* 3-Mega6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mega6.txt"; sourceTree = "<group>"; };
-		F2B2AFAE19FF281E003042D6 /* 3-Mega7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mega7.txt"; sourceTree = "<group>"; };
-		F2B2AFAF19FF281E003042D6 /* 3-Menace1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Menace1.txt"; sourceTree = "<group>"; };
-		F2B2AFB019FF281E003042D6 /* 3-Menace2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Menace2.txt"; sourceTree = "<group>"; };
-		F2B2AFB119FF281E003042D6 /* 3-Menace4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Menace4.txt"; sourceTree = "<group>"; };
-		F2B2AFB219FF281E003042D6 /* 3-Sad1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Sad1.txt"; sourceTree = "<group>"; };
-		F2B2AFB319FF281E003042D6 /* 3-Sad2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Sad2.txt"; sourceTree = "<group>"; };
-		F2B2AFB419FF281E003042D6 /* 3-Sad3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Sad3.txt"; sourceTree = "<group>"; };
-		F2B2AFB519FF281E003042D6 /* 3-Sad4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Sad4.txt"; sourceTree = "<group>"; };
-		F2B2AFB619FF281E003042D6 /* 3-Sad5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Sad5.txt"; sourceTree = "<group>"; };
 		F2B2AFB719FF281E003042D6 /* 808_FX4.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 808_FX4.aif; sourceTree = "<group>"; };
 		F2B2AFB819FF281E003042D6 /* 808_P2.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 808_P2.aif; sourceTree = "<group>"; };
 		F2B2AFB919FF281E003042D6 /* 808_P4.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = 808_P4.aif; sourceTree = "<group>"; };
@@ -1304,26 +973,6 @@
 		F2B2AFE419FF281E003042D6 /* Clap-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Clap-4.wav"; sourceTree = "<group>"; };
 		F2B2AFE519FF281E003042D6 /* Clap-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Clap-5.wav"; sourceTree = "<group>"; };
 		F2B2AFE619FF281E003042D6 /* Clap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Clap.wav; sourceTree = "<group>"; };
-		F2B2AFE819FF281E003042D6 /* 0-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test1.txt"; path = "Composer/0-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFE919FF281E003042D6 /* 0-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test2.txt"; path = "Composer/0-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFEA19FF281E003042D6 /* 0-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test3.txt"; path = "Composer/0-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFEB19FF281E003042D6 /* 0-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test4.txt"; path = "Composer/0-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFEC19FF281E003042D6 /* 0-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "0-test5.txt"; path = "Composer/0-test5.txt"; sourceTree = "<group>"; };
-		F2B2AFED19FF281E003042D6 /* 1-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test1.txt"; path = "Composer/1-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFEE19FF281E003042D6 /* 1-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test2.txt"; path = "Composer/1-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFEF19FF281E003042D6 /* 1-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test3.txt"; path = "Composer/1-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFF019FF281E003042D6 /* 1-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test4.txt"; path = "Composer/1-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFF119FF281E003042D6 /* 1-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "1-test5.txt"; path = "Composer/1-test5.txt"; sourceTree = "<group>"; };
-		F2B2AFF219FF281E003042D6 /* 2-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test1.txt"; path = "Composer/2-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFF319FF281E003042D6 /* 2-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test2.txt"; path = "Composer/2-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFF419FF281E003042D6 /* 2-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test3.txt"; path = "Composer/2-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFF519FF281E003042D6 /* 2-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test4.txt"; path = "Composer/2-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFF619FF281E003042D6 /* 2-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "2-test5.txt"; path = "Composer/2-test5.txt"; sourceTree = "<group>"; };
-		F2B2AFF719FF281E003042D6 /* 3-test1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test1.txt"; path = "Composer/3-test1.txt"; sourceTree = "<group>"; };
-		F2B2AFF819FF281E003042D6 /* 3-test2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test2.txt"; path = "Composer/3-test2.txt"; sourceTree = "<group>"; };
-		F2B2AFF919FF281E003042D6 /* 3-test3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test3.txt"; path = "Composer/3-test3.txt"; sourceTree = "<group>"; };
-		F2B2AFFA19FF281E003042D6 /* 3-test4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test4.txt"; path = "Composer/3-test4.txt"; sourceTree = "<group>"; };
-		F2B2AFFB19FF281E003042D6 /* 3-test5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3-test5.txt"; path = "Composer/3-test5.txt"; sourceTree = "<group>"; };
 		F2B2AFFC19FF281E003042D6 /* 4Track.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 4Track.pd; sourceTree = "<group>"; };
 		F2B2AFFD19FF281E003042D6 /* ah_60_2_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ah_60_2_60.wav; path = Composer/ah_60_2_60.wav; sourceTree = "<group>"; };
 		F2B2AFFE19FF281E003042D6 /* ah_60_4_60.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ah_60_4_60.wav; path = Composer/ah_60_4_60.wav; sourceTree = "<group>"; };
@@ -1436,26 +1085,6 @@
 		F2B2B06919FF281F003042D6 /* list-len.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-len.pd"; sourceTree = "<group>"; };
 		F2B2B06A19FF281F003042D6 /* list-map.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-map.pd"; sourceTree = "<group>"; };
 		F2B2B06B19FF281F003042D6 /* list-math.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-math.pd"; sourceTree = "<group>"; };
-		F2B2B18119FF2A8C003042D6 /* 0-Mario1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mario1.txt"; sourceTree = "<group>"; };
-		F2B2B18219FF2A8C003042D6 /* 1-Mario1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mario1.txt"; sourceTree = "<group>"; };
-		F2B2B18319FF2A8C003042D6 /* 2-Mario1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mario1.txt"; sourceTree = "<group>"; };
-		F2B2B18419FF2A8C003042D6 /* 3-Mario1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mario1.txt"; sourceTree = "<group>"; };
-		F2B2B18919FF2ABD003042D6 /* 0-Mario2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mario2.txt"; sourceTree = "<group>"; };
-		F2B2B18A19FF2ABD003042D6 /* 0-Mario3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mario3.txt"; sourceTree = "<group>"; };
-		F2B2B18B19FF2ABD003042D6 /* 0-Mario4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mario4.txt"; sourceTree = "<group>"; };
-		F2B2B18C19FF2ABD003042D6 /* 0-Mario5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-Mario5.txt"; sourceTree = "<group>"; };
-		F2B2B18D19FF2ABD003042D6 /* 1-Mario2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mario2.txt"; sourceTree = "<group>"; };
-		F2B2B18E19FF2ABD003042D6 /* 1-Mario3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mario3.txt"; sourceTree = "<group>"; };
-		F2B2B18F19FF2ABD003042D6 /* 1-Mario4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mario4.txt"; sourceTree = "<group>"; };
-		F2B2B19019FF2ABD003042D6 /* 1-Mario5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-Mario5.txt"; sourceTree = "<group>"; };
-		F2B2B19119FF2ABD003042D6 /* 2-Mario2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mario2.txt"; sourceTree = "<group>"; };
-		F2B2B19219FF2ABD003042D6 /* 2-Mario3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mario3.txt"; sourceTree = "<group>"; };
-		F2B2B19319FF2ABD003042D6 /* 2-Mario4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mario4.txt"; sourceTree = "<group>"; };
-		F2B2B19419FF2ABD003042D6 /* 2-Mario5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-Mario5.txt"; sourceTree = "<group>"; };
-		F2B2B19519FF2ABD003042D6 /* 3-Mario2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mario2.txt"; sourceTree = "<group>"; };
-		F2B2B19619FF2ABD003042D6 /* 3-Mario3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mario3.txt"; sourceTree = "<group>"; };
-		F2B2B19719FF2ABD003042D6 /* 3-Mario4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mario4.txt"; sourceTree = "<group>"; };
-		F2B2B19819FF2ABD003042D6 /* 3-Mario5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-Mario5.txt"; sourceTree = "<group>"; };
 		F2B2B1A919FF2ADC003042D6 /* er_contAvg.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = er_contAvg.pd; sourceTree = "<group>"; };
 		F2B2B1AB19FF2AF6003042D6 /* birdCountIn.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = birdCountIn.pd; path = ../birdCountIn.pd; sourceTree = "<group>"; };
 		F2B2B1AD19FF2B0D003042D6 /* list-dripslow.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "list-dripslow.pd"; sourceTree = "<group>"; };
@@ -1465,19 +1094,12 @@
 		F2D06FA31B290B0C00AA7708 /* MMAudioScopeViewController+Label.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMAudioScopeViewController+Label.m"; sourceTree = "<group>"; };
 		F2D06FA81B291A6100AA7708 /* HamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerButton.h; sourceTree = "<group>"; };
 		F2D06FA91B291A6100AA7708 /* HamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerButton.m; sourceTree = "<group>"; };
-		F2D06FB01B29386500AA7708 /* 0-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-sad.csv"; sourceTree = "<group>"; };
-		F2D06FB11B29386500AA7708 /* 1-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-sad.csv"; sourceTree = "<group>"; };
-		F2D06FB21B29386500AA7708 /* 2-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "2-sad.csv"; sourceTree = "<group>"; };
-		F2D06FB31B29386500AA7708 /* 3-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3-sad.csv"; sourceTree = "<group>"; };
-		F2D06FB41B29386500AA7708 /* 4-sad.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "4-sad.csv"; sourceTree = "<group>"; };
 		F2D3DFA71B3A10A8000AA933 /* MMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRootViewController.h; sourceTree = "<group>"; };
 		F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRootViewController.m; sourceTree = "<group>"; };
 		F2D3DFAD1B3A1859000AA933 /* MMRootViewController+Mods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Mods.h"; sourceTree = "<group>"; };
 		F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Mods.m"; sourceTree = "<group>"; };
 		F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleManager.h; sourceTree = "<group>"; };
 		F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleManager.m; sourceTree = "<group>"; };
-		F2D564361B2CD177008D9C76 /* 0-new.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-new.csv"; sourceTree = "<group>"; };
-		F2D564371B2CD177008D9C76 /* 1-new.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-new.csv"; sourceTree = "<group>"; };
 		F2DE10691B3B588600A7CDD0 /* MyGLKFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGLKFunctions.h; sourceTree = "<group>"; };
 		F2DE106A1B3B5F8700A7CDD0 /* MyGLKDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGLKDefs.h; sourceTree = "<group>"; };
 		F2DE9E951B222ACB00FEBE5F /* MMVisualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVisualViewController.h; sourceTree = "<group>"; };
@@ -1989,109 +1611,6 @@
 			name = Root;
 			sourceTree = "<group>";
 		};
-		F25B8F891A043B3D006E801D /* mega */ = {
-			isa = PBXGroup;
-			children = (
-				F25B8F8A1A043B3D006E801D /* 0-mega.csv */,
-				F25B8F8B1A043B3D006E801D /* 1-mega.csv */,
-				F25B8F8C1A043B3D006E801D /* 2-mega.csv */,
-				F25B8F8D1A043B3D006E801D /* 3-mega.csv */,
-				F25B8F8E1A043B3D006E801D /* 4-mega.csv */,
-				F25B8F8F1A043B3D006E801D /* 5-mega.csv */,
-				F25B8F901A043B3D006E801D /* 6-mega.csv */,
-			);
-			path = mega;
-			sourceTree = "<group>";
-		};
-		F293867D1A36A373008F0EDF /* ohn */ = {
-			isa = PBXGroup;
-			children = (
-				F293867E1A36A373008F0EDF /* 0-ohn.csv */,
-			);
-			path = ohn;
-			sourceTree = "<group>";
-		};
-		F29882A71A02CCFA005F9B94 /* csv */ = {
-			isa = PBXGroup;
-			children = (
-				F2D564351B2CD177008D9C76 /* new */,
-				F2D06FAF1B29386500AA7708 /* sad */,
-				F2A59CFE1A4793160000CDC1 /* als */,
-				F293867D1A36A373008F0EDF /* ohn */,
-				F29B436D1A32AEFF006AD07F /* jb */,
-				F29B43681A327AE5006AD07F /* gs */,
-				F25B8F891A043B3D006E801D /* mega */,
-				F29882BE1A02F033005F9B94 /* fantasy */,
-				F29882B31A02E973005F9B94 /* menace */,
-				F29882A81A02D022005F9B94 /* mario */,
-				F29882A21A02C027005F9B94 /* example_pattern.csv */,
-			);
-			name = csv;
-			sourceTree = "<group>";
-		};
-		F29882A81A02D022005F9B94 /* mario */ = {
-			isa = PBXGroup;
-			children = (
-				F29882A91A02D022005F9B94 /* 0-mario.csv */,
-				F29882AA1A02D022005F9B94 /* 1-mario.csv */,
-				F29882AB1A02D022005F9B94 /* 2-mario.csv */,
-				F29882AC1A02D022005F9B94 /* 3-mario.csv */,
-				F29882AD1A02D022005F9B94 /* 4-mario.csv */,
-			);
-			path = mario;
-			sourceTree = "<group>";
-		};
-		F29882B31A02E973005F9B94 /* menace */ = {
-			isa = PBXGroup;
-			children = (
-				F29882B41A02E973005F9B94 /* 0-menace.csv */,
-				F29882B51A02E973005F9B94 /* 1-menace.csv */,
-				F29882B61A02E973005F9B94 /* 2-menace.csv */,
-				F29882B71A02E973005F9B94 /* 3-menace.csv */,
-			);
-			path = menace;
-			sourceTree = "<group>";
-		};
-		F29882BE1A02F033005F9B94 /* fantasy */ = {
-			isa = PBXGroup;
-			children = (
-				F29882BF1A02F033005F9B94 /* 0-fantasy.csv */,
-				F29882C01A02F033005F9B94 /* 1-fantasy.csv */,
-			);
-			path = fantasy;
-			sourceTree = "<group>";
-		};
-		F29B43681A327AE5006AD07F /* gs */ = {
-			isa = PBXGroup;
-			children = (
-				F29B43691A327AE5006AD07F /* 0-gs.csv */,
-				F29B436A1A327AE5006AD07F /* 1-gs.csv */,
-				F29386841A36C74C008F0EDF /* 2-gs.csv */,
-				F29386851A36C74C008F0EDF /* 3-gs.csv */,
-			);
-			path = gs;
-			sourceTree = "<group>";
-		};
-		F29B436D1A32AEFF006AD07F /* jb */ = {
-			isa = PBXGroup;
-			children = (
-				F29B43721A32B27A006AD07F /* 0-jb.csv */,
-				F280FA821A365D3100FE0550 /* 1-jb.csv */,
-			);
-			path = jb;
-			sourceTree = "<group>";
-		};
-		F2A59CFE1A4793160000CDC1 /* als */ = {
-			isa = PBXGroup;
-			children = (
-				F2A59CFF1A4793160000CDC1 /* 0-als.csv */,
-				F2A59D001A4793160000CDC1 /* 1-als.csv */,
-				F2A59D031A479B440000CDC1 /* 2-als.csv */,
-				F2A59D041A479B440000CDC1 /* 3-als.csv */,
-			);
-			path = als;
-			sourceTree = "<group>";
-		};
 		F2A68BA11B26B54C00FA13F5 /* complex_math.mmb */ = {
 			isa = PBXGroup;
 			children = (
@@ -2201,14 +1720,12 @@
 		F2B2AB7D19FF273F003042D6 /* Pd */ = {
 			isa = PBXGroup;
 			children = (
-				F29882A71A02CCFA005F9B94 /* csv */,
 				F251C3361A005D7F00C8EE78 /* mm_test_sig.pd */,
 				F2B2B1B219FF4393003042D6 /* samples */,
 				F2B2B1B019FF42FD003042D6 /* mm */,
 				F2B2AFE719FF281E003042D6 /* utils */,
 				F2B2B1B119FF4338003042D6 /* list-abs */,
 				F2B2B1B619FF46A4003042D6 /* patches */,
-				F2B2B1B319FF4410003042D6 /* patterns */,
 				F2B2AD4B19FF27BE003042D6 /* synths */,
 				F2B2B1B719FF4735003042D6 /* other */,
 				F2B2B1B519FF450C003042D6 /* externals */,
@@ -2421,165 +1938,6 @@
 				F2B2B06319FF281F003042D6 /* Kick-5.wav */,
 			);
 			name = samples;
-			sourceTree = "<group>";
-		};
-		F2B2B1B319FF4410003042D6 /* patterns */ = {
-			isa = PBXGroup;
-			children = (
-				F2B2B18119FF2A8C003042D6 /* 0-Mario1.txt */,
-				F2B2B18219FF2A8C003042D6 /* 1-Mario1.txt */,
-				F2B2B18319FF2A8C003042D6 /* 2-Mario1.txt */,
-				F2B2B18419FF2A8C003042D6 /* 3-Mario1.txt */,
-				F2B2B18919FF2ABD003042D6 /* 0-Mario2.txt */,
-				F2B2B18A19FF2ABD003042D6 /* 0-Mario3.txt */,
-				F2B2B18B19FF2ABD003042D6 /* 0-Mario4.txt */,
-				F2B2B18C19FF2ABD003042D6 /* 0-Mario5.txt */,
-				F2B2B18D19FF2ABD003042D6 /* 1-Mario2.txt */,
-				F2B2B18E19FF2ABD003042D6 /* 1-Mario3.txt */,
-				F2B2B18F19FF2ABD003042D6 /* 1-Mario4.txt */,
-				F2B2B19019FF2ABD003042D6 /* 1-Mario5.txt */,
-				F2B2B19119FF2ABD003042D6 /* 2-Mario2.txt */,
-				F2B2B19219FF2ABD003042D6 /* 2-Mario3.txt */,
-				F2B2B19319FF2ABD003042D6 /* 2-Mario4.txt */,
-				F2B2B19419FF2ABD003042D6 /* 2-Mario5.txt */,
-				F2B2B19519FF2ABD003042D6 /* 3-Mario2.txt */,
-				F2B2B19619FF2ABD003042D6 /* 3-Mario3.txt */,
-				F2B2B19719FF2ABD003042D6 /* 3-Mario4.txt */,
-				F2B2B19819FF2ABD003042D6 /* 3-Mario5.txt */,
-				F2B2AD5D19FF27BE003042D6 /* 0-Funk1.txt */,
-				F2B2AD5E19FF27BE003042D6 /* 0-Funk2.txt */,
-				F2B2AD5F19FF27BE003042D6 /* 0-Funk3.txt */,
-				F2B2AD6019FF27BE003042D6 /* 0-Funk4.txt */,
-				F2B2AD6119FF27BE003042D6 /* 0-Happy.txt */,
-				F2B2AD6219FF27BE003042D6 /* 0-Happy2.txt */,
-				F2B2AD6319FF27BE003042D6 /* 0-Happy3.txt */,
-				F2B2AD6419FF27BE003042D6 /* 0-Happy4.txt */,
-				F2B2AD6519FF27BE003042D6 /* 0-Happy5.txt */,
-				F2B2AD6619FF27BE003042D6 /* 0-majesty1.txt */,
-				F2B2AD6719FF27BE003042D6 /* 0-majesty2.txt */,
-				F2B2AD6819FF27BE003042D6 /* 0-majesty3.txt */,
-				F2B2AD6919FF27BE003042D6 /* 0-majesty4.txt */,
-				F2B2AD6A19FF27BE003042D6 /* 0-Mega1.txt */,
-				F2B2AD6B19FF27BE003042D6 /* 0-Mega2.txt */,
-				F2B2AF5619FF281D003042D6 /* 0-Mega3.txt */,
-				F2B2AF5719FF281D003042D6 /* 0-Mega4.txt */,
-				F2B2AF5819FF281D003042D6 /* 0-Mega5.txt */,
-				F2B2AF5919FF281D003042D6 /* 0-Mega6.txt */,
-				F2B2AF5A19FF281D003042D6 /* 0-Mega7.txt */,
-				F2B2AF5B19FF281D003042D6 /* 0-Menace1.txt */,
-				F2B2AF5C19FF281D003042D6 /* 0-Menace2.txt */,
-				F2B2AF5D19FF281D003042D6 /* 0-Menace4.txt */,
-				F2B2AF5E19FF281D003042D6 /* 0-Sad1.txt */,
-				F2B2AF5F19FF281D003042D6 /* 0-Sad2.txt */,
-				F2B2AF6019FF281D003042D6 /* 0-Sad3.txt */,
-				F2B2AF6119FF281D003042D6 /* 0-Sad4.txt */,
-				F2B2AF6219FF281D003042D6 /* 0-Sad5.txt */,
-				F2B2AF6319FF281D003042D6 /* 1-Funk1.txt */,
-				F2B2AF6419FF281D003042D6 /* 1-Funk2.txt */,
-				F2B2AF6519FF281D003042D6 /* 1-Funk3.txt */,
-				F2B2AF6619FF281D003042D6 /* 1-Funk4.txt */,
-				F2B2AF6719FF281D003042D6 /* 1-Happy.txt */,
-				F2B2AF6819FF281D003042D6 /* 1-Happy2.txt */,
-				F2B2AF6919FF281D003042D6 /* 1-Happy3.txt */,
-				F2B2AF6A19FF281D003042D6 /* 1-Happy4.txt */,
-				F2B2AF6B19FF281D003042D6 /* 1-Happy5.txt */,
-				F2B2AF6C19FF281D003042D6 /* 1-majesty1.txt */,
-				F2B2AF6D19FF281D003042D6 /* 1-majesty2.txt */,
-				F2B2AF6E19FF281D003042D6 /* 1-majesty3.txt */,
-				F2B2AF6F19FF281D003042D6 /* 1-majesty4.txt */,
-				F2B2AF7019FF281D003042D6 /* 1-Mega1.txt */,
-				F2B2AF7119FF281D003042D6 /* 1-Mega2.txt */,
-				F2B2AF7219FF281D003042D6 /* 1-Mega3.txt */,
-				F2B2AF7319FF281D003042D6 /* 1-Mega4.txt */,
-				F2B2AF7419FF281D003042D6 /* 1-Mega5.txt */,
-				F2B2AF7519FF281D003042D6 /* 1-Mega6.txt */,
-				F2B2AF7619FF281D003042D6 /* 1-Mega7.txt */,
-				F2B2AF7719FF281D003042D6 /* 1-Menace1.txt */,
-				F2B2AF7819FF281D003042D6 /* 1-Menace2.txt */,
-				F2B2AF7919FF281D003042D6 /* 1-Menace4.txt */,
-				F2B2AF7A19FF281D003042D6 /* 1-Sad1.txt */,
-				F2B2AF7B19FF281D003042D6 /* 1-Sad2.txt */,
-				F2B2AF7C19FF281D003042D6 /* 1-Sad3.txt */,
-				F2B2AF7D19FF281D003042D6 /* 1-Sad4.txt */,
-				F2B2AF7E19FF281D003042D6 /* 1-Sad5.txt */,
-				F2B2AF7F19FF281D003042D6 /* 2-Funk1.txt */,
-				F2B2AF8019FF281D003042D6 /* 2-Funk2.txt */,
-				F2B2AF8119FF281D003042D6 /* 2-Funk3.txt */,
-				F2B2AF8219FF281D003042D6 /* 2-Funk4.txt */,
-				F2B2AF8319FF281D003042D6 /* 2-Happy.txt */,
-				F2B2AF8419FF281D003042D6 /* 2-Happy2.txt */,
-				F2B2AF8519FF281D003042D6 /* 2-Happy3.txt */,
-				F2B2AF8619FF281D003042D6 /* 2-Happy4.txt */,
-				F2B2AF8719FF281D003042D6 /* 2-Happy5.txt */,
-				F2B2AF8819FF281D003042D6 /* 2-majesty1.txt */,
-				F2B2AF8919FF281D003042D6 /* 2-majesty2.txt */,
-				F2B2AF8A19FF281D003042D6 /* 2-majesty3.txt */,
-				F2B2AF8B19FF281D003042D6 /* 2-majesty4.txt */,
-				F2B2AF8C19FF281D003042D6 /* 2-Mega1.txt */,
-				F2B2AF8D19FF281D003042D6 /* 2-Mega2.txt */,
-				F2B2AF8E19FF281D003042D6 /* 2-Mega3.txt */,
-				F2B2AF8F19FF281D003042D6 /* 2-Mega4.txt */,
-				F2B2AF9019FF281D003042D6 /* 2-Mega5.txt */,
-				F2B2AF9119FF281D003042D6 /* 2-Mega6.txt */,
-				F2B2AF9219FF281D003042D6 /* 2-Mega7.txt */,
-				F2B2AF9319FF281D003042D6 /* 2-Menace1.txt */,
-				F2B2AF9419FF281D003042D6 /* 2-Menace2.txt */,
-				F2B2AF9519FF281E003042D6 /* 2-Menace4.txt */,
-				F2B2AF9619FF281E003042D6 /* 2-Sad1.txt */,
-				F2B2AF9719FF281E003042D6 /* 2-Sad2.txt */,
-				F2B2AF9819FF281E003042D6 /* 2-Sad3.txt */,
-				F2B2AF9919FF281E003042D6 /* 2-Sad4.txt */,
-				F2B2AF9A19FF281E003042D6 /* 2-Sad5.txt */,
-				F2B2AF9B19FF281E003042D6 /* 3-Funk1.txt */,
-				F2B2AF9C19FF281E003042D6 /* 3-Funk2.txt */,
-				F2B2AF9D19FF281E003042D6 /* 3-Funk3.txt */,
-				F2B2AF9E19FF281E003042D6 /* 3-Funk4.txt */,
-				F2B2AF9F19FF281E003042D6 /* 3-Happy.txt */,
-				F2B2AFA019FF281E003042D6 /* 3-Happy2.txt */,
-				F2B2AFA119FF281E003042D6 /* 3-Happy3.txt */,
-				F2B2AFA219FF281E003042D6 /* 3-Happy4.txt */,
-				F2B2AFA319FF281E003042D6 /* 3-Happy5.txt */,
-				F2B2AFA419FF281E003042D6 /* 3-majesty1.txt */,
-				F2B2AFA519FF281E003042D6 /* 3-majesty2.txt */,
-				F2B2AFA619FF281E003042D6 /* 3-majesty3.txt */,
-				F2B2AFA719FF281E003042D6 /* 3-majesty4.txt */,
-				F2B2AFA819FF281E003042D6 /* 3-Mega1.txt */,
-				F2B2AFA919FF281E003042D6 /* 3-Mega2.txt */,
-				F2B2AFAA19FF281E003042D6 /* 3-Mega3.txt */,
-				F2B2AFAB19FF281E003042D6 /* 3-Mega4.txt */,
-				F2B2AFAC19FF281E003042D6 /* 3-Mega5.txt */,
-				F2B2AFAD19FF281E003042D6 /* 3-Mega6.txt */,
-				F2B2AFAE19FF281E003042D6 /* 3-Mega7.txt */,
-				F2B2AFAF19FF281E003042D6 /* 3-Menace1.txt */,
-				F2B2AFB019FF281E003042D6 /* 3-Menace2.txt */,
-				F2B2AFB119FF281E003042D6 /* 3-Menace4.txt */,
-				F2B2AFB219FF281E003042D6 /* 3-Sad1.txt */,
-				F2B2AFB319FF281E003042D6 /* 3-Sad2.txt */,
-				F2B2AFB419FF281E003042D6 /* 3-Sad3.txt */,
-				F2B2AFB519FF281E003042D6 /* 3-Sad4.txt */,
-				F2B2AFB619FF281E003042D6 /* 3-Sad5.txt */,
-				F2B2AFE819FF281E003042D6 /* 0-test1.txt */,
-				F2B2AFE919FF281E003042D6 /* 0-test2.txt */,
-				F2B2AFEA19FF281E003042D6 /* 0-test3.txt */,
-				F2B2AFEB19FF281E003042D6 /* 0-test4.txt */,
-				F2B2AFEC19FF281E003042D6 /* 0-test5.txt */,
-				F2B2AFED19FF281E003042D6 /* 1-test1.txt */,
-				F2B2AFEE19FF281E003042D6 /* 1-test2.txt */,
-				F2B2AFEF19FF281E003042D6 /* 1-test3.txt */,
-				F2B2AFF019FF281E003042D6 /* 1-test4.txt */,
-				F2B2AFF119FF281E003042D6 /* 1-test5.txt */,
-				F2B2AFF219FF281E003042D6 /* 2-test1.txt */,
-				F2B2AFF319FF281E003042D6 /* 2-test2.txt */,
-				F2B2AFF419FF281E003042D6 /* 2-test3.txt */,
-				F2B2AFF519FF281E003042D6 /* 2-test4.txt */,
-				F2B2AFF619FF281E003042D6 /* 2-test5.txt */,
-				F2B2AFF719FF281E003042D6 /* 3-test1.txt */,
-				F2B2AFF819FF281E003042D6 /* 3-test2.txt */,
-				F2B2AFF919FF281E003042D6 /* 3-test3.txt */,
-				F2B2AFFA19FF281E003042D6 /* 3-test4.txt */,
-				F2B2AFFB19FF281E003042D6 /* 3-test5.txt */,
-			);
-			name = patterns;
 			sourceTree = "<group>";
 		};
 		F2B2B1B419FF44B0003042D6 /* bird */ = {
@@ -2823,27 +2181,6 @@
 				F218FF211B4DB5BD000CB182 /* MMPurchaseManager.m */,
 			);
 			name = MMModuleTable;
-			sourceTree = "<group>";
-		};
-		F2D06FAF1B29386500AA7708 /* sad */ = {
-			isa = PBXGroup;
-			children = (
-				F2D06FB01B29386500AA7708 /* 0-sad.csv */,
-				F2D06FB11B29386500AA7708 /* 1-sad.csv */,
-				F2D06FB21B29386500AA7708 /* 2-sad.csv */,
-				F2D06FB31B29386500AA7708 /* 3-sad.csv */,
-				F2D06FB41B29386500AA7708 /* 4-sad.csv */,
-			);
-			path = sad;
-			sourceTree = "<group>";
-		};
-		F2D564351B2CD177008D9C76 /* new */ = {
-			isa = PBXGroup;
-			children = (
-				F2D564361B2CD177008D9C76 /* 0-new.csv */,
-				F2D564371B2CD177008D9C76 /* 1-new.csv */,
-			);
-			path = new;
 			sourceTree = "<group>";
 		};
 		F2DE9E931B2229F400FEBE5F /* OpenGL */ = {
@@ -3350,27 +2687,19 @@
 				F2EE019C1A11A22100398C04 /* g_vol2-help.pd in Resources */,
 				F2B2B17519FF281F003042D6 /* Kick-5.wav in Resources */,
 				F2EE01BD1A11A22100398C04 /* m_ms2sm-help.pd in Resources */,
-				F2B2B0C519FF281F003042D6 /* 3-Menace1.txt in Resources */,
 				F2B2B13A19FF281F003042D6 /* metroClick~.pd in Resources */,
 				F2EE02221A11A22100398C04 /* u_collect.pd in Resources */,
 				F2B2B16A19FF281F003042D6 /* Hat-3.wav in Resources */,
 				F2EE024D1A11A22100398C04 /* u_multisamplebank.pd in Resources */,
-				F25B8F931A043B3D006E801D /* 2-mega.csv in Resources */,
 				F2EE01781A11A22100398C04 /* e_stereowidener.pd in Resources */,
-				F2B2B09619FF281F003042D6 /* 2-Funk2.txt in Resources */,
 				F2B2B13719FF281F003042D6 /* interact3~.pd in Resources */,
-				F2B2B18619FF2A8C003042D6 /* 1-Mario1.txt in Resources */,
 				F2EE016E1A11A22100398C04 /* e_reverb.pd in Resources */,
-				F2B2B09919FF281F003042D6 /* 2-Happy.txt in Resources */,
 				F2EE016C1A11A22100398C04 /* e_resonzq.pd in Resources */,
 				F2B2B15119FF281F003042D6 /* conga1.aif in Resources */,
 				F2B2B0F919FF281F003042D6 /* Clap-4.wav in Resources */,
 				F2B2AF0619FF27BE003042D6 /* mm_sampler4~.pd in Resources */,
-				F2B2AF4C19FF27BE003042D6 /* 0-Happy2.txt in Resources */,
-				F2B2B07419FF281F003042D6 /* 0-Sad1.txt in Resources */,
 				F2B2B15619FF281F003042D6 /* conga4.wav in Resources */,
 				F2EE01241A11A22100398C04 /* c_multimetro-help.pd in Resources */,
-				F2B2B0C619FF281F003042D6 /* 3-Menace2.txt in Resources */,
 				F2EE01531A11A22100398C04 /* e_graindelread.pd in Resources */,
 				F2EE02481A11A22100398C04 /* u_makepoly-help.pd in Resources */,
 				F2EE02711A11A40300398C04 /* mm_adsr.pd in Resources */,
@@ -3378,31 +2707,21 @@
 				F2B2B11C19FF281F003042D6 /* birdInvert.pd in Resources */,
 				F2B2B13519FF281F003042D6 /* db2.pd in Resources */,
 				F2B2B0E719FF281F003042D6 /* big-burundi-07.wav in Resources */,
-				F2B2B19E19FF2ABD003042D6 /* 1-Mario3.txt in Resources */,
 				F2EE026A1A11A22100398C04 /* u_wrandom.pd in Resources */,
 				F2EE01FC1A11A22100398C04 /* s_loopsmooth-help.pd in Resources */,
 				F2EE01DD1A11A22100398C04 /* rj_image.pd in Resources */,
-				F2B2B09719FF281F003042D6 /* 2-Funk3.txt in Resources */,
 				F2B2B14E19FF281F003042D6 /* voxPitcher~.pd in Resources */,
 				F2EE01A81A11A22100398C04 /* m_accel_status.pd in Resources */,
 				F2EE014B1A11A22100398C04 /* e_fbdelay-help.pd in Resources */,
 				F2AD7F3F1A47FC8100840ABC /* mm_reverb.pd in Resources */,
-				F2B2B0A319FF281F003042D6 /* 2-Mega2.txt in Resources */,
-				F2B2B09B19FF281F003042D6 /* 2-Happy3.txt in Resources */,
-				F2B2B08D19FF281F003042D6 /* 1-Menace1.txt in Resources */,
 				F2EE011D1A11A22100398C04 /* c_madsrj.pd in Resources */,
-				F2B2B0A519FF281F003042D6 /* 2-Mega4.txt in Resources */,
 				F2EE02441A11A22100398C04 /* u_lowpass-help.pd in Resources */,
-				F2B2B0BF19FF281F003042D6 /* 3-Mega2.txt in Resources */,
 				F2EE01F81A11A22100398C04 /* s_hstr-help.pd in Resources */,
 				F2EE01691A11A22100398C04 /* e_reslop-help.pd in Resources */,
 				F2EE013B1A11A22100398C04 /* e_apdist-help.pd in Resources */,
-				F2B2B0BC19FF281F003042D6 /* 3-majesty3.txt in Resources */,
 				F2B2B0CD19FF281F003042D6 /* 808_FX4.aif in Resources */,
 				F2B2B12819FF281F003042D6 /* birdScore.pd in Resources */,
 				F2EE01A31A11A22100398C04 /* m_accel_pitch-help.pd in Resources */,
-				F2D06FB71B29386500AA7708 /* 2-sad.csv in Resources */,
-				F2B2B19A19FF2ABD003042D6 /* 0-Mario3.txt in Resources */,
 				F2B2B17619FF281F003042D6 /* list-accum.pd in Resources */,
 				F2EE023A1A11A22100398C04 /* u_listrandom-help.pd in Resources */,
 				F2EE017E1A11A22100398C04 /* g_channelstrip-help.pd in Resources */,
@@ -3410,9 +2729,7 @@
 				F2EE02541A11A22100398C04 /* u_robinpolymono-help.pd in Resources */,
 				F2EE016B1A11A22100398C04 /* e_resonzq-help.pd in Resources */,
 				F2EE02251A11A22100398C04 /* u_dumpfile-help.pd in Resources */,
-				F2D564391B2CD177008D9C76 /* 1-new.csv in Resources */,
 				F2EE01A71A11A22100398C04 /* m_accel_status-help.pd in Resources */,
-				F29386861A36C74C008F0EDF /* 2-gs.csv in Resources */,
 				F2B2B11519FF281F003042D6 /* birdCountIn.pd in Resources */,
 				F2B2B0DC19FF281F003042D6 /* autoPitch1.0.pd in Resources */,
 				F2EE01FF1A11A22100398C04 /* s_noish.pd in Resources */,
@@ -3422,8 +2739,6 @@
 				F2EE025C1A11A22100398C04 /* u_samplekit2-help.pd in Resources */,
 				F2EE01B21A11A22100398C04 /* m_intv2ratio.pd in Resources */,
 				F2EE01C21A11A22100398C04 /* m_scale.pd in Resources */,
-				F2B2B08919FF281F003042D6 /* 1-Mega4.txt in Resources */,
-				F2B2AF4B19FF27BE003042D6 /* 0-Happy.txt in Resources */,
 				F2EE01DA1A11A22100398C04 /* rj-meta.pd in Resources */,
 				F2EE01791A11A22100398C04 /* e_tremolo-help.pd in Resources */,
 				F2EE015A1A11A22100398C04 /* e_noclickdel-help.pd in Resources */,
@@ -3432,14 +2747,12 @@
 				F2EE01931A11A22100398C04 /* g_symbol.pd in Resources */,
 				F2B2B12B19FF281F003042D6 /* birdSqueeze.pd in Resources */,
 				F2B2AF1319FF27BE003042D6 /* modMusicPatchOld.pd in Resources */,
-				F2B2B0AC19FF281F003042D6 /* 2-Sad1.txt in Resources */,
 				F2B2B15519FF281F003042D6 /* conga3.wav in Resources */,
 				F2E06ACA1B3C876400D0B880 /* Brushed_Aluminum.png in Resources */,
 				F2B2AF1419FF27BE003042D6 /* other1.aif in Resources */,
 				F2EE01E51A11A22100398C04 /* s_chip-help.pd in Resources */,
 				F2B2B13619FF281F003042D6 /* interact2~.pd in Resources */,
 				F2B2B11B19FF281F003042D6 /* birdGate~.pd in Resources */,
-				F2B2B07F19FF281F003042D6 /* 1-Happy3.txt in Resources */,
 				F2EE015C1A11A22100398C04 /* e_noclickdelsig.pd in Resources */,
 				F2B2AF1219FF27BE003042D6 /* modMusicPatch.pd in Resources */,
 				F2DE9EB41B2245DD00FEBE5F /* mm_blsq4~.pd in Resources */,
@@ -3449,7 +2762,6 @@
 				F2B2AF3F19FF27BE003042D6 /* Tamb.wav in Resources */,
 				F2B2AEEC19FF27BE003042D6 /* mm_edge2~.pd in Resources */,
 				F2EE01F41A11A22100398C04 /* s_fplaytable.pd in Resources */,
-				F25B8F941A043B3D006E801D /* 3-mega.csv in Resources */,
 				F2B2B15919FF281F003042D6 /* conga7.wav in Resources */,
 				F2EE02071A11A22100398C04 /* s_playolap.pd in Resources */,
 				F2EE01FA1A11A22100398C04 /* s_looper-help.pd in Resources */,
@@ -3457,11 +2769,9 @@
 				F2B2B0DB19FF281F003042D6 /* analog_spindown.aif in Resources */,
 				F2EE01801A11A22100398C04 /* g_compressorgui-help.pd in Resources */,
 				F2EE01D21A11A22100398C04 /* r_#gyro-help.pd in Resources */,
-				F2B2B0AE19FF281F003042D6 /* 2-Sad3.txt in Resources */,
 				F2B2B16219FF281F003042D6 /* distortedsnare10.wav in Resources */,
 				F2B2B0D719FF281F003042D6 /* african5.wav in Resources */,
 				F2EE01821A11A22100398C04 /* g_hradio-help.pd in Resources */,
-				F2B2B08819FF281F003042D6 /* 1-Mega3.txt in Resources */,
 				F2EE01181A11A22100398C04 /* c_lfo-help.pd in Resources */,
 				F2EE02811A11B78300398C04 /* modmusica_4.pd in Resources */,
 				F2EE01201A11A22100398C04 /* c_mfade3-help.pd in Resources */,
@@ -3470,23 +2780,16 @@
 				F2B2AF2F19FF27BE003042D6 /* sample_slicer2~.pd in Resources */,
 				F2EE01EA1A11A22100398C04 /* s_czz.pd in Resources */,
 				F2EE01111A11A22100398C04 /* c_drunk.pd in Resources */,
-				F2B2B10819FF281F003042D6 /* 2-test3.txt in Resources */,
 				F2EE02931A11C1B100398C04 /* mm_osc6~.pd in Resources */,
 				F2EE026D1A11A33E00398C04 /* mm_rhodes~.pd in Resources */,
 				F2EE020D1A11A22100398C04 /* s_rhodey.pd in Resources */,
 				F2EE018E1A11A22100398C04 /* g_showimage-help.pd in Resources */,
-				F2B2B07A19FF281F003042D6 /* 1-Funk2.txt in Resources */,
 				F2B2B16419FF281F003042D6 /* distortedsnare27.wav in Resources */,
-				F2A59D061A479B440000CDC1 /* 3-als.csv in Resources */,
 				F251C3371A005D7F00C8EE78 /* mm_test_sig.pd in Resources */,
 				F2B2B15319FF281F003042D6 /* CONGA2.aif in Resources */,
 				F2EE02561A11A22100398C04 /* u_samplebank-help.pd in Resources */,
-				F2B2B0AB19FF281F003042D6 /* 2-Menace4.txt in Resources */,
-				F2B2B08619FF281F003042D6 /* 1-Mega1.txt in Resources */,
 				F2EE01C71A11A22100398C04 /* m_symbolarray-help.pd in Resources */,
-				F25B8F971A043B3D006E801D /* 6-mega.csv in Resources */,
 				F2A68B9E1B26B0FA00FA13F5 /* bsd_filterCoefficients.pd in Resources */,
-				F2B2B09A19FF281F003042D6 /* 2-Happy2.txt in Resources */,
 				F2EE02201A11A22100398C04 /* u_cocollect.pd in Resources */,
 				F2B2B0D519FF281F003042D6 /* african3.wav in Resources */,
 				F2B2B0DF19FF281F003042D6 /* bassdrum53.wav in Resources */,
@@ -3496,71 +2799,52 @@
 				F2B2AF2219FF27BE003042D6 /* rasta9.aif in Resources */,
 				F2B2B16819FF281F003042D6 /* gospel1.aif in Resources */,
 				F2162CEA1A0876FF0016C544 /* mm_sosc~.pd in Resources */,
-				F2B2B08119FF281F003042D6 /* 1-Happy5.txt in Resources */,
 				F2EE01C41A11A22100398C04 /* m_sm2ms.pd in Resources */,
 				F2EE02301A11A22100398C04 /* u_listequal-help.pd in Resources */,
 				F2B2AEE019FF27BE003042D6 /* list-pad.pd in Resources */,
-				F2B2AF4F19FF27BE003042D6 /* 0-Happy5.txt in Resources */,
 				F2EE02391A11A22100398C04 /* u_listnth.pd in Resources */,
 				F2EE02211A11A22100398C04 /* u_collect-help.pd in Resources */,
-				F2B2B0AF19FF281F003042D6 /* 2-Sad4.txt in Resources */,
 				F2B2B16719FF281F003042D6 /* findGreatest.pd in Resources */,
-				F2B2B1A119FF2ABD003042D6 /* 2-Mario2.txt in Resources */,
 				F2B2B13019FF281F003042D6 /* bsm_compressor~.pd in Resources */,
 				F2EE026B1A11A22100398C04 /* z_blank-help.pd in Resources */,
 				F2B2B12719FF281F003042D6 /* birdSampler~.pd in Resources */,
 				F2EE01881A11A22100398C04 /* g_nbx-help.pd in Resources */,
-				F2B2B18519FF2A8C003042D6 /* 0-Mario1.txt in Resources */,
 				F2B2AD6F19FF27BE003042D6 /* modMusicPatch_Test_2.pd in Resources */,
 				F2EE01D01A11A22100398C04 /* r_#compass-help.pd in Resources */,
 				F2B2B16319FF281F003042D6 /* distortedsnare26.wav in Resources */,
-				F25B8F921A043B3D006E801D /* 1-mega.csv in Resources */,
 				F2EE028D1A11BD9400398C04 /* u_loader.pd in Resources */,
 				F2DE9EA21B2235F700FEBE5F /* Icon@2x.png in Resources */,
-				F2B2AF5019FF27BE003042D6 /* 0-majesty1.txt in Resources */,
 				F2EE01F31A11A22100398C04 /* s_fplaytable-help.pd in Resources */,
 				F2EE023E1A11A22100398C04 /* u_listser-help.pd in Resources */,
-				F2B2B09C19FF281F003042D6 /* 2-Happy4.txt in Resources */,
-				F2B2AF4919FF27BE003042D6 /* 0-Funk3.txt in Resources */,
 				F2EE01481A11A22100398C04 /* e_dubdel.pd in Resources */,
 				F2B2B14419FF281F003042D6 /* pattern.pd in Resources */,
 				F2B2B0D819FF281F003042D6 /* african6.aif in Resources */,
-				F2B2B10719FF281F003042D6 /* 2-test2.txt in Resources */,
 				F2EE01371A11A22100398C04 /* e_agc-help.pd in Resources */,
 				F2A68BB31B26B54C00FA13F5 /* complex_div.mmb~.pd in Resources */,
 				F2EE01CB1A11A22100398C04 /* m_touch2grid-help.pd in Resources */,
 				F2EE01331A11A22100398C04 /* c_urn.pd in Resources */,
 				F2B2B0D619FF281F003042D6 /* african4.wav in Resources */,
-				F2B2AF4A19FF27BE003042D6 /* 0-Funk4.txt in Resources */,
 				F2B2AEFD19FF27BE003042D6 /* mm_rgate.pd in Resources */,
 				F2EE01B91A11A22100398C04 /* m_minorscale-help.pd in Resources */,
-				F25B8F961A043B3D006E801D /* 5-mega.csv in Resources */,
 				F2EE02131A11A22100398C04 /* s_wsb.pd in Resources */,
 				F2EE021A1A11A22100398C04 /* u_bandpass2.pd in Resources */,
 				F2EE022C1A11A22100398C04 /* u_highpassq-help.pd in Resources */,
-				F2B2B18819FF2A8C003042D6 /* 3-Mario1.txt in Resources */,
 				F2EE02651A11A22100398C04 /* u_splicetrans.pd in Resources */,
 				F2B2AEF319FF27BE003042D6 /* mm_monoSyncDelay.pd in Resources */,
 				F2B2AF1E19FF27BE003042D6 /* rasta5.aif in Resources */,
-				F2B2B19D19FF2ABD003042D6 /* 1-Mario2.txt in Resources */,
 				F2EE01D61A11A22100398C04 /* r_#time-help.pd in Resources */,
 				F2B2AD7019FF27BE003042D6 /* mm_bassosc3~.pd in Resources */,
 				F2B2AF3319FF27BE003042D6 /* Snare-3.wav in Resources */,
-				F2D564381B2CD177008D9C76 /* 0-new.csv in Resources */,
 				F2EE020C1A11A22100398C04 /* s_rhodey-help.pd in Resources */,
-				F29882B91A02E973005F9B94 /* 1-menace.csv in Resources */,
 				F2B2AF1919FF27BE003042D6 /* rap2.wav in Resources */,
 				F2B2AF2619FF27BE003042D6 /* rasta13.aif in Resources */,
 				F2B2B12A19FF281F003042D6 /* birdSquare~.pd in Resources */,
 				F2EE01561A11A22100398C04 /* e_lop4-help.pd in Resources */,
 				F2DE9EB81B2245DD00FEBE5F /* mm_pulse~.pd in Resources */,
-				F2B2B0B019FF281F003042D6 /* 2-Sad5.txt in Resources */,
 				F2EE01141A11A22100398C04 /* c_frand-help.pd in Resources */,
-				F2B2B0FD19FF281F003042D6 /* 0-test2.txt in Resources */,
 				F2B2B14819FF281F003042D6 /* randomSequencer.pd in Resources */,
 				F2EE01101A11A22100398C04 /* c_drunk-help.pd in Resources */,
 				F2EE01A41A11A22100398C04 /* m_accel_pitch.pd in Resources */,
-				F2B2B09819FF281F003042D6 /* 2-Funk4.txt in Resources */,
 				F2EE01451A11A22100398C04 /* e_circlepan-help.pd in Resources */,
 				F2B2AF1019FF27BE003042D6 /* mm_xfade.pd in Resources */,
 				F2B2B13C19FF281F003042D6 /* mm_osc~.pd in Resources */,
@@ -3569,15 +2853,11 @@
 				F2EE010E1A11A22100398C04 /* c_cpfade-help.pd in Resources */,
 				F2B2B1BE19FF4D87003042D6 /* modmusica.pd in Resources */,
 				F2B2AF2419FF27BE003042D6 /* rasta11.aif in Resources */,
-				F2A59D011A4793160000CDC1 /* 0-als.csv in Resources */,
-				F2B2B1A519FF2ABD003042D6 /* 3-Mario2.txt in Resources */,
 				F2EE02061A11A22100398C04 /* s_playolap-help.pd in Resources */,
 				F2B2AEE219FF27BE003042D6 /* list-rot.pd in Resources */,
-				F2B2B07C19FF281F003042D6 /* 1-Funk4.txt in Resources */,
 				F2E06ACC1B3C948A00D0B880 /* tile_floor.png in Resources */,
 				F2EE02631A11A22100398C04 /* u_spinner.pd in Resources */,
 				F2EE023B1A11A22100398C04 /* u_listrandom.pd in Resources */,
-				F2B2AF4719FF27BE003042D6 /* 0-Funk1.txt in Resources */,
 				F2EE02291A11A22100398C04 /* u_follower.pd in Resources */,
 				F2B2B0D419FF281F003042D6 /* african2.wav in Resources */,
 				F2EE013E1A11A22100398C04 /* e_beequad.pd in Resources */,
@@ -3594,18 +2874,15 @@
 				F2B2B12519FF281F003042D6 /* birdSampler3~.pd in Resources */,
 				F2A68BB11B26B54C00FA13F5 /* complex_con.mmb~.pd in Resources */,
 				F2EE01F01A11A22100398C04 /* s_fm4.pd in Resources */,
-				F2B2B19C19FF2ABD003042D6 /* 0-Mario5.txt in Resources */,
 				F246EF151A01A86400357005 /* modmusica_1.pd in Resources */,
 				F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */,
 				F2DE9EB71B2245DD00FEBE5F /* mm_fm~.pd in Resources */,
 				F2B2B13319FF281F003042D6 /* click~.pd in Resources */,
-				F2D06FB61B29386500AA7708 /* 1-sad.csv in Resources */,
 				F2B2B15E19FF281F003042D6 /* cowbell1.wav in Resources */,
 				F2EE01551A11A22100398C04 /* e_lop2.pd in Resources */,
 				F2EE024C1A11A22100398C04 /* u_multisamplebank-help.pd in Resources */,
 				F2B2AF0819FF27BE003042D6 /* mm_sampler6~.pd in Resources */,
 				F2B2AF0719FF27BE003042D6 /* mm_sampler5~.pd in Resources */,
-				F2B2AF4819FF27BE003042D6 /* 0-Funk2.txt in Resources */,
 				F2B2B0DD19FF281F003042D6 /* autoPitch1.1.pd in Resources */,
 				F2EE01C11A11A22100398C04 /* m_scale-help.pd in Resources */,
 				F2B2B1AE19FF2B0D003042D6 /* list-dripslow.pd in Resources */,
@@ -3613,7 +2890,6 @@
 				F2B2AEF219FF27BE003042D6 /* mm_logistic.pd in Resources */,
 				F2EE01E31A11A22100398C04 /* s_buzz-help.pd in Resources */,
 				F2EE01151A11A22100398C04 /* c_frand.pd in Resources */,
-				F2D06FB51B29386500AA7708 /* 0-sad.csv in Resources */,
 				F2B2AEF519FF27BE003042D6 /* mm_noiseCancel2~.pd in Resources */,
 				F2EE01461A11A22100398C04 /* e_circlepan.pd in Resources */,
 				F2EE01571A11A22100398C04 /* e_lop4.pd in Resources */,
@@ -3628,7 +2904,6 @@
 				F2B2B17D19FF281F003042D6 /* list-math.pd in Resources */,
 				F2EE012D1A11A22100398C04 /* c_seqplay.pd in Resources */,
 				F2EE015E1A11A22100398C04 /* e_pan.pd in Resources */,
-				F29B436B1A327AE5006AD07F /* 0-gs.csv in Resources */,
 				F2EE02171A11A22100398C04 /* u_bandpass1q-help.pd in Resources */,
 				F2B2B13F19FF281F003042D6 /* ms2samp.pd in Resources */,
 				F2EE01351A11A22100398C04 /* c_xfade.pd in Resources */,
@@ -3636,29 +2911,20 @@
 				F2EE01341A11A22100398C04 /* c_xfade-help.pd in Resources */,
 				F2EE02281A11A22100398C04 /* u_fade.pd in Resources */,
 				F2EE01C31A11A22100398C04 /* m_sm2ms-help.pd in Resources */,
-				F2B2B09019FF281F003042D6 /* 1-Sad1.txt in Resources */,
 				F2B2B11919FF281F003042D6 /* birdFilter~.pd in Resources */,
 				F2B2AB5A19FF1739003042D6 /* Main.storyboard in Resources */,
 				F2EE014C1A11A22100398C04 /* e_fbdelay.pd in Resources */,
-				F2B2B07D19FF281F003042D6 /* 1-Happy.txt in Resources */,
 				F2EE019A1A11A22100398C04 /* g_vol-help.pd in Resources */,
 				F2EE01511A11A22100398C04 /* e_freqshift.pd in Resources */,
 				F2EE02661A11A22100398C04 /* u_sssad.pd in Resources */,
-				F2B2AF5419FF27BE003042D6 /* 0-Mega1.txt in Resources */,
 				F2EE02551A11A22100398C04 /* u_robinpolymono.pd in Resources */,
 				F2EE01B61A11A22100398C04 /* m_majorscale.pd in Resources */,
-				F2B2AF5219FF27BE003042D6 /* 0-majesty3.txt in Resources */,
 				F2EE01BF1A11A22100398C04 /* m_ratio2intv-help.pd in Resources */,
 				F2EE01BE1A11A22100398C04 /* m_ms2sm.pd in Resources */,
 				F2EE02591A11A22100398C04 /* u_samplebank2.pd in Resources */,
 				F2B2B12E19FF281F003042D6 /* birdString~.pd in Resources */,
-				F2B2B09419FF281F003042D6 /* 1-Sad5.txt in Resources */,
-				F2B2B07919FF281F003042D6 /* 1-Funk1.txt in Resources */,
-				F29882B81A02E973005F9B94 /* 0-menace.csv in Resources */,
 				F2EE01981A11A22100398C04 /* g_tgl-help.pd in Resources */,
 				F2EE012F1A11A22100398C04 /* c_taptap.pd in Resources */,
-				F2B2B0BE19FF281F003042D6 /* 3-Mega1.txt in Resources */,
-				F2B2B10919FF281F003042D6 /* 2-test4.txt in Resources */,
 				F2B2B12619FF281F003042D6 /* birdSampler4~.pd in Resources */,
 				F2EE01911A11A22100398C04 /* g_showtext.pd in Resources */,
 				F2EE01D71A11A22100398C04 /* r_#time.pd in Resources */,
@@ -3668,35 +2934,25 @@
 				F2B2B17919FF281F003042D6 /* list-group.pd in Resources */,
 				F2B2AEE619FF27BE003042D6 /* mm_4Track.pd in Resources */,
 				F2EE02331A11A22100398C04 /* u_listfilter.pd in Resources */,
-				F2B2B0C319FF281F003042D6 /* 3-Mega6.txt in Resources */,
 				F2EE024F1A11A22100398C04 /* u_multisamplebank2.pd in Resources */,
-				F2B2B0B119FF281F003042D6 /* 3-Funk1.txt in Resources */,
 				F2B2AEE319FF27BE003042D6 /* list-splat.pd in Resources */,
 				F2B2B0CE19FF281F003042D6 /* 808_P2.aif in Resources */,
 				F2B2B15B19FF281F003042D6 /* conga9.wav in Resources */,
 				F2EE01BC1A11A22100398C04 /* m_ms2beat.pd in Resources */,
-				F2B2B07E19FF281F003042D6 /* 1-Happy2.txt in Resources */,
 				F2EE02031A11A22100398C04 /* s_osc.pd in Resources */,
 				F2EE01AA1A11A22100398C04 /* m_autoscale.pd in Resources */,
 				F2B2AEE119FF27BE003042D6 /* list-rev.pd in Resources */,
 				F2EE021B1A11A22100398C04 /* u_bandpass2q-help.pd in Resources */,
 				F2EE024E1A11A22100398C04 /* u_multisamplebank2-help.pd in Resources */,
-				F2B2B08719FF281F003042D6 /* 1-Mega2.txt in Resources */,
 				F2EE027B1A11B65000398C04 /* u_dispatch.pd in Resources */,
-				F2B2B0B619FF281F003042D6 /* 3-Happy2.txt in Resources */,
 				F2EE01431A11A22100398C04 /* e_chorusr-help.pd in Resources */,
 				F2EE01041A11A22100398C04 /* a_onset.pd in Resources */,
 				F2EE01591A11A22100398C04 /* e_mcompressor.pd in Resources */,
-				F2B2B07119FF281F003042D6 /* 0-Menace1.txt in Resources */,
 				F2EE01DC1A11A22100398C04 /* rj_image-help.pd in Resources */,
 				F2EE02381A11A22100398C04 /* u_listnth-help.pd in Resources */,
-				F2B2B07819FF281F003042D6 /* 0-Sad5.txt in Resources */,
-				F2B2B07B19FF281F003042D6 /* 1-Funk3.txt in Resources */,
 				F2B2B0CF19FF281F003042D6 /* 808_P4.aif in Resources */,
-				F2B2B0C419FF281F003042D6 /* 3-Mega7.txt in Resources */,
 				F2EE01391A11A22100398C04 /* e_alias-help.pd in Resources */,
 				F2EE024A1A11A22100398C04 /* u_messagesaver-help.pd in Resources */,
-				F2B2B0CC19FF281F003042D6 /* 3-Sad5.txt in Resources */,
 				F2EE02271A11A22100398C04 /* u_fade-help.pd in Resources */,
 				F2EE01841A11A22100398C04 /* g_hsl-help.pd in Resources */,
 				F2EE01281A11A22100398C04 /* c_pass-help.pd in Resources */,
@@ -3706,22 +2962,15 @@
 				F2EE01741A11A22100398C04 /* e_sdelay.pd in Resources */,
 				F2EE00FF1A11A22100398C04 /* _markovanal.pd in Resources */,
 				F2B2AEF819FF27BE003042D6 /* mm_osc2~.pd in Resources */,
-				F29882BB1A02E973005F9B94 /* 3-menace.csv in Resources */,
 				F2B2B13E19FF281F003042D6 /* ModMusicErrorLog8_10.txt in Resources */,
 				F2EE01961A11A22100398C04 /* g_synthcontrol-help.pd in Resources */,
 				F2EE02191A11A22100398C04 /* u_bandpass2-help.pd in Resources */,
 				F2B2AF4119FF27BE003042D6 /* timbreStamp2~.pd in Resources */,
-				F2B2B0B319FF281F003042D6 /* 3-Funk3.txt in Resources */,
 				F2EE01F71A11A22100398C04 /* s_guitar.pd in Resources */,
-				F2B2B1A419FF2ABD003042D6 /* 2-Mario5.txt in Resources */,
-				F2B2B0C119FF281F003042D6 /* 3-Mega4.txt in Resources */,
 				F2B2AF0F19FF27BE003042D6 /* mm_vocoder~.pd in Resources */,
 				F2B2AF0219FF27BE003042D6 /* mm_sample_slicer1~.pd in Resources */,
 				F2B2B12F19FF281F003042D6 /* birdSynth~.pd in Resources */,
-				F2B2B10A19FF281F003042D6 /* 2-test5.txt in Resources */,
-				F2B2B06E19FF281F003042D6 /* 0-Mega5.txt in Resources */,
 				F2B2B0F119FF281F003042D6 /* blobble.aif in Resources */,
-				F2B2B0B419FF281F003042D6 /* 3-Funk4.txt in Resources */,
 				F2EE01311A11A22100398C04 /* c_tobus.pd in Resources */,
 				F2EE01031A11A22100398C04 /* a_onset-help.pd in Resources */,
 				F2B2AEFB19FF27BE003042D6 /* mm_randFilter~.pd in Resources */,
@@ -3737,12 +2986,10 @@
 				F2B2B16C19FF281F003042D6 /* Hat-5.wav in Resources */,
 				F2EE02571A11A22100398C04 /* u_samplebank.pd in Resources */,
 				F2EE023F1A11A22100398C04 /* u_listser.pd in Resources */,
-				F2B2B09D19FF281F003042D6 /* 2-Happy5.txt in Resources */,
 				F2EE01441A11A22100398C04 /* e_chorusr.pd in Resources */,
 				F2B2AF4619FF27BE003042D6 /* vocalAppPatch.pd in Resources */,
 				F2EE01611A11A22100398C04 /* e_pingpong-help.pd in Resources */,
 				F2B2B11419FF281F003042D6 /* birdClock.pd in Resources */,
-				F2B2B0AD19FF281F003042D6 /* 2-Sad2.txt in Resources */,
 				F2B2B16B19FF281F003042D6 /* Hat-4.wav in Resources */,
 				F2EE017D1A11A22100398C04 /* g.txt in Resources */,
 				F2EE01061A11A22100398C04 /* c_adsr-help.pd in Resources */,
@@ -3767,7 +3014,6 @@
 				F2B2B15D19FF281F003042D6 /* cowbell.aif in Resources */,
 				F2EE019F1A11A22100398C04 /* LICENSE.txt in Resources */,
 				F2B2B0E319FF281F003042D6 /* big-burundi-03.wav in Resources */,
-				F29882AF1A02D022005F9B94 /* 1-mario.csv in Resources */,
 				F2B2AF3619FF27BE003042D6 /* Snare.wav in Resources */,
 				F2B2B0D219FF281F003042D6 /* african-pe-lo.wav in Resources */,
 				F2B2B17719FF281F003042D6 /* list-drip.pd in Resources */,
@@ -3776,8 +3022,6 @@
 				F2B2AEE919FF27BE003042D6 /* mm_ceiling2~.pd in Resources */,
 				F2B2AEEA19FF27BE003042D6 /* mm_compressor.pd in Resources */,
 				F2EE02011A11A22100398C04 /* s_noiz.pd in Resources */,
-				F2D06FB91B29386500AA7708 /* 4-sad.csv in Resources */,
-				F29882B11A02D022005F9B94 /* 3-mario.csv in Resources */,
 				F2B2AF3119FF27BE003042D6 /* slicer.pd in Resources */,
 				F2B2AEEB19FF27BE003042D6 /* mm_edge~.pd in Resources */,
 				F2EE01E01A11A22100398C04 /* s_blsaw.pd in Resources */,
@@ -3785,28 +3029,20 @@
 				F2A68BAF1B26B54C00FA13F5 /* complex_add.mmb~.pd in Resources */,
 				F2B2AF4219FF27BE003042D6 /* timbreStamp3.pd in Resources */,
 				F2EE02461A11A22100398C04 /* u_lowpassq-help.pd in Resources */,
-				F2B2B0BD19FF281F003042D6 /* 3-majesty4.txt in Resources */,
 				F2B2B13119FF281F003042D6 /* bsm_switch~.pd in Resources */,
 				F2EE025A1A11A22100398C04 /* u_samplekit-help.pd in Resources */,
-				F2B2AF4D19FF27BE003042D6 /* 0-Happy3.txt in Resources */,
 				F2B2AF0A19FF27BE003042D6 /* mm_sampler8~.pd in Resources */,
 				F2B2B0F619FF281F003042D6 /* templates.txt in Resources */,
-				F2B2B0C919FF281F003042D6 /* 3-Sad2.txt in Resources */,
 				F2EE01E11A11A22100398C04 /* s_blsquare-help.pd in Resources */,
 				F2B2B0E919FF281F003042D6 /* big-burundi-19.wav in Resources */,
-				F2B2B08219FF281F003042D6 /* 1-majesty1.txt in Resources */,
 				F2EE01E21A11A22100398C04 /* s_blsquare.pd in Resources */,
-				F25B8F911A043B3D006E801D /* 0-mega.csv in Resources */,
-				F2B2B10E19FF281F003042D6 /* 3-test4.txt in Resources */,
 				F2DE9EB21B2245DD00FEBE5F /* mm_blsaw~.pd in Resources */,
 				F2B2B16119FF281F003042D6 /* distortedkick94.wav in Resources */,
 				F2EE01401A11A22100398C04 /* e_bitcrusher.pd in Resources */,
-				F2B2B08A19FF281F003042D6 /* 1-Mega5.txt in Resources */,
 				F2EE017C1A11A22100398C04 /* e_vocoder.pd in Resources */,
 				F2DE9EB31B2245DD00FEBE5F /* mm_blsine~.pd in Resources */,
 				F2B2B16019FF281F003042D6 /* ctr.pd in Resources */,
 				F2917A051B4CCCA30048591D /* LaunchImage.png in Resources */,
-				F29B436C1A327AE5006AD07F /* 1-gs.csv in Resources */,
 				F2EE01081A11A22100398C04 /* c_adsrj-help.pd in Resources */,
 				F2EE010A1A11A22100398C04 /* c_bangx-help.pd in Resources */,
 				F2EE01B11A11A22100398C04 /* m_intv2ratio-help.pd in Resources */,
@@ -3817,10 +3053,8 @@
 				F2EE02691A11A22100398C04 /* u_wrandom-help.pd in Resources */,
 				F2EE010D1A11A22100398C04 /* c_bus.pd in Resources */,
 				F2EE01001A11A22100398C04 /* a.txt in Resources */,
-				F2B2B10F19FF281F003042D6 /* 3-test5.txt in Resources */,
 				F2B2AEF719FF27BE003042D6 /* mm_osc~.pd in Resources */,
 				F2EE02751A11B50300398C04 /* mm_spad~.pd in Resources */,
-				F2B2B0B819FF281F003042D6 /* 3-Happy4.txt in Resources */,
 				F2EE020A1A11A22100398C04 /* s_playtable2-help.pd in Resources */,
 				F2B2B13219FF281F003042D6 /* btoms.pd in Resources */,
 				F2EE01E71A11A22100398C04 /* s_cwc-help.pd in Resources */,
@@ -3829,14 +3063,12 @@
 				F2B2B0EA19FF281F003042D6 /* big-burundi-24.wav in Resources */,
 				F2B2AEE419FF27BE003042D6 /* list-tabdump.pd in Resources */,
 				F2B2B0EC19FF281F003042D6 /* birdClock.pd in Resources */,
-				F2B2B07319FF281F003042D6 /* 0-Menace4.txt in Resources */,
 				F2EE01A91A11A22100398C04 /* m_autoscale-help.pd in Resources */,
 				F2B2AF2719FF27BE003042D6 /* rasta14.aif in Resources */,
 				F2B2B1AA19FF2ADC003042D6 /* er_contAvg.pd in Resources */,
 				F2B2AF1F19FF27BE003042D6 /* rasta6.wav in Resources */,
 				F2EE01A01A11A22100398C04 /* m.txt in Resources */,
 				F2B2AEF919FF27BE003042D6 /* mm_patternPlayer.pd in Resources */,
-				F2B2B07019FF281F003042D6 /* 0-Mega7.txt in Resources */,
 				F2EE02681A11A22100398C04 /* u_stereo.pd in Resources */,
 				F2EE01861A11A22100398C04 /* g_hsl4-help.pd in Resources */,
 				F2EE02361A11A22100398C04 /* u_listmap-help.pd in Resources */,
@@ -3844,13 +3076,10 @@
 				F2B2AEEE19FF27BE003042D6 /* mm_env~.pd in Resources */,
 				F2EE011B1A11A22100398C04 /* c_madsr.pd in Resources */,
 				F2EE02511A11A22100398C04 /* u_record.pd in Resources */,
-				F2B2B1A719FF2ABD003042D6 /* 3-Mario4.txt in Resources */,
 				F2EE01AD1A11A22100398C04 /* m_bpm2ms-help.pd in Resources */,
 				F2B2B0E619FF281F003042D6 /* big-burundi-06.wav in Resources */,
 				F2A68BB81B26B54C00FA13F5 /* complex_sub.mmb~.pd in Resources */,
 				F2B2AD6D19FF27BE003042D6 /* mm_osc3~.pd in Resources */,
-				F2B2B09219FF281F003042D6 /* 1-Sad3.txt in Resources */,
-				F2B2B08F19FF281F003042D6 /* 1-Menace4.txt in Resources */,
 				F2EE02231A11A22100398C04 /* u_dispatch-help.pd in Resources */,
 				F2EE02471A11A22100398C04 /* u_lowpassq.pd in Resources */,
 				F2EE01B31A11A22100398C04 /* m_keyfollow-help.pd in Resources */,
@@ -3859,18 +3088,14 @@
 				F2B2B11019FF281F003042D6 /* 4Track.pd in Resources */,
 				F2EE01221A11A22100398C04 /* c_mphasor-help.pd in Resources */,
 				F2EE02311A11A22100398C04 /* u_listequal.pd in Resources */,
-				F2B2B0FF19FF281F003042D6 /* 0-test4.txt in Resources */,
 				F2DE9EB51B2245DD00FEBE5F /* mm_blsq12~.pd in Resources */,
 				F2EE01C91A11A22100398C04 /* m_thresholds-help.pd in Resources */,
-				F2B2B10319FF281F003042D6 /* 1-test3.txt in Resources */,
 				F2B2B13D19FF281F003042D6 /* ModMusic.pd in Resources */,
 				F2B2AF2119FF27BE003042D6 /* rasta8.wav in Resources */,
-				F29386801A36A373008F0EDF /* 0-ohn.csv in Resources */,
 				F2A68BA01B26B10900FA13F5 /* bsd_biquad~.pd in Resources */,
 				F2B2B13819FF281F003042D6 /* interact4~.pd in Resources */,
 				F2B2AEFC19FF27BE003042D6 /* mm_randFilter2~.pd in Resources */,
 				F2B2B12119FF281F003042D6 /* birdPan~.pd in Resources */,
-				F2B2B18719FF2A8C003042D6 /* 2-Mario1.txt in Resources */,
 				F2B2B14D19FF281F003042D6 /* stretcher~.pd in Resources */,
 				F2EE014F1A11A22100398C04 /* e_forcepitch.pd in Resources */,
 				F2EE01631A11A22100398C04 /* e_pitchshift-help.pd in Resources */,
@@ -3885,67 +3110,50 @@
 				F2B2B14619FF281F003042D6 /* pitcher~.pd in Resources */,
 				F2B2AF3019FF27BE003042D6 /* samplerChain~.pd in Resources */,
 				F2EE01541A11A22100398C04 /* e_lop2-help.pd in Resources */,
-				F2B2B0BA19FF281F003042D6 /* 3-majesty1.txt in Resources */,
-				F2B2B0A819FF281F003042D6 /* 2-Mega7.txt in Resources */,
 				F2EE02871A11B97E00398C04 /* g_synsl.pd in Resources */,
 				F2B2B14319FF281F003042D6 /* ooh_60_4_60.wav in Resources */,
 				F2EE02921A11C1B100398C04 /* modmusica_5.pd in Resources */,
-				F2B2B0A619FF281F003042D6 /* 2-Mega5.txt in Resources */,
-				F2B2B0A019FF281F003042D6 /* 2-majesty3.txt in Resources */,
 				F2B2B0D019FF281F003042D6 /* 909clap1.aif in Resources */,
 				F2EE027D1A11B6B200398C04 /* mm_dispatch.pd in Resources */,
-				F25B8F951A043B3D006E801D /* 4-mega.csv in Resources */,
 				F2B2B11F19FF281F003042D6 /* birdOsc~.pd in Resources */,
 				F2EE02091A11A22100398C04 /* s_playtable.pd in Resources */,
 				F2EE01871A11A22100398C04 /* g_hsl4.pd in Resources */,
 				F2EE01361A11A22100398C04 /* e.txt in Resources */,
-				F29882C11A02F033005F9B94 /* 0-fantasy.csv in Resources */,
 				F2B2B0FB19FF281F003042D6 /* Clap.wav in Resources */,
 				F2B2AEFE19FF27BE003042D6 /* mm_rlist.pd in Resources */,
 				F2DE9EB11B2245DD00FEBE5F /* mm_am~.pd in Resources */,
 				F2B2B0D119FF281F003042D6 /* african-pe-hi.wav in Resources */,
 				F2B2B11619FF281F003042D6 /* birdDB.pd in Resources */,
 				F2B2B14019FF281F003042D6 /* noteOff.pd in Resources */,
-				F2B2AF5319FF27BE003042D6 /* 0-majesty4.txt in Resources */,
 				F2EE01751A11A22100398C04 /* e_softclip-help.pd in Resources */,
 				F2B2B11319FF281F003042D6 /* autoPitch1.1.pd in Resources */,
-				F29882AE1A02D022005F9B94 /* 0-mario.csv in Resources */,
 				F2EE01C51A11A22100398C04 /* m_speedlimit-help.pd in Resources */,
-				F2B2B0A219FF281F003042D6 /* 2-Mega1.txt in Resources */,
 				F2EE01A51A11A22100398C04 /* m_accel_roll-help.pd in Resources */,
 				F2EEFF8F1A11A0D300398C04 /* modmusica_3.pd in Resources */,
 				F2EE016A1A11A22100398C04 /* e_reslop.pd in Resources */,
 				F2B2AF2C19FF27BE003042D6 /* rasta19.aif in Resources */,
 				F2AD7F3B1A47EF0400840ABC /* mm_randomness.pd in Resources */,
-				F2B2B08319FF281F003042D6 /* 1-majesty2.txt in Resources */,
 				F2EE01681A11A22100398C04 /* e_repeater.pd in Resources */,
 				F2EE01921A11A22100398C04 /* g_symbol-help.pd in Resources */,
 				F2EE015F1A11A22100398C04 /* e_phaser-help.pd in Resources */,
 				F2EE01B51A11A22100398C04 /* m_majorscale-help.pd in Resources */,
 				F2EE013C1A11A22100398C04 /* e_apdist.pd in Resources */,
-				F2B2AF4E19FF27BE003042D6 /* 0-Happy4.txt in Resources */,
 				F2B2B0F019FF281F003042D6 /* birdString.pd in Resources */,
 				F2EE014E1A11A22100398C04 /* e_forcepitch-help.pd in Resources */,
 				F2B2B12419FF281F003042D6 /* birdSampler2~.pd in Resources */,
 				F2EE01891A11A22100398C04 /* g_nbx.pd in Resources */,
 				F2EE02041A11A22100398C04 /* s_pinknoise-help.pd in Resources */,
-				F2B2B09119FF281F003042D6 /* 1-Sad2.txt in Resources */,
-				F2B2B19F19FF2ABD003042D6 /* 1-Mario4.txt in Resources */,
 				F2B2AF0B19FF27BE003042D6 /* mm_stereoChorus.pd in Resources */,
 				F2B2B12C19FF281F003042D6 /* birdSqueeze~.pd in Resources */,
 				F2EE01701A11A22100398C04 /* e_scompress.pd in Resources */,
-				F2B2B10C19FF281F003042D6 /* 3-test2.txt in Resources */,
 				F2EE01771A11A22100398C04 /* e_stereowidener-help.pd in Resources */,
 				F2B2AF0919FF27BE003042D6 /* mm_sampler7~.pd in Resources */,
-				F2B2B0A119FF281F003042D6 /* 2-majesty4.txt in Resources */,
 				F2B2B16919FF281F003042D6 /* Hat-2.wav in Resources */,
 				F2EE019D1A11A22100398C04 /* g_vol2.pd in Resources */,
 				F2B2B0E419FF281F003042D6 /* big-burundi-04.wav in Resources */,
 				F2EE01B01A11A22100398C04 /* m_chorddict.pd in Resources */,
-				F2B2B0A919FF281F003042D6 /* 2-Menace1.txt in Resources */,
 				F2B2AF0E19FF27BE003042D6 /* mm_synth~.pd in Resources */,
 				F2EE020F1A11A22100398C04 /* s_spad.pd in Resources */,
-				F2B2B0C219FF281F003042D6 /* 3-Mega5.txt in Resources */,
 				F2EE01011A11A22100398C04 /* a_breath-help.pd in Resources */,
 				F2EE01D91A11A22100398C04 /* r_#touch.pd in Resources */,
 				F2EE01E41A11A22100398C04 /* s_buzz.pd in Resources */,
@@ -3953,18 +3161,13 @@
 				F2EE01AC1A11A22100398C04 /* m_beat2ms.pd in Resources */,
 				F2B2AEF619FF27BE003042D6 /* mm_noiseCancel3~.pd in Resources */,
 				F2EE02581A11A22100398C04 /* u_samplebank2-help.pd in Resources */,
-				F2B2AF5519FF27BE003042D6 /* 0-Mega2.txt in Resources */,
 				F2B2B11E19FF281F003042D6 /* birdMidiIn.pd in Resources */,
 				F2EE01A21A11A22100398C04 /* m_accel_magnitude.pd in Resources */,
 				F2EE02151A11A22100398C04 /* u_bandpass1-help.pd in Resources */,
-				F2B2B07219FF281F003042D6 /* 0-Menace2.txt in Resources */,
 				F2B2B0E119FF281F003042D6 /* bassdrum157.wav in Resources */,
 				F2EE028B1A11BD6C00398C04 /* s_chip.pd in Resources */,
-				F2B2B07519FF281F003042D6 /* 0-Sad2.txt in Resources */,
-				F2B2B0C719FF281F003042D6 /* 3-Menace4.txt in Resources */,
 				F2A68BAE1B26B54C00FA13F5 /* complex_add.mmb.pd in Resources */,
 				F2B2B0E519FF281F003042D6 /* big-burundi-05.wav in Resources */,
-				F2B2B10019FF281F003042D6 /* 0-test5.txt in Resources */,
 				F2EE01811A11A22100398C04 /* g_compressorgui.pd in Resources */,
 				F2B2B17C19FF281F003042D6 /* list-map.pd in Resources */,
 				F2B2B0D319FF281F003042D6 /* african1.wav in Resources */,
@@ -3973,21 +3176,16 @@
 				F2B2B11D19FF281F003042D6 /* birdKick~.pd in Resources */,
 				F2B2B0E019FF281F003042D6 /* bassdrum100.wav in Resources */,
 				F2B2AF1119FF27BE003042D6 /* modMusicPatch_Test_1.0.pd in Resources */,
-				F2B2B0CB19FF281F003042D6 /* 3-Sad4.txt in Resources */,
 				F2B2B13419FF281F003042D6 /* db1.pd in Resources */,
 				F2EE019B1A11A22100398C04 /* g_vol.pd in Resources */,
-				F2B2B10419FF281F003042D6 /* 1-test4.txt in Resources */,
 				F2EE011A1A11A22100398C04 /* c_madsr-help.pd in Resources */,
 				F2B2B12219FF281F003042D6 /* birdPerc.pd in Resources */,
 				F2B2B17A19FF281F003042D6 /* list-idx.pd in Resources */,
 				F2EE01941A11A22100398C04 /* g_synsl-help.pd in Resources */,
 				F2EE01C01A11A22100398C04 /* m_ratio2intv.pd in Resources */,
 				F2EE02701A11A40300398C04 /* mm_xfade2.pd in Resources */,
-				F2B2B10219FF281F003042D6 /* 1-test2.txt in Resources */,
 				F2EE011F1A11A22100398C04 /* c_markov.pd in Resources */,
-				F2B2B0FE19FF281F003042D6 /* 0-test3.txt in Resources */,
 				F2EE017B1A11A22100398C04 /* e_vocoder-help.pd in Resources */,
-				F2B2B08419FF281F003042D6 /* 1-majesty3.txt in Resources */,
 				F2EE023C1A11A22100398C04 /* u_listreduce-help.pd in Resources */,
 				F2EE01621A11A22100398C04 /* e_pingpong.pd in Resources */,
 				F2EE020B1A11A22100398C04 /* s_playtable2.pd in Resources */,
@@ -4001,37 +3199,28 @@
 				F2EE01DF1A11A22100398C04 /* s_blsaw-help.pd in Resources */,
 				F2EE02671A11A22100398C04 /* u_stereo-help.pd in Resources */,
 				F2A68BB71B26B54C00FA13F5 /* complex_sub.mmb.pd in Resources */,
-				F29882B01A02D022005F9B94 /* 2-mario.csv in Resources */,
 				F2EE01161A11A22100398C04 /* c_frombus-help.pd in Resources */,
-				F2B2B07619FF281F003042D6 /* 0-Sad3.txt in Resources */,
 				F2EE021F1A11A22100398C04 /* u_cocollect-help.pd in Resources */,
 				F2EE01B41A11A22100398C04 /* m_keyfollow.pd in Resources */,
-				F2A59D021A4793160000CDC1 /* 1-als.csv in Resources */,
 				F2EE01521A11A22100398C04 /* e_graindelread-help.pd in Resources */,
-				F280FA831A365D3100FE0550 /* 1-jb.csv in Resources */,
 				F2EE01A11A11A22100398C04 /* m_accel_magnitude-help.pd in Resources */,
 				F2B2B15219FF281F003042D6 /* conga1.wav in Resources */,
 				F2EE01951A11A22100398C04 /* g_synsl.pd in Resources */,
-				F2B2B09E19FF281F003042D6 /* 2-majesty1.txt in Resources */,
 				F2EE01B81A11A22100398C04 /* m_markovanal.pd in Resources */,
 				F2B2AF2A19FF27BE003042D6 /* rasta17.aif in Resources */,
 				F2B2B0F819FF281F003042D6 /* Clap-3.wav in Resources */,
 				F2EE01291A11A22100398C04 /* c_pass.pd in Resources */,
 				F2EE01F91A11A22100398C04 /* s_hstr.pd in Resources */,
 				F2EE01251A11A22100398C04 /* c_multimetro.pd in Resources */,
-				F2B2B08C19FF281F003042D6 /* 1-Mega7.txt in Resources */,
 				F2B2AF0D19FF27BE003042D6 /* mm_string~.pd in Resources */,
-				F2B2B06D19FF281F003042D6 /* 0-Mega4.txt in Resources */,
 				F2EE013D1A11A22100398C04 /* e_beequad-help.pd in Resources */,
 				F2EE02121A11A22100398C04 /* s_wsb-help.pd in Resources */,
 				F2EE01F21A11A22100398C04 /* s_fmoscil.pd in Resources */,
-				F29882B21A02D022005F9B94 /* 4-mario.csv in Resources */,
 				F2EE01C61A11A22100398C04 /* m_speedlimit.pd in Resources */,
 				F2EE021D1A11A22100398C04 /* u_channelstrip-help.pd in Resources */,
 				F2B2B17319FF281F003042D6 /* Kick-3.wav in Resources */,
 				F2B2AEE719FF27BE003042D6 /* mm_bassosc2~.pd in Resources */,
 				F2EE01F51A11A22100398C04 /* s_fplaytable2.pd in Resources */,
-				F2B2B1A819FF2ABD003042D6 /* 3-Mario5.txt in Resources */,
 				F2EE025E1A11A22100398C04 /* u_show-help.pd in Resources */,
 				F2B2B0E219FF281F003042D6 /* bendy.aif in Resources */,
 				F2EE012C1A11A22100398C04 /* c_seqplay-help.pd in Resources */,
@@ -4041,17 +3230,14 @@
 				F2EE01211A11A22100398C04 /* c_mfade3.pd in Resources */,
 				F2EE01AB1A11A22100398C04 /* m_beat2ms-help.pd in Resources */,
 				F2B2B12D19FF281F003042D6 /* birdString.pd in Resources */,
-				F2B2B06C19FF281F003042D6 /* 0-Mega3.txt in Resources */,
 				F2EE010C1A11A22100398C04 /* c_bus-help.pd in Resources */,
 				F2EE02451A11A22100398C04 /* u_lowpass.pd in Resources */,
-				F2B2B1A219FF2ABD003042D6 /* 2-Mario3.txt in Resources */,
 				F2EE01A61A11A22100398C04 /* m_accel_roll.pd in Resources */,
 				F2B2B0DE19FF281F003042D6 /* bassdrum4.wav in Resources */,
 				F2B2AF2319FF27BE003042D6 /* rasta10.wav in Resources */,
 				F2B2B12919FF281F003042D6 /* birdSnare~.pd in Resources */,
 				F2EE024B1A11A22100398C04 /* u_messagesaver.pd in Resources */,
 				F2A68BB51B26B54C00FA13F5 /* complex_mul.mmb.pd in Resources */,
-				F29B43731A32B27A006AD07F /* 0-jb.csv in Resources */,
 				F2EE02421A11A22100398C04 /* u_loadmeter-help.pd in Resources */,
 				F2EE01EC1A11A22100398C04 /* s_drumelectro.pd in Resources */,
 				F2EE01071A11A22100398C04 /* c_adsr.pd in Resources */,
@@ -4062,11 +3248,7 @@
 				F2B2B13919FF281F003042D6 /* interact~.pd in Resources */,
 				F2B2AF1A19FF27BE003042D6 /* rasta1.wav in Resources */,
 				F2A68BB61B26B54C00FA13F5 /* complex_mul.mmb~.pd in Resources */,
-				F2B2B1A619FF2ABD003042D6 /* 3-Mario3.txt in Resources */,
 				F2B2AF0519FF27BE003042D6 /* mm_sampler3~.pd in Resources */,
-				F2B2B09F19FF281F003042D6 /* 2-majesty2.txt in Resources */,
-				F2B2B1A319FF2ABD003042D6 /* 2-Mario4.txt in Resources */,
-				F2B2B08B19FF281F003042D6 /* 1-Mega6.txt in Resources */,
 				F2B2AB5F19FF1739003042D6 /* LaunchScreen.xib in Resources */,
 				F2EE02521A11A22100398C04 /* u_robinpoly-help.pd in Resources */,
 				F2B2AB5C19FF1739003042D6 /* Images.xcassets in Resources */,
@@ -4083,23 +3265,17 @@
 				F2EE01231A11A22100398C04 /* c_mphasor.pd in Resources */,
 				F2EE02621A11A22100398C04 /* u_spinner-help.pd in Resources */,
 				F2EE012A1A11A22100398C04 /* c_patternchange-help.pd in Resources */,
-				F2B2B1A019FF2ABD003042D6 /* 1-Mario5.txt in Resources */,
 				F2EE02601A11A22100398C04 /* u_sigm-help.pd in Resources */,
 				F2B2B17419FF281F003042D6 /* Kick-4.wav in Resources */,
-				F2B2B19B19FF2ABD003042D6 /* 0-Mario4.txt in Resources */,
 				F2EE01721A11A22100398C04 /* e_scompressor.pd in Resources */,
 				F2EE01261A11A22100398C04 /* c_multipass-help.pd in Resources */,
-				F2B2B10519FF281F003042D6 /* 1-test5.txt in Resources */,
 				F2B2B15419FF281F003042D6 /* conga2.wav in Resources */,
 				F2EE01711A11A22100398C04 /* e_scompressor-help.pd in Resources */,
 				F2EE01601A11A22100398C04 /* e_phaser.pd in Resources */,
-				F2B2B0CA19FF281F003042D6 /* 3-Sad3.txt in Resources */,
 				F2EE016D1A11A22100398C04 /* e_reverb-help.pd in Resources */,
 				F2EE01471A11A22100398C04 /* e_dubdel-help.pd in Resources */,
 				F2A68BB41B26B54C00FA13F5 /* complex_math.mmb-help.pd in Resources */,
 				F2EE02101A11A22100398C04 /* s_vphasor-help.pd in Resources */,
-				F2B2B0FC19FF281F003042D6 /* 0-test1.txt in Resources */,
-				F29882C21A02F033005F9B94 /* 1-fantasy.csv in Resources */,
 				F2EE01581A11A22100398C04 /* e_mcompressor-help.pd in Resources */,
 				F2EE018C1A11A22100398C04 /* g_pattern32-help.pd in Resources */,
 				F2AD7F3D1A47EF0400840ABC /* mm_out.pd in Resources */,
@@ -4110,16 +3286,11 @@
 				F2EE01191A11A22100398C04 /* c_lfo.pd in Resources */,
 				F2EE02491A11A22100398C04 /* u_makepoly.pd in Resources */,
 				F2B2AF1819FF27BE003042D6 /* rap1.wav in Resources */,
-				F2B2AF5119FF27BE003042D6 /* 0-majesty2.txt in Resources */,
-				F2B2B10619FF281F003042D6 /* 2-test1.txt in Resources */,
 				F2EE01CA1A11A22100398C04 /* m_thresholds.pd in Resources */,
 				F2EE018F1A11A22100398C04 /* g_showimage.pd in Resources */,
 				F2EE022E1A11A22100398C04 /* u_listdrip-help.pd in Resources */,
-				F29882BA1A02E973005F9B94 /* 2-menace.csv in Resources */,
 				F2EE02051A11A22100398C04 /* s_pinknoise.pd in Resources */,
 				F2EE01F61A11A22100398C04 /* s_guitar-help.pd in Resources */,
-				F2B2B09519FF281F003042D6 /* 2-Funk1.txt in Resources */,
-				F2B2B09319FF281F003042D6 /* 1-Sad4.txt in Resources */,
 				F2EE01CF1A11A22100398C04 /* r_#accelerate.pd in Resources */,
 				F2DE9EB61B2245DD00FEBE5F /* mm_bltri~.pd in Resources */,
 				F2B2AF1619FF27BE003042D6 /* pitch2sig.pd in Resources */,
@@ -4135,24 +3306,18 @@
 				F2EE01E91A11A22100398C04 /* s_czz-help.pd in Resources */,
 				F2AD7F3A1A47EF0400840ABC /* mm_fx.pd in Resources */,
 				F2B2AF2819FF27BE003042D6 /* rasta15.aif in Resources */,
-				F2B2B08019FF281F003042D6 /* 1-Happy4.txt in Resources */,
 				F2B2AEE819FF27BE003042D6 /* mm_bassstring~.pd in Resources */,
 				F2B2AEFA19FF27BE003042D6 /* mm_poisson.pd in Resources */,
 				F2EE01CC1A11A22100398C04 /* m_touch2grid.pd in Resources */,
 				F2EE017F1A11A22100398C04 /* g_channelstrip.pd in Resources */,
 				F2B2B0ED19FF281F003042D6 /* birdCompress.pd in Resources */,
-				F2B2B0B719FF281F003042D6 /* 3-Happy3.txt in Resources */,
 				F2B2AEFF19FF27BE003042D6 /* mm_rplayer.pd in Resources */,
 				F2EE02111A11A22100398C04 /* s_vphasor.pd in Resources */,
-				F2B2B06F19FF281F003042D6 /* 0-Mega6.txt in Resources */,
-				F29882A31A02C027005F9B94 /* example_pattern.csv in Resources */,
-				F2B2B10119FF281F003042D6 /* 1-test1.txt in Resources */,
 				F2EE015B1A11A22100398C04 /* e_noclickdel.pd in Resources */,
 				F2B2B15C19FF281F003042D6 /* conga10.wav in Resources */,
 				F2B2B0F219FF281F003042D6 /* bonk~-help.pd in Resources */,
 				F2B2B0FA19FF281F003042D6 /* Clap-5.wav in Resources */,
 				F2EE02021A11A22100398C04 /* s_osc-help.pd in Resources */,
-				F2B2B08519FF281F003042D6 /* 1-majesty4.txt in Resources */,
 				F2B2AD6C19FF27BE003042D6 /* modMusicPatch_Test_3.pd in Resources */,
 				F2B2B0F719FF281F003042D6 /* Clap-2.wav in Resources */,
 				F2EE02161A11A22100398C04 /* u_bandpass1.pd in Resources */,
@@ -4161,11 +3326,8 @@
 				F2EE018B1A11A22100398C04 /* g_nhsl.pd in Resources */,
 				F2B2AF4019FF27BE003042D6 /* timbreStamp.pd in Resources */,
 				F2B2B11219FF281F003042D6 /* ah_60_4_60.wav in Resources */,
-				F2B2B19919FF2ABD003042D6 /* 0-Mario2.txt in Resources */,
-				F2B2B0AA19FF281F003042D6 /* 2-Menace2.txt in Resources */,
 				F2EE01DE1A11A22100398C04 /* s.txt in Resources */,
 				F2EE021E1A11A22100398C04 /* u_channelstrip.pd in Resources */,
-				F2B2B0A719FF281F003042D6 /* 2-Mega6.txt in Resources */,
 				F2EE01ED1A11A22100398C04 /* s_ejun-help.pd in Resources */,
 				F2B2AF0419FF27BE003042D6 /* mm_sampler2~.pd in Resources */,
 				F2EE014D1A11A22100398C04 /* e_fbdelay2.pd in Resources */,
@@ -4183,9 +3345,7 @@
 				F2EE01051A11A22100398C04 /* c.txt in Resources */,
 				F2B2B15719FF281F003042D6 /* conga5.wav in Resources */,
 				F2EE022A1A11A22100398C04 /* u_highpass-help.pd in Resources */,
-				F2A59D051A479B440000CDC1 /* 2-als.csv in Resources */,
 				F2B2B14A19FF281F003042D6 /* sampleInstrument~.pd in Resources */,
-				F2B2B0B519FF281F003042D6 /* 3-Happy.txt in Resources */,
 				F2B2AF2D19FF27BE003042D6 /* rasta20.aif in Resources */,
 				F2EE02371A11A22100398C04 /* u_listmap.pd in Resources */,
 				F2B2AEDF19FF27BE003042D6 /* wrandom.pd in Resources */,
@@ -4194,27 +3354,15 @@
 				F2B2B14519FF281F003042D6 /* pitcher2~.pd in Resources */,
 				F2EE01971A11A22100398C04 /* g_synthcontrol.pd in Resources */,
 				F2B2B0EE19FF281F003042D6 /* birdPan~.pd in Resources */,
-				F2B2B10B19FF281F003042D6 /* 3-test1.txt in Resources */,
 				F2EE01AF1A11A22100398C04 /* m_chorddict-help.pd in Resources */,
-				F2B2B0C019FF281F003042D6 /* 3-Mega3.txt in Resources */,
 				F2B2B0D919FF281F003042D6 /* african7.aif in Resources */,
-				F2B2B0B219FF281F003042D6 /* 3-Funk2.txt in Resources */,
-				F2D06FB81B29386500AA7708 /* 3-sad.csv in Resources */,
 				F2EE023D1A11A22100398C04 /* u_listreduce.pd in Resources */,
-				F2B2B0C819FF281F003042D6 /* 3-Sad1.txt in Resources */,
-				F2B2B0B919FF281F003042D6 /* 3-Happy5.txt in Resources */,
 				F2B2AF0119FF27BE003042D6 /* mm_sample_slicer~.pd in Resources */,
-				F2B2B10D19FF281F003042D6 /* 3-test3.txt in Resources */,
 				F2B2AF2B19FF27BE003042D6 /* rasta18.aif in Resources */,
-				F2B2B08E19FF281F003042D6 /* 1-Menace2.txt in Resources */,
 				F2EE01411A11A22100398C04 /* e_chorus-help.pd in Resources */,
 				F2EE01FB1A11A22100398C04 /* s_looper.pd in Resources */,
 				F2EE011C1A11A22100398C04 /* c_madsrj-help.pd in Resources */,
-				F2B2B0BB19FF281F003042D6 /* 3-majesty2.txt in Resources */,
 				F2B2AF1C19FF27BE003042D6 /* rasta3.aif in Resources */,
-				F29386871A36C74C008F0EDF /* 3-gs.csv in Resources */,
-				F2B2B07719FF281F003042D6 /* 0-Sad4.txt in Resources */,
-				F2B2B0A419FF281F003042D6 /* 2-Mega3.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
