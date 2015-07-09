@@ -23,7 +23,7 @@
 
 #define SAMPLES_PER_TABLE           100
 #define VERTICES_PER_SAMPLE         20
-#define NUM_TABLES                  8
+#define NUM_TABLES                  14
 
 #define DRAWING_SCALE_X             2.0
 #define DRAWING_SCALE_Y             4.0
@@ -46,6 +46,7 @@
 #define D_ROTATION_Y                10.0
 
 #define FRAMES_PER_RANDOM           2400
+#define SCREEN_UPDATES_PER_AUDIO_UPDATE 4.0
 
 #define DEBUG_GL 0
 #define USE_NORMALS 0
@@ -64,7 +65,7 @@ static NSString *kSynthTable3 = @"synthScope3";
 static NSString *kFuzzTable = @"fuzzScope";
 static NSString *kTremeloTable = @"tremeloScope";
 static NSString *kInputTable = @"inputScope";
-static NSString *kRawInputTable = @"rawInputTable";
+static NSString *kRawInputTable = @"rawInputScope";
 static NSString *kUpdateScopes = @"updateScopes";
 
 typedef struct {

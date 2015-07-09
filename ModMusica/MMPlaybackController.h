@@ -36,6 +36,12 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 @property (nonatomic,getter=isShuffled)         BOOL                    shuffleMods;
 @property (nonatomic, getter=isTempoLocked)     BOOL                    tempoLocked;
 
+
+@property (nonatomic)                           NSUInteger              probPatternChange;
+@property (nonatomic)                           NSUInteger              probSectionChangeNone;
+@property (nonatomic)                           NSUInteger              probSectionChangeNext;
+@property (nonatomic)                           NSUInteger              probSectionChangePrevious;
+
 - (void)startPlayback;
 - (void)stopPlayback;
 - (void)playPattern:(NSString *)patternName;

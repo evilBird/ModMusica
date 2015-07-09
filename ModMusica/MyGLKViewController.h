@@ -44,7 +44,7 @@
 @property (strong, nonatomic)                       MMPlaybackController                    *playbackController;
 @property (strong, nonatomic)                       id<MyGLKViewControllerDelegate>         glkDelegate;
 
-- (void)showDetails;
+- (void)showDetailsFade:(BOOL)shouldFade;
 - (void)randomizeColors;
 - (void)playback:(id)sender detectedUserTempo:(double)tempo;
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName;

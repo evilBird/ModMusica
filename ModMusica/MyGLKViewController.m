@@ -47,18 +47,20 @@
 
 - (void)changeScale:(CGFloat)deltaScale
 {
-    _scale = deltaScale;
+    _scale = 0.1+deltaScale;
 }
 
-- (void)showDetails {
-
+- (void)showDetailsFade:(BOOL)shouldFade
+{
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showLabelsAnimated:) object:nil];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideLabelsAnimated:) object:nil];
     [self showLabelsAnimated:YES];
-    __weak MyGLKViewController *weakself = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakself hideLabelsAnimated:YES];
-    });
+    if (shouldFade) {
+        __weak MyGLKViewController *weakself = self;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakself hideLabelsAnimated:YES];
+        });
+    }
 }
 
 - (void)randomizeColors
@@ -74,29 +76,27 @@
 
 - (void)setPlaying:(BOOL)playing
 {
-    BOOL old = _playing;
+    BOOL wasPlaying = _playing;
     _playing = playing;
-    if (_playing != old) {
-        if (_playing) {
-            self.labelUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
-                                                                     target:self
-                                                                   selector:@selector(handleLabelUpdateTimer:)
-                                                                   userInfo:nil
-                                                                    repeats:NO];
-            [self.playbackController startPlayback];
-            [self playbackBegan:nil];
-        }else{
-            [self.playbackController stopPlayback];
-            [self playbackEnded:nil];
-        }
+    if (playing && !wasPlaying) {
+        [self.playbackController startPlayback];
+        [self playbackBegan:nil];
+        [self showDetailsFade:YES];
+    }else if (playing && wasPlaying){
+        [self showDetailsFade:YES];
+    }else if (!playing && wasPlaying){
+        [self.playbackController stopPlayback];
+        [self playbackEnded:nil];
+        [self showDetailsFade:NO];
     }
 }
 
 - (void)setCurrentModName:(NSString *)currentModName
 {
     _currentModName = currentModName;
+    [self randomizeColors];
     [self updateLabelText];
-    [self showDetails];
+    [self showDetailsFade:self.isPlaying];
 }
 
 #pragma mark - Private Methods
@@ -286,7 +286,7 @@
 
 - (void)setupSampleTables
 {
-    NSArray *allTables = @[kSynthTable,kSynthTable,kSamplerTable,kSamplerTable,kBassTable,kBassTable,kDrumTable,kDrumTable];
+    NSArray *allTables = @[kSynthTable,kSynthTable,kRawInputTable,kRawInputTable,kSamplerTable,kSamplerTable,kBassTable,kBassTable,kPercTable,kPercTable,kSnareTable,kSnareTable,kDrumTable,kDrumTable];
     
     NSRange indexRange;
     indexRange.location = 0;
@@ -321,9 +321,7 @@
 {
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
-    self.playbackController.patternName = @"mario";
-    //self.playbackController.patternLoader.currentPattern = @"mario";
-    //self.currentModName = @"mario";
+    self.playbackController.patternName = @"";
 }
 
 #pragma mark - Helpers
@@ -365,7 +363,6 @@
 {
     [self randomizeColors];
     [self updateLabelText];
-    [self hideLabelsAnimated:YES];
     self.paused = NO;
     [self resetReferenceFrame:nil];
     [self setupIvars];
@@ -374,7 +371,6 @@
 - (void)playbackEnded:(id)sender
 {
     [self updateLabelText];
-    [self showLabelsAnimated:YES];
     [self resetReferenceFrame:nil];
     [self setupIvars];
 }
@@ -391,16 +387,13 @@
     
     self.tempo = tempo;
     [self updateLabelText];
-    [self showDetails];
+    [self showDetailsFade:self.isPlaying];
 
 }
 
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
 {
     self.currentModName = moduleName;
-    [self randomizeColors];
-    [self updateLabelText];
-    [self showDetails];
     if (!self.playing) {
         self.playing = YES;
     }
@@ -432,6 +425,16 @@
     [self setupMotionManager];
     [self playbackEnded:nil];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (!self.playing) {
+        [self showDetailsFade:NO];
+    }else{
+        [self showDetailsFade:YES];
+    }
 }
 
 - (void)dealloc

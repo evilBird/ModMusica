@@ -35,7 +35,7 @@
     self.delegate = self;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.myGLKViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyGLKViewController"];
-    self.myGLKViewController.currentModName = @"mario";
+    self.myGLKViewController.currentModName = @"";
     self.myGLKViewController.glkDelegate = self;
     self.longPress = [[MMLongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPress:)];
     self.tap = [[MMTapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
@@ -109,7 +109,7 @@
         case UIGestureRecognizerStateRecognized:
             switch (tap.tapCount) {
                 case 1:
-                    [[self getGLKViewController]showDetails];
+                    [[self getGLKViewController]showDetailsFade:[self getGLKViewController].isPlaying];
                     NSLog(@"show details");
                     break;
                     

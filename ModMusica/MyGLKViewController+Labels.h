@@ -13,9 +13,7 @@
 - (void)setupLabels;
 - (void)hideLabelsAnimated:(BOOL)animated;
 - (void)showLabelsAnimated:(BOOL)animated;
-- (void)showTempoInfo:(NSString *)tempoInfo;
 - (void)updateLabelText;
 - (void)updateLabelColors;
-- (void)handleLabelUpdateTimer:(id)sender;
 
 @end

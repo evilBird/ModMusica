@@ -41,7 +41,6 @@ void bonk_tilde_setup(void);
     if (playing != _playing) {
         [self sendPlaybackNotification:playing];
     }
-    
     _playing = playing;
 }
 
@@ -114,7 +113,10 @@ void bonk_tilde_setup(void);
 - (void)commonInit
 {
     self.patternLoader = [[MMPatternLoader alloc]init];
-    self.patterns = [MMModuleManager purchasedMods];
+    self.probPatternChange = 10;
+    self.probSectionChangeNone = 55;
+    self.probSectionChangeNext = 35;
+    self.probSectionChangePrevious = 10;
     kIdx = -1;
     kPrev = 0;
     [self initalizePd];
@@ -172,18 +174,14 @@ void bonk_tilde_setup(void);
 
 - (void)setPatternName:(NSString *)patternName
 {
-    NSString *oldPatternName = _patternName;
     _patternName = patternName;
-    if (!oldPatternName || ![patternName isEqualToString:oldPatternName]) {
-        self.patternLoader.currentPattern = patternName;
-    }
+    self.patternLoader.currentPattern = patternName;
+    self.patternLoader.currentSection = -1;
 }
 
 - (void)playPattern:(NSString *)patternName
 {
     self.patternName = patternName;
-    self.patternLoader.currentPattern = patternName;
-    self.patternLoader.currentSection = -1;
     [self.patternLoader playSection:0];
     [self.delegate playback:self didLoadModuleName:patternName];
     
@@ -202,19 +200,18 @@ void bonk_tilde_setup(void);
     NSInteger rand = arc4random_uniform(100);
     
     if (self.isShuffled) {
-        if (rand < 10) {
+        if (rand < self.probPatternChange) {
             NSArray *mods = [MMModuleManager purchasedModNames];
             NSUInteger idx = (NSUInteger)((int)arc4random_uniform(100)%(int)mods.count);
             NSString *pattern = mods[idx];
-            self.patternName = pattern;
             [self playPattern:pattern];
             return;
         }
     }
     
-    if (rand > 55 && rand <= 90) {
+    if (rand > self.probSectionChangeNone && rand <= (100 - self.probSectionChangePrevious)) {
         [self.patternLoader playNextSection];
-    }else if (rand > 90){
+    }else if (rand > (100 - self.probSectionChangePrevious)){
         [self.patternLoader playPreviousSection];
     }
 }

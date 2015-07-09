@@ -17,45 +17,27 @@
 
 @implementation MyGLKViewController (Labels)
 
-static NSTimer *infoLabelTimer;
-
-- (void)handleLabelUpdateTimer:(id)sender
-{
-    NSTimer *timer = sender;
-    [timer invalidate];
-}
-
-- (void)handleInfoLabelTimer:(id)sender
-{
-    [self hideLabelsAnimated:YES];
-    [infoLabelTimer invalidate];
-}
-
-- (void)showTempoInfo:(NSString *)tempoInfo
-{
-    /*
-    self.infoLabel.text = tempoInfo;
-    if (infoLabelTimer.isValid) {
-        [infoLabelTimer invalidate];
-        infoLabelTimer = nil;
-    }else{
-        [self showLabelsAnimated:NO];
-    }
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(handleInfoLabelTimer:) object:nil];
-    
-    infoLabelTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
-                                                      target:self
-                                                    selector:@selector(handleInfoLabelTimer:)
-                                                    userInfo:nil
-                                                     repeats:NO];
-     */
-}
-
 - (void)updateLabelText
 {
     
     self.titleLabel.text = @"ModMusica";
-    self.nowPlayingLabel.text = [NSString stringWithFormat:@"playing %@",self.currentModName];
+    
+    NSString *playingString = nil;
+    if (self.currentModName && self.currentModName.length) {
+        NSString *verbString = nil;
+        if (self.isPlaying) {
+            verbString = @"playing ";
+        }else{
+            verbString = @"";
+        }
+        
+        playingString = [NSString stringWithFormat:@"%@%@",verbString,self.currentModName];
+        
+    }else{
+        playingString = @"swipe left for music";
+    }
+    
+    self.nowPlayingLabel.text = playingString;
     
     if (self.isPlaying) {
         if (self.tempo > 0) {
@@ -79,11 +61,13 @@ static NSTimer *infoLabelTimer;
 
 - (void)updateLabelColors
 {
-    if (self.mainColor!=nil){
-        self.nowPlayingLabel.textColor = [self.mainColor complement];
-        self.titleLabel.textColor = [self.mainColor complement];
-        self.infoLabel.textColor = [self.mainColor complement];
+    if (self.mainColor==nil){
+        self.mainColor = [UIColor randomColor];
     }
+    
+    self.nowPlayingLabel.textColor = [self.mainColor complement];
+    self.titleLabel.textColor = [self.mainColor complement];
+    self.infoLabel.textColor = [self.mainColor complement];
 }
 
 - (void)hideLabelsAnimated:(BOOL)animated
@@ -95,15 +79,15 @@ static NSTimer *infoLabelTimer;
         self.hamburgerButton.alpha = 0.0;
         return;
     }
-    
+    __weak MyGLKViewController *weakself = self;
     [UIView animateWithDuration:5.0
                           delay:0.0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         self.titleLabel.alpha = 0.0;
-                         self.infoLabel.alpha = 0.0;
-                         self.nowPlayingLabel.alpha = 0.0;
-                         self.hamburgerButton.alpha = 0.0;
+                         weakself.titleLabel.alpha = 0.0;
+                         weakself.infoLabel.alpha = 0.0;
+                         weakself.nowPlayingLabel.alpha = 0.0;
+                         weakself.hamburgerButton.alpha = 0.0;
                      } completion:nil];
 }
 
@@ -116,15 +100,15 @@ static NSTimer *infoLabelTimer;
         self.hamburgerButton.alpha = 1.0;
         return;
     }
-    
+    __weak MyGLKViewController *weakself = self;
     [UIView animateWithDuration:0.5
                           delay:0.0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         self.titleLabel.alpha = 1.0;
-                         self.infoLabel.alpha = 1.0;
-                         self.nowPlayingLabel.alpha = 1.0;
-                         self.hamburgerButton.alpha = 1.0;
+                         weakself.titleLabel.alpha = 1.0;
+                         weakself.infoLabel.alpha = 1.0;
+                         weakself.nowPlayingLabel.alpha = 1.0;
+                         weakself.hamburgerButton.alpha = 1.0;
                      } completion:nil];
 }
 

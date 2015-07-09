@@ -22,14 +22,14 @@
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController didUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {
     if (paneState == MSDynamicsDrawerPaneStateClosed && self.paneViewController == [self getGLKViewController]) {
-        [[self getGLKViewController] showDetails];
+        [[self getGLKViewController] showDetailsFade:[self getGLKViewController].isPlaying];
     }
 }
 
 - (void)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController mayUpdateToPaneState:(MSDynamicsDrawerPaneState)paneState forDirection:(MSDynamicsDrawerDirection)direction
 {
     if (paneState == MSDynamicsDrawerPaneStateClosed && self.paneViewController == [self getGLKViewController]) {
-        [[self getGLKViewController] showDetails];
+        [[self getGLKViewController] showDetailsFade:[self getGLKViewController].isPlaying];
     }
 }
 
