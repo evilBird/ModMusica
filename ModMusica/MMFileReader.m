@@ -9,7 +9,7 @@
 #import "MMFileReader.h"
 
 @implementation MMFileReader
-
+/*
 + (NSArray *)readFile:(NSString *)fileName
 {
     NSError *err = nil;
@@ -17,11 +17,23 @@
     if (components.count < 2) {
         return nil;
     }
+    
     NSString *path = [[NSBundle mainBundle]pathForResource:components.firstObject ofType:components.lastObject];
     NSString *fileText = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
     return [MMFileReader parseText:fileText];
 }
-
+*/
++ (NSArray *)readFileAtPath:(NSString *)filePath
+{
+    NSError *err = nil;
+    NSString *fileText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
+    if (err) {
+        return nil;
+    }
+    
+    return [MMFileReader parseText:fileText];
+}
+/*
 + (NSArray *)headerForFile:(NSString *)fileName
 {
     NSError *err = nil;
@@ -31,6 +43,17 @@
     }
     NSString *path = [[NSBundle mainBundle]pathForResource:components.firstObject ofType:components.lastObject];
     NSString *fileText = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
+    return [MMFileReader extractHeader:fileText];
+}
+*/
++ (NSArray *)headerForFileAtPath:(NSString *)filePath
+{
+    NSError *err = nil;
+    NSString *fileText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&err];
+    if (err) {
+        return nil;
+    }
+    
     return [MMFileReader extractHeader:fileText];
 }
 
@@ -49,6 +72,17 @@
     return header;
 }
 
++ (NSArray *)readFileAtPath:(NSString *)filePath section:(NSInteger)section length:(NSInteger)length
+{
+    NSArray *allRows = [MMFileReader readFileAtPath:filePath];
+    if (!allRows) {
+        return nil;
+    }
+    NSInteger startIndex = section * length;
+    NSInteger stopIndex = startIndex + length;
+    return [MMFileReader readFromRows:allRows startIndex:startIndex stopIndex:stopIndex];
+}
+/*
 + (NSArray *)readFile:(NSString *)fileName section:(NSInteger)section length:(NSInteger)length
 {
     NSArray *allRows = [self readFile:fileName];
@@ -56,6 +90,7 @@
     NSInteger stopIndex = startIndex + length;
     return [MMFileReader readFromRows:allRows startIndex:startIndex stopIndex:stopIndex];
 }
+ */
 
 + (NSArray *)parseText:(NSString *)text
 {

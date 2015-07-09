@@ -11,7 +11,6 @@
 		F2162CE91A0876FF0016C544 /* mm_bsosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE71A0876FF0016C544 /* mm_bsosc~.pd */; };
 		F2162CEA1A0876FF0016C544 /* mm_sosc~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2162CE81A0876FF0016C544 /* mm_sosc~.pd */; };
 		F218FF1C1B4DA48D000CB182 /* NSUserDefaults+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F218FF1B1B4DA48D000CB182 /* NSUserDefaults+Mods.m */; };
-		F218FF1F1B4DB52B000CB182 /* MMModuleManager+IAP.m in Sources */ = {isa = PBXBuildFile; fileRef = F218FF1E1B4DB52B000CB182 /* MMModuleManager+IAP.m */; };
 		F218FF221B4DB5BD000CB182 /* MMPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F218FF211B4DB5BD000CB182 /* MMPurchaseManager.m */; };
 		F218FF881B4DC1F1000CB182 /* MMPinchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F218FF871B4DC1F1000CB182 /* MMPinchGestureRecognizer.m */; };
 		F21CD4CD1B43390800AAE260 /* MMModuleEditCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F21CD4CC1B43390800AAE260 /* MMModuleEditCellView.m */; };
@@ -950,8 +949,6 @@
 		F2162CE81A0876FF0016C544 /* mm_sosc~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_sosc~.pd"; sourceTree = "<group>"; };
 		F218FF1A1B4DA48D000CB182 /* NSUserDefaults+Mods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Mods.h"; sourceTree = "<group>"; };
 		F218FF1B1B4DA48D000CB182 /* NSUserDefaults+Mods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Mods.m"; sourceTree = "<group>"; };
-		F218FF1D1B4DB52B000CB182 /* MMModuleManager+IAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMModuleManager+IAP.h"; sourceTree = "<group>"; };
-		F218FF1E1B4DB52B000CB182 /* MMModuleManager+IAP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMModuleManager+IAP.m"; sourceTree = "<group>"; };
 		F218FF201B4DB5BD000CB182 /* MMPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPurchaseManager.h; sourceTree = "<group>"; };
 		F218FF211B4DB5BD000CB182 /* MMPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPurchaseManager.m; sourceTree = "<group>"; };
 		F218FF861B4DC1F1000CB182 /* MMPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPinchGestureRecognizer.h; sourceTree = "<group>"; };
@@ -2822,8 +2819,6 @@
 				F21CD4CC1B43390800AAE260 /* MMModuleEditCellView.m */,
 				F2D564321B2CCFE9008D9C76 /* MMModuleManager.h */,
 				F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */,
-				F218FF1D1B4DB52B000CB182 /* MMModuleManager+IAP.h */,
-				F218FF1E1B4DB52B000CB182 /* MMModuleManager+IAP.m */,
 				F218FF201B4DB5BD000CB182 /* MMPurchaseManager.h */,
 				F218FF211B4DB5BD000CB182 /* MMPurchaseManager.m */,
 			);
@@ -4274,7 +4269,6 @@
 				F2FD2BC61B2A899600974562 /* MMScopeDepthManager.m in Sources */,
 				F218FF1C1B4DA48D000CB182 /* NSUserDefaults+Mods.m in Sources */,
 				F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */,
-				F218FF1F1B4DB52B000CB182 /* MMModuleManager+IAP.m in Sources */,
 				F2FD2BC31B2A891000974562 /* MMAudioScopeViewController+Depth.m in Sources */,
 				F2EE019E1A11A22100398C04 /* HBVOperation.m in Sources */,
 				F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */,

@@ -8,11 +8,15 @@
 
 #import "MMPatternLoader.h"
 #import "MMFileReader.h"
+#import "MMModuleManager.h"
 #import <PdBase.h>
 
 static NSString *kTableName = @"notes";
 
 @interface MMPatternLoader ()
+
+
+@property (nonatomic,strong)            NSDictionary            *currentMod;
 
 - (BOOL)loadPattern:(NSString *)pattern;
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section;
@@ -35,7 +39,7 @@ static NSString *kTableName = @"notes";
     }
     
     NSString *file = [self fileNameForPattern:self.currentPattern section:section];
-    NSArray *header = [MMFileReader headerForFile:file];
+    NSArray *header = [MMFileReader headerForFileAtPath:file];
     if (!header || !header.count) {
         return nil;
     }
@@ -59,7 +63,7 @@ static NSString *kTableName = @"notes";
     }
     
     NSString *file = [self fileNameForPattern:self.currentPattern section:section];
-    NSArray *data = [MMFileReader readFile:file];
+    NSArray *data = [MMFileReader readFileAtPath:file];
     return data;
 }
 
@@ -76,13 +80,11 @@ static NSString *kTableName = @"notes";
     
     if ([self loadPattern:self.currentPattern section:self.currentSection + 1]) {
         self.currentSection += 1;
-        NSLog(@"current section:%@",@(self.currentSection));
         return;
     }
     
     self.currentSection = 0;
     [self loadPattern:self.currentPattern section:self.currentSection];
-    NSLog(@"current section:%@",@(self.currentSection));
 }
 
 - (void)playPreviousSection
@@ -127,12 +129,13 @@ static NSString *kTableName = @"notes";
 
 - (BOOL)loadPattern:(NSString *)pattern
 {
-    NSArray *noteTables = [MMFileReader readFile:pattern];
+    NSArray *noteTables = [MMFileReader readFileAtPath:pattern];
+    
     if (noteTables == nil) {
         return NO;
     }
     
-    NSArray *header = [MMFileReader headerForFile:pattern];
+    NSArray *header = [MMFileReader headerForFileAtPath:pattern];
     
     [self handleHeader:header];
     
@@ -159,14 +162,21 @@ static NSString *kTableName = @"notes";
 
 - (NSString *)fileNameForPattern:(NSString *)patternName section:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%@-%@.csv",@(section),patternName];
+    NSDictionary *mod = [MMModuleManager getMod:patternName fromArray:[MMModuleManager purchasedMods]];
+    NSString *modPath = mod[kProductContentPathKey];
+    if (!modPath) {
+        return nil;
+    }
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(section),patternName];
+    NSString *fullPath = [modPath stringByAppendingPathComponent:fileName];
+    return fullPath;
 }
 
 - (BOOL)loadPattern:(NSString *)pattern section:(NSInteger)section
 {
-    NSString *fileName = [NSString stringWithFormat:@"%@-%@.csv",@(section),pattern];
+    NSString *fileName = [self fileNameForPattern:pattern section:section];
     return [self loadPattern:fileName];
 }
-
 
 @end

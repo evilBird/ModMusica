@@ -99,10 +99,11 @@
         
         if (!error) {
             
-            NSURL *contentURL = product;
-            NSString *contentPath = contentURL.path;
+            NSString *contentPath = product;
+            //NSString *contentPath = contentURL.path;
+            NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"Contents"];
             purchasedMod[kProductPurchasedKey] = @(1);
-            purchasedMod[kProductContentPathKey] = contentPath;
+            purchasedMod[kProductContentPathKey] = productContentPath;
             
             [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
             

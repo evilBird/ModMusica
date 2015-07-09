@@ -10,9 +10,11 @@
 
 @interface MMFileReader : NSObject
 
-+ (NSArray *)readFile:(NSString *)fileName;
-+ (NSArray *)headerForFile:(NSString *)fileName;
-+ (NSArray *)readFile:(NSString *)fileName section:(NSInteger)section length:(NSInteger)length;
-
++ (NSArray *)readFileAtPath:(NSString *)filePath;
+//+ (NSArray *)readFile:(NSString *)fileName;
+//+ (NSArray *)headerForFile:(NSString *)fileName;
++ (NSArray *)headerForFileAtPath:(NSString *)filePath;
+//+ (NSArray *)readFile:(NSString *)fileName section:(NSInteger)section length:(NSInteger)length;
++ (NSArray *)readFileAtPath:(NSString *)filePath section:(NSInteger)section length:(NSInteger)length;
 
 @end
