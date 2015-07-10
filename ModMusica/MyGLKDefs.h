@@ -23,7 +23,7 @@
 
 #define SAMPLES_PER_TABLE           100
 #define VERTICES_PER_SAMPLE         20
-#define NUM_TABLES                  14
+#define NUM_TABLES                  16
 
 #define DRAWING_SCALE_X             2.0
 #define DRAWING_SCALE_Y             4.0

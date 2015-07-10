@@ -123,19 +123,6 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
         c.titleLabel.text = modName;
         c.titleLabel.textColor = [textColor jitterWithPercent:2];
         c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
-        
-        if ([modName isEqualToString:[self.datasource currentModName]] && [self.datasource playbackIsActive]) {
-            c.actionButton.selected = YES;
-        }else{
-            c.actionButton.selected = NO;
-        }
-        
-        if ([self.datasource modsAreShuffled:self]) {
-            c.actionButton.enabled = NO;
-        }else{
-            c.actionButton.enabled = YES;
-        }
-        
         c.actionButton.tintColor = [UIColor clearColor];
         
         [c.actionButton setTitleColor:fillColor forState:UIControlStateNormal];
@@ -152,6 +139,18 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
             [c.actionButton setTitle:[self.datasource formattedPriceForMod:modName]
                             forState:UIControlStateHighlighted|UIControlStateSelected];
             [c.actionButton setTitle:@"..." forState:UIControlStateDisabled];
+        }
+        
+        if ([modName isEqualToString:[self.datasource currentModName]] && [self.datasource playbackIsActive]) {
+            c.actionButton.selected = YES;
+        }else{
+            c.actionButton.selected = NO;
+        }
+        
+        if ([self.datasource modsAreShuffled:self]) {
+            c.actionButton.enabled = NO;
+        }else{
+            c.actionButton.enabled = YES;
         }
         
         if (c.actionButton.isEnabled && !c.actionButton.isSelected) {

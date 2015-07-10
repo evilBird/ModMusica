@@ -153,13 +153,13 @@
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 20.0f);
     self.effect.transform.projectionMatrix = projectionMatrix;
-    
+    /*
     _zoom += _d_zoom * self.timeSinceLastUpdate;
 
     if (_zoom < MIN_ZOOM || _zoom > MAX_ZOOM) {
         _d_zoom *= -1.0;
     }
-    
+    */
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     
     _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate/4;
@@ -286,8 +286,7 @@
 
 - (void)setupSampleTables
 {
-    NSArray *allTables = @[kSynthTable,kSynthTable,kRawInputTable,kRawInputTable,kSamplerTable,kSamplerTable,kBassTable,kBassTable,kPercTable,kPercTable,kSnareTable,kSnareTable,kDrumTable,kDrumTable];
-    
+    NSArray *allTables = @[kKickTable,kKickTable,kSnareTable,kSnareTable,kPercTable,kPercTable,kBassTable,kBassTable,kSynthTable1,kSynthTable1,kSynthTable2,kSynthTable2,kSynthTable3,kSynthTable3,kSamplerTable,kSamplerTable];
     NSRange indexRange;
     indexRange.location = 0;
     indexRange.length = NUM_TABLES;

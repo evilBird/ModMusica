@@ -34,7 +34,7 @@
         playingString = [NSString stringWithFormat:@"%@%@",verbString,self.currentModName];
         
     }else{
-        playingString = @"swipe left for music";
+        playingString = @"headphones recommended";
     }
     
     self.nowPlayingLabel.text = playingString;
