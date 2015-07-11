@@ -146,7 +146,7 @@
     self.nowPlayingLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.nowPlayingLabel.text = @"";
     self.nowPlayingLabel.textAlignment = NSTextAlignmentCenter;
-    self.nowPlayingLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:[UIFont labelFontSize]*0.8];
+    self.nowPlayingLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:[UIFont labelFontSize]*0.7];
     [self.view addSubview:self.nowPlayingLabel];
     
     self.infoLabel = [UILabel new];

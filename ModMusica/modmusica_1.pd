@@ -1,4 +1,4 @@
-#N canvas 210 153 1268 785 10;
+#N canvas 127 71 1268 785 10;
 #X obj 46 -92 adc~;
 #N canvas 344 23 903 680 clock 0;
 #X msg 156 109 play;
