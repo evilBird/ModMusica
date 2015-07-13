@@ -19,6 +19,7 @@
     
     Vertex      Vertices        [(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE)];
     GLuint      Indices         [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE)) * 6];
+    GLuint      RevIndices      [(SAMPLES_PER_TABLE - 1) * ((NUM_TABLES * VERTICES_PER_SAMPLE)) * 6];
     float       Samples         [(SAMPLES_PER_TABLE * NUM_TABLES)];
     GLfloat     Colors          [3];
     
@@ -35,8 +36,6 @@
 
 
 @property (strong, nonatomic)   NSArray             *tables;
-@property (strong, nonatomic)   NSTimer             *labelUpdateTimer;
-
 @property (nonatomic,strong)    NSDate              *lastSampleUpdate;
 
 @end
@@ -45,9 +44,9 @@
 
 #pragma mark - Public Methods
 
-- (void)changeScale:(CGFloat)deltaScale
+- (void)changeScale:(CGFloat)scale
 {
-    _scale = 0.1+deltaScale;
+    _scale = scale;
 }
 
 - (void)showDetailsFade:(BOOL)shouldFade
@@ -152,26 +151,15 @@
 {
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0f, 20.0f);
+    
     self.effect.transform.projectionMatrix = projectionMatrix;
-    /*
-    _zoom += _d_zoom * self.timeSinceLastUpdate;
 
-    if (_zoom < MIN_ZOOM || _zoom > MAX_ZOOM) {
-        _d_zoom *= -1.0;
-    }
-    */
     GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, _zoom);
     
-    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate/4;
+    _rotation_y += D_ROTATION_Y * self.timeSinceLastUpdate/4.0;
     
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(INIT_ROTATION_X), 1, 0, 0);
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, GLKMathDegreesToRadians(_rotation_y), 0, 1, 0);
-    
-    _scale += _d_scale * self.timeSinceLastUpdate;
-    
-    if (_scale < MIN_SCALE || _scale < MAX_SCALE) {
-        _d_scale *= -1.0;
-    }
     
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, _scale, _scale, _scale);
     modelViewMatrix = [self updateMotionManager:modelViewMatrix];
@@ -232,7 +220,9 @@
     glBindBuffer(GL_ARRAY_BUFFER, _verticesVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_DYNAMIC_DRAW);
     
-    _makeMeshIndices(Indices, SAMPLES_PER_TABLE, (NUM_TABLES * VERTICES_PER_SAMPLE));
+    _makeMeshIndices(RevIndices, SAMPLES_PER_TABLE, (NUM_TABLES * VERTICES_PER_SAMPLE));
+    _reverseIndices(RevIndices, Indices, [self numIndices]);
+    
     _initVertices(Vertices,(SAMPLES_PER_TABLE * NUM_TABLES * VERTICES_PER_SAMPLE));
     _assignVertexNeighbors(Vertices, Indices, [self numIndices]);
     _updateVertexNormals(Vertices, [self numVertices]);
@@ -260,6 +250,17 @@
     self.effect = [[GLKBaseEffect alloc]init];
     self.effect.transform.projectionMatrix = [self defaultProjectionMatrix];
     self.effect.transform.modelviewMatrix = [self defaultModelViewMatrix];
+    self.effect.lightingType = GLKLightingTypePerPixel;
+    self.effect.lightModelAmbientColor = GLKVector4Make(1, 1, 1, 1);
+    self.effect.colorMaterialEnabled = GL_TRUE;
+    
+    self.effect.light0.enabled = GL_TRUE;
+    self.effect.light0.diffuseColor = _effect.light0.specularColor = GLKVector4Make(1, 1, 1, 1);
+    self.effect.light0.position = GLKVector4Make(0, 0, 0, 1);
+    self.effect.lightModelTwoSided = GL_TRUE;
+    self.effect.light0.spotCutoff = 0.8;
+    self.effect.light0.spotExponent = 2;
+    //[_effect prepareToDraw];
 }
 
 - (void)setupContext
@@ -275,7 +276,6 @@
     view.context = self.context;
     view.drawableColorFormat = GLKViewDrawableColorFormatRGBA8888;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    view.drawableStencilFormat = GLKViewDrawableStencilFormat8;
     view.drawableMultisample = GLKViewDrawableMultisample4X;
     view.delegate = self;
     
@@ -300,7 +300,7 @@
     _zoom = MIN_ZOOM;
     _d_zoom = D_ZOOM;
 
-    _scale = MIN_SCALE;
+    _scale = INIT_SCALE;
     _d_scale = D_SCALE;
     
     _rotation_y = INIT_ROTATION_Y;
@@ -327,7 +327,7 @@
 
 - (NSTimeInterval)minimumSampleUpdateInterval
 {
-    return 1.0/self.framesPerSecond/4.0;
+    return 1.0/self.framesPerSecond/SCREEN_UPDATES_PER_AUDIO_UPDATE;
 }
 
 - (int)numIndices

@@ -24,6 +24,7 @@
 - (void)moduleView:(id)sender tappedButton:(id)button selectedModuleWithName:(NSString *)moduleName;
 - (void)moduleView:(id)sender shuffleDidChange:(int)shuffle;
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock;
+- (void)moduleView:(id)sender randomDidChange:(int)random;
 - (CGFloat)openDrawerWidth;
 - (UIColor *)currentTextColor;
 - (UIColor *)currentFillColor;

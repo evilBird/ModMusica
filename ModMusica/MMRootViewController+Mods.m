@@ -127,6 +127,11 @@
     [PdBase sendFloat:(float)lock toReceiver:@"lockTempo"];
 }
 
+- (void)moduleView:(id)sender randomDidChange:(int)random
+{
+    [self getGLKViewController].playbackController.allowRandom = (BOOL)(1 - random);
+}
+
 - (CGFloat)openDrawerWidth
 {
     return [self revealWidthForDirection:MSDynamicsDrawerDirectionLeft];

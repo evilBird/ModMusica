@@ -26,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[MMPurchaseManager sharedInstance]getProductsCompletion:nil];
-    [[UIApplication sharedApplication]setIdleTimerDisabled:YES];
+    //[[UIApplication sharedApplication]setIdleTimerDisabled:YES];
     self.audioController = [[PdAudioController alloc]init];
     [self.audioController configurePlaybackWithSampleRate:SAMPLE_RATE numberChannels:2 inputEnabled:YES mixingEnabled:YES];
     [self.audioController configureTicksPerBuffer:TICKS_PER_BUFFER];

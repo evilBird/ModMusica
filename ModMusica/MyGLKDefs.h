@@ -21,22 +21,24 @@
 #define BLOCK_SIZE                  64
 #define TICKS                       64
 
-#define SAMPLES_PER_TABLE           100
-#define VERTICES_PER_SAMPLE         20
+#define SAMPLES_PER_TABLE           128
+#define VERTICES_PER_SAMPLE         2
 #define NUM_TABLES                  16
 
-#define DRAWING_SCALE_X             2.0
+#define DRAWING_SCALE_X             3.0
 #define DRAWING_SCALE_Y             4.0
-#define DRAWING_SCALE_Z             2.0
+#define DRAWING_SCALE_Z             3.0
 
 #define SAMPLE_SCALAR               0.88
 #define SAMPLE_UPDATES_PER_SEC      10.0
 
 #define MIN_SCALE                   2.0
-#define MAX_SCALE                   20.0
-#define D_SCALE                     0.0
+#define MAX_SCALE                   50.0
+#define D_SCALE                     1.0
+#define INIT_SCALE                  0.5
+#define COLOR_JITTER                0.133
 
-#define MIN_ZOOM                   -4.0
+#define MIN_ZOOM                   -5.0
 #define MAX_ZOOM                   -1.1
 #define D_ZOOM                      0.1
 
@@ -46,10 +48,10 @@
 #define D_ROTATION_Y                10.0
 
 #define FRAMES_PER_RANDOM           2400
-#define SCREEN_UPDATES_PER_AUDIO_UPDATE 4.0
+#define SCREEN_UPDATES_PER_AUDIO_UPDATE 2.0
 
 #define DEBUG_GL 0
-#define USE_NORMALS 0
+#define USE_NORMALS 1
 
 static NSString *kTableName = @"scopeArray";
 static NSString *kBassTable = @"bassScope";

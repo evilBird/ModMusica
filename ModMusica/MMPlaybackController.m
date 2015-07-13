@@ -13,8 +13,8 @@
 #import "MMScopeDataSource.h"
 #import "MMModuleManager.h"
 
-static float kDrumVolume = 0.4;
-static float kBassVolume = 0.3;
+static float kDrumVolume = 0.45;
+static float kBassVolume = 0.26;
 static float kSynthVolume = 0.25;
 static float kSamplerVolume = 0.30;
 
@@ -44,9 +44,46 @@ void bonk_tilde_setup(void);
     _playing = playing;
 }
 
+- (void)setAllowRandom:(BOOL)allowRandom
+{
+    _allowRandom = allowRandom;
+    [PdBase sendFloat:(float)allowRandom toReceiver:@"allowRandom"];
+}
+
 - (void)sendPlaybackNotification:(BOOL)playback
 {
     [[NSNotificationCenter defaultCenter]postNotificationName:kPlaybackDidChangeNotification object:nil userInfo:@{@"playback":@(playback)}];
+}
+
+- (void)handleAudioInterruption:(NSNotification *)notification
+{
+    id userInfo = notification.userInfo;
+    NSLog(@"\nAUDIO WAS INTERRUPTED\nuser info: %@\n",userInfo);
+}
+
+- (void)handleAudioRouteChange:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    AVAudioSessionRouteChangeReason reason = [userInfo[AVAudioSessionRouteChangeReasonKey]unsignedIntegerValue];
+    if (reason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
+        [PdBase sendFloat:0 toReceiver:@"inputVolume"];
+    }else if (reason == AVAudioSessionRouteChangeReasonNewDeviceAvailable){
+        [PdBase sendFloat:1 toReceiver:@"inputVolume"];
+    }
+    
+    
+}
+
+- (void)addNotificationListeners
+{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleAudioRouteChange:) name:AVAudioSessionRouteChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleAudioInterruption:) name:AVAudioSessionInterruptionNotification object:nil];
+}
+
+- (void)removeNotificationListeners
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:AVAudioSessionRouteChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:AVAudioSessionInterruptionNotification object:nil];
 }
 
 - (instancetype)init
@@ -68,7 +105,7 @@ void bonk_tilde_setup(void);
 - (void)startPlayback
 {
     if (!self.patternName) {
-        [self playPattern:self.patterns.firstObject];
+        [self playPattern:[MMModuleManager purchasedModNames].firstObject];
         return;
     }
     
@@ -120,6 +157,7 @@ void bonk_tilde_setup(void);
     kIdx = -1;
     kPrev = 0;
     [self initalizePd];
+    [self addNotificationListeners];
 }
 
 - (void)initalizePd
@@ -197,6 +235,10 @@ void bonk_tilde_setup(void);
 
 - (void)changeSectionMaybe
 {
+    if (!self.allowsRandom) {
+        return;
+    }
+    
     NSInteger rand = arc4random_uniform(100);
     
     if (self.isShuffled) {
@@ -230,7 +272,7 @@ void bonk_tilde_setup(void);
 
 - (void)setInstrumentLevelsOff
 {
-    [PdBase sendFloat:0 toReceiver:@"outputVolume"];
+    [PdBase sendFloat:0.0 toReceiver:@"outputVolume"];
     [PdBase sendFloat:0.0 toReceiver:@"drumsVolume"];
     [PdBase sendFloat:0.0 toReceiver:@"inputVolume"];
     [PdBase sendFloat:0.0 toReceiver:@"synthVolume"];
@@ -260,6 +302,7 @@ void bonk_tilde_setup(void);
 - (void)dealloc
 {
     [self closePd];
+    [self removeNotificationListeners];
 }
 
 @end

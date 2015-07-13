@@ -10,30 +10,23 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Brushed_Aluminum_Dark.png" translatesAutoresizingMaskIntoConstraints="NO" id="GeL-v3-84g">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(headphones recommended)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A6-uB-JiM">
-                    <rect key="frame" x="215.5" y="563" width="169.5" height="17"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ModMusica" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LB3-ba-5uv">
                     <rect key="frame" x="226" y="40" width="147" height="35.5"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="headphones recommended" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A6-uB-JiM">
+                    <rect key="frame" x="224.5" y="83" width="151" height="15.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="0.97302691610000003" green="0.99178832120000004" blue="0.46170734489999998" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.97717013888888893" green="1" blue="0.99406828703703709" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="5A6-uB-JiM" secondAttribute="bottom" constant="20" id="90v-ji-Krx"/>
-                <constraint firstAttribute="trailing" secondItem="GeL-v3-84g" secondAttribute="trailing" id="9eF-FI-SEh"/>
                 <constraint firstAttribute="centerX" secondItem="LB3-ba-5uv" secondAttribute="centerX" id="ECZ-bf-hSf"/>
-                <constraint firstAttribute="bottom" secondItem="GeL-v3-84g" secondAttribute="bottom" id="FqQ-fx-yuR"/>
-                <constraint firstItem="GeL-v3-84g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Jvd-ni-AGO"/>
+                <constraint firstItem="5A6-uB-JiM" firstAttribute="top" secondItem="LB3-ba-5uv" secondAttribute="bottom" constant="7.5" id="McC-UQ-Zze"/>
                 <constraint firstAttribute="centerX" secondItem="5A6-uB-JiM" secondAttribute="centerX" id="bdT-yp-OsY"/>
-                <constraint firstItem="GeL-v3-84g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bjA-D2-gwp"/>
                 <constraint firstItem="LB3-ba-5uv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="fZL-VE-AFu"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -41,7 +34,4 @@
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
-    <resources>
-        <image name="Brushed_Aluminum_Dark.png" width="1132" height="848"/>
-    </resources>
 </document>

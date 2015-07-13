@@ -250,7 +250,7 @@
 #X obj 151 -8 t b b f b;
 #X obj 280 132 s \$0-changeBeats;
 #X obj 580 344 t b f;
-#X obj 279 88 random 5;
+#X obj 308 68 random 5;
 #X obj 281 110 - 2;
 #N canvas 68 22 1440 754 slicer 0;
 #X obj 175 535 outlet;

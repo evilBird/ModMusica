@@ -90,18 +90,15 @@
     }
     deltaScale = scale - initalScale;
     deltaVelocity = velocity - initialVelocity;
-    NSLog(@"ds = %@, dv = %@",@(deltaScale),@(deltaVelocity));
     previousScale = scale;
     previousVelocity = velocity;
-    [[self getGLKViewController]changeScale:deltaScale];
+    [[self getGLKViewController]changeScale:scale];
 }
 
 - (void)handleTap:(id)sender
 {
     MMTapGestureRecognizer *tap = sender;
     UIGestureRecognizerState state = tap.state;
-    NSUInteger numTaps = tap.tapCount;
-    NSLog(@"num taps: %@",@(numTaps));
     BOOL tempoLocked = [self getGLKViewController].playbackController.isTempoLocked;
     BOOL playing = [self getGLKViewController].isPlaying;
     
@@ -110,13 +107,11 @@
             switch (tap.tapCount) {
                 case 1:
                     [[self getGLKViewController]showDetailsFade:[self getGLKViewController].isPlaying];
-                    NSLog(@"show details");
                     break;
                     
                 default:
                     if (!tempoLocked && playing) {
                         [[self getGLKViewController].playbackController tapTempo];
-                        NSLog(@"\ntap tempo");
                     }
                     break;
             }
@@ -136,7 +131,6 @@
     switch (state) {
         case UIGestureRecognizerStateRecognized:
             [self getGLKViewController].playing = (BOOL)(1-playing);
-            NSLog(@"\npress");
             break;
         case UIGestureRecognizerStateFailed:
             

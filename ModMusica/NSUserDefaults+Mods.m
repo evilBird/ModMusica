@@ -14,7 +14,7 @@ static NSString *kModMusicaPurchasedItemsKey = @"com.birdSound.modmusica.purchas
 
 + (void)printPurchasedMods
 {
-    NSLog(@"\n\nCADENZA PRO SAVED SETTINGS:\n%@\n\n",[NSUserDefaults purchasedMods]);
+    NSLog(@"\n\nPURCHASED MODS:\n%@\n\n",[NSUserDefaults purchasedMods]);
 }
 
 + (NSArray *)purchasedMods
@@ -43,7 +43,6 @@ static NSString *kModMusicaPurchasedItemsKey = @"com.birdSound.modmusica.purchas
     NSArray *updatedPurchasedMods = [NSArray arrayWithArray:purchasedModsCopy];
     [[NSUserDefaults standardUserDefaults]setValue:updatedPurchasedMods forKey:kModMusicaPurchasedItemsKey];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    [NSUserDefaults printPurchasedMods];
 }
 
 

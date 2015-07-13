@@ -15,6 +15,7 @@ static NSString *kMenaceProductId = @"com.birdSound.modmusica.menace";
 static NSString *kFunkProductId = @"com.birdSound.modmusica.funk";
 static NSString *kSadProductId = @"com.birdSound.modmusica.sad";
 static NSString *kMajesticProductId = @"com.birdSound.modmusica.majestic";
+static NSString *kHappyProductId = @"com.birdSound.modmusica.happy";
 
 typedef void (^ProductRequestResponseHandler) (NSArray *products, NSError *error);
 typedef void (^ProductPurchaseHandler) (id product, NSError *error);
@@ -99,7 +100,7 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
 
 - (SKProductsRequest *)productsRequest
 {
-    NSArray *productIds = @[kMarioProductId, kFantasyProductId, kMegaProductId, kMenaceProductId,kSadProductId,kFunkProductId,kMajesticProductId];
+    NSArray *productIds = @[kMarioProductId, kFantasyProductId, kMegaProductId, kMenaceProductId,kSadProductId,kFunkProductId,kMajesticProductId,kHappyProductId];
     NSSet *identifiers = [NSSet setWithArray:productIds];
     SKProductsRequest *request = [[SKProductsRequest alloc]initWithProductIdentifiers:identifiers];
     request.delegate = self;

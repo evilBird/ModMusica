@@ -48,6 +48,6 @@
 - (void)randomizeColors;
 - (void)playback:(id)sender detectedUserTempo:(double)tempo;
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName;
-- (void)changeScale:(CGFloat)deltaScale;
+- (void)changeScale:(CGFloat)scale;
 
 @end

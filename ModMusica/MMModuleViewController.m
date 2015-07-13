@@ -61,6 +61,8 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     UISwitch *mySwitch = (UISwitch *)sender;
     if (mySwitch.tag == 0){
         [self.delegate moduleView:self lockTempoDidChange:(int)mySwitch.isOn];
+    }else if (mySwitch.tag == 1){
+        
     }else{
         [self.delegate moduleView:self shuffleDidChange:(int)mySwitch.isOn];
         [self.tableView reloadData];
@@ -101,7 +103,7 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     if (section == 0) {
         return ([self.datasource moduleNamesForView:self].count + 1);
     }else{
-        return 1;
+        return 2;
     }
 }
 
@@ -228,7 +230,11 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
 
         cell = [tableView dequeueReusableCellWithIdentifier:kModuleSwitchCellId forIndexPath:indexPath];
         [self configureSwitchCell:cell atIndexPath:indexPath];
-        [(MMModuleSwitchCellView *)cell titleLabel].text = @"lock";
+        if (indexPath.row == 0) {
+            [(MMModuleSwitchCellView *)cell titleLabel].text = @"lock tempo";
+        }else{
+            [(MMModuleSwitchCellView *)cell titleLabel].text = @"lock music";
+        }
     }
     
     return cell;
@@ -251,9 +257,9 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     }else if (section == 1){
         self.sectionHeaderLabel2 = titleLabel;
         self.sectionHeaderView2 = header;
-        titleLabel.text = @"tempo";
-
+        titleLabel.text = @"options";
     }
+    
         [header addSubview:titleLabel];
         [header addConstraint:[titleLabel pinEdge:LayoutEdge_Left
                                            toEdge:LayoutEdge_Left

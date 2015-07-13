@@ -8,10 +8,10 @@
 
 #ifndef ModMusica_MyGLKFunctions_h
 #define ModMusica_MyGLKFunctions_h
-
+#define EUHLER 2.71828
 #import "MyGLKDefs.h"
 
-void reverse_vertices(Vertex vertices[], int count) {
+void _reverseVertices(Vertex vertices[], int count) {
     Vertex buffer[count];
     int maxCount = count - 1;
     for (int i = 0; i < count; i++) {
@@ -22,7 +22,14 @@ void reverse_vertices(Vertex vertices[], int count) {
         }else{
             vertices[i] = buffer[(i - count/2)];
         }
+    }
+}
 
+void _reverseIndices(GLuint input[], GLuint output[], int n)
+{
+    
+    for (int i = 0; i < n; i++) {
+        output[i] = input[(n - 1 - i)];
     }
 }
 
@@ -143,14 +150,11 @@ void _getSamples(NSArray *tables, float samples[], int samplesPerTable, int wrap
             int tableIdx = (j * stepSize);
             float sample = temp[tableIdx];
             if (sample!=sample) {
-                sample = 0.0;
-            }
-            if (sample < -1.0) {
-                sample = -1.0;
-            }
-            
-            if (sample > 1.0) {
-                sample = 1.0;
+                if (j==0) {
+                    sample = temp[tableIdx+1];
+                }else{
+                    sample = temp[tableIdx-1];
+                }
             }
             
             sampleIdx = ((i * samplesPerTable) + j);
@@ -324,6 +328,16 @@ void _setMainVertexColor(GLfloat color[])
     calls = 0;
 }
 
+GLfloat _normalizeSample(GLfloat sample, GLfloat outscale)
+{
+    return ((((sample + 2.0)*0.5)*outscale) + ((1.0 - outscale)*0.5));
+}
+
+GLfloat _blendFloats(GLfloat float1, GLfloat float2, GLfloat weight)
+{
+    return ((float1 * weight) + (float2 * (1.0 - weight)));
+}
+
 void _updateVertices(Vertex vertices[], float samples[], int numTables, int samplesPerTable, int verticesPerSample)
 {
 #if DEBUG_GL
@@ -335,6 +349,7 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
     if ((calls%2400) == 0) {
         newCols = YES;
     }
+    
     calls++;
 
     for (int i = 0; i < numCols; i++) {
@@ -342,15 +357,26 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
         int myIdx = i/verticesPerSample;
         GLfloat myCols[3];
         if (newCols) {
-            myCols[0] = _jitterFloat(cols[0],0.2,0.0,1.0);
-            myCols[1] = _jitterFloat(cols[1],0.2,0.0,1.0);
-            myCols[2] = _jitterFloat(cols[2],0.2,0.0,1.0);
+            myCols[0] = _jitterFloat(cols[0],COLOR_JITTER,0.0,1.0);
+            myCols[1] = _jitterFloat(cols[1],COLOR_JITTER,0.0,1.0);
+            myCols[2] = _jitterFloat(cols[2],COLOR_JITTER,0.0,1.0);
         }
         
         for (int j = 0; j < samplesPerTable; j++) {
+            
             int sampleIdx = myIdx * samplesPerTable + j;
             int vertexIdx = i * samplesPerTable + j;
             double sample = (double)samples[sampleIdx];
+            
+            int alternateIdxOffset = -1;
+            if (j==0) {
+                alternateIdxOffset = 1;
+            }
+            
+            if (sample!=sample) {
+                sample = samples[(sampleIdx + alternateIdxOffset)];
+            }
+            
             int neighborIdx = 0;
             if ((sampleIdx + samplesPerTable)<numSamples) {
                 neighborIdx = sampleIdx + samplesPerTable;
@@ -359,50 +385,60 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
             }
             
             double neighbor = (double)samples[neighborIdx];
+            
+            if (neighbor != neighbor) {
+                neighbor = 0;
+            }
+            
             double neighbor_wt = (double)(i%verticesPerSample)/(double)verticesPerSample;
+            neighbor_wt *= neighbor_wt;
+            
             double weightedSample = (sample * (1.0 - neighbor_wt) + neighbor * neighbor_wt);
             
-            double rads = (double)((double)j * ((2.0 * M_PI)/(double)(samplesPerTable - 1)));
-            double x = cos(rads) + cos(rads) * weightedSample * -1.0;//fabs(weightedSample);
-            double y = (double)i/(double)(numCols - 1.0) * 2.0 - 1.0;
-            double z = sin(rads) + sin(rads) * weightedSample * -1.0;//fabs(weightedSample);
+            if (weightedSample > 1.0) {
+                weightedSample = 0.0;
+            }else if (weightedSample < -1.0){
+                weightedSample = 0.0;
+            }
             
-            GLfloat normalizedSample = (GLfloat)((weightedSample * 2.0) + 1.0) * 0.8 + 0.1;
-
+            double rads = (double)((double)j * ((2.0 * M_PI)/(double)(samplesPerTable - 1)));
+            double x = cos(rads) + cos(rads) * weightedSample * -1.0;
+            double y = (double)i/(double)(numCols - 1.0) * 2.0 - 1.0;
+            double z = sin(rads) + sin(rads) * weightedSample * -1.0;
+        
             vertices[vertexIdx].Position[0] = (GLfloat)(x * DRAWING_SCALE_X);
             vertices[vertexIdx].Position[1] = (GLfloat)(y * DRAWING_SCALE_Y);
             vertices[vertexIdx].Position[2] = (GLfloat)(z * DRAWING_SCALE_Z);
-
-            if (newCols) {
-                vertices[vertexIdx].Color[0] = (GLfloat)(normalizedSample * myCols[0]);
-                vertices[vertexIdx].Color[1] = (GLfloat)(normalizedSample * myCols[1]);
-                vertices[vertexIdx].Color[2] = (GLfloat)(normalizedSample * myCols[2]);
-                vertices[vertexIdx].Color[3] = 1.0;
-            }
-
-
             
 #if USE_NORMALS
-            
             double dir = 1.0;
             if (weightedSample < 0) {
                 dir = -1.0;
             }
             
-            vertices[vertexIdx].Normal[0] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];
-            vertices[vertexIdx].Normal[1] = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[1];
-            vertices[vertexIdx].Normal[2] = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];
+            double nx = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[0];
+            double ny = cos(rads) + cos(rads) * vertices[vertexIdx].Normal[1];
+            double nz = sin(rads) + sin(rads) * vertices[vertexIdx].Normal[2];
+            vertices[vertexIdx].Normal[0] = (GLfloat)nx;
+            vertices[vertexIdx].Normal[1] = (GLfloat)ny;
+            vertices[vertexIdx].Normal[2] = (GLfloat)nz;
 #endif
+            
+            GLfloat r = _normalizeSample(x, 1.0);
+            GLfloat g = (1.0 - _normalizeSample(y, 1.0));
+            GLfloat b = _normalizeSample(z, 1.0);
+            
+            vertices[vertexIdx].Color[0] = r * myCols[0] * 0.5 + myCols[0] * 0.5;
+            vertices[vertexIdx].Color[1] = g * myCols[1] * 0.5 + myCols[1] * 0.5;
+            vertices[vertexIdx].Color[2] = b * myCols[2] * 0.5 + myCols[2] * 0.5;
+            vertices[vertexIdx].Color[3] = 1.0;
             
 #if DEBUG_GL
             NSLog(@"\ni = %d, j = %d, vertexIdx = %d, sampleIdx = %d, sample = %.2f, neighborIdx = %d, neighbor = %.2f, neighbor wt = %.2f, weighted sample = %.2f, x = %.2f, y = %.2f, z = %.2f",i,j,vertexIdx,sampleIdx,sample,neighborIdx,neighbor,neighbor_wt,weightedSample,x,y,z);
 #endif
         }
     }
-    
-    //reverse_vertices(vertices, numVertices);
-    
-    
+
 #if DEBUG_GL
     NSLog(@"\n++++++++++++++++++++++++++++++++\n\n");
 #endif
