@@ -57,8 +57,14 @@ void bonk_tilde_setup(void);
 
 - (void)handleAudioInterruption:(NSNotification *)notification
 {
-    id userInfo = notification.userInfo;
-    NSLog(@"\nAUDIO WAS INTERRUPTED\nuser info: %@\n",userInfo);
+    NSDictionary *userInfo = notification.userInfo;
+    AVAudioSessionInterruptionType type = [userInfo[AVAudioSessionInterruptionTypeKey]unsignedIntegerValue];
+    AVAudioSessionInterruptionOptions options = [userInfo[AVAudioSessionInterruptionOptionKey] unsignedIntegerValue];
+    if (type == AVAudioSessionInterruptionTypeBegan) {
+        [self stopPlayback];
+    }else if (type == AVAudioSessionInterruptionTypeEnded && options == AVAudioSessionInterruptionOptionShouldResume){
+        [self startPlayback];
+    }
 }
 
 - (void)handleAudioRouteChange:(NSNotification *)notification
@@ -105,8 +111,7 @@ void bonk_tilde_setup(void);
 - (void)startPlayback
 {
     if (!self.patternName) {
-        [self playPattern:[MMModuleManager purchasedModNames].firstObject];
-        return;
+        self.patternName = [MMModuleManager purchasedModNames].firstObject;
     }
     
     [self playbackWillStart];
