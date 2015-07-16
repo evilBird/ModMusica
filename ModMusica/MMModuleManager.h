@@ -17,6 +17,7 @@
 
 @interface MMModuleManager : NSObject
 
++ (void)setupDefaultMods;
 + (NSArray *)availableMods;
 + (NSArray *)purchasedMods;
 + (NSArray *)availableModNames;

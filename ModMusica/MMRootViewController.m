@@ -16,6 +16,7 @@
 #import "MMTapGestureRecognizer.h"
 #import "MMPurchaseManager.h"
 #import "MMPinchGestureRecognizer.h"
+#import "MMModuleManager.h"
 
 @interface MMRootViewController () <MMStepCounterDelegate>
 
@@ -51,7 +52,7 @@
     [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
     [self setPaneDragRevealEnabled:YES forDirection:MSDynamicsDrawerDirectionLeft];
     [self setupDrawerDynamics];
-    
+    self.myGLKViewController.playbackController.patternName = [MMModuleManager purchasedModNames].firstObject;
     // Do any additional setup after loading the view.
 }
 
@@ -71,8 +72,6 @@
     static CGFloat previousScale;
     static CGFloat initialVelocity;
     static CGFloat previousVelocity;
-    static CGPoint initialLoc;
-    static CGPoint previousLoc;
     
     CGFloat deltaScale;
     CGFloat deltaVelocity;

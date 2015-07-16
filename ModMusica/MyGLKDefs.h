@@ -26,7 +26,7 @@
 #define NUM_TABLES                  16
 
 #define DRAWING_SCALE_X             3.0
-#define DRAWING_SCALE_Y             4.0
+#define DRAWING_SCALE_Y             6.0
 #define DRAWING_SCALE_Z             3.0
 
 #define SAMPLE_SCALAR               0.88
@@ -48,7 +48,7 @@
 #define D_ROTATION_Y                10.0
 
 #define FRAMES_PER_RANDOM           2400
-#define SCREEN_UPDATES_PER_AUDIO_UPDATE 2.0
+#define SCREEN_UPDATES_PER_AUDIO_UPDATE 1.0
 
 #define DEBUG_GL 0
 #define USE_NORMALS 1

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <PdAudioController.h>
 #import "MMPlaybackController.h"
+#import "MMModuleManager.h"
 #import "MMPurchaseManager.h"
 
 #define SAMPLE_RATE 44100
@@ -25,6 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [MMModuleManager setupDefaultMods];
     [[MMPurchaseManager sharedInstance]getProductsCompletion:nil];
     //[[UIApplication sharedApplication]setIdleTimerDisabled:YES];
     self.audioController = [[PdAudioController alloc]init];

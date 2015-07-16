@@ -44,9 +44,10 @@
 		F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2575C111B2792EA00DE5571 /* MMModuleViewController.m */; };
 		F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2575C141B27930300DE5571 /* MMModuleCellView.m */; };
 		F26A69BB1B4B802E002F0736 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26A69BA1B4B802E002F0736 /* StoreKit.framework */; };
+		F26A9F101B5487F5002EDA67 /* mm_uke~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F26A9F0F1B5487F5002EDA67 /* mm_uke~.pd */; };
+		F26A9F121B548840002EDA67 /* mm_guitar_string~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F26A9F111B548840002EDA67 /* mm_guitar_string~.pd */; };
 		F2917A001B4CBD4B0048591D /* MMLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F29179FF1B4CBD4B0048591D /* MMLongPressGestureRecognizer.m */; };
 		F2917A031B4CC67B0048591D /* MMTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2917A021B4CC67B0048591D /* MMTapGestureRecognizer.m */; };
-		F2917A051B4CCCA30048591D /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2917A041B4CCCA30048591D /* LaunchImage.png */; };
 		F2917A081B4CCF6F0048591D /* MMRootViewController+Drawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2917A071B4CCF6F0048591D /* MMRootViewController+Drawer.m */; };
 		F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */ = {isa = PBXBuildFile; fileRef = F298829B1A02BC78005F9B94 /* mm_pattern.pd */; };
 		F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F298829E1A02BE50005F9B94 /* MMFileReader.m */; };
@@ -344,6 +345,8 @@
 		F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */; };
 		F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */; };
 		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
+		F2DE50B01B58598C00D42140 /* 0-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2DE50AE1B58598C00D42140 /* 0-fantasy.csv */; };
+		F2DE50B11B58598C00D42140 /* 1-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2DE50AF1B58598C00D42140 /* 1-fantasy.csv */; };
 		F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */; };
 		F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */; };
 		F2DE9EA21B2235F700FEBE5F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DE9EA11B2235F700FEBE5F /* Icon@2x.png */; };
@@ -358,9 +361,6 @@
 		F2DE9EB81B2245DD00FEBE5F /* mm_pulse~.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2DE9EB01B2245DD00FEBE5F /* mm_pulse~.pd */; };
 		F2DE9EBB1B225A1C00FEBE5F /* CALayer+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EBA1B225A1C00FEBE5F /* CALayer+Image.m */; };
 		F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9EC01B22928100FEBE5F /* MMStepCounter.m */; };
-		F2E06AC91B3C876400D0B880 /* Brushed_Aluminum_Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E06AC71B3C876400D0B880 /* Brushed_Aluminum_Dark.png */; };
-		F2E06ACA1B3C876400D0B880 /* Brushed_Aluminum.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E06AC81B3C876400D0B880 /* Brushed_Aluminum.png */; };
-		F2E06ACC1B3C948A00D0B880 /* tile_floor.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E06ACB1B3C948A00D0B880 /* tile_floor.png */; };
 		F2EE00FF1A11A22100398C04 /* _markovanal.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF911A11A22000398C04 /* _markovanal.pd */; };
 		F2EE01001A11A22100398C04 /* a.txt in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF921A11A22000398C04 /* a.txt */; };
 		F2EE01011A11A22100398C04 /* a_breath-help.pd in Resources */ = {isa = PBXBuildFile; fileRef = F2EEFF931A11A22000398C04 /* a_breath-help.pd */; };
@@ -812,11 +812,12 @@
 		F2575C131B27930300DE5571 /* MMModuleCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleCellView.h; sourceTree = "<group>"; };
 		F2575C141B27930300DE5571 /* MMModuleCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleCellView.m; sourceTree = "<group>"; };
 		F26A69BA1B4B802E002F0736 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F26A9F0F1B5487F5002EDA67 /* mm_uke~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_uke~.pd"; sourceTree = "<group>"; };
+		F26A9F111B548840002EDA67 /* mm_guitar_string~.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "mm_guitar_string~.pd"; sourceTree = "<group>"; };
 		F29179FE1B4CBD4B0048591D /* MMLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLongPressGestureRecognizer.h; sourceTree = "<group>"; };
 		F29179FF1B4CBD4B0048591D /* MMLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLongPressGestureRecognizer.m; sourceTree = "<group>"; };
 		F2917A011B4CC67B0048591D /* MMTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTapGestureRecognizer.h; sourceTree = "<group>"; };
 		F2917A021B4CC67B0048591D /* MMTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTapGestureRecognizer.m; sourceTree = "<group>"; };
-		F2917A041B4CCCA30048591D /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchImage.png; sourceTree = "<group>"; };
 		F2917A061B4CCF6F0048591D /* MMRootViewController+Drawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMRootViewController+Drawer.h"; sourceTree = "<group>"; };
 		F2917A071B4CCF6F0048591D /* MMRootViewController+Drawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMRootViewController+Drawer.m"; sourceTree = "<group>"; };
 		F298829B1A02BC78005F9B94 /* mm_pattern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_pattern.pd; sourceTree = "<group>"; };
@@ -1131,6 +1132,8 @@
 		F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleManager.m; sourceTree = "<group>"; };
 		F2DE10691B3B588600A7CDD0 /* MyGLKFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGLKFunctions.h; sourceTree = "<group>"; };
 		F2DE106A1B3B5F8700A7CDD0 /* MyGLKDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGLKDefs.h; sourceTree = "<group>"; };
+		F2DE50AE1B58598C00D42140 /* 0-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-fantasy.csv"; sourceTree = "<group>"; };
+		F2DE50AF1B58598C00D42140 /* 1-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-fantasy.csv"; sourceTree = "<group>"; };
 		F2DE9E981B222BC200FEBE5F /* MMPlaybackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlaybackController.h; sourceTree = "<group>"; };
 		F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPlaybackController.m; sourceTree = "<group>"; };
 		F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
@@ -1150,9 +1153,6 @@
 		F2DE9EBA1B225A1C00FEBE5F /* CALayer+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Image.m"; sourceTree = "<group>"; };
 		F2DE9EBF1B22928100FEBE5F /* MMStepCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMStepCounter.h; sourceTree = "<group>"; };
 		F2DE9EC01B22928100FEBE5F /* MMStepCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMStepCounter.m; sourceTree = "<group>"; };
-		F2E06AC71B3C876400D0B880 /* Brushed_Aluminum_Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brushed_Aluminum_Dark.png; sourceTree = "<group>"; };
-		F2E06AC81B3C876400D0B880 /* Brushed_Aluminum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brushed_Aluminum.png; sourceTree = "<group>"; };
-		F2E06ACB1B3C948A00D0B880 /* tile_floor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile_floor.png; sourceTree = "<group>"; };
 		F2EE00001A11A22000398C04 /* e_reverb.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_reverb.pd; sourceTree = "<group>"; };
 		F2EE00011A11A22000398C04 /* e_scompress-help.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "e_scompress-help.pd"; sourceTree = "<group>"; };
 		F2EE00021A11A22000398C04 /* e_scompress.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_scompress.pd; sourceTree = "<group>"; };
@@ -1840,19 +1840,16 @@
 				F2B2AB7D19FF273F003042D6 /* Pd */,
 				F2DE9E941B222A0E00FEBE5F /* Categories */,
 				F2AD7F351A47EEA100840ABC /* MM */,
-				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
-				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
 				F21CD4CA1B4336CD00AAE260 /* Root */,
 				F21CD4C91B4336BD00AAE260 /* MyGLK */,
 				F246EF141A01A86400357005 /* modmusica_1.pd */,
 				F2B2AB5819FF1739003042D6 /* Main.storyboard */,
+				F2B2AB5219FF1739003042D6 /* AppDelegate.h */,
+				F2B2AB5319FF1739003042D6 /* AppDelegate.m */,
+				F2DE50B21B58599C00D42140 /* Default Mods */,
 				F2B2AB5B19FF1739003042D6 /* Images.xcassets */,
 				F2B2AB5D19FF1739003042D6 /* LaunchScreen.xib */,
 				F2B2AB4E19FF1739003042D6 /* Supporting Files */,
-				F2E06AC71B3C876400D0B880 /* Brushed_Aluminum_Dark.png */,
-				F2917A041B4CCCA30048591D /* LaunchImage.png */,
-				F2E06AC81B3C876400D0B880 /* Brushed_Aluminum.png */,
-				F2E06ACB1B3C948A00D0B880 /* tile_floor.png */,
 			);
 			path = ModMusica;
 			sourceTree = "<group>";
@@ -2127,6 +2124,8 @@
 		F2B2B1B819FF4757003042D6 /* mm */ = {
 			isa = PBXGroup;
 			children = (
+				F26A9F111B548840002EDA67 /* mm_guitar_string~.pd */,
+				F26A9F0F1B5487F5002EDA67 /* mm_uke~.pd */,
 				F2EE02911A11C1B100398C04 /* mm_osc6~.pd */,
 				F2EE027E1A11B75800398C04 /* mm_sssad.pd */,
 				F2EE027C1A11B6B200398C04 /* mm_dispatch.pd */,
@@ -2189,6 +2188,23 @@
 				F2B2AD2419FF27BE003042D6 /* mm_xfade.pd */,
 			);
 			name = mm;
+			sourceTree = "<group>";
+		};
+		F2DE50B21B58599C00D42140 /* Default Mods */ = {
+			isa = PBXGroup;
+			children = (
+				F2DE50B31B5866C800D42140 /* fantasy */,
+			);
+			name = "Default Mods";
+			sourceTree = "<group>";
+		};
+		F2DE50B31B5866C800D42140 /* fantasy */ = {
+			isa = PBXGroup;
+			children = (
+				F2DE50AE1B58598C00D42140 /* 0-fantasy.csv */,
+				F2DE50AF1B58598C00D42140 /* 1-fantasy.csv */,
+			);
+			name = fantasy;
 			sourceTree = "<group>";
 		};
 		F2DE9E931B2229F400FEBE5F /* OpenGL */ = {
@@ -2748,7 +2764,6 @@
 				F2B2B12B19FF281F003042D6 /* birdSqueeze.pd in Resources */,
 				F2B2AF1319FF27BE003042D6 /* modMusicPatchOld.pd in Resources */,
 				F2B2B15519FF281F003042D6 /* conga3.wav in Resources */,
-				F2E06ACA1B3C876400D0B880 /* Brushed_Aluminum.png in Resources */,
 				F2B2AF1419FF27BE003042D6 /* other1.aif in Resources */,
 				F2EE01E51A11A22100398C04 /* s_chip-help.pd in Resources */,
 				F2B2B13619FF281F003042D6 /* interact2~.pd in Resources */,
@@ -2856,7 +2871,6 @@
 				F2B2AF2419FF27BE003042D6 /* rasta11.aif in Resources */,
 				F2EE02061A11A22100398C04 /* s_playolap-help.pd in Resources */,
 				F2B2AEE219FF27BE003042D6 /* list-rot.pd in Resources */,
-				F2E06ACC1B3C948A00D0B880 /* tile_floor.png in Resources */,
 				F2EE02631A11A22100398C04 /* u_spinner.pd in Resources */,
 				F2EE023B1A11A22100398C04 /* u_listrandom.pd in Resources */,
 				F2EE02291A11A22100398C04 /* u_follower.pd in Resources */,
@@ -2899,6 +2913,7 @@
 				F2EE01381A11A22100398C04 /* e_agc.pd in Resources */,
 				F2B2B16F19FF281F003042D6 /* Hat.wav in Resources */,
 				F218FFF81B507B5B000CB182 /* conga-4.wav in Resources */,
+				F26A9F121B548840002EDA67 /* mm_guitar_string~.pd in Resources */,
 				F2B2AEF119FF27BE003042D6 /* mm_gate3~.pd in Resources */,
 				F2EE01D81A11A22100398C04 /* r_#touch-help.pd in Resources */,
 				F2B2AF1D19FF27BE003042D6 /* rasta4.aif in Resources */,
@@ -2974,6 +2989,7 @@
 				F2B2AF4119FF27BE003042D6 /* timbreStamp2~.pd in Resources */,
 				F2EE01F71A11A22100398C04 /* s_guitar.pd in Resources */,
 				F2B2AF0F19FF27BE003042D6 /* mm_vocoder~.pd in Resources */,
+				F2DE50B01B58598C00D42140 /* 0-fantasy.csv in Resources */,
 				F2B2AF0219FF27BE003042D6 /* mm_sample_slicer1~.pd in Resources */,
 				F2B2B12F19FF281F003042D6 /* birdSynth~.pd in Resources */,
 				F2B2B0F119FF281F003042D6 /* blobble.aif in Resources */,
@@ -3024,7 +3040,6 @@
 				F2B2AF3619FF27BE003042D6 /* Snare.wav in Resources */,
 				F2B2B0D219FF281F003042D6 /* african-pe-lo.wav in Resources */,
 				F2B2B17719FF281F003042D6 /* list-drip.pd in Resources */,
-				F2E06AC91B3C876400D0B880 /* Brushed_Aluminum_Dark.png in Resources */,
 				F22C3E171A06E29900A18E0C /* modmusica_2.pd in Resources */,
 				F2B2AEE919FF27BE003042D6 /* mm_ceiling2~.pd in Resources */,
 				F2B2AEEA19FF27BE003042D6 /* mm_compressor.pd in Resources */,
@@ -3051,7 +3066,6 @@
 				F2EE017C1A11A22100398C04 /* e_vocoder.pd in Resources */,
 				F2DE9EB31B2245DD00FEBE5F /* mm_blsine~.pd in Resources */,
 				F2B2B16019FF281F003042D6 /* ctr.pd in Resources */,
-				F2917A051B4CCCA30048591D /* LaunchImage.png in Resources */,
 				F2EE01081A11A22100398C04 /* c_adsrj-help.pd in Resources */,
 				F2EE010A1A11A22100398C04 /* c_bangx-help.pd in Resources */,
 				F2EE01B11A11A22100398C04 /* m_intv2ratio-help.pd in Resources */,
@@ -3071,6 +3085,7 @@
 				F2EE01021A11A22100398C04 /* a_breath.pd in Resources */,
 				F2B2B13B19FF281F003042D6 /* mm_env~.pd in Resources */,
 				F218FFED1B507B5B000CB182 /* AC_Tom-2.aif in Resources */,
+				F26A9F101B5487F5002EDA67 /* mm_uke~.pd in Resources */,
 				F218FFF31B507B5B000CB182 /* 808_HHo.aif in Resources */,
 				F2B2B0EA19FF281F003042D6 /* big-burundi-24.wav in Resources */,
 				F2B2AEE419FF27BE003042D6 /* list-tabdump.pd in Resources */,
@@ -3135,6 +3150,7 @@
 				F2B2AEFE19FF27BE003042D6 /* mm_rlist.pd in Resources */,
 				F2DE9EB11B2245DD00FEBE5F /* mm_am~.pd in Resources */,
 				F2B2B0D119FF281F003042D6 /* african-pe-hi.wav in Resources */,
+				F2DE50B11B58598C00D42140 /* 1-fantasy.csv in Resources */,
 				F2B2B11619FF281F003042D6 /* birdDB.pd in Resources */,
 				F2B2B14019FF281F003042D6 /* noteOff.pd in Resources */,
 				F2EE01751A11A22100398C04 /* e_softclip-help.pd in Resources */,

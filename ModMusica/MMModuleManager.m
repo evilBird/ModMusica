@@ -10,9 +10,55 @@
 #import "NSUserDefaults+Mods.h"
 #import "MMPurchaseManager.h"
 
-
-
 @implementation MMModuleManager
+
++ (void)setupDefaultMods
+{
+    if (![MMModuleManager purchasedMods]) {
+        NSDictionary *defaultMod1 = [MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2];
+        if (defaultMod1) {
+            [NSUserDefaults savePurchasedMod:defaultMod1];
+        }
+    }
+}
+
++ (NSDictionary *)setupDefaultMod:(NSString *)modName numPatterns:(NSUInteger)numPatterns
+{
+    NSMutableDictionary *defaultMod = [NSMutableDictionary dictionary];
+    defaultMod[kProductTitleKey] = modName;
+    defaultMod[kProductPriceKey] = @(0);
+    defaultMod[kProductFormattedPriceKey] = @"FREE";
+    defaultMod[kProductPurchasedKey] = @(1);
+    defaultMod[kProductDescriptionKey] = modName;
+    
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *folderPath = [documentsPath stringByAppendingPathComponent:modName];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:folderPath]) {
+        [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    NSError *err = nil;
+    
+    for (NSUInteger i = 0; i < numPatterns; i++) {
+        NSString *patternName = [NSString stringWithFormat:@"%@-%@",@(i),modName];
+        NSString *bundlePath = [[NSBundle mainBundle]pathForResource:patternName ofType:@".csv"];
+        NSString *docsPath = [folderPath stringByAppendingPathComponent:[patternName stringByAppendingPathExtension:@"csv"]];
+        [fileManager copyItemAtPath:bundlePath toPath:docsPath error:&err];
+        
+        if (err) {
+            break;
+        }
+    }
+    
+    if (err) {
+        return nil;
+    }
+    
+    defaultMod[kProductContentPathKey] = folderPath;
+    return defaultMod;
+}
+
 
 + (NSArray *)availableModNames
 {
@@ -34,11 +80,12 @@
     NSArray *purchased = [MMModuleManager purchasedMods];
     NSMutableArray *products = [[MMPurchaseManager sharedInstance]products].allObjects.mutableCopy;
     NSMutableSet *available = [[NSMutableSet alloc]init];
-    NSMutableSet *names = [[NSMutableSet alloc]init];
+    [available addObjectsFromArray:purchased];
     
     for (SKProduct *product in products) {
         NSString *name = product.localizedTitle;
-        if (![names containsObject:name]) {
+        NSArray *myNames = [MMModuleManager namesForMods:available.allObjects];
+        if (![myNames containsObject:name]) {
             NSNumber *price = product.price;
             NSString *description = product.description;
             NSMutableDictionary *mod = [NSMutableDictionary dictionary];
@@ -67,7 +114,6 @@
             [available addObject:mod];
         }
         
-        [names addObject:name];
     }
     
     return [NSArray arrayWithArray:available.allObjects];

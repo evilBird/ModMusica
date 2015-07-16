@@ -24,8 +24,6 @@
     GLfloat     Colors          [3];
     
     float       _rotation_y;
-
-    
     float       _d_rotation_y;
     float       _d_scale;
     float       _d_zoom;
@@ -278,6 +276,7 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     view.drawableMultisample = GLKViewDrawableMultisample4X;
     view.delegate = self;
+    //self.preferredFramesPerSecond = 60;
     
     // Enable face culling and depth test
     glEnable(GL_DEPTH_TEST);
@@ -352,7 +351,7 @@
 - (GLKMatrix4)defaultProjectionMatrix
 {
     float aspect = fabs(self.view.bounds.size.width / self.view.bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 1.0, 100.0);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, -1.0, 100.0);
     return projectionMatrix;
 }
 

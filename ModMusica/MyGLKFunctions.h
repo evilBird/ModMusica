@@ -403,7 +403,7 @@ void _updateVertices(Vertex vertices[], float samples[], int numTables, int samp
             
             double rads = (double)((double)j * ((2.0 * M_PI)/(double)(samplesPerTable - 1)));
             double x = cos(rads) + cos(rads) * weightedSample * -1.0;
-            double y = (double)i/(double)(numCols - 1.0) * 2.0 - 1.0;
+            double y = (double)i/(double)(numCols - 1.0) * 2.0 - 1.0;            
             double z = sin(rads) + sin(rads) * weightedSample * -1.0;
         
             vertices[vertexIdx].Position[0] = (GLfloat)(x * DRAWING_SCALE_X);
