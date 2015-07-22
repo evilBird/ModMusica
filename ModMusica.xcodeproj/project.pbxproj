@@ -67,6 +67,7 @@
 		F292D3931B603DF90000D763 /* modmusica_mega.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D38F1B603DF90000D763 /* modmusica_mega.pd */; };
 		F292D3941B603DF90000D763 /* modmusica_menace.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D3901B603DF90000D763 /* modmusica_menace.pd */; };
 		F292D3981B6041000000D763 /* MMPlaybackController+Samples.m in Sources */ = {isa = PBXBuildFile; fileRef = F292D3971B6041000000D763 /* MMPlaybackController+Samples.m */; };
+		F292D39A1B604DD80000D763 /* modmusica_mario.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D3991B604DD80000D763 /* modmusica_mario.pd */; };
 		F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */ = {isa = PBXBuildFile; fileRef = F298829B1A02BC78005F9B94 /* mm_pattern.pd */; };
 		F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F298829E1A02BE50005F9B94 /* MMFileReader.m */; };
 		F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = F29882A51A02C854005F9B94 /* MMPatternLoader.m */; };
@@ -884,6 +885,7 @@
 		F292D3951B6040D80000D763 /* ModMusicaDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModMusicaDefs.h; sourceTree = "<group>"; };
 		F292D3961B6041000000D763 /* MMPlaybackController+Samples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMPlaybackController+Samples.h"; sourceTree = "<group>"; };
 		F292D3971B6041000000D763 /* MMPlaybackController+Samples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MMPlaybackController+Samples.m"; sourceTree = "<group>"; };
+		F292D3991B604DD80000D763 /* modmusica_mario.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_mario.pd; sourceTree = "<group>"; };
 		F298829B1A02BC78005F9B94 /* mm_pattern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_pattern.pd; sourceTree = "<group>"; };
 		F298829D1A02BE50005F9B94 /* MMFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFileReader.h; sourceTree = "<group>"; };
 		F298829E1A02BE50005F9B94 /* MMFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMFileReader.m; sourceTree = "<group>"; };
@@ -2356,6 +2358,7 @@
 				F2CF5EE01B58A6E70086D070 /* 3-mario.csv */,
 				F2CF5EE11B58A6E70086D070 /* 4-mario.csv */,
 				F2CF5EE21B58A6E70086D070 /* 5-mario.csv */,
+				F292D3991B604DD80000D763 /* modmusica_mario.pd */,
 				F2CF5EE31B58A6E70086D070 /* ContentInfo.plist */,
 			);
 			path = mario;
@@ -2934,6 +2937,7 @@
 				F2EE013B1A11A22100398C04 /* e_apdist-help.pd in Resources */,
 				F2B2B0CD19FF281F003042D6 /* 808_FX4.aif in Resources */,
 				F2B2B12819FF281F003042D6 /* birdScore.pd in Resources */,
+				F292D39A1B604DD80000D763 /* modmusica_mario.pd in Resources */,
 				F2EE01A31A11A22100398C04 /* m_accel_pitch-help.pd in Resources */,
 				F2B2B17619FF281F003042D6 /* list-accum.pd in Resources */,
 				F2EE023A1A11A22100398C04 /* u_listrandom-help.pd in Resources */,

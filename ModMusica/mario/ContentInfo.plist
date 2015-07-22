@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>DrumSamples</key>
+	<dict>
+		<key>KickSamples</key>
+		<array/>
+		<key>SnareSamples</key>
+		<array/>
+		<key>PercussionSamples</key>
+		<array/>
+	</dict>
+	<key>OtherSamples</key>
+	<array>
+		<string></string>
+	</array>
+	<key>SectionCount</key>
+	<integer>6</integer>
+	<key>PatchName</key>
+	<string>modmusica_mario.pd</string>
 	<key>ContentVersion</key>
 	<string>1.0.1</string>
 	<key>IAPProductIdentifier</key>
