@@ -15,10 +15,12 @@
 + (void)setupDefaultMods
 {
     if (![MMModuleManager purchasedMods]) {
-        NSDictionary *defaultMod1 = [MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2];
-        if (defaultMod1) {
-            [NSUserDefaults savePurchasedMod:defaultMod1];
-        }
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"wings" numPatterns:3]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fright" numPatterns:3]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"sirtet" numPatterns:3]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"minsk" numPatterns:3]];
+        
     }
 }
 

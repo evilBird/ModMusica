@@ -1,7 +1,7 @@
 CLANG_MODULES_AUTOLINK = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/GPUImage" "${PODS_ROOT}/Headers/Public/MSDynamicsDrawerViewController" "${PODS_ROOT}/Headers/Public/libpd"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/GPUImage" -isystem "${PODS_ROOT}/Headers/Public/MSDynamicsDrawerViewController" -isystem "${PODS_ROOT}/Headers/Public/libpd"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-ModMusica-AFNetworking" -l"Pods-ModMusica-GPUImage" -l"Pods-ModMusica-MSDynamicsDrawerViewController" -l"Pods-ModMusica-libpd" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "Foundation" -framework "MobileCoreServices" -framework "OpenGLES" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GPUImage" "${PODS_ROOT}/Headers/Public/MSDynamicsDrawerViewController" "${PODS_ROOT}/Headers/Public/libpd"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GPUImage" -isystem "${PODS_ROOT}/Headers/Public/MSDynamicsDrawerViewController" -isystem "${PODS_ROOT}/Headers/Public/libpd"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-ModMusica-GPUImage" -l"Pods-ModMusica-MSDynamicsDrawerViewController" -l"Pods-ModMusica-libpd" -framework "AVFoundation" -framework "CoreMedia" -framework "Foundation" -framework "OpenGLES" -framework "QuartzCore"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

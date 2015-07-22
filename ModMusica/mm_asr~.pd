@@ -1,6 +1,6 @@
 #N canvas 370 34 921 695 10;
 #X obj 150 417 vline~;
-#X obj 110 168 inlet~;
+#X obj 109 161 inlet~;
 #X obj 150 480 *~;
 #X obj 111 524 *~;
 #X obj 108 649 outlet~;
@@ -18,7 +18,7 @@
 #X obj 387 491 t l l;
 #X obj 419 586 s \$0-debounce;
 #X obj 385 636 s \$0-env;
-#X obj 172 170 inlet;
+#X obj 177 170 inlet;
 #X obj 174 195 bang;
 #N canvas 699 131 450 300 db 0;
 #X obj 69 38 inlet;

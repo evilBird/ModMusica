@@ -5,11 +5,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ModMusica' do
     
-    pod 'libpd', '~> 0.7'
+    pod 'libpd'
     pod 'GPUImage'
-    pod 'MSDynamicsDrawerViewController', '~> 1.5.1'
-    pod 'AFNetworking'
-
+    pod 'MSDynamicsDrawerViewController'
 end
 
 target 'ModMusicaTests' do

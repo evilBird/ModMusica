@@ -55,6 +55,12 @@ static NSString *kTableName = @"notes";
     return [NSDictionary dictionaryWithDictionary:result];
 }
 
+- (void)setCurrentSection:(NSInteger)currentSection
+{
+    _currentSection = currentSection;
+    NSLog(@"current section: %@",@(currentSection));
+}
+
 - (NSArray *)patternData
 {
     NSInteger section = self.currentSection;

@@ -156,13 +156,14 @@ void bonk_tilde_setup(void);
 {
     self.patternLoader = [[MMPatternLoader alloc]init];
     self.probPatternChange = 10;
-    self.probSectionChangeNone = 55;
-    self.probSectionChangeNext = 35;
-    self.probSectionChangePrevious = 10;
+    self.probSectionChangeNone = 66;
+    self.probSectionChangeNext = 25;
+    self.probSectionChangePrevious = 9;
     kIdx = -1;
     kPrev = 0;
     [self initalizePd];
     [self addNotificationListeners];
+    _allowRandom = YES;
 }
 
 - (void)initalizePd
