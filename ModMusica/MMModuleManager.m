@@ -12,6 +12,20 @@
 
 @implementation MMModuleManager
 
++ (id)modName:(NSString *)modName valueForKey:(NSString *)key
+{
+    NSDictionary *mod = [MMModuleManager getMod:modName fromArray:[MMModuleManager purchasedMods]];
+    if (!mod) {
+        return nil;
+    }
+    
+    if (![mod.allKeys containsObject:key]) {
+        return nil;
+    }
+    
+    return mod[key];
+}
+
 + (void)setupDefaultMods
 {
     if (![MMModuleManager purchasedMods]) {

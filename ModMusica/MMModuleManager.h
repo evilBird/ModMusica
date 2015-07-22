@@ -7,13 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#define kProductTitleKey @"com.birdSound.modmusica.sk.title"
-#define kProductPurchasedKey @"com.birdSound.modmusica.sk.purchased"
-#define kProductPriceKey @"com.birdSound.modmusica.sk.price"
-#define kProductDescriptionKey @"com.birdSound.modmusica.sk.description"
-#define kProductFormattedPriceKey @"com.birdSound.modmusica.sk.formatted.price"
-#define kProductContentPathKey @"com.birdSound.modmusica.sk.content.path"
+#import "ModMusicaDefs.h"
 
 @interface MMModuleManager : NSObject
 
@@ -23,7 +17,7 @@
 + (NSArray *)availableModNames;
 + (NSArray *)purchasedModNames;
 + (NSDictionary *)getMod:(NSString *)modName fromArray:(NSArray *)mods;
-
 + (void)purchaseMod:(NSString *)modName completion:(void(^)(BOOL success))completion;
++ (id)modName:(NSString *)modName valueForKey:(NSString *)key;
 
 @end
