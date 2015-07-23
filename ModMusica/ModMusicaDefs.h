@@ -69,9 +69,13 @@
 #define SNARESAMPLES_PATH_FORMAT_STRING     @"%@/bundle/Contents/DrumSamples/Snares"
 #define PERCSAMPLES_PATH_FORMAT_STRING      @"%@/bundle/Contents/DrumSamples/Percussion"
 #define OTHERSAMPLES_PATH_FORMAT_STRING     @"%@/bundle/Contents/OtherSamples"
-
+#ifdef CONFIGURATION_DEBUG
 #define SAMPLE_RATE                         22050
+#define TICKS_PER_BUFFER                    48
+#else
+#define SAMPLE_RATE                         44100
 #define TICKS_PER_BUFFER                    64
+#endif
 
 #define kDrumVolume                         0.45
 #define kBassVolume                         0.26

@@ -64,9 +64,10 @@
         return;
     }
     
-    for (NSString *sample in samples) {
-        [PdBase sendList:@[sample] toReceiver:receiver];
+    for (NSUInteger i = 0; i < samples.count; i++) {
+        [PdBase sendList:@[@(i),samples[i]] toReceiver:receiver];
     }
+    
 }
 
 - (void)loadKickSamplesForModName:(NSString *)modName

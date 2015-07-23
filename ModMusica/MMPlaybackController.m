@@ -72,12 +72,11 @@ void bonk_tilde_setup(void);
 }
 
 #pragma mark - accessors
+
 - (void)setPlaying:(BOOL)playing
 {
-    if (playing != _playing) {
-        [self sendPlaybackNotification:playing];
-    }
     _playing = playing;
+    [self sendPlaybackNotification:playing];
 }
 
 - (void)setAllowRandom:(BOOL)allowRandom
@@ -105,12 +104,16 @@ void bonk_tilde_setup(void);
     self.patternName = patternName;
     if (!prevModName || ![self.patternName isEqualToString:prevModName]) {
         __weak MMPlaybackController *weakself = self;
-        [self loadResourcesForModName:self.patternName completion:^{
-            [weakself.patternLoader playSection:0];
-            [weakself.delegate playback:self didLoadModuleName:patternName];
-            if (!weakself.isPlaying) {
-                [weakself startPlayback];
-            }
+        [[NSOperationQueue new]addOperationWithBlock:^{
+            [weakself loadResourcesForModName:self.patternName completion:^{
+                [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                    [weakself.patternLoader playSection:0];
+                    [weakself.delegate playback:self didLoadModuleName:patternName];
+                    if (!weakself.isPlaying) {
+                        [weakself startPlayback];
+                    }
+                }];
+            }];
         }];
     }
 }
