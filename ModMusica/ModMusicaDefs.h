@@ -70,6 +70,9 @@
 #define PERCSAMPLES_PATH_FORMAT_STRING      @"%@/bundle/Contents/DrumSamples/Percussion"
 #define OTHERSAMPLES_PATH_FORMAT_STRING     @"%@/bundle/Contents/OtherSamples"
 
+#define SAMPLE_RATE                         22050
+#define TICKS_PER_BUFFER                    64
+
 #define kDrumVolume                         0.45
 #define kBassVolume                         0.26
 #define kSynthVolume                        0.25

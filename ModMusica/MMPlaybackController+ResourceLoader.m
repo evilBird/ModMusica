@@ -26,13 +26,15 @@
     if (self.patchIsOpen) {
         [self closePatch];
     }
-    NSString *patchPath = [MMModuleManager patchPathModName:self.patternName];
+    NSString *patchPath = [MMModuleManager contentPathModName:self.patternName];
     
     if (!patchPath) {
         patchPath = [[NSBundle mainBundle]pathForResource:DEFAULT_PATCH ofType:@".pd"];
     }
     
     self.patch = [PdBase openFile:patchName path:patchPath];
+    
+    [PdBase sendSymbol:[NSBundle mainBundle].resourcePath toReceiver:@"setPath"];
     
     if (self.patch != NULL) {
         self.patchIsOpen = YES;

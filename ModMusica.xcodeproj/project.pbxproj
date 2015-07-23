@@ -68,10 +68,8 @@
 		F292D3941B603DF90000D763 /* modmusica_menace.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D3901B603DF90000D763 /* modmusica_menace.pd */; };
 		F292D39A1B604DD80000D763 /* modmusica_mario.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D3991B604DD80000D763 /* modmusica_mario.pd */; };
 		F292D39C1B604EFF0000D763 /* modmusica_mega.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D39B1B604EFF0000D763 /* modmusica_mega.pd */; };
-		F292D39E1B604F860000D763 /* modmusica_fantasy.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D39D1B604F860000D763 /* modmusica_fantasy.pd */; };
 		F292D3A01B604FC50000D763 /* modmusica_funk.pd in Resources */ = {isa = PBXBuildFile; fileRef = F292D39F1B604FC50000D763 /* modmusica_funk.pd */; };
 		F292D3A21B604FEA0000D763 /* ContentInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F292D3A11B604FEA0000D763 /* ContentInfo.plist */; };
-		F292D3A41B60504C0000D763 /* ContentInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F292D3A31B60504C0000D763 /* ContentInfo.plist */; };
 		F298829C1A02BC78005F9B94 /* mm_pattern.pd in Resources */ = {isa = PBXBuildFile; fileRef = F298829B1A02BC78005F9B94 /* mm_pattern.pd */; };
 		F298829F1A02BE50005F9B94 /* MMFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F298829E1A02BE50005F9B94 /* MMFileReader.m */; };
 		F29882A61A02C854005F9B94 /* MMPatternLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = F29882A51A02C854005F9B94 /* MMPatternLoader.m */; };
@@ -396,8 +394,6 @@
 		F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */; };
 		F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */; };
 		F2D564341B2CCFE9008D9C76 /* MMModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */; };
-		F2DE50B01B58598C00D42140 /* 0-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2DE50AE1B58598C00D42140 /* 0-fantasy.csv */; };
-		F2DE50B11B58598C00D42140 /* 1-fantasy.csv in Resources */ = {isa = PBXBuildFile; fileRef = F2DE50AF1B58598C00D42140 /* 1-fantasy.csv */; };
 		F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */; };
 		F2DE9EA01B22328C00FEBE5F /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */; };
 		F2DE9EA21B2235F700FEBE5F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2DE9EA11B2235F700FEBE5F /* Icon@2x.png */; };
@@ -891,10 +887,8 @@
 		F292D3951B6040D80000D763 /* ModMusicaDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModMusicaDefs.h; sourceTree = "<group>"; };
 		F292D3991B604DD80000D763 /* modmusica_mario.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_mario.pd; sourceTree = "<group>"; };
 		F292D39B1B604EFF0000D763 /* modmusica_mega.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_mega.pd; sourceTree = "<group>"; };
-		F292D39D1B604F860000D763 /* modmusica_fantasy.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_fantasy.pd; sourceTree = "<group>"; };
 		F292D39F1B604FC50000D763 /* modmusica_funk.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_funk.pd; sourceTree = "<group>"; };
 		F292D3A11B604FEA0000D763 /* ContentInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ContentInfo.plist; sourceTree = "<group>"; };
-		F292D3A31B60504C0000D763 /* ContentInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ContentInfo.plist; sourceTree = "<group>"; };
 		F298829B1A02BC78005F9B94 /* mm_pattern.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mm_pattern.pd; sourceTree = "<group>"; };
 		F298829D1A02BE50005F9B94 /* MMFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMFileReader.h; sourceTree = "<group>"; };
 		F298829E1A02BE50005F9B94 /* MMFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMFileReader.m; sourceTree = "<group>"; };
@@ -1237,8 +1231,6 @@
 		F2D564331B2CCFE9008D9C76 /* MMModuleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleManager.m; sourceTree = "<group>"; };
 		F2DE10691B3B588600A7CDD0 /* MyGLKFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGLKFunctions.h; sourceTree = "<group>"; };
 		F2DE106A1B3B5F8700A7CDD0 /* MyGLKDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGLKDefs.h; sourceTree = "<group>"; };
-		F2DE50AE1B58598C00D42140 /* 0-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "0-fantasy.csv"; sourceTree = "<group>"; };
-		F2DE50AF1B58598C00D42140 /* 1-fantasy.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "1-fantasy.csv"; sourceTree = "<group>"; };
 		F2DE9E981B222BC200FEBE5F /* MMPlaybackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlaybackController.h; sourceTree = "<group>"; };
 		F2DE9E991B222BC200FEBE5F /* MMPlaybackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPlaybackController.m; sourceTree = "<group>"; };
 		F2DE9E9E1B22328C00FEBE5F /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
@@ -1975,27 +1967,6 @@
 			name = OtherSamples;
 			sourceTree = "<group>";
 		};
-		F2A4C2651B6055A400AA6EC9 /* OtherSamples */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = OtherSamples;
-			sourceTree = "<group>";
-		};
-		F2A4C2661B6055AA00AA6EC9 /* DrumSamples */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = DrumSamples;
-			sourceTree = "<group>";
-		};
-		F2A4C2671B6055B500AA6EC9 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Dependencies;
-			sourceTree = "<group>";
-		};
 		F2A68BA11B26B54C00FA13F5 /* complex_math.mmb */ = {
 			isa = PBXGroup;
 			children = (
@@ -2500,23 +2471,8 @@
 				F2CF5EEB1B58A7300086D070 /* mega */,
 				F2CF5EDC1B58A6E70086D070 /* mario */,
 				F2CF5ED31B58A6870086D070 /* funk */,
-				F2DE50B31B5866C800D42140 /* fantasy */,
 			);
 			name = "Default Mods";
-			sourceTree = "<group>";
-		};
-		F2DE50B31B5866C800D42140 /* fantasy */ = {
-			isa = PBXGroup;
-			children = (
-				F2A4C2671B6055B500AA6EC9 /* Dependencies */,
-				F2A4C2661B6055AA00AA6EC9 /* DrumSamples */,
-				F2A4C2651B6055A400AA6EC9 /* OtherSamples */,
-				F2DE50AE1B58598C00D42140 /* 0-fantasy.csv */,
-				F2DE50AF1B58598C00D42140 /* 1-fantasy.csv */,
-				F292D39D1B604F860000D763 /* modmusica_fantasy.pd */,
-				F292D3A31B60504C0000D763 /* ContentInfo.plist */,
-			);
-			name = fantasy;
 			sourceTree = "<group>";
 		};
 		F2DE9E931B2229F400FEBE5F /* OpenGL */ = {
@@ -3211,7 +3167,6 @@
 				F2B2B14719FF281F003042D6 /* randomPlayer.pd in Resources */,
 				F2B2B12519FF281F003042D6 /* birdSampler3~.pd in Resources */,
 				F2A68BB11B26B54C00FA13F5 /* complex_con.mmb~.pd in Resources */,
-				F292D39E1B604F860000D763 /* modmusica_fantasy.pd in Resources */,
 				F2EE01F01A11A22100398C04 /* s_fm4.pd in Resources */,
 				F246EF151A01A86400357005 /* modmusica_1.pd in Resources */,
 				F2B2B1BF19FF4D87003042D6 /* scope.pd in Resources */,
@@ -3318,7 +3273,6 @@
 				F2B2AF4119FF27BE003042D6 /* timbreStamp2~.pd in Resources */,
 				F2EE01F71A11A22100398C04 /* s_guitar.pd in Resources */,
 				F2B2AF0F19FF27BE003042D6 /* mm_vocoder~.pd in Resources */,
-				F2DE50B01B58598C00D42140 /* 0-fantasy.csv in Resources */,
 				F2B2AF0219FF27BE003042D6 /* mm_sample_slicer1~.pd in Resources */,
 				F2B2B12F19FF281F003042D6 /* birdSynth~.pd in Resources */,
 				F2B2B0F119FF281F003042D6 /* blobble.aif in Resources */,
@@ -3329,7 +3283,6 @@
 				F2B2B11119FF281F003042D6 /* ah_60_2_60.wav in Resources */,
 				F2EE02731A11A51600398C04 /* mm_osc4~.pd in Resources */,
 				F2EE01D51A11A22100398C04 /* r_#loc.pd in Resources */,
-				F292D3A41B60504C0000D763 /* ContentInfo.plist in Resources */,
 				F2CF5EFA1B58A7300086D070 /* 6-mega.csv in Resources */,
 				F2EE02641A11A22100398C04 /* u_splicetrans-help.pd in Resources */,
 				F2EE01831A11A22100398C04 /* g_hradio.pd in Resources */,
@@ -3490,7 +3443,6 @@
 				F2B2AEFE19FF27BE003042D6 /* mm_rlist.pd in Resources */,
 				F2DE9EB11B2245DD00FEBE5F /* mm_am~.pd in Resources */,
 				F2B2B0D119FF281F003042D6 /* african-pe-hi.wav in Resources */,
-				F2DE50B11B58598C00D42140 /* 1-fantasy.csv in Resources */,
 				F2B2B11619FF281F003042D6 /* birdDB.pd in Resources */,
 				F2503A2F1B5A07CC00D0080C /* 1-wings.csv in Resources */,
 				F2B2B14019FF281F003042D6 /* noteOff.pd in Resources */,

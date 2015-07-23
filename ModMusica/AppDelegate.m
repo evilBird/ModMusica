@@ -11,9 +11,7 @@
 #import "MMPlaybackController.h"
 #import "MMModuleManager.h"
 #import "MMPurchaseManager.h"
-
-#define SAMPLE_RATE 22050
-#define TICKS_PER_BUFFER 64
+#import "ModMusicaDefs.h"
 
 @interface AppDelegate ()
 

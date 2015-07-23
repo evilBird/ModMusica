@@ -144,6 +144,11 @@ void _getSamples(NSArray *tables, float samples[], int samplesPerTable, int wrap
         int tableSize = [PdBase arraySizeForArrayNamed:table];
         float *temp = malloc(sizeof(float)*tableSize);
         [PdBase copyArrayNamed:table withOffset:0 toArray:temp count:tableSize];
+        
+        if (temp == NULL) {
+            return;
+        }
+        
         float stepSize = (float)tableSize/(float)(samplesPerTable - 1);
         int sampleIdx = 0;
         for (int j = 0; j < samplesPerTable; j++) {
