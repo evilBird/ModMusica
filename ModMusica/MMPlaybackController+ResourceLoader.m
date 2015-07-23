@@ -20,7 +20,7 @@
     if (!self.patternName || !self.patternName.length) {
         patchName = DEFAULT_PATCH;
     }else{
-        patchName = [NSString stringWithFormat:@"%@_%@.pd",PATCH_BASE,self.patternName];
+        patchName = [NSString stringWithFormat:PATCH_NAME_FORMAT_STRING,PATCH_BASE,self.patternName];
     }
     
     if (self.patchIsOpen) {
@@ -29,12 +29,10 @@
     NSString *patchPath = [MMModuleManager contentPathModName:self.patternName];
     
     if (!patchPath) {
-        patchPath = [[NSBundle mainBundle]pathForResource:DEFAULT_PATCH ofType:@".pd"];
+        patchPath = [[NSBundle mainBundle]pathForResource:DEFAULT_PATCH ofType:PATCH_FILE_EXTENSION];
     }
     
     self.patch = [PdBase openFile:patchName path:patchPath];
-    
-    [PdBase sendSymbol:[NSBundle mainBundle].resourcePath toReceiver:@"setPath"];
     
     if (self.patch != NULL) {
         self.patchIsOpen = YES;
@@ -58,14 +56,28 @@
     self.patchIsOpen = NO;
 }
 
-- (void)loadSamples:(NSArray *)samples receiver:(NSString *)receiver
+- (void)loadSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver tableName:(NSString *)tableName
+{
+    if (!samples || !receiver) {
+        return;
+    }
+    int patchId = [PdBase dollarZeroForFile:self.patch];
+    for (NSUInteger i = 0; i < samples.count; i++) {
+        NSString *fullTableName = [NSString stringWithFormat:DRUMTABLE_FORMAT_STRING,@(patchId),tableName,@(i)];
+        NSString *samplePath = [basePath stringByAppendingPathComponent:samples[i]];
+        [PdBase sendList:@[@(i),SAMPLE_FLAG_READ,SAMPLE_FLAG_RESIZE,samplePath,fullTableName] toReceiver:receiver];
+    }
+}
+
+- (void)loadSamples:(NSArray *)samples receiver:(NSString *)receiver beats:(NSUInteger)beats
 {
     if (!samples || !receiver) {
         return;
     }
     
     for (NSUInteger i = 0; i < samples.count; i++) {
-        [PdBase sendList:@[@(i),samples[i]] toReceiver:receiver];
+        [PdBase sendList:@[@(i),SAMPLE_FLAG_SAMPLE,samples[i]] toReceiver:receiver];
+        [PdBase sendList:@[@(i),SAMPLE_FLAG_BEATS,@(beats)] toReceiver:receiver];
     }
     
 }
@@ -74,21 +86,21 @@
 {
     NSString *path = [MMModuleManager kickSamplesPathModName:modName];
     NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadSamples:samples receiver:LOAD_KICK_SAMPLE];
+    [self loadSamples:samples basePath:path receiver:LOAD_KICK_SAMPLE tableName:KICK_ARRAY_NAME];
 }
 
 - (void)loadSnareSamplesForModName:(NSString *)modName
 {
     NSString *path = [MMModuleManager snareSamplesPathModName:modName];
     NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadSamples:samples receiver:LOAD_SNARE_SAMPLE];
+    [self loadSamples:samples basePath:path receiver:LOAD_SNARE_SAMPLE tableName:SNARE_ARRAY_NAME];
 }
 
 - (void)loadPercSamplesForModName:(NSString *)modName
 {
     NSString *path = [MMModuleManager percussionSamplesPathModName:modName];
     NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadSamples:samples receiver:LOAD_PERC_SAMPLE];
+    [self loadSamples:samples basePath:path receiver:LOAD_PERC_SAMPLE tableName:PERC_ARRAY_NAME];
 }
 
 - (void)loadDrumSamplesForModName:(NSString *)modName
@@ -102,7 +114,7 @@
 {
     NSString *path = [MMModuleManager otherSamplesPathModName:modName];
     NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadSamples:samples receiver:LOAD_OTHER_SAMPLE];
+    [self loadSamples:samples receiver:LOAD_OTHER_SAMPLE beats:8];
 }
 
 - (void)loadPatternsForModName:(NSString *)modName

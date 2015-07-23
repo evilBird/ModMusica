@@ -57,6 +57,18 @@
 #define LOAD_PERC_SAMPLE                    @"loadPercSample"
 #define LOAD_OTHER_SAMPLE                   @"loadOtherSample"
 
+#define KICK_ARRAY_NAME                     @"kickArray"
+#define SNARE_ARRAY_NAME                    @"snareArray"
+#define PERC_ARRAY_NAME                     @"percArray"
+
+#define DRUMTABLE_FORMAT_STRING             @"%@-%@%@"
+#define PATCH_NAME_FORMAT_STRING            @"%@_%@.pd"
+#define PATCH_FILE_EXTENSION                @".pd"
+#define SAMPLE_FLAG_READ                    @"read"
+#define SAMPLE_FLAG_RESIZE                  @"-resize"
+#define SAMPLE_FLAG_SAMPLE                  @"sample"
+#define SAMPLE_FLAG_BEATS                   @"beats"
+
 #define DEFAULT_PATCH                       @"modmusica_1.pd"
 #define PATCH_BASE                          @"modmusica"
 
