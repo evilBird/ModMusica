@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>PatchName</key>
-	<string>modmusica_mega.pd</string>
+	<string>modmusica_fantasy.pd</string>
 	<key>SectionCount</key>
-	<integer>7</integer>
+	<integer>4</integer>
 	<key>OtherSamples</key>
 	<array>
 		<string></string>

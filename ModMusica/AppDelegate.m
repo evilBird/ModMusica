@@ -12,7 +12,7 @@
 #import "MMModuleManager.h"
 #import "MMPurchaseManager.h"
 
-#define SAMPLE_RATE 44100
+#define SAMPLE_RATE 22050
 #define TICKS_PER_BUFFER 64
 
 @interface AppDelegate ()

@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>PatchName</key>
-	<string>modmusica_mega.pd</string>
-	<key>SectionCount</key>
-	<integer>7</integer>
-	<key>OtherSamples</key>
-	<array>
-		<string></string>
-	</array>
 	<key>DrumSamples</key>
 	<dict>
 		<key>KickSamples</key>
@@ -19,6 +11,14 @@
 		<key>PercussionSamples</key>
 		<array/>
 	</dict>
+	<key>OtherSamples</key>
+	<array>
+		<string></string>
+	</array>
+	<key>SectionCount</key>
+	<integer>4</integer>
+	<key>PatchName</key>
+	<string>modmusica_funk.pd</string>
 	<key>ContentVersion</key>
 	<string>1.0</string>
 	<key>IAPProductIdentifier</key>

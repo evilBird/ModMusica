@@ -12,14 +12,12 @@
 #import <PdDispatcher.h>
 #import "MMScopeDataSource.h"
 #import "MMModuleManager.h"
+#import "ModMusicaDefs.h"
+#import "MMPlaybackController+ResourceLoader.h"
 
 @interface MMPlaybackController () <PdListener>
 {
 }
-
-
-@property (nonatomic,strong)                    NSString            *patchName;
-@property (nonatomic)                           BOOL                patchIsOpen;
 
 @end
 
@@ -74,20 +72,6 @@ void bonk_tilde_setup(void);
 }
 
 #pragma mark - accessors
-
-- (void)setPatternName:(NSString *)patternName
-{
-    NSString *prevPattern = _patchName;
-    _patternName = patternName;
-    
-    if (!prevPattern || ![_patchName isEqualToString:prevPattern]) {
-        [self openPatch];
-    }
-    
-    self.patternLoader.currentPattern = patternName;
-    self.patternLoader.currentSection = -1;
-}
-
 - (void)setPlaying:(BOOL)playing
 {
     if (playing != _playing) {
@@ -117,29 +101,25 @@ void bonk_tilde_setup(void);
 
 - (void)playPattern:(NSString *)patternName
 {
+    NSString *prevModName = self.patternName;
     self.patternName = patternName;
-    [self.patternLoader playSection:0];
-    [self.delegate playback:self didLoadModuleName:patternName];
-    
-    if (!self.isPlaying) {
-        [self startPlayback];
+    if (!prevModName || ![self.patternName isEqualToString:prevModName]) {
+        __weak MMPlaybackController *weakself = self;
+        [self loadResourcesForModName:self.patternName completion:^{
+            [weakself.patternLoader playSection:0];
+            [weakself.delegate playback:self didLoadModuleName:patternName];
+            if (!weakself.isPlaying) {
+                [weakself startPlayback];
+            }
+        }];
     }
 }
 
 - (void)startPlayback
 {
-    if (self.isPlaying) {
+    if (self.isPlaying || !self.patternName) {
         return;
     }
-    
-    if (!self.patternName) {
-        self.patternName = [MMModuleManager purchasedModNames].firstObject;
-    }
-    
-    if (!self.patternName) {
-        return;
-    }
-    
     [self playbackWillStart];
     [self startNow];
     [self.delegate playbackBegan:self];
@@ -212,10 +192,13 @@ void bonk_tilde_setup(void);
     self.probPatternChange = kProbPatternChangeDefault;
     self.probSectionChangeNone = kProbSectionChangeNoneDefault;
     self.probSectionChangeNext = kProbSectionChangeNextDefault;
-    self.probSectionChangePrevious = kProbSectionChangePrevious;
+    self.probSectionChangePrevious = kProbSectionChangePreviousDefault;
+    _allowRandom = YES;
+    _shuffleMods = NO;
+    _tempoLocked = NO;
+    _playing = NO;
     [self initalizePd];
     [self addNotificationListeners];
-    _allowRandom = YES;
 }
 
 - (instancetype)init
@@ -234,7 +217,6 @@ void bonk_tilde_setup(void);
 {
     [self setupPdExternals];
     [self subscribeToPdMessages];
-    //[self openPatch];
 }
 
 - (void)setupPdExternals
@@ -274,42 +256,6 @@ void bonk_tilde_setup(void);
 }
 
 #pragma mark - Pd Patch management
-
-- (void)openPatch
-{
-    NSString *patchName = nil;
-    
-    if (!self.patternName || !self.patternName.length) {
-        patchName = DEFAULT_PATCH;
-    }else{
-        patchName = [NSString stringWithFormat:@"%@_%@.pd",PATCH_BASE,self.patternName];
-    }
-    
-    if (self.patchIsOpen) {
-        [self closePatch];
-    }
-    
-    _patch = [PdBase openFile:patchName path:[[NSBundle mainBundle]resourcePath]];
-    self.patchIsOpen = YES;
-    
-    [self setInstrumentLevelsOn];
-}
-
-- (void)closePatch
-{
-    if (self.isPlaying) {
-        self.playing = NO;
-    }
-    
-    [self setInstrumentLevelsOff];
-    
-    if (_patch != NULL) {
-        [PdBase closeFile:_patch];
-        _patch = NULL;
-    }
-    
-    self.patchIsOpen = NO;
-}
 
 - (void)setInstrumentLevelsOn
 {

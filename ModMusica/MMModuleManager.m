@@ -29,11 +29,22 @@
 + (void)setupDefaultMods
 {
     if (![MMModuleManager purchasedMods]) {
+        /*
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"mario" numPatterns:6]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"mega" numPatterns:7]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"funk" numPatterns:4]];
+        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2]];
+
+         */
+        /*
+
+        
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"wings" numPatterns:3]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fright" numPatterns:3]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"sirtet" numPatterns:3]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"minsk" numPatterns:3]];
+         */
         
     }
 }
@@ -108,6 +119,7 @@
             mod[kProductTitleKey] = name;
             mod[kProductPriceKey] = price;
             mod[kProductDescriptionKey] = description;
+            mod[kProductIDKey] = product.productIdentifier;
             
             NSString *formattedString = nil;
             if (price.integerValue == 0) {

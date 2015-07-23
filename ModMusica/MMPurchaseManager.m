@@ -7,15 +7,7 @@
 //
 
 #import "MMPurchaseManager.h"
-
-static NSString *kMarioProductId = @"com.birdSound.modmusica.mario";
-static NSString *kFantasyProductId = @"com.birdSound.modmusica.fantasy";
-static NSString *kMegaProductId = @"com.birdSound.modmusica.mega";
-static NSString *kMenaceProductId = @"com.birdSound.modmusica.menace";
-static NSString *kFunkProductId = @"com.birdSound.modmusica.funk";
-static NSString *kSadProductId = @"com.birdSound.modmusica.sad";
-static NSString *kMajesticProductId = @"com.birdSound.modmusica.majestic";
-static NSString *kHappyProductId = @"com.birdSound.modmusica.happy";
+#import "ModMusicaDefs.h"
 
 typedef void (^ProductRequestResponseHandler) (NSArray *products, NSError *error);
 typedef void (^ProductPurchaseHandler) (id product, NSError *error);
@@ -100,7 +92,8 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
 
 - (SKProductsRequest *)productsRequest
 {
-    NSArray *productIds = @[kMarioProductId, kFantasyProductId, kMegaProductId, kMenaceProductId,kSadProductId,kFunkProductId,kMajesticProductId,kHappyProductId];
+    //NSArray *productIds = @[kMarioProductId, kFantasyProductId, kMegaProductId, kMenaceProductId,kSadProductId,kFunkProductId,kMajesticProductId,kHappyProductId];
+    NSArray *productIds = @[kFantasyProductId];
     NSSet *identifiers = [NSSet setWithArray:productIds];
     SKProductsRequest *request = [[SKProductsRequest alloc]initWithProductIdentifiers:identifiers];
     request.delegate = self;
