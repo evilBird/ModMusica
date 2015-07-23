@@ -69,15 +69,16 @@
     }
 }
 
-- (void)loadSamples:(NSArray *)samples receiver:(NSString *)receiver beats:(NSUInteger)beats
+- (void)loadSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver beats:(NSUInteger)beats
 {
     if (!samples || !receiver) {
         return;
     }
     
     for (NSUInteger i = 0; i < samples.count; i++) {
-        [PdBase sendList:@[@(i),SAMPLE_FLAG_SAMPLE,samples[i]] toReceiver:receiver];
-        [PdBase sendList:@[@(i),SAMPLE_FLAG_BEATS,@(beats)] toReceiver:receiver];
+        NSString *samplePath = [basePath stringByAppendingPathComponent:samples[i]];
+        [PdBase sendList:@[SAMPLE_FLAG_SAMPLE,samplePath,@(i)] toReceiver:receiver];
+        [PdBase sendList:@[SAMPLE_FLAG_BEATS,@(beats),@(i)] toReceiver:receiver];
     }
     
 }
@@ -113,8 +114,13 @@
 - (void)loadOtherSamplesForModName:(NSString *)modName
 {
     NSString *path = [MMModuleManager otherSamplesPathModName:modName];
-    NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadSamples:samples receiver:LOAD_OTHER_SAMPLE beats:8];
+    NSArray *allSamples = [MMModuleManager getModResourceAtPath:path];
+    NSRange range;
+    range.location = 0;
+    range.length = 3;
+    NSIndexSet *indices = [NSIndexSet indexSetWithIndexesInRange:range];
+    NSArray *samples = [allSamples objectsAtIndexes:indices];
+    [self loadSamples:samples basePath:path receiver:LOAD_OTHER_SAMPLE beats:8];
 }
 
 - (void)loadPatternsForModName:(NSString *)modName
