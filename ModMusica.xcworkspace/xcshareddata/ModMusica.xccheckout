@@ -10,6 +10,8 @@
 	<string>ModMusica</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>855748CF4C63B8CC1BEA9C42809BF04D0F579E75</key>
+		<string>https://github.com/evilBird/ModMusica-IAP.git</string>
 		<key>8761C167C7CC6BFF5574A43F4D356B7675DA074A</key>
 		<string>https://github.com/evilBird/ModMusica</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>ModMusica.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>855748CF4C63B8CC1BEA9C42809BF04D0F579E75</key>
+		<string>..%20IAP</string>
 		<key>8761C167C7CC6BFF5574A43F4D356B7675DA074A</key>
 		<string>..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>8761C167C7CC6BFF5574A43F4D356B7675DA074A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ModMusica</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>855748CF4C63B8CC1BEA9C42809BF04D0F579E75</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ModMusica%20IAP</string>
 		</dict>
 	</array>
 </dict>

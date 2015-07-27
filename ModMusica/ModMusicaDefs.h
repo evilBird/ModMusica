@@ -19,6 +19,7 @@
 
 #define kMarioProductId                     @"com.birdSound.modmusica.mario"
 #define kFantasyProductId                   @"com.birdSound.modmusica.fantasy"
+#define kGushiesProductId                   @"com.birdSound.modmusica.gushies"
 #define kMegaProductId                      @"com.birdSound.modmusica.mega"
 #define kMenaceProductId                    @"com.birdSound.modmusica.menace"
 #define kFunkProductId                      @"com.birdSound.modmusica.funk"
@@ -81,9 +82,10 @@
 #define SNARESAMPLES_PATH_FORMAT_STRING     @"%@/bundle/Contents/DrumSamples/Snares"
 #define PERCSAMPLES_PATH_FORMAT_STRING      @"%@/bundle/Contents/DrumSamples/Percussion"
 #define OTHERSAMPLES_PATH_FORMAT_STRING     @"%@/bundle/Contents/OtherSamples"
+
 #ifdef CONFIGURATION_DEBUG
-#define SAMPLE_RATE                         22050
-#define TICKS_PER_BUFFER                    48
+#define SAMPLE_RATE                         44100
+#define TICKS_PER_BUFFER                    64
 #else
 #define SAMPLE_RATE                         44100
 #define TICKS_PER_BUFFER                    64

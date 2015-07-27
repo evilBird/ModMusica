@@ -1,0 +1,281 @@
+#N canvas 57 55 1341 754 10;
+#N canvas 0 23 1440 851 load 0;
+#X obj 176 747 s loadKickSample;
+#X obj 208 167 hradio 30 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 176 638 openpanel;
+#X msg 177 719 \$2 read -resize \$1 \$3-kickArray\$2;
+#X obj 260 790 openpanel;
+#X msg 262 891 \$2 read -resize \$1 \$3-snareArray\$2;
+#X obj 261 919 s loadSnareSample;
+#X obj 659 808 openpanel;
+#X msg 654 867 \$2 read -resize \$1 \$3-percArray\$2;
+#X obj 652 896 s loadPercSample;
+#X obj -109 619 openpanel;
+#X obj -58 801 s loadOtherSample;
+#X msg -29 716 beats;
+#X obj -56 663 t f f;
+#X obj -107 760 t a b;
+#X obj -29 738 pack s 4 0;
+#X obj -107 735 pack s s 0;
+#X obj -108 653 t b a;
+#X msg -109 687 sample;
+#X obj 169 436 hradio 20 1 0 8 empty empty empty 0 -8 0 10 -262144
+-1 -1 7;
+#X obj 13 658 + 1;
+#X obj 168 166 bng 30 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 208 240 hradio 30 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 167 239 bng 30 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 209 317 hradio 30 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 3;
+#X obj 166 317 bng 30 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 211 378 hradio 30 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 168 378 bng 30 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 112 408 OTHER;
+#X text 113 325 PERC;
+#X text 111 247 SNARE;
+#X text 113 171 KICK;
+#X text 169 137 OPEN;
+#X text 249 137 INDEX;
+#X text 204 113 SAMPLES;
+#X obj 483 379 loadbang;
+#X msg 481 407 3;
+#X text 189 464 PLAYBACK TIME (BEATS);
+#X obj 530 677 r dollarZero;
+#X obj 520 749 print dollarZero;
+#X floatatom 602 728 5 0 0 0 - - -;
+#X obj 261 862 pack s 0 0;
+#X obj 176 690 pack s 0 0;
+#X obj 661 836 pack s 0 0;
+#X connect 1 0 42 1;
+#X connect 2 0 42 0;
+#X connect 3 0 0 0;
+#X connect 4 0 41 0;
+#X connect 5 0 6 0;
+#X connect 7 0 43 0;
+#X connect 8 0 9 0;
+#X connect 10 0 17 0;
+#X connect 12 0 15 0;
+#X connect 13 0 16 2;
+#X connect 13 1 15 2;
+#X connect 14 0 11 0;
+#X connect 14 1 12 0;
+#X connect 15 0 11 0;
+#X connect 16 0 14 0;
+#X connect 17 0 18 0;
+#X connect 17 1 16 1;
+#X connect 18 0 16 0;
+#X connect 19 0 20 0;
+#X connect 20 0 15 1;
+#X connect 21 0 2 0;
+#X connect 22 0 41 1;
+#X connect 23 0 4 0;
+#X connect 24 0 43 1;
+#X connect 25 0 7 0;
+#X connect 26 0 13 0;
+#X connect 27 0 10 0;
+#X connect 35 0 36 0;
+#X connect 36 0 19 0;
+#X connect 38 0 39 0;
+#X connect 38 0 40 0;
+#X connect 38 0 41 2;
+#X connect 38 0 42 2;
+#X connect 38 0 43 2;
+#X connect 41 0 5 0;
+#X connect 42 0 3 0;
+#X connect 43 0 8 0;
+#X coords 0 -1 1 1 250 400 2 100 100;
+#X restore -43 231 pd load samps;
+#N canvas 77 119 959 594 levels 0;
+#X obj 114 535 s inputVolume;
+#X obj 435 557 s outputVolume;
+#X obj 196 555 s drumsVolume;
+#X obj 308 556 s synthVolume;
+#X obj 371 518 s samplerVolume;
+#X obj 245 522 s bassVolume;
+#X obj 125 166 vsl 35 300 0 1 0 0 empty empty INPUT -5 -15 0 15 -262144
+-1 -1 0 1;
+#X text 314 110 LEVELS;
+#X obj 197 166 vsl 35 300 0 1 0 0 empty empty DRUMS -5 -15 0 15 -262144
+-1 -1 0 1;
+#X obj 272 167 vsl 35 300 0 1 0 0 empty empty BASS 0 -15 0 15 -262144
+-1 -1 0 1;
+#X obj 349 167 vsl 35 300 0 1 0 0 empty empty SYNTH -3 -15 0 15 -262144
+-1 -1 27800 1;
+#X obj 433 168 vsl 35 300 0 1 0 0 empty empty SAMPLER -8 -15 0 15 -262144
+-1 -1 0 1;
+#X obj 519 169 vsl 35 300 0 1 0 0 empty empty OUTPUT -8 -15 0 15 -262144
+-1 -1 23740 1;
+#X obj 290 -27 loadbang;
+#X msg 290 60 0;
+#X msg 369 33 0.25;
+#X obj 292 -2 t b b b b;
+#X msg 416 33 0.35;
+#X msg 311 32 0.6;
+#X connect 6 0 0 0;
+#X connect 8 0 2 0;
+#X connect 9 0 5 0;
+#X connect 10 0 3 0;
+#X connect 11 0 4 0;
+#X connect 12 0 1 0;
+#X connect 13 0 16 0;
+#X connect 14 0 6 0;
+#X connect 15 0 10 0;
+#X connect 16 0 14 0;
+#X connect 16 1 18 0;
+#X connect 16 2 15 0;
+#X connect 16 3 17 0;
+#X connect 17 0 11 0;
+#X connect 17 0 9 0;
+#X connect 18 0 8 0;
+#X connect 18 0 12 0;
+#X coords 0 -1 1 1 500 400 2 100 100;
+#X restore 216 232 pd levels;
+#N canvas 0 23 1440 851 controls 0;
+#X obj 269 372 s allowRandom;
+#X obj 858 410 s lockTempo;
+#X obj 851 242 s tapTempo;
+#X obj 120 370 s audioSwitch;
+#X obj 269 233 s onOff;
+#X obj 270 143 tgl 80 0 empty empty PLAY 10 -20 0 30 -262144 -1 -1
+1 1;
+#X obj 844 144 bng 80 250 50 0 empty empty TAP 15 -20 0 30 -262144
+-1 -1;
+#X obj 400 146 nbx 3 50 -1e+37 1e+37 0 0 empty empty CLOCK 8 -20 0
+30 -262144 -1 -1 56 256;
+#X obj 399 54 r clock;
+#X obj 401 239 nbx 3 50 -1e+37 1e+37 0 0 empty empty LENGTH 0 -20 0
+30 -262144 -1 -1 64 256;
+#X obj 541 145 nbx 3 50 -1e+37 1e+37 0 0 empty empty MEASURES -20 -20
+0 30 -262144 -1 -1 8 256;
+#X obj 544 236 nbx 3 50 -1e+37 1e+37 0 0 empty empty BEATS 10 -20 0
+30 -262144 -1 -1 4 256;
+#X obj 686 144 nbx 3 50 -1e+37 1e+37 0 0 empty empty DIVS 15 -20 0
+30 -262144 -1 -1 2 256;
+#X obj 842 298 tgl 80 0 empty empty LOCK 5 -20 0 30 -262144 -1 -1 0
+1;
+#X obj 119 281 tgl 80 0 empty empty DSP 15 -20 0 30 -262144 -1 -1 1
+1;
+#X obj 269 281 tgl 80 0 empty empty RANDOM -10 -20 0 30 -262144 -1
+-1 1 1;
+#X obj 398 329 nbx 3 50 -1e+37 1e+37 0 0 empty empty TEMPO 8 -20 0
+30 -262144 -1 -1 153 256;
+#X obj 121 412 openpanel;
+#X obj 121 148 bng 80 250 50 0 empty empty OPEN 5 -20 0 30 -262144
+-1 -1;
+#X obj 121 462 textfile_csv;
+#X msg 120 436 read \$1;
+#X floatatom 595 33 5 0 0 0 - - -;
+#X floatatom 648 35 5 0 0 0 - - -;
+#X floatatom 700 32 5 0 0 0 - - -;
+#X floatatom 752 34 5 0 0 0 - - -;
+#X floatatom 809 32 5 0 0 0 - - -;
+#X obj 121 489 list trim;
+#X obj 121 517 route sequence;
+#X obj 124 541 s notes;
+#X obj 203 544 s metadata;
+#X obj 691 233 nbx 3 50 -1e+37 1e+37 0 0 empty empty SWING 5 -20 0
+30 -262144 -1 -1 1 256;
+#X obj 594 -21 r metadata;
+#X obj 595 10 route measures beats divisions length swing;
+#X obj 885 58 route minTempo maxTempo;
+#X obj 400 251 r detectedTempo;
+#X obj 545 325 nbx 3 50 -1e+37 1e+37 0 0 empty empty MIN 25 -20 0 30
+-262144 -1 -1 1 256;
+#X obj 688 322 nbx 3 50 -1e+37 1e+37 0 0 empty empty MAX 25 -20 0 30
+-262144 -1 -1 300 256;
+#X obj 253 16 loadbang;
+#X msg 259 47 1;
+#X obj 965 295 bng 80 250 50 0 empty empty ALT 15 -20 0 30 -262144
+-1 -1;
+#X obj 970 410 s alterPattern;
+#X obj 964 142 bng 80 250 50 0 empty empty RAND_NOW -10 -20 0 25 -262144
+-1 -1;
+#X obj 1126 260 s randomize;
+#X msg 1126 232 randomize;
+#X connect 5 0 4 0;
+#X connect 6 0 2 0;
+#X connect 8 0 7 0;
+#X connect 13 0 1 0;
+#X connect 14 0 3 0;
+#X connect 15 0 0 0;
+#X connect 17 0 20 0;
+#X connect 18 0 17 0;
+#X connect 19 0 26 0;
+#X connect 20 0 19 0;
+#X connect 24 0 9 0;
+#X connect 25 0 30 0;
+#X connect 26 0 27 0;
+#X connect 27 0 28 0;
+#X connect 27 1 29 0;
+#X connect 31 0 32 0;
+#X connect 32 0 21 0;
+#X connect 32 0 10 0;
+#X connect 32 1 22 0;
+#X connect 32 1 11 0;
+#X connect 32 2 23 0;
+#X connect 32 2 12 0;
+#X connect 32 3 24 0;
+#X connect 32 4 25 0;
+#X connect 32 5 33 0;
+#X connect 33 0 35 0;
+#X connect 33 1 36 0;
+#X connect 34 0 16 0;
+#X connect 37 0 38 0;
+#X connect 38 0 15 0;
+#X connect 39 0 40 0;
+#X connect 41 0 43 0;
+#X connect 43 0 42 0;
+#X coords 0 -1 1 1 1000 300 2 100 100;
+#X restore -40 -86 pd controls;
+#N canvas 626 144 757 636 output 0;
+#X obj 532 130 vsl 35 300 0.01 127 1 0 empty empty OUT 4 -15 0 15 -262144
+-1 -1 28784 1;
+#X obj 525 40 r outputDB;
+#X obj 528 466 nbx 3 25 -1e+37 1e+37 0 0 empty empty dB 10 -12 0 20
+-262144 -1 -1 89.2548 256;
+#X obj 365 133 vsl 35 300 0.01 127 1 0 empty empty SYNTH -4 -15 0 15
+-262144 -1 -1 29734 1;
+#X obj 348 43 r synthDB;
+#X obj 204 135 vsl 35 300 0.01 127 1 0 empty empty DRUMS -4 -15 0 15
+-262144 -1 -1 0 1;
+#X obj 197 45 r drumsDB;
+#X obj 285 136 vsl 35 300 0.01 127 1 0 empty empty BASS -4 -15 0 15
+-262144 -1 -1 0 1;
+#X obj 278 45 r bassDB;
+#X obj 356 468 nbx 3 25 -1e+37 1e+37 0 0 empty empty dB 10 -12 0 20
+-262144 -1 -1 120.509 256;
+#X obj 205 466 nbx 3 25 -1e+37 1e+37 0 0 empty empty dB 10 -12 0 20
+-262144 -1 -1 0.01 256;
+#X obj 282 468 nbx 3 25 -1e+37 1e+37 0 0 empty empty dB 10 -12 0 20
+-262144 -1 -1 0.01 256;
+#X obj 449 133 vsl 35 300 0.01 127 1 0 empty empty SAMPS -4 -15 0 15
+-262144 -1 -1 0 1;
+#X obj 442 466 nbx 3 25 -1e+37 1e+37 0 0 empty empty dB 10 -12 0 20
+-262144 -1 -1 0.01 256;
+#X obj 441 42 r sampsDB;
+#X obj 121 138 vsl 35 300 0.01 127 1 0 empty empty IN 8 -15 0 15 -262144
+-1 -1 0 1;
+#X obj 121 465 nbx 3 25 -1e+37 1e+37 0 0 empty empty dB 10 -12 0 20
+-262144 -1 -1 0.01 256;
+#X obj 114 41 r inputDB;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 3 0 9 0;
+#X connect 4 0 3 0;
+#X connect 5 0 10 0;
+#X connect 6 0 5 0;
+#X connect 7 0 11 0;
+#X connect 8 0 7 0;
+#X connect 12 0 13 0;
+#X connect 14 0 12 0;
+#X connect 15 0 16 0;
+#X connect 17 0 15 0;
+#X coords 0 -1 1 1 500 400 2 100 100;
+#X restore 730 231 pd output;

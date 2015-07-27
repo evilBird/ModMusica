@@ -35,17 +35,11 @@
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"mega" numPatterns:7]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"funk" numPatterns:4]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2]];
-
-         */
-        /*
-
-        
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"wings" numPatterns:3]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fright" numPatterns:3]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"sirtet" numPatterns:3]];
         [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"minsk" numPatterns:3]];
          */
-        
     }
 }
 
