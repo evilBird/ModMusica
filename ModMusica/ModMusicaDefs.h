@@ -92,9 +92,9 @@
 #endif
 
 #define kDrumVolume                         0.45
-#define kBassVolume                         0.26
-#define kSynthVolume                        0.25
-#define kSamplerVolume                      0.30
+#define kBassVolume                         0.28
+#define kSynthVolume                        0.33
+#define kSamplerVolume                      0.36
 
 #define kProbPatternChangeDefault           10
 #define kProbSectionChangeNoneDefault       66

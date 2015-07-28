@@ -55,7 +55,7 @@
     
     self.patchIsOpen = NO;
 }
-
+/*
 - (void)loadDrumSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver tableName:(NSString *)tableName
 {
     if (!samples || !receiver) {
@@ -68,7 +68,7 @@
         [PdBase sendList:@[@(i),SAMPLE_FLAG_READ,SAMPLE_FLAG_RESIZE,samplePath,fullTableName] toReceiver:receiver];
     }
 }
-
+*/
 - (void)loadDrumSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver
 {
     if (!samples || !receiver) {
@@ -80,7 +80,7 @@
     }
 }
 
-- (void)loadOtherSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver beats:(NSUInteger)beats
+- (void)loadOtherSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver
 {
     if (!samples || !receiver) {
         return;
@@ -88,8 +88,7 @@
     
     for (NSUInteger i = 0; i < samples.count; i++) {
         NSString *samplePath = [basePath stringByAppendingPathComponent:samples[i]];
-        [PdBase sendList:@[SAMPLE_FLAG_SAMPLE,samplePath,@(i)] toReceiver:receiver];
-        [PdBase sendList:@[SAMPLE_FLAG_BEATS,@(beats),@(i)] toReceiver:receiver];
+        [PdBase sendList:@[@(i),SAMPLE_FLAG_SAMPLE,samplePath] toReceiver:receiver];
     }
     
 }
@@ -98,21 +97,21 @@
 {
     NSString *path = [MMModuleManager kickSamplesPathModName:modName];
     NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadDrumSamples:samples basePath:path receiver:LOAD_KICK_SAMPLE tableName:KICK_ARRAY_NAME];
+    [self loadDrumSamples:samples basePath:path receiver:LOAD_KICK_SAMPLE];
 }
 
 - (void)loadSnareSamplesForModName:(NSString *)modName
 {
     NSString *path = [MMModuleManager snareSamplesPathModName:modName];
     NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadDrumSamples:samples basePath:path receiver:LOAD_SNARE_SAMPLE tableName:SNARE_ARRAY_NAME];
+    [self loadDrumSamples:samples basePath:path receiver:LOAD_SNARE_SAMPLE];
 }
 
 - (void)loadPercSamplesForModName:(NSString *)modName
 {
     NSString *path = [MMModuleManager percussionSamplesPathModName:modName];
     NSArray *samples = [MMModuleManager getModResourceAtPath:path];
-    [self loadDrumSamples:samples basePath:path receiver:LOAD_PERC_SAMPLE tableName:PERC_ARRAY_NAME];
+    [self loadDrumSamples:samples basePath:path receiver:LOAD_PERC_SAMPLE];
 }
 
 - (void)loadDrumSamplesForModName:(NSString *)modName
@@ -128,10 +127,15 @@
     NSArray *allSamples = [MMModuleManager getModResourceAtPath:path];
     NSRange range;
     range.location = 0;
-    range.length = 3;
+    if (allSamples.count < 4) {
+        range.length = allSamples.count;
+    }else{
+        range.length = 4;
+    }
+
     NSIndexSet *indices = [NSIndexSet indexSetWithIndexesInRange:range];
     NSArray *samples = [allSamples objectsAtIndexes:indices];
-    [self loadOtherSamples:samples basePath:path receiver:LOAD_OTHER_SAMPLE beats:8];
+    [self loadOtherSamples:samples basePath:path receiver:LOAD_OTHER_SAMPLE];
 }
 
 - (void)loadPatternsForModName:(NSString *)modName
