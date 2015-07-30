@@ -40,6 +40,7 @@
 		F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */ = {isa = PBXBuildFile; fileRef = F2B2B05219FF281E003042D6 /* fiddle~.c */; };
 		F2B2B17019FF281F003042D6 /* Helmholtz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B2B05D19FF281F003042D6 /* Helmholtz.cpp */; };
 		F2B2B17119FF281F003042D6 /* helmholtz~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2B2B05F19FF281F003042D6 /* helmholtz~.cpp */; };
+		F2CC50F21B68699C004A451D /* packages in Resources */ = {isa = PBXBuildFile; fileRef = F2CC50F11B68699C004A451D /* packages */; };
 		F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D06FA91B291A6100AA7708 /* HamburgerButton.m */; };
 		F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFA81B3A10A8000AA933 /* MMRootViewController.m */; };
 		F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D3DFAE1B3A1859000AA933 /* MMRootViewController+Mods.m */; };
@@ -127,6 +128,7 @@
 		F2B2B05D19FF281F003042D6 /* Helmholtz.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helmholtz.cpp; sourceTree = "<group>"; };
 		F2B2B05E19FF281F003042D6 /* Helmholtz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helmholtz.h; sourceTree = "<group>"; };
 		F2B2B05F19FF281F003042D6 /* helmholtz~.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "helmholtz~.cpp"; sourceTree = "<group>"; };
+		F2CC50F11B68699C004A451D /* packages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = packages; sourceTree = "<group>"; };
 		F2D06FA81B291A6100AA7708 /* HamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerButton.h; sourceTree = "<group>"; };
 		F2D06FA91B291A6100AA7708 /* HamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerButton.m; sourceTree = "<group>"; };
 		F2D3DFA71B3A10A8000AA933 /* MMRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRootViewController.h; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 		F2B2AB4E19FF1739003042D6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F2CC50F11B68699C004A451D /* packages */,
 				F2DE9EA11B2235F700FEBE5F /* Icon@2x.png */,
 				F2B2AB4F19FF1739003042D6 /* Info.plist */,
 				F2B2AB5019FF1739003042D6 /* main.m */,
@@ -508,6 +511,7 @@
 				F2B2AB5F19FF1739003042D6 /* LaunchScreen.xib in Resources */,
 				F2B2AB5C19FF1739003042D6 /* Images.xcassets in Resources */,
 				F2B2B0F219FF281F003042D6 /* bonk~-help.pd in Resources */,
+				F2CC50F21B68699C004A451D /* packages in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

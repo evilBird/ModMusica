@@ -29,21 +29,12 @@
 + (void)setupDefaultMods
 {
     if (![MMModuleManager purchasedMods]) {
-        /*
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"mario" numPatterns:6]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"mega" numPatterns:7]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"funk" numPatterns:4]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fantasy" numPatterns:2]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"wings" numPatterns:3]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"fright" numPatterns:3]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"sirtet" numPatterns:3]];
-        [NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"minsk" numPatterns:3]];
-         */
+        //[NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"gushies"]];
+        //[NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"mario"]];
     }
 }
 
-+ (NSDictionary *)setupDefaultMod:(NSString *)modName numPatterns:(NSUInteger)numPatterns
++ (NSDictionary *)setupDefaultMod:(NSString *)modName
 {
     NSMutableDictionary *defaultMod = [NSMutableDictionary dictionary];
     defaultMod[kProductTitleKey] = modName;
@@ -51,31 +42,26 @@
     defaultMod[kProductFormattedPriceKey] = @"FREE";
     defaultMod[kProductPurchasedKey] = @(1);
     defaultMod[kProductDescriptionKey] = modName;
+    defaultMod[kProductIDKey] = [NSString stringWithFormat:@"com.birdSound.modmusica.%@",modName];
     
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-    NSString *folderPath = [documentsPath stringByAppendingPathComponent:modName];
+    NSString *folderPath = [documentsPath stringByAppendingPathComponent:defaultMod[kProductIDKey]];
+    NSString *bundlePath = [[NSBundle mainBundle]pathForResource:defaultMod[kProductIDKey] ofType:nil];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:folderPath]) {
-        [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
     
     NSError *err = nil;
     
-    for (NSUInteger i = 0; i < numPatterns; i++) {
-        NSString *patternName = [NSString stringWithFormat:@"%@-%@",@(i),modName];
-        NSString *bundlePath = [[NSBundle mainBundle]pathForResource:patternName ofType:@".csv"];
-        NSString *docsPath = [folderPath stringByAppendingPathComponent:[patternName stringByAppendingPathExtension:@"csv"]];
-        [fileManager copyItemAtPath:bundlePath toPath:docsPath error:&err];
-        
+    if (![fileManager fileExistsAtPath:folderPath]) {
+        [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&err];
         if (err) {
-            break;
+            return nil;
+        }
+        
+        [fileManager copyItemAtPath:bundlePath toPath:folderPath error:&err];
+        if (err) {
+            return nil;
         }
     }
-    
-    if (err) {
-        return nil;
-    }
-    
     defaultMod[kProductContentPathKey] = folderPath;
     return defaultMod;
 }
