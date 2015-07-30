@@ -72,7 +72,7 @@
     if (!moduleName) {
         return;
     }
-    
+    [[self getGLKViewController]setCurrentModName:moduleName];
     [[self getGLKViewController].playbackController playPattern:moduleName];
     __weak MMRootViewController *weakself = self;
     

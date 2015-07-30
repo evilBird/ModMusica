@@ -40,6 +40,7 @@
 #define DETECTED_INTERVAL                   @"interval"
 #define DETECTED_BEAT                       @"beat"
 #define CLOCK                               @"clock"
+#define CLOCK_RESET                         @"resetTheClock"
 #define ON_OFF                              @"onOff"
 
 #define INPUT_VOL                           @"inputVolume"

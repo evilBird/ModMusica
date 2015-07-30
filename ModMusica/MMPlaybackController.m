@@ -176,14 +176,17 @@ void bonk_tilde_setup(void);
             NSUInteger idx = (NSUInteger)((int)arc4random_uniform(100)%(int)mods.count);
             NSString *pattern = mods[idx];
             [self playPattern:pattern];
+            [PdBase sendBangToReceiver:CLOCK_RESET];
             return;
         }
     }
     
     if (rand > self.probSectionChangeNone && rand <= (100 - self.probSectionChangePrevious)) {
         [self.patternLoader playNextSection];
+        [PdBase sendBangToReceiver:CLOCK_RESET];
     }else if (rand > (100 - self.probSectionChangePrevious)){
         [self.patternLoader playPreviousSection];
+        [PdBase sendBangToReceiver:CLOCK_RESET];
     }
 }
 
