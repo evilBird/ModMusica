@@ -57,7 +57,7 @@
             return nil;
         }
         
-        [fileManager copyItemAtPath:bundlePath toPath:folderPath error:&err];
+        [fileManager copyItemAtPath:bundlePath toPath:documentsPath error:&err];
         if (err) {
             return nil;
         }

@@ -36,11 +36,19 @@
 #define kDrumSamplesPercSamplesKey          @"PercussionSamples"
 #define kPackagePlistOtherSamplesKey        @"OtherSamples"
 
+#define kMarioSectionCountValue             6
+#define kFantasySectionCountValue           2
+#define kGushiesSectionCountValue           5
+#define kMegaSectionCountValue              7
+
 #define DETECTED_TEMPO                      @"detectedTempo"
+#define PLAYBACK_STATE_CHANGE               @"playbackBegan"
 #define DETECTED_INTERVAL                   @"interval"
 #define DETECTED_BEAT                       @"beat"
 #define CLOCK                               @"clock"
 #define CLOCK_RESET                         @"resetTheClock"
+#define SET_TEMPO                           @"setTempo"
+#define RANDOM_TEMPO                        @"setNewTempo"
 #define ON_OFF                              @"onOff"
 
 #define INPUT_VOL                           @"inputVolume"
@@ -58,6 +66,12 @@
 #define LOAD_SNARE_SAMPLE                   @"loadSnareSample"
 #define LOAD_PERC_SAMPLE                    @"loadPercSample"
 #define LOAD_OTHER_SAMPLE                   @"loadOtherSample"
+#define LOAD_SECTION_NUMBER                 @"loadSection"
+#define FINISHED_LOADING_SAMPLES            @"finishedLoadingSamples"
+#define NEXT_SECTION                        @"playNextSection"
+#define PREV_SECTION                        @"playPreviousSection"
+#define CHANGE_SECTION                      @"changeSectionIndex"
+
 
 #define KICK_ARRAY_NAME                     @"kickArray"
 #define SNARE_ARRAY_NAME                    @"snareArray"
@@ -92,14 +106,14 @@
 #define TICKS_PER_BUFFER                    64
 #endif
 
-#define kDrumVolume                         0.7
-#define kBassVolume                         0.55
-#define kSynthVolume                        0.75
-#define kSamplerVolume                      0.75
+#define kDrumVolume                         0.5
+#define kBassVolume                         0.5
+#define kSynthVolume                        0.5
+#define kSamplerVolume                      0.5
 
 #define kProbPatternChangeDefault           10
-#define kProbSectionChangeNoneDefault       75
-#define kProbSectionChangeNextDefault       20
-#define kProbSectionChangePreviousDefault   5
+#define kProbSectionChangeNoneDefault       60
+#define kProbSectionChangeNextDefault       30
+#define kProbSectionChangePreviousDefault   10
 
 #endif

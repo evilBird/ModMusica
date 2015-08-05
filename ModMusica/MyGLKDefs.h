@@ -29,7 +29,7 @@
 #define DRAWING_SCALE_Y             6.0
 #define DRAWING_SCALE_Z             3.0
 
-#define SAMPLE_SCALAR               0.88
+#define SAMPLE_SCALAR               0.78
 #define SAMPLE_UPDATES_PER_SEC      10.0
 
 #define MIN_SCALE                   2.0

@@ -93,7 +93,7 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
 - (SKProductsRequest *)productsRequest
 {
     //NSArray *productIds = @[kMarioProductId, kFantasyProductId, kMegaProductId, kMenaceProductId,kSadProductId,kFunkProductId,kMajesticProductId,kHappyProductId];
-    NSArray *productIds = @[kGushiesProductId,kMarioProductId,kFantasyProductId];
+    NSArray *productIds = @[kGushiesProductId,kMarioProductId,kFantasyProductId,kMegaProductId];
     NSSet *identifiers = [NSSet setWithArray:productIds];
     SKProductsRequest *request = [[SKProductsRequest alloc]initWithProductIdentifiers:identifiers];
     request.delegate = self;

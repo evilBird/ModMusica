@@ -36,39 +36,24 @@
     
     if (self.patch != NULL) {
         self.patchIsOpen = YES;
-        [self setInstrumentLevelsOn];
     }
 }
 
 - (void)closePatch
 {
     if (self.isPlaying) {
-        self.playing = NO;
+        [self stopPlayback];
     }
     
-    [self setInstrumentLevelsOff];
     
-    if (self.patch != NULL) {
+    if (self.patch != NULL && self.patchIsOpen) {
         [PdBase closeFile:self.patch];
         self.patch = NULL;
     }
     
     self.patchIsOpen = NO;
 }
-/*
-- (void)loadDrumSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver tableName:(NSString *)tableName
-{
-    if (!samples || !receiver) {
-        return;
-    }
-    int patchId = [PdBase dollarZeroForFile:self.patch];
-    for (NSUInteger i = 0; i < samples.count; i++) {
-        NSString *fullTableName = [NSString stringWithFormat:DRUMTABLE_FORMAT_STRING,@(patchId),tableName,@(i)];
-        NSString *samplePath = [basePath stringByAppendingPathComponent:samples[i]];
-        [PdBase sendList:@[@(i),SAMPLE_FLAG_READ,SAMPLE_FLAG_RESIZE,samplePath,fullTableName] toReceiver:receiver];
-    }
-}
-*/
+
 - (void)loadDrumSamples:(NSArray *)samples basePath:(NSString *)basePath receiver:(NSString *)receiver
 {
     if (!samples || !receiver) {
@@ -157,10 +142,13 @@
     }
     
     [self loadPatchForModName:modName];
-    [self loadPatternsForModName:modName];
+    NSString *contentPath = [MMModuleManager contentPathModName:modName];
+    NSString *path = [contentPath stringByAppendingString:@"/"];
+    NSLog(@"content path: %@",path);
+    [PdBase sendSymbol:path toReceiver:@"path"];
     [self loadDrumSamplesForModName:modName];
     [self loadOtherSamplesForModName:modName];
-    
+    [PdBase sendBangToReceiver:FINISHED_LOADING_SAMPLES];
 }
 
 @end

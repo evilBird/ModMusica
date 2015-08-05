@@ -1,0 +1,16 @@
+#N canvas 310 91 450 300 10;
+#X obj 105 -35 inlet~;
+#X obj 107 16 > 1;
+#X obj 107 40 sel 1;
+#X obj 96 100 cnv 15 60 60 empty empty empty 20 12 0 14 -4032 -66577
+0;
+#X obj 105 118 bng 40 200 50 0 empty empty SIG 7 -10 0 15 -262130 -4160
+-4160;
+#X floatatom 171 13 5 0 0 0 - - -;
+#X obj 105 -10 env~ 44100;
+#X connect 0 0 6 0;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 6 0 1 0;
+#X connect 6 0 5 0;
+#X coords 0 -1 1 1 50 60 2 100 100;

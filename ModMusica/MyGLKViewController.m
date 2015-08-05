@@ -384,6 +384,7 @@
 - (void)playback:(id)sender detectedUserTempo:(double)tempo {
     
     self.tempo = tempo;
+    //self.infoLabel.text = [NSString stringWithFormat:@"%.f",tempo];
     [self updateLabelText];
     [self showDetailsFade:self.isPlaying];
 
@@ -392,9 +393,9 @@
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
 {
     self.currentModName = moduleName;
-    if (!self.playing) {
+    //if (!self.playing) {
         self.playing = YES;
-    }
+   // }
 }
 
 #pragma mark - Reference Frame

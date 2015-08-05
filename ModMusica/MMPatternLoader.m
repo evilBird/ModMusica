@@ -14,6 +14,9 @@
 static NSString *kTableName = @"notes";
 
 @interface MMPatternLoader ()
+{
+    NSDictionary *kSectionCounts;
+}
 
 
 @property (nonatomic,strong)            NSDictionary            *currentMod;

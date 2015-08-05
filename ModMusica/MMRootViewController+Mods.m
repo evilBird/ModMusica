@@ -72,12 +72,13 @@
     if (!moduleName) {
         return;
     }
-    [[self getGLKViewController]setCurrentModName:moduleName];
-    [[self getGLKViewController].playbackController playPattern:moduleName];
     __weak MMRootViewController *weakself = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [weakself setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:YES completion:nil];
+        [weakself setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:YES completion:^{
+            [[weakself getGLKViewController]setCurrentModName:moduleName];
+            [[weakself getGLKViewController].playbackController playPattern:moduleName];
+        }];
     });
 }
 

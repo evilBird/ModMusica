@@ -55,6 +55,7 @@
 		F2F676AB1B2B900400CA79A9 /* MyGLKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F676AA1B2B900400CA79A9 /* MyGLKViewController.m */; };
 		F2FC4FE71B3DEDD6000CE7EB /* MyGLKViewController+Button.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */; };
 		F2FC4FF31B3E19CB000CE7EB /* MMModuleSwitchCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FC4FF21B3E19CB000CE7EB /* MMModuleSwitchCellView.m */; };
+		F2FC995F1B6EBEBD00ABC06E /* mm_textfile.c in Sources */ = {isa = PBXBuildFile; fileRef = F2FC995E1B6EBEBD00ABC06E /* mm_textfile.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		F2FC4FE61B3DEDD6000CE7EB /* MyGLKViewController+Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MyGLKViewController+Button.m"; sourceTree = "<group>"; };
 		F2FC4FF11B3E19CB000CE7EB /* MMModuleSwitchCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMModuleSwitchCellView.h; sourceTree = "<group>"; };
 		F2FC4FF21B3E19CB000CE7EB /* MMModuleSwitchCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMModuleSwitchCellView.m; sourceTree = "<group>"; };
+		F2FC995E1B6EBEBD00ABC06E /* mm_textfile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mm_textfile.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,6 +377,7 @@
 		F2B2B1B519FF450C003042D6 /* externals */ = {
 			isa = PBXGroup;
 			children = (
+				F2FC995E1B6EBEBD00ABC06E /* mm_textfile.c */,
 				F2B2B05219FF281E003042D6 /* fiddle~.c */,
 				F2B2AD5819FF27BE003042D6 /* vexp_fun.c */,
 				F2B2AD5919FF27BE003042D6 /* vexp_if.c */,
@@ -564,6 +567,7 @@
 			files = (
 				F2DE9EC11B22928100FEBE5F /* MMStepCounter.m in Sources */,
 				F218FF1C1B4DA48D000CB182 /* NSUserDefaults+Mods.m in Sources */,
+				F2FC995F1B6EBEBD00ABC06E /* mm_textfile.c in Sources */,
 				F2B2AF4519FF27BE003042D6 /* vexp.c in Sources */,
 				F2575C151B27930300DE5571 /* MMModuleCellView.m in Sources */,
 				F2FC4FF31B3E19CB000CE7EB /* MMModuleSwitchCellView.m in Sources */,
@@ -732,6 +736,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/travishenspeter/Desktop,
+					"$(PROJECT_DIR)/ModMusica",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -765,6 +770,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/Users/travishenspeter/Desktop,
+					"$(PROJECT_DIR)/ModMusica",
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
