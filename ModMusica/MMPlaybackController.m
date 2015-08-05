@@ -17,6 +17,7 @@
 
 @interface MMPlaybackController () <PdListener>
 {
+    float kInputVol;
 }
 
 @end
@@ -54,9 +55,11 @@ void mm_textfile_setup(void);
     NSDictionary *userInfo = notification.userInfo;
     AVAudioSessionRouteChangeReason reason = [userInfo[AVAudioSessionRouteChangeReasonKey]unsignedIntegerValue];
     if (reason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
-        [PdBase sendFloat:0 toReceiver:INPUT_VOL];
+        kInputVol = 0;
+        [PdBase sendFloat:kInputVol toReceiver:INPUT_VOL];
     }else if (reason == AVAudioSessionRouteChangeReasonNewDeviceAvailable){
-        [PdBase sendFloat:1 toReceiver:INPUT_VOL];
+        kInputVol = 1;
+        [PdBase sendFloat:kInputVol toReceiver:INPUT_VOL];
     }
 }
 
@@ -73,6 +76,29 @@ void mm_textfile_setup(void);
 }
 
 #pragma mark - accessors
+
+- (void)setCurrentModName:(NSString *)currentModName
+{
+    NSString *prevModName = _currentModName;
+    _currentModName = currentModName;
+    
+    if ([_currentModName isEqualToString:prevModName]) {
+        self.ready = YES;
+        return;
+    }
+    
+    [self loadModuleName:_currentModName];
+}
+
+- (void)setReady:(BOOL)ready
+{
+    _ready = ready;
+    if (_ready && self.isWaiting) {
+        self.waiting = NO;
+        [self startPlaybackNow];
+        [self.delegate playbackBegan:self];
+    }
+}
 
 - (void)setPlaying:(BOOL)playing
 {
@@ -99,70 +125,73 @@ void mm_textfile_setup(void);
 
 #pragma mark - Playback
 
-- (void)playPattern:(NSString *)patternName
+- (void)loadModuleName:(NSString *)modName
 {
-    NSString *prevModName = self.patternName;
-    self.patternName = patternName;
-    if (!prevModName || ![self.patternName isEqualToString:prevModName]) {
-        __weak MMPlaybackController *weakself = self;
-        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-            [weakself loadResourcesForModName:self.patternName completion:^{
-                [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                    [weakself.delegate playback:self didLoadModuleName:patternName];
-
-                }];
-            }];
+    __weak MMPlaybackController *weakself = self;
+    self.ready = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakself loadResourcesForModName:modName completion:^{
+            weakself.ready = YES;
+            NSLog(@"finished loading mod %@",modName);
         }];
-    }
+    });
 }
 
 - (void)startPlayback
 {
-    if (self.isPlaying || !self.patternName) {
+    if (self.isPlaying || self.isWaiting) {
         return;
     }
-    [self startNow];
+    
+    if (self.isReady) {
+        [self startPlaybackNow];
+    }else{
+        self.waiting = YES;
+    }
+}
+
+- (void)startPlaybackNow
+{
+    [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
+    [PdBase sendFloat:kInputVol toReceiver:INPUT_VOL];
+    [PdBase sendFloat:1 toReceiver:AUDIO_SWITCH];
+    [PdBase sendFloat:1 toReceiver:ON_OFF];
+    self.playing = YES;
     [self.delegate playbackBegan:self];
 }
 
 - (void)stopPlayback
 {
-    if (!self.isPlaying) {
+    if (!self.isPlaying || self.isWaiting) {
         return;
     }
-    
-    [self stopNow];
-    [self.delegate playbackEnded:self];
+
+    [self stopPlaybackNow];
 }
 
-- (void)startNow
-{
-    [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
-    [PdBase sendFloat:1 toReceiver:AUDIO_SWITCH];
-    [PdBase sendFloat:1 toReceiver:ON_OFF];
-    self.playing = YES;
-}
 
-- (void)stopNow
+- (void)stopPlaybackNow
 {
     [PdBase sendFloat:0 toReceiver:OUTPUT_VOL];
+    [PdBase sendFloat:0 toReceiver:INPUT_VOL];
     [PdBase sendFloat:0 toReceiver:ON_OFF];
     [PdBase sendFloat:0 toReceiver:AUDIO_SWITCH];
     self.playing = NO;
+    [self.delegate playbackEnded:self];
 }
 
 #pragma mark - constructors
 
 - (void)commonInit
 {
-    self.probPatternChange = kProbPatternChangeDefault;
-    self.probSectionChangeNone = kProbSectionChangeNoneDefault;
-    self.probSectionChangeNext = kProbSectionChangeNextDefault;
-    self.probSectionChangePrevious = kProbSectionChangePreviousDefault;
-    self.allowRandom = YES;
-    self.shuffleMods = NO;
-    self.tempoLocked = NO;
+    _allowRandom = YES;
+    _shuffleMods = NO;
+    _tempoLocked = NO;
+    _ready = NO;
+    _waiting = NO;
+    _patchIsOpen = NO;
     _playing = NO;
+    kInputVol = 1.0;
     [self initalizePd];
     [self addNotificationListeners];
 }
@@ -201,6 +230,7 @@ void mm_textfile_setup(void);
     [PdBase setDelegate:self.dispatcher];
     [self.dispatcher addListener:self forSource:DETECTED_TEMPO];
     [self.dispatcher addListener:self forSource:CLOCK];
+    [self.dispatcher addListener:self forSource:ON_OFF];
 }
 
 #pragma mark - deinitializers
@@ -215,6 +245,8 @@ void mm_textfile_setup(void);
 {
     [self.dispatcher removeListener:self forSource:DETECTED_TEMPO];
     [self.dispatcher removeListener:self forSource:CLOCK];
+    [self.dispatcher removeListener:self forSource:ON_OFF];
+
     self.dispatcher = nil;
 }
 
@@ -222,12 +254,12 @@ void mm_textfile_setup(void);
 
 - (void)setInstrumentLevelsOn
 {
-    [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
+    //[PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
 }
 
 - (void)setInstrumentLevelsOff
 {
-    [PdBase sendFloat:0.0 toReceiver:OUTPUT_VOL];
+    //[PdBase sendFloat:0.0 toReceiver:OUTPUT_VOL];
 }
 
 #pragma mark - PdListener

@@ -7,12 +7,11 @@
 //
 
 #import "MyGLKViewController.h"
-#import "MMPlaybackController.h"
 #import "MyGLKViewController+Labels.h"
 #import "MyGLKViewController+Button.h"
 #import "MyGLKFunctions.h"
 
-@interface MyGLKViewController () <MMPlaybackDelegate>
+@interface MyGLKViewController ()
 {
     GLuint      _verticesVBO;
     GLuint      _indicesVBO;
@@ -69,6 +68,22 @@
     [self updateHamburgerButtonColor];
 }
 
+- (void)playbackDidBegin
+{
+    [self randomizeColors];
+    [self updateLabelText];
+    self.paused = NO;
+    [self resetReferenceFrame:nil];
+    [self setupIvars];
+}
+
+- (void)playbackDidEnd
+{
+    [self updateLabelText];
+    [self resetReferenceFrame:nil];
+    [self setupIvars];
+}
+
 #pragma mark - Property accessors
 
 - (void)setPlaying:(BOOL)playing
@@ -76,14 +91,12 @@
     BOOL wasPlaying = _playing;
     _playing = playing;
     if (playing && !wasPlaying) {
-        [self.playbackController startPlayback];
-        [self playbackBegan:nil];
+        [self playbackDidBegin];
         [self showDetailsFade:YES];
     }else if (playing && wasPlaying){
         [self showDetailsFade:YES];
     }else if (!playing && wasPlaying){
-        [self.playbackController stopPlayback];
-        [self playbackEnded:nil];
+        [self playbackDidEnd];
         [self showDetailsFade:NO];
     }
 }
@@ -92,6 +105,21 @@
 {
     _currentModName = currentModName;
     [self randomizeColors];
+    [self updateLabelText];
+    [self showDetailsFade:self.isPlaying];
+}
+
+- (void)setClock:(double)clock
+{
+    _clock = (float)clock;
+    if (_clock == 0) {
+        [self randomizeColors];
+    }
+}
+
+- (void)setTempo:(double)tempo
+{
+    _tempo = tempo;
     [self updateLabelText];
     [self showDetailsFade:self.isPlaying];
 }
@@ -315,13 +343,6 @@
     [self updateLabelColors];
 }
 
-- (void)setupPlayback
-{
-    self.playbackController = [[MMPlaybackController alloc]init];
-    self.playbackController.delegate = self;
-    self.playbackController.patternName = @"";
-}
-
 #pragma mark - Helpers
 
 - (NSTimeInterval)minimumSampleUpdateInterval
@@ -355,49 +376,6 @@
     return projectionMatrix;
 }
 
-#pragma mark - MMPlaybackControllerDelegate
-
-- (void)playbackBegan:(id)sender
-{
-    [self randomizeColors];
-    [self updateLabelText];
-    self.paused = NO;
-    [self resetReferenceFrame:nil];
-    [self setupIvars];
-}
-
-- (void)playbackEnded:(id)sender
-{
-    [self updateLabelText];
-    [self resetReferenceFrame:nil];
-    [self setupIvars];
-}
-
-- (void)playback:(id)sender clockDidChange:(NSInteger)clock
-{
-    self.clock = (float)clock;
-    if (self.clock == 0) {
-        [self randomizeColors];
-    }
-}
-
-- (void)playback:(id)sender detectedUserTempo:(double)tempo {
-    
-    self.tempo = tempo;
-    //self.infoLabel.text = [NSString stringWithFormat:@"%.f",tempo];
-    [self updateLabelText];
-    [self showDetailsFade:self.isPlaying];
-
-}
-
-- (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
-{
-    self.currentModName = moduleName;
-    //if (!self.playing) {
-        self.playing = YES;
-   // }
-}
-
 #pragma mark - Reference Frame
 
 - (void)resetReferenceFrame:(id)sender
@@ -413,7 +391,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self setupPlayback];
     [self setupViews];
     [self setupIvars];
     [self setupSampleTables];
@@ -422,7 +399,7 @@
     [self setupGL];
     [self updateVertexData];
     [self setupMotionManager];
-    [self playbackEnded:nil];
+    [self playbackDidEnd];
     // Do any additional setup after loading the view.
 }
 

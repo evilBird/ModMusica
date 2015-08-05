@@ -21,7 +21,7 @@
 
 - (BOOL)modsAreShuffled:(id)sender
 {
-    return [self getGLKViewController].playbackController.isShuffled;
+    return self.playbackController.isShuffled;
 }
 
 - (NSArray *)moduleNamesForView:(id)sender
@@ -49,7 +49,7 @@
 
 - (BOOL)playbackIsActive
 {
-    return [self getGLKViewController].isPlaying;
+    return self.playbackController.isPlaying;
 }
 
 - (NSString *)formattedPriceForMod:(NSString *)modName
@@ -64,7 +64,7 @@
 
 - (NSString *)currentModName
 {
-    return [self getGLKViewController].playbackController.patternName;
+    return self.playbackController.currentModName;
 }
 
 - (void)setCurrentMod:(NSString *)moduleName
@@ -72,14 +72,9 @@
     if (!moduleName) {
         return;
     }
-    __weak MMRootViewController *weakself = self;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [weakself setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:YES completion:^{
-            [[weakself getGLKViewController]setCurrentModName:moduleName];
-            [[weakself getGLKViewController].playbackController playPattern:moduleName];
-        }];
-    });
+    self.playbackController.currentModName = moduleName;
+    [self.playbackController startPlayback];
 }
 
 #pragma mark - MMModuleViewControllerDelegate
@@ -92,8 +87,8 @@
     if (mod) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[(MMModuleViewController *)sender tableView] reloadData];
+            [self setCurrentMod:moduleName];
         });
-        [self setCurrentMod:moduleName];
         return;
     }
     
@@ -106,9 +101,10 @@
                             }completion:^(BOOL success) {
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     if (success) {
-                                        myButton.enabled = YES;
                                         [[(MMModuleViewController *)sender tableView] reloadData];
                                         [weakself setCurrentMod:moduleName];
+                                        myButton.enabled = YES;
+                                        myButton.selected = YES;
                                     }else{
                                         myButton.enabled = YES;
                                         [[(MMModuleViewController *)sender tableView] reloadData];
@@ -122,18 +118,52 @@
 
 - (void)moduleView:(id)sender shuffleDidChange:(int)shuffle
 {
-    [self getGLKViewController].playbackController.shuffleMods = (BOOL)shuffle;
+    self.playbackController.shuffleMods = (BOOL)shuffle;
 }
 
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock
 {
-    [self getGLKViewController].playbackController.tempoLocked = (BOOL)lock;
-    [PdBase sendFloat:(float)lock toReceiver:@"lockTempo"];
+    self.playbackController.tempoLocked = (BOOL)lock;
+    [PdBase sendFloat:(float)lock toReceiver:LOCK_TEMPO];
 }
 
 - (void)moduleView:(id)sender randomDidChange:(int)random
 {
-    [self getGLKViewController].playbackController.allowRandom = (BOOL)(1 - random);
+    self.playbackController.allowRandom = (BOOL)(1 - random);
+    [PdBase sendFloat:(float)random toReceiver:ALLOW_RANDOM];
+}
+
+- (void)setupPlayback
+{
+    self.playbackController = [[MMPlaybackController alloc]init];
+    self.playbackController.delegate = self;
+}
+
+#pragma mark - MMPlaybackControllerDelegate
+
+- (void)playback:(id)sender clockDidChange:(NSInteger)clock
+{
+    [self getGLKViewController].clock = clock;
+}
+
+- (void)playbackBegan:(id)sender
+{
+    [self getGLKViewController].playing = YES;
+}
+
+- (void)playbackEnded:(id)sender
+{
+    [self getGLKViewController].playing = NO;
+}
+
+- (void)playback:(id)sender detectedUserTempo:(double)tempo
+{
+    [self getGLKViewController].tempo = tempo;
+}
+
+- (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
+{
+    [self getGLKViewController].currentModName = moduleName;
 }
 
 - (CGFloat)openDrawerWidth

@@ -17,16 +17,16 @@
 {
     NSString *patchName = nil;
     
-    if (!self.patternName || !self.patternName.length) {
+    if (!self.currentModName || !self.currentModName.length) {
         patchName = DEFAULT_PATCH;
     }else{
-        patchName = [NSString stringWithFormat:PATCH_NAME_FORMAT_STRING,PATCH_BASE,self.patternName];
+        patchName = [NSString stringWithFormat:PATCH_NAME_FORMAT_STRING,PATCH_BASE,self.currentModName];
     }
     
     if (self.patchIsOpen) {
         [self closePatch];
     }
-    NSString *patchPath = [MMModuleManager contentPathModName:self.patternName];
+    NSString *patchPath = [MMModuleManager contentPathModName:self.currentModName];
     
     if (!patchPath) {
         patchPath = [[NSBundle mainBundle]pathForResource:DEFAULT_PATCH ofType:PATCH_FILE_EXTENSION];
@@ -123,15 +123,9 @@
     [self loadOtherSamples:samples basePath:path receiver:LOAD_OTHER_SAMPLE];
 }
 
-- (void)loadPatternsForModName:(NSString *)modName
-{
-    self.patternLoader.currentPattern = modName;
-    self.patternLoader.currentSection = -1;
-}
-
 - (void)loadPatchForModName:(NSString *)modName
 {
-    self.patternName = modName;
+    self.currentModName = modName;
     [self openPatch];
 }
 

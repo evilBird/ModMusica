@@ -8,10 +8,11 @@
 
 #import "MMRootViewController.h"
 #import "MMModuleViewController.h"
-@interface MMRootViewController (Mods)<MMModuleViewControllerDatasource,MMModuleViewControllerDelegate>
+@interface MMRootViewController (Mods)<MMModuleViewControllerDatasource,MMModuleViewControllerDelegate,MMPlaybackDelegate>
 
 
 #pragma mark - MMModuleViewControllerDatasource
+
 - (NSArray *)modulesForModuleView:(id)sender;
 - (NSArray *)moduleNamesForView:(id)sender;
 - (NSDictionary *)modForName:(NSString *)modName;
@@ -25,6 +26,18 @@
 - (void)moduleView:(id)sender shuffleDidChange:(int)shuffle;
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock;
 - (void)moduleView:(id)sender randomDidChange:(int)random;
+
+
+- (void)setupPlayback;
+#pragma mark - MMPlaybackControllerDelegate
+
+- (void)playback:(id)sender clockDidChange:(NSInteger)clock;
+- (void)playbackBegan:(id)sender;
+- (void)playbackEnded:(id)sender;
+- (void)playback:(id)sender detectedUserTempo:(double)tempo;
+- (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName;
+
+
 - (CGFloat)openDrawerWidth;
 - (UIColor *)currentTextColor;
 - (UIColor *)currentFillColor;

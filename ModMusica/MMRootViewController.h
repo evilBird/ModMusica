@@ -8,8 +8,12 @@
 
 #import "MSDynamicsDrawerViewController.h"
 #import "MyGLKViewController.h"
+#import "MMPlaybackController+ResourceLoader.h"
+
 @interface MMRootViewController : MSDynamicsDrawerViewController
 
 - (MyGLKViewController *)getGLKViewController;
+
+@property (strong, nonatomic)                       MMPlaybackController                    *playbackController;
 
 @end

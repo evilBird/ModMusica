@@ -29,26 +29,25 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 
 @property (nonatomic,weak)                      id<MMPlaybackDelegate>  delegate;
 @property (nonatomic,strong)                    PdDispatcher            *dispatcher;
-@property (nonatomic,strong)                    MMPatternLoader         *patternLoader;
-@property (nonatomic,strong)                    NSString                *patternName;
+//@property (nonatomic,strong)                    MMPatternLoader         *patternLoader;
+
+@property (nonatomic,strong)                    NSString                *currentModName;
 @property                                       void                    *patch;
 @property (nonatomic, getter=isPlaying)         BOOL                    playing;
 @property (nonatomic, getter=isShuffled)        BOOL                    shuffleMods;
 @property (nonatomic, getter=isTempoLocked)     BOOL                    tempoLocked;
 @property (nonatomic, getter=allowsRandom)      BOOL                    allowRandom;
+@property (nonatomic, getter=isReady)           BOOL                    ready;
+@property (nonatomic, getter=isWaiting)         BOOL                    waiting;
 @property (nonatomic)                           BOOL                    patchIsOpen;
 
+//- (void)playPattern:(NSString *)patternName;
 
-@property (nonatomic)                           NSUInteger              probPatternChange;
-@property (nonatomic)                           NSUInteger              probSectionChangeNone;
-@property (nonatomic)                           NSUInteger              probSectionChangeNext;
-@property (nonatomic)                           NSUInteger              probSectionChangePrevious;
-
-- (void)playPattern:(NSString *)patternName;
 - (void)startPlayback;
 - (void)stopPlayback;
 - (void)tapTempo;
-- (void)setInstrumentLevelsOn;
-- (void)setInstrumentLevelsOff;
+
+//- (void)setInstrumentLevelsOn;
+//- (void)setInstrumentLevelsOff;
 
 @end

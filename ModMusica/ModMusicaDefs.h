@@ -68,6 +68,7 @@
 #define LOAD_OTHER_SAMPLE                   @"loadOtherSample"
 #define LOAD_SECTION_NUMBER                 @"loadSection"
 #define FINISHED_LOADING_SAMPLES            @"finishedLoadingSamples"
+#define FINISHED_LOADING_PATCH              @"finishedLoadingPatch"
 #define NEXT_SECTION                        @"playNextSection"
 #define PREV_SECTION                        @"playPreviousSection"
 #define CHANGE_SECTION                      @"changeSectionIndex"

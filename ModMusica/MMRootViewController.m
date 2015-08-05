@@ -52,7 +52,8 @@
     [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
     [self setPaneDragRevealEnabled:YES forDirection:MSDynamicsDrawerDirectionLeft];
     [self setupDrawerDynamics];
-    self.myGLKViewController.playbackController.patternName = [MMModuleManager purchasedModNames].firstObject;
+    [self setupPlayback];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -98,19 +99,19 @@
 {
     MMTapGestureRecognizer *tap = sender;
     UIGestureRecognizerState state = tap.state;
-    BOOL tempoLocked = [self getGLKViewController].playbackController.isTempoLocked;
-    BOOL playing = [self getGLKViewController].isPlaying;
+    BOOL tempoLocked = self.playbackController.isTempoLocked;
+    BOOL playing = self.playbackController.isPlaying;
     
     switch (state) {
         case UIGestureRecognizerStateRecognized:
             switch (tap.tapCount) {
                 case 1:
-                    [[self getGLKViewController]showDetailsFade:[self getGLKViewController].isPlaying];
+                    [[self getGLKViewController]showDetailsFade:self.playbackController.isPlaying];
                     break;
                     
                 default:
                     if (!tempoLocked && playing) {
-                        [[self getGLKViewController].playbackController tapTempo];
+                        [self.playbackController tapTempo];
                     }
                     break;
             }
@@ -125,11 +126,15 @@
 {
     MMLongPressGestureRecognizer *lp = sender;
     UIGestureRecognizerState state = lp.state;
-    BOOL playing = [self getGLKViewController].isPlaying;
+    BOOL playing = self.playbackController.isPlaying;
     
     switch (state) {
         case UIGestureRecognizerStateRecognized:
-            [self getGLKViewController].playing = (BOOL)(1-playing);
+            if (playing) {
+                [self.playbackController stopPlayback];
+            }else{
+                [self.playbackController startPlayback];
+            }            
             break;
         case UIGestureRecognizerStateFailed:
             
@@ -167,9 +172,9 @@
         return;
     }
     
-    if (![self getGLKViewController].playbackController.isTempoLocked) {
-        [PdBase  sendFloat:stepsPerMinute toReceiver:@"manualSetTempo"];
-        [[self getGLKViewController]playback:sender detectedUserTempo:stepsPerMinute];
+    if (!self.playbackController.isTempoLocked) {
+        [PdBase  sendFloat:stepsPerMinute toReceiver:SET_TEMPO];
+        [self getGLKViewController].tempo = stepsPerMinute;
     }
 }
 
