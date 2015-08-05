@@ -11,10 +11,12 @@
 
 typedef void (^ProductRequestResponseHandler) (NSArray *products, NSError *error);
 typedef void (^ProductPurchaseHandler) (id product, NSError *error);
+typedef void (^ProductDownloadProgressHandler)(id product, double progress);
 
 @interface MMPurchaseManager () <SKProductsRequestDelegate,SKPaymentTransactionObserver>
 
 @property (nonatomic,strong)            NSMutableDictionary                     *purchaseHandlers;
+@property (nonatomic,strong)            NSMutableDictionary                     *downloadProgressHandlers;
 @property (nonatomic,strong)            ProductRequestResponseHandler           productRequestResponseHandler;
 @property (nonatomic,strong)            ProductPurchaseHandler                  productPurchaseHandler;
 
@@ -44,6 +46,19 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
     return self;
 }
 
+- (void)removeDownloadProgressHandlerForProductId:(id)productId
+{
+    if (!self.downloadProgressHandlers || !productId) {
+        return;
+    }
+    
+    if (![self.downloadProgressHandlers.allKeys containsObject:productId]) {
+        return;
+    }
+    
+    [self.downloadProgressHandlers removeObjectForKey:productId];
+}
+
 - (void)removePurchasehandlerForProductId:(id)productId
 {
     if (!self.purchaseHandlers || !productId) {
@@ -55,6 +70,21 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
     }
     
     [self.purchaseHandlers removeObjectForKey:productId];
+}
+
+- (ProductDownloadProgressHandler)getDownloadProgressHandlerForProductId:(id)productId
+{
+    if (!self.downloadProgressHandlers) {
+        return nil;
+    }
+    
+    if (![self.downloadProgressHandlers.allKeys containsObject:productId]) {
+        return nil;
+    }
+    
+    return [self.downloadProgressHandlers[productId] copy];
+    
+    return nil;
 }
 
 - (ProductPurchaseHandler)getPurchaseHandlerForProductId:(id)productId
@@ -70,6 +100,24 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
     return [self.purchaseHandlers[productId] copy];
     
     return nil;
+}
+
+- (void)addDownloadProgressHandler:(ProductDownloadProgressHandler)handler forProductId:(id)productId
+{
+    if (!handler || !productId) {
+        return;
+    }
+    
+    if (!self.downloadProgressHandlers) {
+        self.downloadProgressHandlers = [NSMutableDictionary dictionary];
+    }
+    
+    ProductDownloadProgressHandler toAdd = [handler copy];
+    if ([self.downloadProgressHandlers.allKeys containsObject:productId]) {
+        return;
+    }
+    
+    self.downloadProgressHandlers[productId] = toAdd;
 }
 
 - (void)addPurchaseHandler:(ProductPurchaseHandler)handler forProductId:(id)productId
@@ -133,7 +181,7 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
     return [NSError errorWithDomain:@"com.birdSound.modmusica.transaction" code:0 userInfo:@{@"description":description}];
 }
 
-- (void)buyProduct:(NSString *)productName completion:(void(^)(id product, NSError *error))completion
+- (void)buyProduct:(NSString *)productName progress:(void (^)(id product, double downloadProgress))progress completion:(void (^)(id product, NSError *error))completion
 {
     if (![SKPaymentQueue canMakePayments]) {
         if (completion) {
@@ -143,17 +191,28 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
     }
     
     SKProduct *toBuy = [self productWithName:productName];
+    
     if (!toBuy) {
         if (completion){
             completion(nil,[MMPurchaseManager transactionError:@"Sorry, that item is unavailable"]);
         }
-            
+        
         return;
     }
     
-    [self addPurchaseHandler:completion forProductId:toBuy.productIdentifier];
+    [self addPurchaseHandler:[completion copy] forProductId:toBuy.productIdentifier];
+    
+    if (progress) {
+        [self addDownloadProgressHandler:[progress copy]forProductId:toBuy.productIdentifier];
+    }
+    
     SKPayment *myPayment = [SKPayment paymentWithProduct:toBuy];
     [[SKPaymentQueue defaultQueue]addPayment:myPayment];
+}
+
+- (void)buyProduct:(NSString *)productName completion:(void(^)(id product, NSError *error))completion
+{
+    [self buyProduct:productName progress:nil completion:completion];
 }
 
 #pragma mark - SKProductRequestDelegate
@@ -213,16 +272,34 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
             }
                 break;
                 
+                case SKDownloadStateActive:
+            {
+                ProductDownloadProgressHandler progress = [self getDownloadProgressHandlerForProductId:download.transaction.payment.productIdentifier];
+                if (progress) {
+                    progress(download.transaction.payment.productIdentifier,download.progress);
+                }
+            }
+                break;
+                
                 default:
                 break;
         }
         
         if (finished || error) {
-            
+            ProductDownloadProgressHandler progressHandler = [self getDownloadProgressHandlerForProductId:download.transaction.payment.productIdentifier];
             if (!error) {
+                if (progressHandler) {
+                    progressHandler(download.transaction.payment.productIdentifier,85.0);
+                }
                 NSURL *contentURL = download.contentURL;
                 NSURL *copyToURL = [self urlForProductId:download.transaction.payment.productIdentifier];
+                if (progressHandler) {
+                    progressHandler(download.transaction.payment.productIdentifier,90.0);
+                }
                 [[NSFileManager defaultManager] copyItemAtURL:contentURL toURL:copyToURL error:&error];
+                if (progressHandler) {
+                    progressHandler(download.transaction.payment.productIdentifier,95.0);
+                }
                 contentPath = copyToURL.path;
             }
             
@@ -230,9 +307,17 @@ typedef void (^ProductPurchaseHandler) (id product, NSError *error);
             
             if (purchaseHandler) {
                 purchaseHandler(contentPath,error);
+                if (progressHandler) {
+                    progressHandler(download.transaction.payment.productIdentifier,100.0);
+                    [self removeDownloadProgressHandlerForProductId:download.transaction.payment.productIdentifier];
+                }
                 [self removePurchasehandlerForProductId:download.transaction.payment.productIdentifier];
                 [queue finishTransaction:download.transaction];
             }else{
+                if (progressHandler) {
+                    progressHandler(download.transaction.payment.productIdentifier,100.0);
+                    [self removeDownloadProgressHandlerForProductId:download.transaction.payment.productIdentifier];
+                }
                 [queue finishTransaction:download.transaction];
                 break;
             }

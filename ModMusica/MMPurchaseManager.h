@@ -18,4 +18,9 @@
 - (void)getProductsCompletion:(void(^)(NSArray *products, NSError *error))completion;
 - (void)buyProduct:(NSString *)productName completion:(void(^)(id product, NSError *error))completion;
 
+- (void)buyProduct:(NSString *)productName
+          progress:(void(^)(id product, double downloadProgress))progress
+        completion:(void(^)(id product, NSError *error))completion;
+
+
 @end

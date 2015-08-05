@@ -128,7 +128,9 @@
     
 }
 
-+ (void)purchaseMod:(NSString *)modName completion:(void(^)(BOOL success))completion
++ (void)purchaseMod:(NSString *)modName
+           progress:(void(^)(double downloadProgress))progress
+         completion:(void(^)(BOOL success))completion
 {
     if (!completion) {
         return;
@@ -151,35 +153,54 @@
         return;
     }
     
-    
     [[NSOperationQueue new]addOperationWithBlock:^{
-        [[MMPurchaseManager sharedInstance]buyProduct:modName completion:^(id product, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (!error) {
-                    NSString *contentPath = product;
-                    NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
-                    NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"Contents"];
-                    purchasedMod[kProductPurchasedKey] = @(1);
-                    purchasedMod[kProductContentPathKey] = productContentPath;
-                    
-                    [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
-                    
-                    if (completion) {
-                        completion(YES);
-                    }
-                }else{
-                    
-                    if (completion) {
-                        completion(NO);
-                    }
-                }
-                
-            });
-        }];
+        
+        [[MMPurchaseManager sharedInstance]buyProduct:modName
+                                             progress:^(id product, double downloadProgress) {
+                                                 NSLog(@"download progress: %f",downloadProgress);
+                                                 if (progress) {
+                                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                                         progress(downloadProgress);
+                                                     });
+                                                 }
+                                             } completion:^(id product, NSError *error) {
+                                                 if (!error) {
+                                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                                         if (progress) {
+                                                             progress(96.0);
+                                                         }
+                                                         NSString *contentPath = product;
+                                                         NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
+                                                         if (progress) {
+                                                             progress(97.0);
+                                                         }
+                                                         NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"Contents"];
+                                                         purchasedMod[kProductPurchasedKey] = @(1);
+                                                         purchasedMod[kProductContentPathKey] = productContentPath;
+                                                         if (progress) {
+                                                             progress(98.0);
+                                                         }
+                                                         [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
+                                                         if (progress) {
+                                                             progress(99.0);
+                                                         }
+                                                         completion(YES);
+                                                     });
+                                                     
+                                                 }else{
+                                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                                         completion(NO);
+                                                     });
+                                                 }
+                                             }];
+        
     }];
 }
 
-
++ (void)purchaseMod:(NSString *)modName completion:(void(^)(BOOL success))completion
+{
+    [MMModuleManager purchaseMod:modName progress:nil completion:completion];
+}
 
 + (NSArray *)namesForMods:(NSArray *)mods
 {

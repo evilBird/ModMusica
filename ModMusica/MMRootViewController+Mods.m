@@ -100,17 +100,20 @@
     if (!mod) {
         __block UIButton *myButton = button;
         myButton.enabled = NO;
-        [MMModuleManager purchaseMod:moduleName completion:^(BOOL success) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success) {
-                    myButton.enabled = YES;
-                    [[(MMModuleViewController *)sender tableView] reloadData];
-                    [weakself setCurrentMod:moduleName];
-                }else{
-                    myButton.enabled = YES;
-                    [[(MMModuleViewController *)sender tableView] reloadData];
-                }
-            });
+        [MMModuleManager purchaseMod:moduleName
+                            progress:^(double downloadProgress){
+                                [myButton setTitle:[NSString stringWithFormat:@"%.f%%",downloadProgress * 100] forState:UIControlStateDisabled];
+                            }completion:^(BOOL success) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    if (success) {
+                                        myButton.enabled = YES;
+                                        [[(MMModuleViewController *)sender tableView] reloadData];
+                                        [weakself setCurrentMod:moduleName];
+                                    }else{
+                                        myButton.enabled = YES;
+                                        [[(MMModuleViewController *)sender tableView] reloadData];
+                                    }
+                                });
         }];
         
     }

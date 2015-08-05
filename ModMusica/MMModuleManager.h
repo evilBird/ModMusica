@@ -18,6 +18,11 @@
 + (NSArray *)purchasedModNames;
 + (NSDictionary *)getMod:(NSString *)modName fromArray:(NSArray *)mods;
 + (void)purchaseMod:(NSString *)modName completion:(void(^)(BOOL success))completion;
+
++ (void)purchaseMod:(NSString *)modName
+           progress:(void(^)(double downloadProgress))progress
+         completion:(void(^)(BOOL success))completion;
+
 + (id)modName:(NSString *)modName valueForKey:(NSString *)key;
 
 @end

@@ -72,10 +72,10 @@ static void mm_textfile_free_sequences(t_mm_textfile *x)
     int numSeqs = NUM_SEQS;
     int length = MAX_LENGTH;
     for (int i = 0; i < numSeqs; i++) {
-        freebytes(x->sequences[i],sizeof(int)*length);
+            freebytes(x->sequences[i],sizeof(int)*length);
     }
     
-    freebytes(&x->sequences,sizeof(int*)*numSeqs);
+    freebytes(x->sequences,sizeof(int*)*numSeqs);
 }
 
 static void mm_textfile_alloc_sequences(t_mm_textfile *x)

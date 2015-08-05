@@ -25,9 +25,9 @@
 #define VERTICES_PER_SAMPLE         2
 #define NUM_TABLES                  16
 
-#define DRAWING_SCALE_X             3.0
+#define DRAWING_SCALE_X             4.0
 #define DRAWING_SCALE_Y             6.0
-#define DRAWING_SCALE_Z             3.0
+#define DRAWING_SCALE_Z             4.0
 
 #define SAMPLE_SCALAR               0.78
 #define SAMPLE_UPDATES_PER_SEC      10.0
