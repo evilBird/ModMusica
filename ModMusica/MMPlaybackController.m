@@ -108,11 +108,8 @@ void mm_textfile_setup(void);
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
             [weakself loadResourcesForModName:self.patternName completion:^{
                 [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                    //[weakself.patternLoader playSection:0];
                     [weakself.delegate playback:self didLoadModuleName:patternName];
-                    //if (!weakself.isPlaying) {
-                        //[weakself startPlayback];
-                    //}
+
                 }];
             }];
         }];
@@ -124,7 +121,6 @@ void mm_textfile_setup(void);
     if (self.isPlaying || !self.patternName) {
         return;
     }
-    [self playbackWillStart];
     [self startNow];
     [self.delegate playbackBegan:self];
 }
@@ -136,14 +132,7 @@ void mm_textfile_setup(void);
     }
     
     [self stopNow];
-    [self playbackDidStop];
     [self.delegate playbackEnded:self];
-}
-
-- (void)playbackWillStart
-{
-    //[self setInstrumentLevelsOn];
-    //[self.patternLoader playNextSection];
 }
 
 - (void)startNow
@@ -151,13 +140,7 @@ void mm_textfile_setup(void);
     [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
     [PdBase sendFloat:1 toReceiver:AUDIO_SWITCH];
     [PdBase sendFloat:1 toReceiver:ON_OFF];
-
     self.playing = YES;
-}
-
-- (void)playbackDidStop
-{
-    //[self setInstrumentLevelsOff];
 }
 
 - (void)stopNow
@@ -168,42 +151,10 @@ void mm_textfile_setup(void);
     self.playing = NO;
 }
 
-- (void)changeSectionMaybe
-{
-    if (!self.allowsRandom) {
-        return;
-    }
-    
-    NSInteger rand = arc4random_uniform(100);
-    
-    if (self.isShuffled) {
-        if (rand < self.probPatternChange) {
-            NSArray *mods = [MMModuleManager purchasedModNames];
-            NSUInteger idx = (NSUInteger)((int)arc4random_uniform(100)%(int)mods.count);
-            NSString *pattern = mods[idx];
-            //[PdBase sendBangToReceiver:CLOCK_RESET];
-            [self playPattern:pattern];
-            return;
-        }
-    }
-    
-    if (rand > self.probSectionChangeNone && rand <= (100 - self.probSectionChangePrevious)) {
-        //[PdBase sendBangToReceiver:CLOCK_RESET];
-        //[PdBase sendFloat:1.0 toReceiver:CHANGE_SECTION];
-        //[self.patternLoader playNextSection];
-    }else if (rand > (100 - self.probSectionChangePrevious)){
-        //[PdBase sendBangToReceiver:CLOCK_RESET];
-        //[PdBase sendFloat:-1.0 toReceiver:CHANGE_SECTION];
-
-        //[self.patternLoader playPreviousSection];
-    }
-}
-
 #pragma mark - constructors
 
 - (void)commonInit
 {
-    //self.patternLoader = [[MMPatternLoader alloc]init];
     self.probPatternChange = kProbPatternChangeDefault;
     self.probSectionChangeNone = kProbSectionChangeNoneDefault;
     self.probSectionChangeNext = kProbSectionChangeNextDefault;
@@ -249,8 +200,6 @@ void mm_textfile_setup(void);
     self.dispatcher = [[PdDispatcher alloc]init];
     [PdBase setDelegate:self.dispatcher];
     [self.dispatcher addListener:self forSource:DETECTED_TEMPO];
-    //[self.dispatcher addListener:self forSource:DETECTED_INTERVAL];
-    //[self.dispatcher addListener:self forSource:DETECTED_BEAT];
     [self.dispatcher addListener:self forSource:CLOCK];
 }
 
@@ -265,8 +214,6 @@ void mm_textfile_setup(void);
 - (void)unsubscribePdMessages
 {
     [self.dispatcher removeListener:self forSource:DETECTED_TEMPO];
-    //[self.dispatcher removeListener:self forSource:DETECTED_INTERVAL];
-    //[self.dispatcher removeListener:self forSource:DETECTED_BEAT];
     [self.dispatcher removeListener:self forSource:CLOCK];
     self.dispatcher = nil;
 }
@@ -275,32 +222,15 @@ void mm_textfile_setup(void);
 
 - (void)setInstrumentLevelsOn
 {
-    
-    [PdBase sendFloat:1 toReceiver:AUDIO_SWITCH];
     [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
-    [PdBase sendFloat:1 toReceiver:INPUT_VOL];
-    //[PdBase sendFloat:kDrumVolume toReceiver:DRUM_VOL];
-    //[PdBase sendFloat:kSynthVolume toReceiver:SYNTH_VOL];
-    //[PdBase sendFloat:kSamplerVolume toReceiver:SAMPLER_VOL];
-    //[PdBase sendFloat:kBassVolume toReceiver:BASS_VOL];
 }
 
 - (void)setInstrumentLevelsOff
 {
-    [PdBase sendFloat:0 toReceiver:AUDIO_SWITCH];
     [PdBase sendFloat:0.0 toReceiver:OUTPUT_VOL];
-    [PdBase sendFloat:0.0 toReceiver:INPUT_VOL];
-    //[PdBase sendFloat:0.0 toReceiver:SYNTH_VOL];
-    //[PdBase sendFloat:0.0 toReceiver:SAMPLER_VOL];
-    //[PdBase sendFloat:0.0 toReceiver:BASS_VOL];
-    //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //[PdBase sendFloat:0 toReceiver:AUDIO_SWITCH];
-   // });
 }
 
 #pragma mark - PdListener
-static float prevReceived = -1;
-
 - (void)receiveFloat:(float)received fromSource:(NSString *)source
 {
     if ([source isEqualToString:CLOCK]) {
