@@ -8,7 +8,6 @@
 
 #import "MMRootViewController.h"
 #import "MMModuleViewController.h"
-#import "MyGLKViewController.h"
 #import "MMRootViewController+Mods.h"
 #import "MMRootViewController+Drawer.h"
 #import "MMStepCounter.h"
@@ -21,7 +20,7 @@
 @interface MMRootViewController () <MMStepCounterDelegate>
 
 @property (nonatomic,strong)            MMStepCounter                       *stepCounter;
-@property (nonatomic,strong)            MyGLKViewController                 *myGLKViewController;
+@property (nonatomic,strong)            MMShaderViewController              *myShaderViewController;
 @property (nonatomic,strong)            MMLongPressGestureRecognizer        *longPress;
 @property (nonatomic,strong)            MMTapGestureRecognizer              *tap;
 @property (nonatomic,strong)            MMPinchGestureRecognizer            *pinch;
@@ -35,16 +34,16 @@
     [super viewDidLoad];    
     self.delegate = self;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    self.myGLKViewController = [storyboard instantiateViewControllerWithIdentifier:@"MyGLKViewController"];
-    self.myGLKViewController.currentModName = @"";
-    self.myGLKViewController.glkDelegate = self;
+    self.myShaderViewController = [storyboard instantiateViewControllerWithIdentifier:@"MMShaderViewController"];
+    self.myShaderViewController.currentModName = @"";
+    self.myShaderViewController.glkDelegate = self;
     self.longPress = [[MMLongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPress:)];
     self.tap = [[MMTapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
     self.pinch = [[MMPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
-    [self.myGLKViewController.view addGestureRecognizer:self.tap];
-    [self.myGLKViewController.view addGestureRecognizer:self.longPress];
-    [self.myGLKViewController.view addGestureRecognizer:self.pinch];
-    self.paneViewController = self.myGLKViewController;
+    [self.myShaderViewController.view addGestureRecognizer:self.tap];
+    [self.myShaderViewController.view addGestureRecognizer:self.longPress];
+    [self.myShaderViewController.view addGestureRecognizer:self.pinch];
+    self.paneViewController = self.myShaderViewController;
     
     MMModuleViewController *mm =[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"];
     mm.delegate = self;
@@ -92,7 +91,7 @@
     deltaVelocity = velocity - initialVelocity;
     previousScale = scale;
     previousVelocity = velocity;
-    [[self getGLKViewController]changeScale:scale];
+    [[self getShaderViewController]changeScale:scale];
 }
 
 - (void)handleTap:(id)sender
@@ -106,7 +105,7 @@
         case UIGestureRecognizerStateRecognized:
             switch (tap.tapCount) {
                 case 1:
-                    [[self getGLKViewController]showDetailsFade:self.playbackController.isPlaying];
+                    [[self getShaderViewController]showDetailsFade:self.playbackController.isPlaying];
                     break;
                     
                 default:
@@ -145,9 +144,9 @@
     }
 }
 
-- (MyGLKViewController *)getGLKViewController
+- (MMShaderViewController *)getShaderViewController
 {
-    return self.myGLKViewController;
+    return self.myShaderViewController;
 }
 
 #pragma mark GLKViewControllerDelegate
@@ -168,13 +167,13 @@
 
 - (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
 {
-    if (self.paneViewController != self.myGLKViewController) {
+    if (self.paneViewController != self.myShaderViewController) {
         return;
     }
     
     if (!self.playbackController.isTempoLocked) {
         [PdBase  sendFloat:stepsPerMinute toReceiver:SET_TEMPO];
-        [self getGLKViewController].tempo = stepsPerMinute;
+        [self getShaderViewController].tempo = stepsPerMinute;
     }
 }
 

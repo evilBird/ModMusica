@@ -143,27 +143,27 @@
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
-    [self getGLKViewController].clock = clock;
+    [self getShaderViewController].clock = clock;
 }
 
 - (void)playbackBegan:(id)sender
 {
-    [self getGLKViewController].playing = YES;
+    [self getShaderViewController].playing = YES;
 }
 
 - (void)playbackEnded:(id)sender
 {
-    [self getGLKViewController].playing = NO;
+    [self getShaderViewController].playing = NO;
 }
 
 - (void)playback:(id)sender detectedUserTempo:(double)tempo
 {
-    [self getGLKViewController].tempo = tempo;
+    [self getShaderViewController].tempo = tempo;
 }
 
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
 {
-    [self getGLKViewController].currentModName = moduleName;
+    [self getShaderViewController].currentModName = moduleName;
 }
 
 - (CGFloat)openDrawerWidth
@@ -173,7 +173,7 @@
 
 - (UIColor *)currentFillColor
 {
-    return [self getGLKViewController].mainColor;
+    return [self getShaderViewController].mainColor;
 }
 
 - (UIColor *)currentTextColor
