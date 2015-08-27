@@ -41,10 +41,11 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 @property (nonatomic, getter=isWaiting)         BOOL                    waiting;
 @property (nonatomic)                           BOOL                    patchIsOpen;
 
-//- (void)playPattern:(NSString *)patternName;
 
 - (void)startPlayback;
+- (void)startPlaybackNow;
 - (void)stopPlayback;
+- (void)stopPlaybackNow;
 - (void)tapTempo;
 
 //- (void)setInstrumentLevelsOn;

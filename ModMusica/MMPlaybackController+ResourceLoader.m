@@ -42,7 +42,7 @@
 - (void)closePatch
 {
     if (self.isPlaying) {
-        [self stopPlayback];
+        [self stopPlaybackNow];
     }
     
     

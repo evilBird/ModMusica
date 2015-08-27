@@ -87,6 +87,7 @@ void mm_textfile_setup(void);
         return;
     }
     
+
     [self loadModuleName:_currentModName];
 }
 

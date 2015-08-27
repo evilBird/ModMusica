@@ -41,7 +41,6 @@
 @property (nonatomic)                               double                                  tempo;
 @property (nonatomic)                               double                                  clock;
 
-//@property (strong, nonatomic)                       MMPlaybackController                    *playbackController;
 @property (strong, nonatomic)                       id<MyGLKViewControllerDelegate>         glkDelegate;
 
 - (void)showDetailsFade:(BOOL)shouldFade;
