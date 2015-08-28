@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2F3E2E0F9966805983687ED1"
+               BlueprintIdentifier = "D11B157A7AC2C4B1EC2EB15F"
                BuildableName = "libPods-ModMusica.a"
                BlueprintName = "Pods-ModMusica"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2F3E2E0F9966805983687ED1"
-            BuildableName = "libPods-ModMusica.a"
-            BlueprintName = "Pods-ModMusica"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

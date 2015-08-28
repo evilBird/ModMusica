@@ -178,6 +178,7 @@ void mm_textfile_setup(void);
     [PdBase sendFloat:0 toReceiver:ON_OFF];
     [PdBase sendFloat:0 toReceiver:AUDIO_SWITCH];
     self.playing = NO;
+    [self sendPlaybackNotification:NO];
     [self.delegate playbackEnded:self];
 }
 

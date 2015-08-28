@@ -72,7 +72,7 @@
     if (!moduleName) {
         return;
     }
-    
+    self.getShaderViewController.currentModName = moduleName;
     self.playbackController.currentModName = moduleName;
     [self.playbackController startPlayback];
 }

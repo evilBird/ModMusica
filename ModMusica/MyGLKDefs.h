@@ -17,7 +17,7 @@
 #define STRINGIZE2(x) STRINGIZE(x)
 #define SHADER_STRING(text) @ STRINGIZE2(text)
 
-#define SAMPLE_RATE                 44100
+#define SAMPLE_RATE                 22050
 #define BLOCK_SIZE                  64
 #define TICKS                       64
 

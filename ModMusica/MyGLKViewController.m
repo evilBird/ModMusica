@@ -9,8 +9,8 @@
 #import "MyGLKViewController.h"
 #import "MyGLKViewController+Labels.h"
 #import "MyGLKViewController+Button.h"
+#ifdef USE_OLD
 #import "MyGLKFunctions.h"
-
 @interface MyGLKViewController ()
 {
     GLuint      _verticesVBO;
@@ -36,9 +36,9 @@
 @property (nonatomic,strong)    NSDate              *lastSampleUpdate;
 
 @end
-
+#endif
 @implementation MyGLKViewController
-
+#ifdef USE_OLD
 #pragma mark - Public Methods
 
 - (void)changeScale:(CGFloat)scale
@@ -440,7 +440,7 @@
     self.effect = nil;
 }
 
-
+#endif
 
 /*
 #pragma mark - Navigation

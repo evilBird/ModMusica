@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "885080FD5DF9A11BA7080DD1"
+               BlueprintIdentifier = "683A52E27D7C19E37D375F16"
                BuildableName = "libPods-ModMusica-MSDynamicsDrawerViewController.a"
                BlueprintName = "Pods-ModMusica-MSDynamicsDrawerViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -39,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "885080FD5DF9A11BA7080DD1"
-            BuildableName = "libPods-ModMusica-MSDynamicsDrawerViewController.a"
-            BlueprintName = "Pods-ModMusica-MSDynamicsDrawerViewController"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

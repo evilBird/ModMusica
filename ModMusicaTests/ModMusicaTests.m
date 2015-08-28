@@ -25,8 +25,32 @@
     [super tearDown];
 }
 
-- (void)testGLKMathFunctions
+- (void)testPlist
 {
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"Shaders" ofType:@"plist"];
+    XCTAssertNotNil(path);
+    NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:path];
+    XCTAssertNotNil(plist);
+    NSLog(@"plist: %@",plist);
+    NSDictionary *testShaderDictionary = plist[@"test"];
+    XCTAssertNotNil(testShaderDictionary);
+    NSDictionary *shaders = testShaderDictionary[@"shaders"];
+    XCTAssertNotNil(shaders);
+    NSDictionary *uniforms = testShaderDictionary[@"uniforms"];
+    XCTAssertNotNil(uniforms);
+    NSDictionary *attributes = testShaderDictionary[@"attributes"];
+    XCTAssertNotNil(attributes);
+    NSDictionary *textures = testShaderDictionary[@"textures"];
+    XCTAssertNotNil(textures);
+    
+}
+
+- (void)testGetShaderStuff
+{
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"Shaders" ofType:@"plist"];
+    XCTAssertNotNil(path);
+    NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:path];
+    XCTAssertNotNil(plist);
 }
 
 - (void)testExample {
