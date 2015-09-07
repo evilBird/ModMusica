@@ -244,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Downloads/ExamplesForXcode6.1/ch03_EXAMPLES/OpenGLES_Ch3_6/OpenGLES_Ch3_6/GLKShader/GLKShaderViewController.m"
-            timestampString = "462496326.841235"
+            timestampString = "462498993.820169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "-updateUniform:ofType:withValues:"
             landmarkType = "5">
          </BreakpointContent>
@@ -260,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Downloads/ExamplesForXcode6.1/ch03_EXAMPLES/OpenGLES_Ch3_6/OpenGLES_Ch3_6/GLKShader/GLKShaderViewController+Shaders.m"
-            timestampString = "462497313.315113"
+            timestampString = "462498993.820169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "-getUniformLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Downloads/ExamplesForXcode6.1/ch03_EXAMPLES/OpenGLES_Ch3_6/OpenGLES_Ch3_6/GLKShader/GLKShaderViewController+Shaders.m"
-            timestampString = "462497313.315113"
+            timestampString = "462498993.820169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-getUniformLocations"
             landmarkType = "5">
          </BreakpointContent>
@@ -292,11 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Downloads/ExamplesForXcode6.1/ch03_EXAMPLES/OpenGLES_Ch3_6/OpenGLES_Ch3_6/GLKShader/GLKShaderViewController+Shaders.m"
-            timestampString = "462497960.268007"
+            timestampString = "462498993.820169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "-bindAttributes"
             landmarkType = "5">
          </BreakpointContent>
@@ -308,27 +308,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Downloads/ExamplesForXcode6.1/ch03_EXAMPLES/OpenGLES_Ch3_6/OpenGLES_Ch3_6/GLKShader/GLKShaderViewController+Shaders.m"
-            timestampString = "462497981.273452"
+            timestampString = "462498993.820169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "-bindAttributes"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Downloads/ExamplesForXcode6.1/ch03_EXAMPLES/OpenGLES_Ch3_6/OpenGLES_Ch3_6/GLKShader/GLKShaderViewController+Shaders.m"
+            timestampString = "462498993.820169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "-bindAttributes"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Downloads/ExamplesForXcode6.1/ch03_EXAMPLES/OpenGLES_Ch3_6/OpenGLES_Ch3_6/GLKShader/GLKShaderViewController+Shaders.m"
-            timestampString = "462498109.523617"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
             landmarkName = "-bindAttributes"
             landmarkType = "5">
          </BreakpointContent>
