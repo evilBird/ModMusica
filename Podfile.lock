@@ -1,16 +1,10 @@
 PODS:
-  - GPUImage (0.1.7)
   - libpd (0.7.0)
-  - MSDynamicsDrawerViewController (1.5.1)
 
 DEPENDENCIES:
-  - GPUImage
   - libpd
-  - MSDynamicsDrawerViewController
 
 SPEC CHECKSUMS:
-  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   libpd: 73e50c4998c95addfb7c47bd9054b9c40019d3fc
-  MSDynamicsDrawerViewController: 2874df90f5e9453dc7d4e32f8038b50615d4baa7
 
 COCOAPODS: 0.37.2

@@ -134,14 +134,20 @@ void mm_textfile_setup(void);
     self.currentModName = modName;
     if (self.previousModName && [modName isEqualToString:self.previousModName]) {
         self.ready = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(self.ready);
+        });
     }else{
         self.ready = NO;
-        self.ready = [self loadResources];
+        __weak MMPlaybackController *weakself = self;
+        [[NSOperationQueue new]addOperationWithBlock:^{
+            weakself.ready = [weakself loadResources];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself startPlaybackNow];
+                completion(weakself.isReady);
+            });
+        }];
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        completion(self.ready);
-    });
 }
 
 #pragma mark - Private Methods

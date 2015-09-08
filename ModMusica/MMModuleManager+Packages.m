@@ -78,13 +78,13 @@
     return [MMModuleManager pathForResource:[NSString stringWithFormat:DRUMSAMPLES_PATH_FORMAT_STRING,mod[kProductIDKey]]];
 }
 
+
 + (NSString *)kickSamplesPathModName:(NSString *)modName
 {
     NSDictionary *mod = [MMModuleManager getMod:modName];
     if (!mod) {
         return nil;
     }
-    
     return [MMModuleManager pathForResource:[NSString stringWithFormat:KICKSAMPLES_PATH_FORMAT_STRING,mod[kProductIDKey]]];
 }
 

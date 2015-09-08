@@ -4,16 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-ModMusica-GPUImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-ModMusica-MSDynamicsDrawerViewController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-ModMusica-libpd.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>20F6A827B9ED79BF758FF4F5</key>
+		<key>47D819DD39BE43BCF2E91B9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>683A52E27D7C19E37D375F16</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6D5C5D02860D66A7EA873E18</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D11B157A7AC2C4B1EC2EB15F</key>
+		<key>A31BA02BD07E76759D206097</key>
 		<dict>
 			<key>primary</key>
 			<true/>

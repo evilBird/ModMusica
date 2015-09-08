@@ -161,7 +161,6 @@
     NSString *contentPath = [MMModuleManager contentPathModName:modName];
     NSString *path = [contentPath stringByAppendingString:@"/"];
     [PdBase sendSymbol:path toReceiver:@"path"];
-    BOOL drumSamplesLoaded = [self loadDrumSamplesForModName:modName];
     if (![self loadDrumSamplesForModName:modName]) {
         return NO;
     }

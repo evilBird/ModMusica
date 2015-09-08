@@ -24,8 +24,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [MMModuleManager setupDefaultMods];
+    //[MMModuleManager setupDefaultMods];
     [[MMPurchaseManager sharedInstance]getProductsCompletion:nil];
+    
     [[UIApplication sharedApplication]setIdleTimerDisabled:YES];
     self.audioController = [[PdAudioController alloc]init];
     [self.audioController configurePlaybackWithSampleRate:SAMPLE_RATE numberChannels:2 inputEnabled:YES mixingEnabled:YES];
@@ -40,6 +41,7 @@
 {
     NSDictionary *obj = notification.userInfo;
     self.playing = [obj[@"playback"]boolValue];
+    self.audioController.active = self.playing;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

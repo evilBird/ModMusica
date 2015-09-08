@@ -31,6 +31,9 @@
 {
     if (![MMModuleManager purchasedMods]) {
         [MMModuleManager mockPurchaseMod:@"mario"];
+        [MMModuleManager mockPurchaseMod:@"gushies"];
+        [MMModuleManager mockPurchaseMod:@"mega"];
+        [MMModuleManager mockPurchaseMod:@"fantasy"];
     }
 }
 
@@ -130,29 +133,30 @@
 
 + (BOOL)mockPurchaseMod:(NSString *)modName
 {
-    if (![MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]])
-    {
-        return NO;
-    }
+    NSMutableDictionary *purchasedMod = [NSMutableDictionary dictionary];
+    purchasedMod[kProductPurchasedKey] = @(1);
+    purchasedMod[kProductIDKey] = [NSString stringWithFormat:@"com.birdSound.modmusica.%@",modName];
+    purchasedMod[kProductTitleKey] = modName;
+    purchasedMod[kProductPriceKey] = @(0);
+    purchasedMod[kProductFormattedPriceKey] = @"FREE";
+    purchasedMod[kProductDescriptionKey] = @"A mod";
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *contentPath = [documentsPath stringByAppendingPathComponent:purchasedMod[kProductIDKey]];
+    NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"bundle/Contents"];
+    BOOL isDirectory = NO;
+    purchasedMod[kProductContentPathKey] = productContentPath;
     
-    
-    if ([MMModuleManager getMod:modName fromArray:[MMModuleManager purchasedMods]]) {
+    BOOL exists = [[NSFileManager defaultManager]fileExistsAtPath:productContentPath isDirectory:&isDirectory];
+    if (exists && isDirectory){
         return YES;
     }
     
-    NSString *zipPath = [[NSBundle bundleForClass:[MMModuleManager class]]pathForResource:modName ofType:@"zip"];
+    NSString *zipPath = [[NSBundle bundleForClass:[MMModuleManager class]]pathForResource:purchasedMod[kProductIDKey] ofType:@"zip"];
     if (![[NSFileManager defaultManager]fileExistsAtPath:zipPath]){
         return NO;
     }
-    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
     [SNZipArchive unzipFileAtPath:zipPath toDestination:documentsPath];
-    NSString *contentPath = [documentsPath stringByAppendingPathComponent:modName];
-    NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
-    
-    NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"Contents"];
-    purchasedMod[kProductPurchasedKey] = @(1);
-    purchasedMod[kProductContentPathKey] = productContentPath;
     [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
  
     return YES;

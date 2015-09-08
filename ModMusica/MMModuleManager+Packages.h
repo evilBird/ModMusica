@@ -8,6 +8,8 @@
 
 #import "MMModuleManager.h"
 
+#define USE_LOCAL_PRODUCTS 1
+
 @interface MMModuleManager (Packages)
 
 + (NSArray *)getModResourceAtPath:(NSString *)path;

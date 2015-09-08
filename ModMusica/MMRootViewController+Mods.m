@@ -185,11 +185,13 @@
 - (void)playbackBegan:(id)sender
 {
     self.playing = YES;
+    self.shaderViewController.playing = self.playing;
 }
 
 - (void)playbackEnded:(id)sender
 {
     self.playing = NO;
+    self.shaderViewController.playing = self.playing;
 }
 
 - (void)playback:(id)sender detectedUserTempo:(double)tempo

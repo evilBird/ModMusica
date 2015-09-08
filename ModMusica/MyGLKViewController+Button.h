@@ -10,7 +10,7 @@
 
 @interface MyGLKViewController (Button)
 
-- (void)updateHamburgerButtonColor;
+//- (void)updateHamburgerButtonColor;
 - (void)setupHamburgerButton;
 
 @end

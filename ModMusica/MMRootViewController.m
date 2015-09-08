@@ -36,6 +36,13 @@
     [super viewDidLoad];
     self.mainColor = [UIColor randomColor];
     [self resetMetrics];
+    __weak MMRootViewController *weakself = self;
+    [[NSOperationQueue new]addOperationWithBlock:^{
+        [MMModuleManager setupDefaultMods];
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            [weakself setupMods];
+        }];
+    }];
     // Do any additional setup after loading the view.
 }
 
@@ -43,6 +50,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)setupMods
+{
     __weak MMRootViewController *weakself = self;
     NSString *modName = @"mario";
     [self setupPlayback:modName completion:^(BOOL success) {
@@ -53,7 +64,6 @@
             [[MMRootViewController errorAlert:@"Failed to setup audio" modName:modName]show];
         }
     }];
-
 }
 
 - (void)setModName:(NSString *)modName

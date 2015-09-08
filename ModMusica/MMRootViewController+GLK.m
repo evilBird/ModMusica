@@ -46,6 +46,16 @@
     return self.rotation;
 }
 
+- (void)glkViewController:(id)sender subscribeToMessages:(NSString *)messageSource
+{
+    [self.playbackController.dispatcher addListener:sender forSource:messageSource];
+}
+
+- (void)glkViewController:(id)sender unsubscribeToMessages:(NSString *)messageSource
+{
+    [self.playbackController.dispatcher removeListener:sender forSource:messageSource];
+}
+
 - (void)glkViewController:(id)sender willShowModalViewController:(id)modalVC
 {
     if ([modalVC isKindOfClass:[MMModuleViewController class]]){

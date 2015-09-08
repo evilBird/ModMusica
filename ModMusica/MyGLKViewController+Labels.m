@@ -68,6 +68,8 @@
     self.nowPlayingLabel.textColor = [self.mainColor complement];
     self.titleLabel.textColor = [self.mainColor complement];
     self.infoLabel.textColor = [self.mainColor complement];
+    self.hamburgerButton.mainColor = [self.mainColor complement];
+    
 }
 
 - (void)hideLabelsAnimated:(BOOL)animated

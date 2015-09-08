@@ -6,8 +6,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'ModMusica' do
     
     pod 'libpd'
-    pod 'GPUImage'
-    pod 'MSDynamicsDrawerViewController'
 end
 
 target 'ModMusicaTests' do
