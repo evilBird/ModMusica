@@ -12,6 +12,5 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UISwitch *actionSwitch;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonTrailingEdgeConstraint;
 
 @end

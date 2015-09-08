@@ -29,10 +29,8 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 
 @property (nonatomic,weak)                      id<MMPlaybackDelegate>  delegate;
 @property (nonatomic,strong)                    PdDispatcher            *dispatcher;
-//@property (nonatomic,strong)                    MMPatternLoader         *patternLoader;
-
-@property (nonatomic,strong)                    NSString                *currentModName;
 @property                                       void                    *patch;
+@property (nonatomic,readonly)                  NSString                *modName;
 @property (nonatomic, getter=isPlaying)         BOOL                    playing;
 @property (nonatomic, getter=isShuffled)        BOOL                    shuffleMods;
 @property (nonatomic, getter=isTempoLocked)     BOOL                    tempoLocked;
@@ -42,13 +40,10 @@ static NSString *kPlaybackDidChangeNotification = @"com.birdSound.ModMusica.play
 @property (nonatomic)                           BOOL                    patchIsOpen;
 
 
+- (void)preparePlaybackForMod:(NSString *)modName completion:(void(^)(BOOL success))completion;
 - (void)startPlayback;
-- (void)startPlaybackNow;
 - (void)stopPlayback;
-- (void)stopPlaybackNow;
 - (void)tapTempo;
-
-//- (void)setInstrumentLevelsOn;
-//- (void)setInstrumentLevelsOff;
+- (void)tearDown;
 
 @end

@@ -9,21 +9,23 @@
 #import "MMRootViewController.h"
 #import "MMModuleViewController.h"
 #import "MMRootViewController+Mods.h"
-#import "MMRootViewController+Drawer.h"
 #import "MMStepCounter.h"
 #import "MMLongPressGestureRecognizer.h"
 #import "MMTapGestureRecognizer.h"
 #import "MMPurchaseManager.h"
 #import "MMPinchGestureRecognizer.h"
 #import "MMModuleManager.h"
+#import "UIColor+HBVHarmonies.h"
+#import "UIView+Layout.h"
+#import "MMRootViewController+GLK.h"
+#import "MMShaderViewController+Labels.h"
 
-@interface MMRootViewController () <MMStepCounterDelegate>
+@interface MMRootViewController ()
 
-@property (nonatomic,strong)            MMStepCounter                       *stepCounter;
-@property (nonatomic,strong)            MMShaderViewController              *myShaderViewController;
 @property (nonatomic,strong)            MMLongPressGestureRecognizer        *longPress;
 @property (nonatomic,strong)            MMTapGestureRecognizer              *tap;
 @property (nonatomic,strong)            MMPinchGestureRecognizer            *pinch;
+
 
 @end
 
@@ -31,35 +33,55 @@
 
 - (void)viewDidLoad {
     
-    [super viewDidLoad];    
-    self.delegate = self;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    self.myShaderViewController = [storyboard instantiateViewControllerWithIdentifier:@"MMShaderViewController"];
-    self.myShaderViewController.currentModName = @"";
-    self.myShaderViewController.glkDelegate = self;
-    self.longPress = [[MMLongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPress:)];
-    self.tap = [[MMTapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
-    self.pinch = [[MMPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
-    [self.myShaderViewController.view addGestureRecognizer:self.tap];
-    [self.myShaderViewController.view addGestureRecognizer:self.longPress];
-    [self.myShaderViewController.view addGestureRecognizer:self.pinch];
-    self.paneViewController = self.myShaderViewController;
-    
-    MMModuleViewController *mm =[storyboard instantiateViewControllerWithIdentifier:@"DrawerViewController"];
-    mm.delegate = self;
-    mm.datasource = self;
-    [self setDrawerViewController:mm forDirection:MSDynamicsDrawerDirectionLeft];
-    [self setPaneDragRevealEnabled:YES forDirection:MSDynamicsDrawerDirectionLeft];
-    [self setupDrawerDynamics];
-    [self setupPlayback];
-    
+    [super viewDidLoad];
+    self.mainColor = [UIColor randomColor];
+    [self resetMetrics];
     // Do any additional setup after loading the view.
 }
 
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    __weak MMRootViewController *weakself = self;
+    NSString *modName = @"mario";
+    [self setupPlayback:modName completion:^(BOOL success) {
+        if (success){
+            weakself.shaderViewController.shaderKey = modName;
+            [weakself setupGestureRecognizers];
+            [weakself.shaderViewController hideActivity];
+        }else{
+            [weakself.shaderViewController hideActivity];
+            [[MMRootViewController errorAlert:@"Failed to setup audio" modName:modName]show];
+        }
+    }];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)resetMetrics
+{
+    self.scale = 1.0;
+    self.rotation = 0.0;
+}
+
+- (void)setupGestureRecognizers
+{
+    self.longPress = [[MMLongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPress:)];
+    [self.view addGestureRecognizer:self.longPress];
+    self.tap = [[MMTapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:self.tap];
+    self.pinch = [[MMPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
+    [self.view addGestureRecognizer:self.pinch];
 }
 
 - (void)handlePinch:(id)sender
@@ -91,7 +113,7 @@
     deltaVelocity = velocity - initialVelocity;
     previousScale = scale;
     previousVelocity = velocity;
-    [[self getShaderViewController]changeScale:scale];
+    self.scale  = scale;
 }
 
 - (void)handleTap:(id)sender
@@ -105,7 +127,7 @@
         case UIGestureRecognizerStateRecognized:
             switch (tap.tapCount) {
                 case 1:
-                    [[self getShaderViewController]showDetailsFade:self.playbackController.isPlaying];
+                    [self.shaderViewController showDetailsFade:self.playbackController.isPlaying];
                     break;
                     
                 default:
@@ -144,48 +166,22 @@
     }
 }
 
-- (MMShaderViewController *)getShaderViewController
-{
-    return self.myShaderViewController;
-}
-
-#pragma mark GLKViewControllerDelegate
-
-- (void)glkViewController:(id)sender playbackChanged:(BOOL)playing
-{
-    if (playing) {
-        self.stepCounter = [[MMStepCounter alloc]init];
-        self.stepCounter.delegate = self;
-        [self.stepCounter startUpdates];
-    }else{
-        [self.stepCounter endUpdates];
-        self.stepCounter = nil;
-    }
-}
-
-#pragma mark MMStepCounterDelegate
-
-- (void)stepCounter:(id)sender updatedStepsPerMinute:(double)stepsPerMinute
-{
-    if (self.paneViewController != self.myShaderViewController) {
-        return;
-    }
-    
-    if (!self.playbackController.isTempoLocked) {
-        [PdBase  sendFloat:stepsPerMinute toReceiver:SET_TEMPO];
-        [self getShaderViewController].tempo = stepsPerMinute;
-    }
-}
 
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    id dest = segue.destinationViewController;
+    if ([dest isKindOfClass:[MMShaderViewController class]]) {
+        self.shaderViewController = dest;
+        self.shaderViewController.glkDelegate = self;
+        [self.shaderViewController showActivity];
+        //self.shaderViewController.shaderKey = @;
+    }
+    
 }
-*/
 
 @end

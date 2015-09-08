@@ -17,7 +17,6 @@
 - (void)moduleView:(id)sender lockTempoDidChange:(int)lock;
 - (void)moduleView:(id)sender randomDidChange:(int)random;
 
-- (CGFloat)openDrawerWidth;
 - (UIColor *)currentFillColor;
 - (UIColor *)currentTextColor;
 

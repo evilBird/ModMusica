@@ -124,7 +124,6 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
         NSString *modName = [self.datasource moduleNamesForView:self][indexPath.row];
         c.titleLabel.text = modName;
         c.titleLabel.textColor = [textColor jitterWithPercent:2];
-        c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
         c.actionButton.tintColor = [UIColor clearColor];
         
         [c.actionButton setTitleColor:fillColor forState:UIControlStateNormal];
@@ -169,7 +168,6 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
         MMModuleSwitchCellView *c = (MMModuleSwitchCellView *)cell;
         c.titleLabel.textColor = [textColor jitterWithPercent:2];
         c.actionSwitch.tag = indexPath.row;
-        c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
         [c.actionSwitch setTintColor:textColor];
         [c.actionSwitch setOnTintColor:textColor];
         c.titleLabel.textColor = textColor;
@@ -184,7 +182,6 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
     c.titleLabel.text = modName;
     c.actionButton.tag = indexPath.row;
     c.actionButton.layer.cornerRadius = 4;
-    c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
     [c.actionButton addTarget:self action:@selector(tapInCellButton:) forControlEvents:UIControlEventTouchUpInside];
     [c.actionButton setTintColor:[UIColor clearColor]];
 }
@@ -193,7 +190,6 @@ static NSString *kModuleEditCellId = @"ModuleEditCellId";
 {
     MMModuleSwitchCellView *c = (MMModuleSwitchCellView *)cell;
     c.actionSwitch.tag = indexPath.row;
-    c.buttonTrailingEdgeConstraint.constant = ([self.delegate openDrawerWidth] - 8);
     [c.actionSwitch addTarget:self action:@selector(handleActionSwitch:) forControlEvents:UIControlEventValueChanged];
 }
 

@@ -14,6 +14,12 @@
 
 
 #pragma mark - MMModuleViewControllerDatasource
+
+- (NSString *)currentModName
+{
+    return self.modName;
+}
+
 - (NSArray *)modulesForModuleView:(id)sender
 {
     return [MMModuleManager availableMods];
@@ -62,58 +68,80 @@
     return mod[kProductFormattedPriceKey];
 }
 
-- (NSString *)currentModName
++ (UIAlertView *)errorAlert:(NSString *)errorDescription modName:(NSString *)modName
 {
-    return self.playbackController.currentModName;
-}
-
-- (void)setCurrentMod:(NSString *)moduleName
-{
-    if (!moduleName) {
-        return;
-    }
-    self.getShaderViewController.currentModName = moduleName;
-    self.playbackController.currentModName = moduleName;
-    [self.playbackController startPlayback];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"ERROR (%@)",modName] message:[NSString stringWithFormat:@"%@",errorDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    return alert;
 }
 
 #pragma mark - MMModuleViewControllerDelegate
 
+- (void)loadPurchasedMod:(NSString *)modName selectedFromTable:(UITableView *)tableView withButton:(UIButton *)button
+{
+    __block UIButton *myButton = button;
+    __block UITableView *myTableView = tableView;
+    __weak MMRootViewController *weakself = self;
+    [self setupPlayback:modName
+             completion:^(BOOL success) {
+                 if (success) {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         weakself.modName = modName;
+                         myButton.enabled = YES;
+                         myButton.selected = YES;
+                         [weakself.playbackController startPlayback];
+                         [myTableView reloadData];
+                     });
+                 }else{
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         myButton.enabled = YES;
+                         myButton.selected = NO;
+                         weakself.modName = nil;
+                         [[MMRootViewController errorAlert:@"Failed to load" modName:modName]show];
+                         [myTableView reloadData];
+                     });
+                 }
+             }];
+}
+
+- (void)purchaseAndLoadMod:(NSString *)modName selectedFromTable:(UITableView *)tableView withButton:(UIButton *)button
+{
+    __block UIButton *myButton = button;
+    __block UITableView *myTableView = tableView;
+    myButton.enabled = NO;
+    __weak MMRootViewController *weakself = self;
+    [MMModuleManager purchaseMod:modName
+                        progress:^(double downloadProgress){
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [myButton setTitle:[NSString stringWithFormat:@"%.f%%",downloadProgress * 100] forState:UIControlStateDisabled];
+                            });
+
+                        }completion:^(BOOL success) {
+                            if (!success) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    myButton.enabled = YES;
+                                    myButton.selected = NO;
+                                    weakself.modName = nil;
+                                    [[MMRootViewController errorAlert:@"Failed to purchase" modName:modName]show];
+                                    [myTableView reloadData];
+                                });
+                                return;
+                            }else{
+                                [weakself loadPurchasedMod:modName selectedFromTable:tableView withButton:button];
+                            }
+                        }];
+}
+
 - (void)moduleView:(id)sender tappedButton:(id)button selectedModuleWithName:(NSString *)moduleName
 {
-    __weak MMRootViewController *weakself = self;
-    
     NSDictionary *mod = [MMModuleManager getMod:moduleName fromArray:[MMModuleManager purchasedMods]];
+    UITableView *tableView = [(MMModuleViewController *)sender tableView];
     if (mod) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[(MMModuleViewController *)sender tableView] reloadData];
-            [self setCurrentMod:moduleName];
-        });
+        [self loadPurchasedMod:moduleName selectedFromTable:tableView withButton:button];
+        return;
+    }else{
+        [self purchaseAndLoadMod:moduleName selectedFromTable:tableView withButton:button];
         return;
     }
-    
-    if (!mod) {
-        __block UIButton *myButton = button;
-        myButton.enabled = NO;
-        [MMModuleManager purchaseMod:moduleName
-                            progress:^(double downloadProgress){
-                                [myButton setTitle:[NSString stringWithFormat:@"%.f%%",downloadProgress * 100] forState:UIControlStateDisabled];
-                            }completion:^(BOOL success) {
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    if (success) {
-                                        [[(MMModuleViewController *)sender tableView] reloadData];
-                                        [weakself setCurrentMod:moduleName];
-                                        myButton.enabled = YES;
-                                        myButton.selected = YES;
-                                    }else{
-                                        myButton.enabled = YES;
-                                        [[(MMModuleViewController *)sender tableView] reloadData];
-                                    }
-                                });
-        }];
-        
-    }
-    
 }
 
 - (void)moduleView:(id)sender shuffleDidChange:(int)shuffle
@@ -133,52 +161,55 @@
     [PdBase sendFloat:(float)random toReceiver:ALLOW_RANDOM];
 }
 
-- (void)setupPlayback
+- (void)setupPlayback:(NSString *)modName completion:(void(^)(BOOL success))completion
 {
+    if (self.playbackController) {
+        [self.playbackController tearDown];
+        self.playbackController = nil;
+    }
+    
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
+    [self.playbackController preparePlaybackForMod:modName
+                                        completion:completion];
+    
 }
 
 #pragma mark - MMPlaybackControllerDelegate
 
 - (void)playback:(id)sender clockDidChange:(NSInteger)clock
 {
-    [self getShaderViewController].clock = clock;
+    
 }
 
 - (void)playbackBegan:(id)sender
 {
-    [self getShaderViewController].playing = YES;
+    self.playing = YES;
 }
 
 - (void)playbackEnded:(id)sender
 {
-    [self getShaderViewController].playing = NO;
+    self.playing = NO;
 }
 
 - (void)playback:(id)sender detectedUserTempo:(double)tempo
 {
-    [self getShaderViewController].tempo = tempo;
+    self.tempo = tempo;
 }
 
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
 {
-    [self getShaderViewController].currentModName = moduleName;
-}
-
-- (CGFloat)openDrawerWidth
-{
-    return [self revealWidthForDirection:MSDynamicsDrawerDirectionLeft];
-}
-
-- (UIColor *)currentFillColor
-{
-    return [self getShaderViewController].mainColor;
+    self.modName = moduleName;
 }
 
 - (UIColor *)currentTextColor
 {
-    return [[self currentFillColor]complement];
+    return [self.mainColor complement];
+}
+
+- (UIColor *)currentFillColor
+{
+    return self.mainColor;
 }
 
 @end

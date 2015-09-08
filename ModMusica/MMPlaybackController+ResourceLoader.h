@@ -10,8 +10,7 @@
 
 @interface MMPlaybackController (ResourceLoader)
 
-- (void)openPatch;
-- (void)closePatch;
-- (void)loadResourcesForModName:(NSString *)modName completion:(void(^)(void))completion;
+- (BOOL)closePatch:(NSString *)modName;
+- (BOOL)loadResources;
 
 @end

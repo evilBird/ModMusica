@@ -6,14 +6,19 @@
 //  Copyright (c) 2015 birdSound. All rights reserved.
 //
 
-#import "MSDynamicsDrawerViewController.h"
 #import "MMShaderViewController.h"
 #import "MMPlaybackController+ResourceLoader.h"
 
-@interface MMRootViewController : MSDynamicsDrawerViewController
+@interface MMRootViewController : UIViewController
 
-- (MMShaderViewController *)getShaderViewController;
+@property (nonatomic)                               double                                  tempo;
+@property (nonatomic,strong)                        NSString                                *modName;
+@property (nonatomic,getter=isPlaying)              BOOL                                    playing;
+@property (nonatomic,strong)                        UIColor                                 *mainColor;
+@property (nonatomic)                               double                                  scale;
+@property (nonatomic)                               double                                  rotation;
 
 @property (strong, nonatomic)                       MMPlaybackController                    *playbackController;
+@property (strong, nonatomic)                       MMShaderViewController                  *shaderViewController;
 
 @end

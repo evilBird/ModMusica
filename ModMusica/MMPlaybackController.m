@@ -18,7 +18,12 @@
 @interface MMPlaybackController () <PdListener>
 {
     float kInputVol;
+    
 }
+
+@property (nonatomic,strong)                    NSString                *currentModName;
+@property (nonatomic,strong)                    NSString                *previousModName;
+@property (nonatomic)                           BOOL                    playbackState;
 
 @end
 
@@ -32,6 +37,8 @@ void mm_textfile_setup(void);
 @implementation MMPlaybackController
 
 #pragma mark - Notification handlers
+
+#pragma mark - Audio Routing Notification Handlers
 
 - (void)sendPlaybackNotification:(BOOL)playback
 {
@@ -75,36 +82,34 @@ void mm_textfile_setup(void);
     [[NSNotificationCenter defaultCenter]removeObserver:self name:AVAudioSessionInterruptionNotification object:nil];
 }
 
-#pragma mark - accessors
+#pragma mark - Public Methods
 
-- (void)setCurrentModName:(NSString *)currentModName
+- (void)startPlayback
 {
-    NSString *prevModName = _currentModName;
-    _currentModName = currentModName;
-    
-    if ([_currentModName isEqualToString:prevModName]) {
-        self.ready = YES;
+    if (self.isPlaying || !self.isReady) {
         return;
     }
     
-
-    [self loadModuleName:_currentModName];
+    [self startPlaybackNow];
 }
 
-- (void)setReady:(BOOL)ready
+- (void)stopPlayback
 {
-    _ready = ready;
-    if (_ready && self.isWaiting) {
-        self.waiting = NO;
-        [self startPlaybackNow];
-        [self.delegate playbackBegan:self];
+    if (!self.isPlaying || !self.isReady) {
+        return;
     }
+    
+    [self stopPlaybackNow];
 }
 
-- (void)setPlaying:(BOOL)playing
+- (BOOL)isPlaying
 {
-    _playing = playing;
-    [self sendPlaybackNotification:playing];
+    return self.playbackState;
+}
+
+- (NSString *)modName
+{
+    return self.currentModName;
 }
 
 - (void)setAllowRandom:(BOOL)allowRandom
@@ -124,52 +129,33 @@ void mm_textfile_setup(void);
     [PdBase sendBangToReceiver:TAP_TEMPO];
 }
 
-#pragma mark - Playback
-
-- (void)loadModuleName:(NSString *)modName
+- (void)preparePlaybackForMod:(NSString *)modName completion:(void(^)(BOOL success))completion
 {
-    __weak MMPlaybackController *weakself = self;
-    self.ready = NO;
+    self.currentModName = modName;
+    if (self.previousModName && [modName isEqualToString:self.previousModName]) {
+        self.ready = YES;
+    }else{
+        self.ready = NO;
+        self.ready = [self loadResources];
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        [weakself loadResourcesForModName:modName completion:^{
-            weakself.ready = YES;
-            NSLog(@"finished loading mod %@",modName);
-        }];
+        completion(self.ready);
     });
 }
 
-- (void)startPlayback
-{
-    if (self.isPlaying || self.isWaiting) {
-        return;
-    }
-    
-    if (self.isReady) {
-        [self startPlaybackNow];
-    }else{
-        self.waiting = YES;
-    }
-}
+#pragma mark - Private Methods
 
 - (void)startPlaybackNow
 {
-    [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
-    [PdBase sendFloat:kInputVol toReceiver:INPUT_VOL];
     [PdBase sendFloat:1 toReceiver:AUDIO_SWITCH];
+    [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
+    [PdBase sendFloat:1 toReceiver:INPUT_VOL];
     [PdBase sendFloat:1 toReceiver:ON_OFF];
-    self.playing = YES;
+    [self setInitialPdVariables];
+    self.playbackState = YES;
     [self.delegate playbackBegan:self];
 }
-
-- (void)stopPlayback
-{
-    if (!self.isPlaying || self.isWaiting) {
-        return;
-    }
-
-    [self stopPlaybackNow];
-}
-
 
 - (void)stopPlaybackNow
 {
@@ -177,22 +163,40 @@ void mm_textfile_setup(void);
     [PdBase sendFloat:0 toReceiver:INPUT_VOL];
     [PdBase sendFloat:0 toReceiver:ON_OFF];
     [PdBase sendFloat:0 toReceiver:AUDIO_SWITCH];
-    self.playing = NO;
-    [self sendPlaybackNotification:NO];
+    self.playbackState = NO;
     [self.delegate playbackEnded:self];
 }
 
+- (void)setCurrentModName:(NSString *)currentModName
+{
+    self.previousModName = _currentModName;
+    _currentModName = currentModName;
+}
+
+- (void)setPlaybackState:(BOOL)playbackState
+{
+    _playbackState = playbackState;
+    [self sendPlaybackNotification:_playbackState];
+}
+
+
 #pragma mark - constructors
+
+- (void)setInitialPdVariables
+{
+    self.allowRandom = YES;
+    self.tempoLocked = NO;
+    self.shuffleMods = NO;
+}
 
 - (void)commonInit
 {
-    _allowRandom = YES;
+    _allowRandom = NO;
     _shuffleMods = NO;
     _tempoLocked = NO;
+    _playbackState = NO;
     _ready = NO;
-    _waiting = NO;
     _patchIsOpen = NO;
-    _playing = NO;
     kInputVol = 1.0;
     [self initalizePd];
     [self addNotificationListeners];
@@ -208,7 +212,7 @@ void mm_textfile_setup(void);
     return self;
 }
 
-#pragma mark - initializers
+#pragma mark - Pd Setup
 
 - (void)initalizePd
 {
@@ -235,11 +239,11 @@ void mm_textfile_setup(void);
     [self.dispatcher addListener:self forSource:ON_OFF];
 }
 
-#pragma mark - deinitializers
+#pragma mark - Pd Teardown
 
 - (void)closePd
 {
-    [self closePatch];
+    [self closePatch:self.modName];
     [self unsubscribePdMessages];
 }
 
@@ -248,7 +252,6 @@ void mm_textfile_setup(void);
     [self.dispatcher removeListener:self forSource:DETECTED_TEMPO];
     [self.dispatcher removeListener:self forSource:CLOCK];
     [self.dispatcher removeListener:self forSource:ON_OFF];
-
     self.dispatcher = nil;
 }
 
@@ -256,12 +259,12 @@ void mm_textfile_setup(void);
 
 - (void)setInstrumentLevelsOn
 {
-    //[PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
+    [PdBase sendFloat:1 toReceiver:OUTPUT_VOL];
 }
 
 - (void)setInstrumentLevelsOff
 {
-    //[PdBase sendFloat:0.0 toReceiver:OUTPUT_VOL];
+    [PdBase sendFloat:0.0 toReceiver:OUTPUT_VOL];
 }
 
 #pragma mark - PdListener
@@ -277,6 +280,15 @@ void mm_textfile_setup(void);
 }
 
 #pragma mark - dealloc
+
+- (void)tearDown
+{
+    if (self.isPlaying) {
+        [self stopPlaybackNow];
+    }
+    [self closePd];
+    [self removeNotificationListeners];
+}
 
 - (void)dealloc
 {
