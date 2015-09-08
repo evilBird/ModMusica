@@ -283,11 +283,13 @@ void mm_textfile_setup(void);
 
 - (void)tearDown
 {
-    if (self.isPlaying) {
-        [self stopPlaybackNow];
-    }
+    [self stopPlaybackNow];
     [self closePd];
     [self removeNotificationListeners];
+    self.delegate = nil;
+    self.patch = nil;
+    self.currentModName = nil;
+    self.previousModName = nil;
 }
 
 - (void)dealloc

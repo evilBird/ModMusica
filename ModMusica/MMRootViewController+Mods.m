@@ -163,6 +163,7 @@
 
 - (void)setupPlayback:(NSString *)modName completion:(void(^)(BOOL success))completion
 {
+    self.playing = NO;
     if (self.playbackController) {
         [self.playbackController tearDown];
         self.playbackController = nil;
@@ -171,8 +172,7 @@
     self.playbackController = [[MMPlaybackController alloc]init];
     self.playbackController.delegate = self;
     [self.playbackController preparePlaybackForMod:modName
-                                        completion:completion];
-    
+                                        completion:completion];    
 }
 
 #pragma mark - MMPlaybackControllerDelegate

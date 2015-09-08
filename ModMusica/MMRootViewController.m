@@ -47,25 +47,21 @@
     NSString *modName = @"mario";
     [self setupPlayback:modName completion:^(BOOL success) {
         if (success){
-            weakself.shaderViewController.shaderKey = modName;
+            weakself.modName = modName;
             [weakself setupGestureRecognizers];
-            [weakself.shaderViewController hideActivity];
         }else{
-            [weakself.shaderViewController hideActivity];
             [[MMRootViewController errorAlert:@"Failed to setup audio" modName:modName]show];
         }
     }];
 
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)setModName:(NSString *)modName
 {
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _modName = modName;
+    [self.shaderViewController showActivity];
+    self.shaderViewController.shaderKey = modName;
+    [self.shaderViewController hideActivity];
 }
 
 - (void)resetMetrics

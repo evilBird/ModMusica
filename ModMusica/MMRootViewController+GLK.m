@@ -28,12 +28,12 @@
 
 - (BOOL)glkViewControllerShouldDraw:(id)sender
 {
-    return YES;
+    return self.isPlaying;
 }
 
 - (BOOL)glkViewControllerShouldUpdate:(id)sender
 {
-    return self.isPlaying;// self.playbackController.isPlaying;
+    return self.isPlaying;
 }
 
 - (double)glkViewControllerScale:(id)sender
