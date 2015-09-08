@@ -9,6 +9,7 @@
 #import "MMModuleManager.h"
 #import "NSUserDefaults+Mods.h"
 #import "MMPurchaseManager.h"
+#import "SNZipArchive.h"
 
 @implementation MMModuleManager
 
@@ -29,8 +30,7 @@
 + (void)setupDefaultMods
 {
     if (![MMModuleManager purchasedMods]) {
-        //[NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"gushies"]];
-        //[NSUserDefaults savePurchasedMod:[MMModuleManager setupDefaultMod:@"mario"]];
+        [MMModuleManager mockPurchaseMod:@"mario"];
     }
 }
 
@@ -126,6 +126,36 @@
     
     return [NSArray arrayWithArray:available.allObjects];
     
+}
+
++ (BOOL)mockPurchaseMod:(NSString *)modName
+{
+    if (![MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]])
+    {
+        return NO;
+    }
+    
+    
+    if ([MMModuleManager getMod:modName fromArray:[MMModuleManager purchasedMods]]) {
+        return YES;
+    }
+    
+    NSString *zipPath = [[NSBundle bundleForClass:[MMModuleManager class]]pathForResource:modName ofType:@"zip"];
+    if (![[NSFileManager defaultManager]fileExistsAtPath:zipPath]){
+        return NO;
+    }
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+    [SNZipArchive unzipFileAtPath:zipPath toDestination:documentsPath];
+    NSString *contentPath = [documentsPath stringByAppendingPathComponent:modName];
+    NSMutableDictionary *purchasedMod = [MMModuleManager getMod:modName fromArray:[MMModuleManager availableMods]].mutableCopy;
+    
+    NSString *productContentPath = [contentPath stringByAppendingPathComponent:@"Contents"];
+    purchasedMod[kProductPurchasedKey] = @(1);
+    purchasedMod[kProductContentPathKey] = productContentPath;
+    [NSUserDefaults savePurchasedMod:[NSDictionary dictionaryWithDictionary:purchasedMod]];
+ 
+    return YES;
 }
 
 + (void)purchaseMod:(NSString *)modName

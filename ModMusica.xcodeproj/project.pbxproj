@@ -27,6 +27,13 @@
 		F246C7671B9E3631007154CF /* BasicFractal.vsh in Resources */ = {isa = PBXBuildFile; fileRef = F246C7651B9E3631007154CF /* BasicFractal.vsh */; };
 		F246C76A1B9E38CA007154CF /* RaveSpiral.fsh in Resources */ = {isa = PBXBuildFile; fileRef = F246C7681B9E38CA007154CF /* RaveSpiral.fsh */; };
 		F246C76B1B9E38CA007154CF /* RaveSpiral.vsh in Resources */ = {isa = PBXBuildFile; fileRef = F246C7691B9E38CA007154CF /* RaveSpiral.vsh */; };
+		F246C77B1B9E711D007154CF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F246C76D1B9E711D007154CF /* Info.plist */; };
+		F246C77C1B9E711D007154CF /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = F246C7701B9E711D007154CF /* ioapi.c */; };
+		F246C77D1B9E711D007154CF /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = F246C7721B9E711D007154CF /* mztools.c */; };
+		F246C77E1B9E711D007154CF /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = F246C7741B9E711D007154CF /* unzip.c */; };
+		F246C77F1B9E711D007154CF /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = F246C7761B9E711D007154CF /* zip.c */; };
+		F246C7801B9E711D007154CF /* SNZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = F246C7791B9E711D007154CF /* SNZipArchive.m */; };
+		F246C7821B9E7326007154CF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F246C7811B9E7326007154CF /* libz.dylib */; };
 		F246EF151A01A86400357005 /* modmusica_1.pd in Resources */ = {isa = PBXBuildFile; fileRef = F246EF141A01A86400357005 /* modmusica_1.pd */; };
 		F24A3E9E1A0058300074471B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24A3E9D1A0058300074471B /* AudioToolbox.framework */; };
 		F24F18BE1B8FC836003C5389 /* Bacteria.fsh in Resources */ = {isa = PBXBuildFile; fileRef = F24F18AD1B8FC836003C5389 /* Bacteria.fsh */; };
@@ -136,6 +143,20 @@
 		F246C7651B9E3631007154CF /* BasicFractal.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = BasicFractal.vsh; sourceTree = "<group>"; };
 		F246C7681B9E38CA007154CF /* RaveSpiral.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RaveSpiral.fsh; sourceTree = "<group>"; };
 		F246C7691B9E38CA007154CF /* RaveSpiral.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RaveSpiral.vsh; sourceTree = "<group>"; };
+		F246C76D1B9E711D007154CF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F246C76F1B9E711D007154CF /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		F246C7701B9E711D007154CF /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		F246C7711B9E711D007154CF /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		F246C7721B9E711D007154CF /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		F246C7731B9E711D007154CF /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		F246C7741B9E711D007154CF /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		F246C7751B9E711D007154CF /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		F246C7761B9E711D007154CF /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		F246C7771B9E711D007154CF /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		F246C7781B9E711D007154CF /* SNZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNZipArchive.h; sourceTree = "<group>"; };
+		F246C7791B9E711D007154CF /* SNZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNZipArchive.m; sourceTree = "<group>"; };
+		F246C77A1B9E711D007154CF /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		F246C7811B9E7326007154CF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F246EF141A01A86400357005 /* modmusica_1.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = modmusica_1.pd; sourceTree = "<group>"; };
 		F24A3E9C1A0058300074471B /* ModMusica.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ModMusica.entitlements; sourceTree = "<group>"; };
 		F24A3E9D1A0058300074471B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -248,6 +269,7 @@
 				F26A69BB1B4B802E002F0736 /* StoreKit.framework in Frameworks */,
 				521F96ADB97CBCE51F347099 /* libPods-ModMusica.a in Frameworks */,
 				F24A3E9E1A0058300074471B /* AudioToolbox.framework in Frameworks */,
+				F246C7821B9E7326007154CF /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +295,7 @@
 		A8D00E89E66249B2177C0FBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F246C7811B9E7326007154CF /* libz.dylib */,
 				F26A69BA1B4B802E002F0736 /* StoreKit.framework */,
 				F24A3E9D1A0058300074471B /* AudioToolbox.framework */,
 				C766045950CFEDBA070D14FE /* libPods-ModMusica.a */,
@@ -414,6 +437,34 @@
 			name = Shaders;
 			sourceTree = "<group>";
 		};
+		F246C76C1B9E711D007154CF /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				F246C76D1B9E711D007154CF /* Info.plist */,
+				F246C76E1B9E711D007154CF /* minizip */,
+				F246C7781B9E711D007154CF /* SNZipArchive.h */,
+				F246C7791B9E711D007154CF /* SNZipArchive.m */,
+				F246C77A1B9E711D007154CF /* ZipArchive.h */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		F246C76E1B9E711D007154CF /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				F246C76F1B9E711D007154CF /* crypt.h */,
+				F246C7701B9E711D007154CF /* ioapi.c */,
+				F246C7711B9E711D007154CF /* ioapi.h */,
+				F246C7721B9E711D007154CF /* mztools.c */,
+				F246C7731B9E711D007154CF /* mztools.h */,
+				F246C7741B9E711D007154CF /* unzip.c */,
+				F246C7751B9E711D007154CF /* unzip.h */,
+				F246C7761B9E711D007154CF /* zip.c */,
+				F246C7771B9E711D007154CF /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		F24F18AC1B8FC836003C5389 /* GLKShader */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +564,7 @@
 		F2B2AB4D19FF1739003042D6 /* ModMusica */ = {
 			isa = PBXGroup;
 			children = (
+				F246C76C1B9E711D007154CF /* ZipArchive */,
 				F24A3E9C1A0058300074471B /* ModMusica.entitlements */,
 				F2B2AB7D19FF273F003042D6 /* Pd */,
 				F2DE9E941B222A0E00FEBE5F /* Class Categories */,
@@ -719,6 +771,7 @@
 				F246C7671B9E3631007154CF /* BasicFractal.vsh in Resources */,
 				F24F18C01B8FC836003C5389 /* FractalKaleidoscope.fsh in Resources */,
 				F246C7661B9E3631007154CF /* BasicFractal.fsh in Resources */,
+				F246C77B1B9E711D007154CF /* Info.plist in Resources */,
 				F246C76A1B9E38CA007154CF /* RaveSpiral.fsh in Resources */,
 				F2B2B0F219FF281F003042D6 /* bonk~-help.pd in Resources */,
 				F24F18BE1B8FC836003C5389 /* Bacteria.fsh in Resources */,
@@ -811,12 +864,15 @@
 				F2A4C26A1B6058AB00AA6EC9 /* MMModuleManager+Packages.m in Sources */,
 				F2D06FAA1B291A6100AA7708 /* HamburgerButton.m in Sources */,
 				F2A4C2701B60612B00AA6EC9 /* MMPlaybackController+ResourceLoader.m in Sources */,
+				F246C77C1B9E711D007154CF /* ioapi.c in Sources */,
 				F2575C121B2792EA00DE5571 /* MMModuleViewController.m in Sources */,
 				F2D3DFAF1B3A1859000AA933 /* MMRootViewController+Mods.m in Sources */,
 				F2FC4FE71B3DEDD6000CE7EB /* MyGLKViewController+Button.m in Sources */,
+				F246C7801B9E711D007154CF /* SNZipArchive.m in Sources */,
 				F2B2B16619FF281F003042D6 /* fiddle~.c in Sources */,
 				F2F676AB1B2B900400CA79A9 /* MyGLKViewController.m in Sources */,
 				F2DE9EA81B22407600FEBE5F /* MMScopeDataSource.m in Sources */,
+				F246C77D1B9E711D007154CF /* mztools.c in Sources */,
 				F2F0FE941B34D27B00B00A21 /* MyGLKViewController+Labels.m in Sources */,
 				F2D3DFA91B3A10A8000AA933 /* MMRootViewController.m in Sources */,
 				F243BED91B912BF400C5A737 /* MMShaderViewController.m in Sources */,
@@ -827,9 +883,11 @@
 				F2B2AB5119FF1739003042D6 /* main.m in Sources */,
 				F243BED51B912BF400C5A737 /* GLKShaderViewController+IO.m in Sources */,
 				F235E6741A33DD0100F67F8E /* BSDKaleidoscopeFilter.m in Sources */,
+				F246C77E1B9E711D007154CF /* unzip.c in Sources */,
 				F24F18DF1B8FCCEB003C5389 /* AGLKContext.m in Sources */,
 				F2B2AF4319FF27BE003042D6 /* vexp_fun.c in Sources */,
 				F2DE9E9A1B222BC200FEBE5F /* MMPlaybackController.m in Sources */,
+				F246C77F1B9E711D007154CF /* zip.c in Sources */,
 				F243BED81B912BF400C5A737 /* GLKShaderViewController+Shaders.m in Sources */,
 				F2B2B17119FF281F003042D6 /* helmholtz~.cpp in Sources */,
 			);

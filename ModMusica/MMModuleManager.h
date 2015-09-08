@@ -23,6 +23,8 @@
            progress:(void(^)(double downloadProgress))progress
          completion:(void(^)(BOOL success))completion;
 
++ (BOOL)mockPurchaseMod:(NSString *)modName;
+
 + (id)modName:(NSString *)modName valueForKey:(NSString *)key;
 
 @end
