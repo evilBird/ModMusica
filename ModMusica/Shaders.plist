@@ -45,12 +45,33 @@
 	<dict>
 		<key>uniforms</key>
 		<dict>
-			<key>clock</key>
+			<key>samplerDB</key>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>synthDB</key>
+			<dict>
+				<key>type</key>
 				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>bassDB</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>kickDrumDB</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
 			</dict>
 		</dict>
 		<key>shaders</key>
@@ -65,12 +86,33 @@
 	<dict>
 		<key>uniforms</key>
 		<dict>
-			<key>clock</key>
+			<key>samplerDB</key>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>synthDB</key>
+			<dict>
+				<key>type</key>
 				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>bassDB</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>kickDrumDB</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
 			</dict>
 		</dict>
 		<key>shaders</key>
@@ -85,12 +127,33 @@
 	<dict>
 		<key>uniforms</key>
 		<dict>
-			<key>clock</key>
+			<key>samplerDB</key>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>synthDB</key>
+			<dict>
+				<key>type</key>
 				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>bassDB</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>kickDrumDB</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
 			</dict>
 		</dict>
 		<key>shaders</key>
@@ -105,19 +168,33 @@
 	<dict>
 		<key>uniforms</key>
 		<dict>
-			<key>speed</key>
+			<key>samplerDB</key>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>initialValue</key>
-				<real>8</real>
+				<real>1</real>
 			</dict>
-			<key>clock</key>
+			<key>synthDB</key>
 			<dict>
 				<key>type</key>
 				<integer>0</integer>
 				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>bassDB</key>
+			<dict>
+				<key>type</key>
 				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
+			</dict>
+			<key>kickDrumDB</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+				<key>initialValue</key>
+				<real>1</real>
 			</dict>
 		</dict>
 		<key>shaders</key>

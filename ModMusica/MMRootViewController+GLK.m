@@ -46,6 +46,16 @@
     return self.rotation;
 }
 
+- (double)glkViewControllerDeltaScale:(id)sender
+{
+    return self.deltaScale;
+}
+
+- (double)glkViewControllerDeltaRotation:(id)sender
+{
+    return self.deltaRotation;
+}
+
 - (void)glkViewController:(id)sender subscribeToMessages:(NSString *)messageSource
 {
     [self.playbackController.dispatcher addListener:sender forSource:messageSource];

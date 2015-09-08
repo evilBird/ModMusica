@@ -142,8 +142,8 @@ void mm_textfile_setup(void);
         __weak MMPlaybackController *weakself = self;
         [[NSOperationQueue new]addOperationWithBlock:^{
             weakself.ready = [weakself loadResources];
+            [weakself startPlaybackNow];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself startPlaybackNow];
                 completion(weakself.isReady);
             });
         }];

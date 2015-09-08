@@ -18,6 +18,8 @@
 - (BOOL)glkViewControllerShouldUpdate:(id)sender;
 - (double)glkViewControllerScale:(id)sender;
 - (double)glkViewControllerRotation:(id)sender;
+- (double)glkViewControllerDeltaScale:(id)sender;
+- (double)glkViewControllerDeltaRotation:(id)sender;
 - (void)glkViewController:(id)sender subscribeToMessages:(NSString *)messageSource;
 - (void)glkViewController:(id)sender unsubscribeToMessages:(NSString *)messageSource;
 

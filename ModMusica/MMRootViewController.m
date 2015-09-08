@@ -25,6 +25,7 @@
 @property (nonatomic,strong)            MMLongPressGestureRecognizer        *longPress;
 @property (nonatomic,strong)            MMTapGestureRecognizer              *tap;
 @property (nonatomic,strong)            MMPinchGestureRecognizer            *pinch;
+@property (nonatomic,strong)            UIRotationGestureRecognizer         *rotate;
 
 
 @end
@@ -69,6 +70,8 @@
 - (void)setModName:(NSString *)modName
 {
     _modName = modName;
+    self.mainColor = [UIColor randomColor];
+    [self resetMetrics];
     [self.shaderViewController showActivity];
     self.shaderViewController.shaderKey = modName;
     [self.shaderViewController hideActivity];
@@ -77,7 +80,9 @@
 - (void)resetMetrics
 {
     self.scale = 1.0;
+    self.deltaScale = 0.0;
     self.rotation = 0.0;
+    self.deltaRotation = 0.0;
 }
 
 - (void)setupGestureRecognizers
@@ -88,6 +93,8 @@
     [self.view addGestureRecognizer:self.tap];
     self.pinch = [[MMPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinch:)];
     [self.view addGestureRecognizer:self.pinch];
+    self.rotate = [[UIRotationGestureRecognizer alloc]initWithTarget:self action:@selector(handleRotation:)];
+    [self.view addGestureRecognizer:self.rotate];
 }
 
 - (void)handlePinch:(id)sender
@@ -119,6 +126,11 @@
     deltaVelocity = velocity - initialVelocity;
     previousScale = scale;
     previousVelocity = velocity;
+    if (pinch.state == UIGestureRecognizerStateEnded) {
+        self.deltaScale = 0.0;
+    }else{
+        self.deltaScale = (scale - self.scale);
+    }
     self.scale  = scale;
 }
 
@@ -172,7 +184,18 @@
     }
 }
 
+- (void)handleRotation:(id)sender
+{
+    UIRotationGestureRecognizer *rt = sender;
+    if (rt.state == UIGestureRecognizerStateEnded) {
+        self.deltaRotation = 0.0;
+    }else{
+        self.deltaRotation = rt.rotation-self.rotation;
+    }
+    
+    self.rotation = rt.rotation;
 
+}
 
 #pragma mark - Navigation
 

@@ -16,7 +16,9 @@
 @property (nonatomic,getter=isPlaying)              BOOL                                    playing;
 @property (nonatomic,strong)                        UIColor                                 *mainColor;
 @property (nonatomic)                               double                                  scale;
+@property (nonatomic)                               double                                  deltaScale;
 @property (nonatomic)                               double                                  rotation;
+@property (nonatomic)                               double                                  deltaRotation;
 
 @property (strong, nonatomic)                       MMPlaybackController                    *playbackController;
 @property (strong, nonatomic)                       MMShaderViewController                  *shaderViewController;

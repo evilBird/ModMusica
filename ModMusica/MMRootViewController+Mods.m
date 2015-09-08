@@ -84,21 +84,16 @@
     [self setupPlayback:modName
              completion:^(BOOL success) {
                  if (success) {
-                     dispatch_async(dispatch_get_main_queue(), ^{
                          weakself.modName = modName;
                          myButton.enabled = YES;
                          myButton.selected = YES;
-                         [weakself.playbackController startPlayback];
                          [myTableView reloadData];
-                     });
                  }else{
-                     dispatch_async(dispatch_get_main_queue(), ^{
                          myButton.enabled = YES;
                          myButton.selected = NO;
                          weakself.modName = nil;
                          [[MMRootViewController errorAlert:@"Failed to load" modName:modName]show];
                          [myTableView reloadData];
-                     });
                  }
              }];
 }
@@ -117,14 +112,11 @@
 
                         }completion:^(BOOL success) {
                             if (!success) {
-                                dispatch_async(dispatch_get_main_queue(), ^{
                                     myButton.enabled = YES;
                                     myButton.selected = NO;
                                     weakself.modName = nil;
                                     [[MMRootViewController errorAlert:@"Failed to purchase" modName:modName]show];
                                     [myTableView reloadData];
-                                });
-                                return;
                             }else{
                                 [weakself loadPurchasedMod:modName selectedFromTable:tableView withButton:button];
                             }
@@ -134,7 +126,13 @@
 - (void)moduleView:(id)sender tappedButton:(id)button selectedModuleWithName:(NSString *)moduleName
 {
     NSDictionary *mod = [MMModuleManager getMod:moduleName fromArray:[MMModuleManager purchasedMods]];
-    UITableView *tableView = [(MMModuleViewController *)sender tableView];
+    __block UITableView *tableView = [(MMModuleViewController *)sender tableView];
+    __block UIButton *myButton = button;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        myButton.enabled = NO;
+        [tableView reloadData];
+    });
+    
     if (mod) {
         [self loadPurchasedMod:moduleName selectedFromTable:tableView withButton:button];
         return;
@@ -197,11 +195,12 @@
 - (void)playback:(id)sender detectedUserTempo:(double)tempo
 {
     self.tempo = tempo;
+    self.shaderViewController.tempo = tempo;
 }
 
 - (void)playback:(id)sender didLoadModuleName:(NSString *)moduleName
 {
-    self.modName = moduleName;
+    //self.modName = moduleName;
 }
 
 - (UIColor *)currentTextColor
